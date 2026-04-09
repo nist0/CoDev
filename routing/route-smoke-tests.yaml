@@ -291,6 +291,34 @@ cases:
       prompts: ["generate-controller"]
       skills: ["rest-api-controller-gen", "rest-api-bootstrap", "aspnet-core", "mediatr", "openapi", "dotnet-testing"]
 
+  - request: "build a telegram bot in python"
+    expect:
+      capability: bot-engineering
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+
+  - request: "create a teams bot with adaptive cards in c#"
+    expect:
+      capability: bot-engineering
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+
+  - request: "whatsapp bot webhook"
+    expect:
+      capability: bot-engineering
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+
+  - request: "debug my teams bot not responding"
+    expect:
+      capability: bot-engineering
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+
   - request: "bootstrap a REST API in C#"
     expect:
       capability: scaffolding

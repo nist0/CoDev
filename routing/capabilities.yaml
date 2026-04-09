@@ -198,3 +198,26 @@ capabilities:
       - career document
       - job application
     default_agent: CV Coach
+
+  - id: bot-engineering
+    description: "Design, scaffold, and debug bots for Teams, Telegram, WhatsApp, Discord and other platforms in C# or Python."
+    keywords:
+      - bot
+      - chatbot
+      - teams bot
+      - telegram bot
+      - whatsapp bot
+      - discord bot
+      - bot engineering
+      - bot scaffold
+      - webhook bot
+      - slash command
+      - conversational agent
+      - m365 agents sdk
+      - teams ai library
+      - python-telegram-bot
+      - bot api
+      - interactive message
+      - adaptive card
+      - bot framework
+    default_agent: Bot Engineer

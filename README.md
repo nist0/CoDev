@@ -614,6 +614,7 @@ Defines **what** Copilot can do. Each capability has an `id` and a `default_agen
 | `mermaid` | Produce, review, and embed Mermaid diagrams in Markdown files — GitHub-native rendering, best practices, and CI validation. | mermaid-diagrammer |
 | `codev-management` | CoDev submodule lifecycle: init, update, override authoring, teardown, and upstream contribution. | CoDev Consumer |
 | `cv-coaching` | Analyse, critique, and rewrite CVs/resumes to modern professional standards: ATS compliance, impact-first bullets, quantified achievements, and keyword gap analysis against a target job offer. | CV Coach |
+| `bot-engineering` | Design, scaffold, and debug bots for Teams, Telegram, WhatsApp, Discord and other platforms in C# or Python. | Bot Engineer |
 <!-- codev:generated:capabilities:end -->
 
 ### `routing/domains.yaml`
@@ -634,6 +635,7 @@ Defines **where** capabilities apply. Keywords trigger automatic domain detectio
 | `github-delivery` | `pull request`, `review`, `commits`, `conventional commits`, `issues`, `projects`, `milestones`, `labels` |
 | `project-orchestration` | `orchestrate`, `orchestration`, `project lead`, `delegate whole project`, `dispatch`, `work breakdown`, `task assignment`, `kanban` |
 | `docs-system` | `markdown`, `docs`, `documentation`, `docs lint`, `markdown lint`, `plantuml`, `mermaid`, `diagram` |
+| `bot-platforms` | `teams`, `telegram`, `whatsapp`, `discord`, `slack`, `bot`, `chatbot`, `webhook` |
 <!-- codev:generated:domains:end -->
 
 ### `routing/aliases.yaml`
@@ -658,6 +660,7 @@ Generated agent inventory:
 | Architect | architect.agent.md | Cross-cutting architecture: boundaries, patterns, tradeoffs, ADR proposals, and documentation-ready explanations. |
 | Automation/Scripting | automation-scripting.agent.md | Bash/PowerShell/Python/Perl automation, CLI tooling, and repo tooling scripts. |
 | Backend .NET | backend-dotnet.agent.md | ASP.NET Core, EF Core, PostgreSQL, MediatR, OpenAPI; production-grade REST APIs and CLIs. |
+| Bot Engineer | bot-engineer.agent.md | Multi-platform bot engineering: Microsoft Teams (M365 Agents SDK / Teams AI Library), Telegram (python-telegram-bot), WhatsApp (Cloud API), and cross-platform bot architecture patterns in C# and Python. |
 | CLI Platform Onboarder | cli-platform-onboarder.agent.md | Bootstrap CoDev into a .NET CLI platform repo, run full static analysis (GH workflows, Bicep/infra, solution), and drive task execution using deduced project context. |
 | CoDev Consumer | codev-consumer.agent.md | Guides repository maintainers through the full CoDev submodule lifecycle: init, update, override authoring, teardown, and contributing changes upstream. |
 | CV Coach | cv-coach.agent.md | Analyse, critique, and rewrite CVs/resumes to modern professional standards. Covers ATS compliance, impact-first bullets, quantified achievements, and keyword gap analysis against a target job description. |
@@ -694,6 +697,7 @@ Generated instruction inventory:
 | --- | --- | --- |
 | 00-core.instructions.md | `**` | Core working agreement: deterministic steps, copy/paste-ready outputs, non-contradictory layering. |
 | bash.instructions.md | `**/*.sh` | Bash guidance: safe shell scripting. |
+| bot.instructions.md | `**/*bot*.{cs,py},**/*handler*.{cs,py},**/*webhook*.{cs,py},**/*adapter*.{cs,py}` | Always-on rules for bot code files across all platforms (Teams, Telegram, WhatsApp, Discord). Non-negotiable security baseline, SDK selection, and reliability standards. |
 | brainstorming-governance.instructions.md | `**` | Mandatory brainstorm-first gate for all non-trivial tasks: require elite ideation quality, scored option portfolio, execution handoff, and named specialist reviews. |
 | cli-platform.instructions.md | `**` | Mandatory working standards for the .NET CLI platform project: three-phase workflow enforcement, context discipline, extension conventions, and infra/CI authoring rules. |
 | codev-consumer.instructions.md | `codev-overrides/**` | Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation. |
@@ -731,6 +735,8 @@ Generated prompt inventory:
 | `/apm-analysis` | apm-analysis.prompt.md |  | ﻿--- |
 | `/automation-script` | automation-script.prompt.md |  | ﻿--- |
 | `/az-ops` | az-ops.prompt.md | DevOps/Cloud | Azure CLI operations — subscription context, resource discovery, AKS, Key Vault, ACR, RBAC, and monitoring queries. |
+| `/bot-scaffold` | bot-scaffold.prompt.md | Bot Engineer | Scaffold a production-ready bot project for Teams, Telegram, WhatsApp or other platforms in C# or Python. Gathers requirements and emits exact setup steps, project structure, and security baseline. |
+| `/bot-triage` | bot-triage.prompt.md | Bot Engineer | Systematically debug and triage bot issues across Teams, Telegram, WhatsApp and other platforms. Follows repro-first methodology: symptom collection, platform identification, SDK version, ranked hypotheses, and verified fix. |
 | `/brainstorm` | brainstorm.prompt.md |  | ﻿--- |
 | `/cli-platform-analyze` | cli-platform-analyze.prompt.md |  | ﻿--- |
 | `/cli-platform-init` | cli-platform-init.prompt.md |  | ﻿--- |
@@ -806,6 +812,7 @@ Generated skill inventory:
 | `azure` | Azure operational basics — identity safety, resource navigation, secrets management, networking, and change verification. |
 | `bash` | Bash shell automation — safety defaults, idempotency, input validation, error handling, and ShellCheck integration. |
 | `batch` | Windows batch/CMD scripting — safe patterns, error handling, and migration guidance. Prefer PowerShell for complex logic. |
+| `bot-architecture` | Cross-platform bot architecture patterns -- Activity/Turn model, middleware pipeline, state management, secrets hygiene, webhook vs polling, and AI integration. Applies to C# and Python across Teams, Telegram, WhatsApp, and other platforms. |
 | `bruno` | Bruno API testing — collection structure, environment strategy, request standardization, response validation, CI integration. |
 | `c` | C language — safety defaults, memory discipline, error handling, sanitizers, and debugging procedure. |
 | `canonical-routing` | Deterministic routing using capability + domain matrix — classification, fallback, and handoff. |
@@ -874,12 +881,15 @@ Generated skill inventory:
 | `rfc` | Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan. |
 | `roadmap` | Actionable roadmap — outcome-driven milestones, dependency and risk register, success metrics, and review cadence. |
 | `supply-chain` | Software supply chain hardening — dependency pinning, SBOM, artifact signing, provenance, and policy enforcement. |
+| `teams-bot` | Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration. |
+| `telegram-bot` | Build production-grade Telegram bots in Python using python-telegram-bot v22+ (Bot API 9.5+). Covers async application setup, handler registration, ConversationHandler dialogs, webhook vs polling, persistence, and security. |
 | `test-strategy` | Test pyramid design — risk mapping, test type selection, data strategy, CI gate definition, and flakiness prevention. |
 | `threat-modeling` | Step-by-step STRIDE threat modeling playbook: enumerate assets, map trust boundaries, identify and score threats, define mitigations, document residual risk. |
 | `triage` | Repro-first debugging triage — minimal reproduction, ranked hypotheses, validated fixes, and prevention. |
 | `typescript` | TypeScript type safety — boundary typing, discriminated unions, type guards, runtime validation, and unsafe pattern elimination. |
 | `vscode` | VS Code Copilot Dev Framework usage — bootstrap, reload, discoverability, multi-root workspaces, and troubleshooting. |
 | `weekly-digest` | Produce a structured weekly tech watch digest — curated by topic, sourced from primaries, with actionable experiments. |
+| `whatsapp-bot` | Build WhatsApp bots using the WhatsApp Business Cloud API (Meta). Covers webhook verification, HMAC-SHA256 signature validation, message types (text, template, interactive), Python and C# outbound patterns, and deployment checklist. |
 <!-- codev:generated:skills:end -->
 
 ---

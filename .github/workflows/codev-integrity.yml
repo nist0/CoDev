@@ -1,0 +1,186 @@
+name: CoDev Submodule Integrity
+
+on:
+  workflow_call:
+    inputs:
+      codev-json-path:
+        description: "Relative path to codev.json from the repository root."
+        type: string
+        required: false
+        default: "codev.json"
+      codev-script-path:
+        description: "Relative path to codev.py from the repository root (inside the submodule)."
+        type: string
+        required: false
+        default: "tools/codev/codev.py"
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    name: CoDev integrity check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      - name: Validate codev.json against schema
+        shell: python
+        run: |
+          import json, sys
+          from pathlib import Path
+          try:
+              import jsonschema
+          except ImportError:
+              print("jsonschema not installed — skipping schema validation")
+              sys.exit(0)
+
+          codev_json_path = Path("${{ inputs.codev-json-path }}")
+          if not codev_json_path.exists():
+              print(f"::error::codev.json not found at {codev_json_path}")
+              sys.exit(1)
+
+          manifest = json.loads(codev_json_path.read_text(encoding="utf-8"))
+          submodule_path = Path(manifest.get("submodulePath", "tools/codev"))
+          schema_path = submodule_path / "schemas" / "codev.schema.json"
+          if not schema_path.exists():
+              print(f"::warning::Schema not found at {schema_path}; skipping schema validation")
+              sys.exit(0)
+
+          schema = json.loads(schema_path.read_text(encoding="utf-8"))
+          try:
+              jsonschema.validate(manifest, schema)
+              print("✅  codev.json is valid")
+          except jsonschema.ValidationError as e:
+              print(f"::error::codev.json validation failed: {e.message}")
+              sys.exit(1)
+
+      - name: Check codev-lock.json exists (lockfile mode)
+        shell: python
+        run: |
+          import json, sys
+          from pathlib import Path
+
+          codev_json_path = Path("${{ inputs.codev-json-path }}")
+          if not codev_json_path.exists():
+              print("::error::codev.json not found")
+              sys.exit(1)
+
+          manifest = json.loads(codev_json_path.read_text(encoding="utf-8"))
+
+          # In symlink mode there is no lock file; detect by checking if
+          # .github/agents is a symlink
+          agents_path = Path(".github/agents")
+          if agents_path.is_symlink():
+              print("ℹ️   Symlink mode detected — skipping lockfile check")
+              sys.exit(0)
+
+          lock_path = Path("codev-lock.json")
+          if not lock_path.exists():
+              print("::error::codev-lock.json not found. Run 'codev update' after 'git submodule update'.")
+              sys.exit(1)
+
+          try:
+              lock = json.loads(lock_path.read_text(encoding="utf-8"))
+          except json.JSONDecodeError as e:
+              print(f"::error::codev-lock.json is not valid JSON: {e}")
+              sys.exit(1)
+
+          print("✅  codev-lock.json found and parseable")
+
+      - name: Check for SHA256 drift (lockfile mode)
+        shell: python
+        run: |
+          import hashlib, json, sys
+          from pathlib import Path
+
+          lock_path = Path("codev-lock.json")
+          if not lock_path.exists():
+              print("ℹ️   No codev-lock.json — skipping drift check (symlink mode)")
+              sys.exit(0)
+
+          lock = json.loads(lock_path.read_text(encoding="utf-8"))
+          managed = lock.get("managed", {})
+          drift: list[str] = []
+
+          for rel_path, expected_sha in managed.items():
+              file_path = Path(rel_path)
+              if not file_path.exists():
+                  drift.append(f"MISSING: {rel_path}")
+                  continue
+              h = hashlib.sha256()
+              with file_path.open("rb") as f:
+                  for chunk in iter(lambda: f.read(65536), b""):
+                      h.update(chunk)
+              if h.hexdigest() != expected_sha:
+                  drift.append(f"MODIFIED: {rel_path}")
+
+          if drift:
+              print("::error::CoDev managed files have drifted from codev-lock.json:")
+              for d in drift:
+                  print(f"  {d}")
+              print("Remediation: run 'python codev.py update' (or './codev.sh update') after 'git submodule update'")
+              sys.exit(1)
+
+          print(f"✅  All {len(managed)} managed files match codev-lock.json")
+
+      - name: Check PR does not touch managed files
+        if: github.event_name == 'pull_request'
+        shell: python
+        run: |
+          import json, subprocess, sys
+          from pathlib import Path
+
+          codev_json_path = Path("${{ inputs.codev-json-path }}")
+          if not codev_json_path.exists():
+              print("::error::codev.json not found")
+              sys.exit(1)
+
+          manifest = json.loads(codev_json_path.read_text(encoding="utf-8"))
+
+          # Determine managed paths
+          lock_path = Path("codev-lock.json")
+          if lock_path.exists():
+              lock = json.loads(lock_path.read_text(encoding="utf-8"))
+              managed = set(lock.get("managed", {}).keys())
+          else:
+              managed = set(manifest.get("managedPaths", [
+                  ".github/agents", ".github/skills", ".github/prompts",
+                  ".github/instructions", ".github/copilot-instructions.md",
+              ]))
+
+          # Files changed in the PR (base → head)
+          result = subprocess.run(
+              ["git", "diff", "--name-only",
+               "${{ github.event.pull_request.base.sha }}",
+               "${{ github.event.pull_request.head.sha }}"],
+              capture_output=True, text=True, check=False,
+          )
+          changed = set(result.stdout.splitlines())
+
+          violations = [f for f in changed if any(f.startswith(m) for m in managed)]
+          if violations:
+              print("::error::This PR modifies submodule-managed files:")
+              for v in violations:
+                  print(f"  {v}")
+              print("To change a managed asset: open a PR in the CoDev submodule repository.")
+              print("To extend/override: add your file to codev-overrides/ instead.")
+              sys.exit(1)
+
+          print("✅  No managed files touched in this PR")

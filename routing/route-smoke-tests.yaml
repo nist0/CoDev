@@ -1,0 +1,337 @@
+﻿version: 1
+cases:
+  - request: "create a mermaid flowchart for github"
+    expect:
+      capability: mermaid
+      agent: mermaid-diagrammer
+      prompts: ["mermaid-create", "mermaid-review", "mermaid-embed"]
+      skills: ["mermaid", "diagram-tooling", "markdown-docops"]
+
+  - request: "review my mermaid diagram"
+    expect:
+      capability: mermaid
+      agent: mermaid-diagrammer
+      prompts: ["mermaid-create", "mermaid-review", "mermaid-embed"]
+      skills: ["mermaid", "diagram-tooling", "markdown-docops"]
+
+  - request: "mermaid sequence diagram for oauth flow"
+    expect:
+      capability: mermaid
+      agent: mermaid-diagrammer
+      prompts: ["mermaid-create", "mermaid-review", "mermaid-embed"]
+      skills: ["mermaid", "diagram-tooling", "markdown-docops"]
+
+  - request: "embed diagram in readme"
+    expect:
+      capability: mermaid
+      agent: mermaid-diagrammer
+      prompts: ["mermaid-create", "mermaid-review", "mermaid-embed"]
+      skills: ["mermaid", "diagram-tooling", "markdown-docops"]
+
+  - request: "plantuml conversion for docs"
+    expect:
+      capability: docs-system
+      domain: docs-system
+      agent: Delivery Lead
+      prompts: ["generate-docs-tree", "doc-lint-fix", "diagram-ops", "markdown-ops"]
+      skills: ["doc-architecture-model", "doc-qa", "diagram-tooling", "markdown-docops"]
+
+  - request: "delegate whole project and manage kanban"
+    expect:
+      capability: project-orchestration
+      domain: project-orchestration
+      agent: Project Orchestrator
+      prompts: ["project-kickoff", "project-dispatch", "project-governance"]
+      skills: ["project-orchestration", "github-work-management"]
+
+  - request: "orchestrer un brainstorming elite avec kanban"
+    expect:
+      capability: brainstorming
+      domain: project-orchestration
+      agent: Innovator
+      prompts: ["brainstorm"]
+      skills: ["innovation-sprint", "elite-brainstorming"]
+
+  - request: "atelier d'ideation multi-agents pour notre roadmap"
+    expect:
+      capability: brainstorming
+      agent: Innovator
+      prompts: ["brainstorm"]
+      skills: ["innovation-sprint", "elite-brainstorming"]
+
+  - request: "brainstorming avec portfolio safe adjacent bold"
+    expect:
+      capability: brainstorming
+      domain: project-orchestration
+      agent: Innovator
+      prompts: ["brainstorm"]
+      skills: ["innovation-sprint", "elite-brainstorming"]
+
+  - request: "elite brainstorming session on architecture improvements"
+    expect:
+      capability: brainstorming
+      agent: Innovator
+      prompts: ["brainstorm"]
+      skills: ["innovation-sprint", "elite-brainstorming"]
+
+  - request: "dotnet excellence best practices for ef core"
+    expect:
+      capability: code-analysis
+      domain: backend-dotnet
+      agent: Backend .NET
+      prompts: ["dotnet-excellence", "explain-code"]
+
+  - request: "aspnet api hardening with problemdetails and options validation"
+    expect:
+      capability: code-analysis
+      domain: backend-dotnet
+      agent: Backend .NET
+      prompts: ["dotnet-excellence", "explain-code"]
+
+  - request: "minimal api hardening with problemdetails and openapi auth scheme"
+    expect:
+      capability: code-analysis
+      domain: backend-dotnet
+      agent: Backend .NET
+      prompts: ["dotnet-excellence", "explain-code"]
+
+  - request: "write tests for react"
+    expect:
+      capability: testing-quality
+      domain: frontend
+      agent: Frontend
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+
+  - request: "vitest component tests with react testing library"
+    expect:
+      capability: testing-quality
+      domain: frontend
+      agent: Frontend
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+
+  - request: "react architecture and component boundary design"
+    expect:
+      capability: code-analysis
+      domain: frontend
+      agent: Frontend
+      prompts: ["explain-code"]
+
+  - request: "typescript best practices for frontend hooks"
+    expect:
+      capability: code-analysis
+      domain: frontend
+      agent: Frontend
+      prompts: ["explain-code"]
+
+  - request: "hydration error in nextjs component"
+    expect:
+      capability: debugging
+      domain: frontend
+      agent: Frontend
+      prompts: ["triage-error"]
+
+  - request: "dotnet lint and test quality gate"
+    expect:
+      capability: testing-quality
+      domain: backend-dotnet
+      agent: Backend .NET
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+
+  - request: "clang-tidy and cppcheck quality gate"
+    expect:
+      capability: testing-quality
+      domain: native
+      agent: Native/Systems
+      prompts: ["test-plan", "linters-stack"]
+
+  - request: "bug in AKS pod crashloop"
+    expect:
+      capability: debugging
+      domain: devops-cloud
+      agent: DevOps/Cloud
+      prompts: ["k8s-triage", "helm-triage"]
+
+  - request: "quickstart I'm new here"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "where do I start getting started with this framework"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "route miss the wrong agent was suggested"
+    expect:
+      capability: route-miss
+      agent: Router
+      prompts: ["route-miss"]
+
+  - request: "routing feedback the route was incorrect for my request"
+    expect:
+      capability: route-miss
+      agent: Router
+      prompts: ["route-miss"]
+
+  - request: "threat model this system with a database and external API"
+    expect:
+      capability: security
+      agent: Security
+      prompts: ["threat-model", "vuln-triage", "secrets-audit"]
+      skills: ["threat-modeling"]
+
+  - request: "what are my attack surfaces for this aspnet api"
+    expect:
+      capability: security
+      domain: backend-dotnet
+      agent: Security
+      prompts: ["vuln-triage", "secrets-audit", "threat-model"]
+      skills: ["threat-modeling"]
+
+  - request: "triage this cve for my kubernetes cluster deployment"
+    expect:
+      capability: security
+      domain: devops-cloud
+      agent: Security
+      prompts: ["threat-model", "vuln-triage"]
+      skills: ["threat-modeling"]
+
+  - request: "check for secrets and hardcoded api key in code"
+    expect:
+      capability: security
+      agent: Security
+      prompts: ["threat-model", "vuln-triage", "secrets-audit"]
+      skills: ["threat-modeling"]
+
+  - request: "audit my dotnet ef core dependencies for vulnerability cve injection risk"
+    expect:
+      capability: security
+      domain: backend-dotnet
+      agent: Security
+      prompts: ["vuln-triage", "secrets-audit", "threat-model"]
+      skills: ["threat-modeling"]
+
+  - request: "stride analysis and security review for this feature"
+    expect:
+      capability: security
+      domain: github-delivery
+      agent: Security
+      prompts: ["secrets-audit", "vuln-triage"]
+      skills: ["threat-modeling", "pr-review", "supply-chain"]
+  - request: "codev init my repo"
+    expect:
+      capability: codev-management
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - request: "update codev submodule"
+    expect:
+      capability: codev-management
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - request: "how do i contribute to codev"
+    expect:
+      capability: codev-management
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - request: "upgrade codev"
+    expect:
+      capability: codev-management
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - request: "teardown codev"
+    expect:
+      capability: codev-management
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - request: "set up an mcp server for vscode and github copilot"
+    expect:
+      capability: mcp
+      agent: mcp-specialist
+      prompts: ["mcp-setup", "mcp-analyze", "mcp-debug"]
+      skills: ["mcp-integration", "vscode"]
+
+  - request: "analyze my mcp configuration and tool exposure"
+    expect:
+      capability: mcp
+      agent: mcp-specialist
+      prompts: ["mcp-setup", "mcp-analyze", "mcp-debug"]
+      skills: ["mcp-integration", "vscode"]
+
+  - request: "debug mcp connection failure in copilot chat"
+    expect:
+      capability: mcp
+      agent: mcp-specialist
+      prompts: ["mcp-setup", "mcp-analyze", "mcp-debug"]
+      skills: ["mcp-integration", "vscode"]
+
+  - request: "generate a REST controller for Products"
+    expect:
+      capability: scaffolding
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills: ["rest-api-controller-gen", "rest-api-bootstrap", "aspnet-core"]
+
+  - request: "scaffold a CRUD controller from OpenAPI JSON"
+    expect:
+      capability: scaffolding
+      domain: backend-dotnet
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills: ["rest-api-controller-gen", "rest-api-bootstrap", "aspnet-core", "mediatr", "openapi", "dotnet-testing"]
+
+  - request: "bootstrap a REST API in C#"
+    expect:
+      capability: scaffolding
+      domain: backend-dotnet
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills: ["rest-api-controller-gen", "rest-api-bootstrap", "aspnet-core", "mediatr", "openapi", "dotnet-testing"]
+
+  - request: "best fastapi template for a new python project"
+    expect:
+      capability: scaffolding
+      domain: scripting
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills: ["rest-api-bootstrap", "python", "bash"]
+
+  - request: "curl snippets for a REST API client in bash"
+    expect:
+      capability: scaffolding
+      domain: shell-automation
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills: ["rest-api-bootstrap", "bash"]
+
+  - request: "add a new agent"
+    expect:
+      capability: routing
+      agent: Router
+      prompts: ["route"]
+      skills: ["canonical-routing"]
+
+  - request: "new skill"
+    expect:
+      capability: routing
+      agent: Router
+      prompts: ["route"]
+      skills: ["canonical-routing"]
+
+  - request: "extend the framework"
+    expect:
+      capability: routing
+      agent: Router
+      prompts: ["route"]
+      skills: ["canonical-routing"]

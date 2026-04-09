@@ -1,0 +1,179 @@
+﻿version: 1
+domains:
+  - id: backend-dotnet
+    keywords:
+      - dotnet
+      - .net
+      - asp.net
+      - aspnet
+      - c#
+      - ef core
+      - entity framework
+      - mediatr
+      - swagger
+      - openapi
+      - postgresql
+      - postgres
+
+  - id: devops-cloud
+    keywords:
+      - aks
+      - kubernetes
+      - k8s
+      - helm
+      - chart
+      - charts
+      - values.yaml
+      - kubectl
+      - azure
+      - azure cli
+      - ingress
+      - deployment
+      - statefulset
+      - daemonset
+      - namespace
+      - cluster
+
+  - id: observability
+    keywords:
+      - elastic
+      - elasticsearch
+      - kibana
+      - kql
+      - lucene
+      - apm
+      - trace
+      - tracing
+      - transaction
+      - span
+      - logs
+      - logging
+      - metrics
+      - alerts
+      - alerting
+      - dashboards
+
+  - id: native
+    keywords:
+      - language c
+      - c++
+      - cpp
+      - asm
+      - assembly
+      - x86
+      - avr
+      - pic
+      - segfault
+      - core dump
+      - memory corruption
+      - undefined behavior
+
+  - id: frontend
+    keywords:
+      - react
+      - typescript
+      - javascript
+      - html
+      - css
+      - npm
+      - yarn
+      - vite
+      - webpack
+      - jsx
+      - tsx
+      - nextjs
+      - next.js
+      - nuxt
+      - tailwind
+      - zustand
+      - react-query
+      - tanstack
+      - redux
+      - vitest
+      - playwright
+      - cypress
+      - testing-library
+      - rtl
+      - storybook
+      - a11y
+      - accessibility
+      - wcag
+      - pnpm
+      - turbopack
+      - eslint
+      - prettier
+      - styled-components
+      - css modules
+      - framer-motion
+      - radix-ui
+
+  - id: scripting
+    keywords:
+      - python
+      - perl
+      - script
+      - scripting
+
+  - id: shell-automation
+    keywords:
+      - bash
+      - powershell
+      - pwsh
+      - batch
+      - cmd
+      - shell
+      - automation
+
+  - id: cicd
+    keywords:
+      - github actions
+      - actions
+      - workflow
+      - pipeline
+      - continuous integration
+      - continuous delivery
+      - release
+      - tag
+      - changelog
+      - semver
+
+  - id: github-delivery
+    keywords:
+      - pull request
+      - review
+      - commits
+      - conventional commits
+      - issues
+      - projects
+      - milestones
+      - labels
+
+  - id: project-orchestration
+    keywords:
+      - orchestrate
+      - orchestration
+      - project lead
+      - delegate whole project
+      - dispatch
+      - work breakdown
+      - task assignment
+      - kanban
+      - github project
+      - governance
+      - program management
+      - portfolio
+
+  - id: docs-system
+    keywords:
+      - markdown
+      - docs
+      - documentation
+      - docs lint
+      - markdown lint
+      - plantuml
+      - mermaid
+      - diagram
+      - convert docs
+      - import docs
+      - export docs
+      - documentation restructure

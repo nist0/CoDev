@@ -1,0 +1,40 @@
+name: markdown-lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: "20"
+
+      - name: Setup Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+
+      - name: Print tool versions
+        run: |
+          node --version
+          npm --version
+          python --version
+
+      - name: Install markdownlint-cli2 (pinned, avoids stale KaTeX cache)
+        run: npm install -g markdownlint-cli2@0.14.0
+
+      - name: Run markdown lint validation
+        run: |
+          # Use the globally installed binary directly (bypasses npx _npx cache)
+          markdownlint-cli2 --config .markdownlint-cli2.yaml

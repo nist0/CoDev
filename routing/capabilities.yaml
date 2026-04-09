@@ -1,0 +1,200 @@
+﻿version: 1
+capabilities:
+  - id: routing
+    description: "Route a request using the canonical capability + domain matrix."
+    default_agent: Router
+
+  - id: debugging
+    description: "Bug triage, reproduction, instrumentation, root cause analysis."
+    default_agent: Reliability
+
+  - id: postmortem
+    description: "Incident analysis, timeline, RCA, action items (blameless)."
+    default_agent: Reliability
+
+  - id: code-analysis
+    description: "Explain code, identify flows/invariants, generate doc-ready explanations."
+    default_agent: Architect
+
+  - id: docs
+    description: "Generate repository and reference documentation."
+    default_agent: Delivery Lead
+
+  - id: docs-system
+    description: "Doc architecture model, markdown standards, linting, doc governance."
+    default_agent: Delivery Lead
+
+  - id: testing-quality
+    description: "Test planning, writing tests, quality gates, linters."
+    default_agent: Architect
+
+  - id: github-delivery
+    description: "Commits, PR reviews, issues/projects planning, delivery practices."
+    default_agent: Delivery Lead
+
+  - id: release
+    description: "Release planning and execution: SemVer, tags, changelog, artifacts, rollout/rollback."
+    default_agent: Delivery Lead
+
+  - id: automation
+    description: "Automation scripts, CLI orchestration, and repo tooling workflows."
+    default_agent: Automation/Scripting
+
+  - id: project-orchestration
+    description: "Lead whole-project delivery: clarify, plan, dispatch specialists, track issues/Kanban, and review outcomes."
+    default_agent: Project Orchestrator
+
+  - id: brainstorming
+    description: "Generate innovative ideas, alternatives, spikes."
+    default_agent: Innovator
+
+  - id: tech-watch
+    description: "Tech/science watch, weekly digest, inspiration."
+    default_agent: Tech Scout
+
+  - id: onboarding
+    description: "Interactive framework orientation: gather role + domain + goal, then emit a personalised first-command card."
+    default_agent: Router
+
+  - id: route-miss
+    description: "Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue."
+    default_agent: Router
+
+  - id: project-takeover
+    description: "Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit une documentation complète en français dans .takeover/ (jamais commité)."
+    keywords:
+      - prise en charge
+      - takeover
+      - handover
+      - handoff
+      - onboarding projet
+      - analyse projet
+      - rejoindre équipe
+      - documentation projet
+      - étude projet
+      - plan étude
+      - nouveau projet
+    default_agent: Project Takeover
+
+  - id: security
+    description: "Identify threats, audit secrets, triage vulnerabilities, and enforce secure-by-default practices."
+    keywords:
+      - security
+      - threat model
+      - vulnerability
+      - CVE
+      - secrets
+      - audit
+      - SAST
+      - secure
+      - injection
+      - privilege
+      - attack surface
+      - penetration
+      - hardening
+    default_agent: Security
+
+  - id: cli-platform-onboarding
+    description: "Three-phase onboarding for a .NET CLI platform project: bootstrap CoDev as submodule, run full static analysis (GH workflows, Bicep, solution), then execute tasks using deduced project context."
+    default_agent: CLI Platform Onboarder
+
+  - id: mcp
+    description: "Design, install, analyze, and debug Model Context Protocol integrations for VS Code and GitHub Copilot."
+    keywords:
+      - mcp
+      - model context protocol
+      - mcp server
+      - mcp client
+      - mcp setup
+      - mcp config
+      - mcp debug
+      - copilot mcp
+      - vscode mcp
+    default_agent: mcp-specialist
+
+  - id: scaffolding
+    description: "Generate production-ready code artefacts (controllers, handlers, tests) from a description, OpenAPI contract, or resource theme; or bootstrap a new REST API project from scratch using curated templates."
+    keywords:
+      - generate controller
+      - scaffold controller
+      - generate REST API
+      - CRUD endpoint
+      - CRUD controller
+      - generate CRUD
+      - scaffold API
+      - generate handler
+      - generate endpoint
+      - from OpenAPI
+      - from description
+      - from schema
+      - create controller
+      - create CRUD
+      - bootstrap REST API
+      - rest api template
+      - rest api starter
+      - starter template
+      - start a rest api
+      - new rest api project
+      - fastapi template
+      - dotnet webapi template
+      - clean architecture template
+    default_agent: Backend .NET
+
+  - id: mermaid
+    description: "Produce, review, and embed Mermaid diagrams in Markdown files — GitHub-native rendering, best practices, and CI validation."
+    keywords:
+      - mermaid
+      - mermaid diagram
+      - mermaid flowchart
+      - mermaid sequence
+      - mermaid class diagram
+      - mermaid er diagram
+      - mermaid state
+      - mermaid gitgraph
+      - mermaid gantt
+      - mermaid c4
+      - create diagram
+      - review mermaid
+      - embed diagram
+      - diagram in markdown
+      - diagram in github
+      - diagram in readme
+    default_agent: mermaid-diagrammer
+
+  - id: codev-management
+    description: "CoDev submodule lifecycle: init, update, override authoring, teardown, and upstream contribution."
+    keywords:
+      - codev
+      - submodule
+      - codev init
+      - codev update
+      - codev teardown
+      - bootstrap
+      - codev-overrides
+      - upstream contribution
+      - codev submodule
+    default_agent: CoDev Consumer
+
+  - id: cv-coaching
+    description: "Analyse, critique, and rewrite CVs/resumes to modern professional standards: ATS compliance, impact-first bullets, quantified achievements, and keyword gap analysis against a target job offer."
+    keywords:
+      - cv
+      - resume
+      - curriculum vitae
+      - rewrite cv
+      - review cv
+      - cv review
+      - cv critique
+      - cv coaching
+      - improve cv
+      - modernise cv
+      - modernize cv
+      - pimper cv
+      - cv tailoring
+      - keyword gap
+      - ats compliance
+      - cover letter
+      - lettre de motivation
+      - career document
+      - job application
+    default_agent: CV Coach

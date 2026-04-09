@@ -1,0 +1,67 @@
+name: Routing CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate routing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml pytest
+
+      - name: Smoke tests — aliases and route resolution
+        run: python scripts/validate-route-smoke.py
+
+      - name: Customization registry — agents, prompts, skills, instructions
+        run: python scripts/validate-customization-registry.py
+
+      - name: Routing coverage — capability × domain gaps (strict, threshold=57)
+        run: >
+          python scripts/validate-routing-coverage.py
+          --strict --threshold 57
+          --json-out routing-coverage.json
+
+      - name: README registry — skill examples and doc completeness
+        run: python scripts/validate-readme-registry.py
+
+      - name: Unit tests — validate-routing-coverage.py
+        run: python -m pytest tests/test_routing_coverage.py -v
+
+      - name: Auto-fix report — detect routing errors (informational, non-blocking)
+        run: >
+          python scripts/validate-autofix.py
+          --report --report-format json
+        continue-on-error: true
+
+      - name: Upload auto-fix report
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: autofix-report
+          path: reports/
+          retention-days: 30
+
+      - name: Upload routing coverage artifact
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+        with:
+          name: routing-coverage
+          path: routing-coverage.json
+          retention-days: 30

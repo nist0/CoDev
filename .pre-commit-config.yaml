@@ -1,0 +1,38 @@
+repos:
+  - repo: local
+    hooks:
+      - id: route-smoke-tests
+        name: Route smoke tests
+        entry: python scripts/validate-route-smoke.py
+        language: python
+        always_run: true
+        pass_filenames: false
+        additional_dependencies:
+          - pyyaml
+
+      - id: customization-registry
+        name: Customization registry
+        entry: python scripts/validate-customization-registry.py
+        language: python
+        always_run: true
+        pass_filenames: false
+        additional_dependencies:
+          - pyyaml
+
+      - id: routing-coverage
+        name: Routing coverage (strict, threshold=38)
+        entry: python scripts/validate-routing-coverage.py --strict --threshold 38
+        language: python
+        always_run: true
+        pass_filenames: false
+        additional_dependencies:
+          - pyyaml
+
+      - id: readme-registry
+        name: README registry
+        entry: python scripts/validate-readme-registry.py
+        language: python
+        always_run: true
+        pass_filenames: false
+        additional_dependencies:
+          - pyyaml

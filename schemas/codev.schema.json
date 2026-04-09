@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/nist0/CoDev/main/schemas/codev.schema.json",
+  "title": "codev.json",
+  "description": "Manifest for CoDev imported as a Git submodule. Validated by codev-init and codev-update.",
+  "type": "object",
+  "required": ["version", "submodulePath", "overrideStrategy"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema URI for editor validation. Optional but recommended.",
+      "examples": [
+        "https://raw.githubusercontent.com/nist0/CoDev/main/schemas/codev.schema.json"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Manifest schema version. Must be '1' for the current schema.",
+      "enum": ["1"],
+      "examples": ["1"]
+    },
+    "submodulePath": {
+      "type": "string",
+      "description": "Relative path from the repository root to the CoDev submodule directory.",
+      "minLength": 1,
+      "pattern": "^[^/\\\\]",
+      "examples": ["tools/codev", ".codev"]
+    },
+    "overrideStrategy": {
+      "type": "string",
+      "description": "How host assets in overridesDir interact with submodule-managed assets. 'extend' adds new assets alongside; 'override' replaces same-named managed assets.",
+      "enum": ["extend", "override"],
+      "examples": ["extend", "override"]
+    },
+    "overridesDir": {
+      "type": "string",
+      "description": "Relative path from the repository root to the directory containing host-specific customizations. Files here are never touched by codev update or codev teardown.",
+      "minLength": 1,
+      "default": "codev-overrides",
+      "examples": ["codev-overrides", ".github/overrides"]
+    },
+    "pinnedRef": {
+      "type": "string",
+      "description": "Git tag or commit SHA of the CoDev version in use. Informational only — does not change submodule state. Used for audit and documentation.",
+      "pattern": "^(v[0-9]+\\.[0-9]+\\.[0-9]+|[0-9a-f]{7,40})$",
+      "examples": ["v1.2.0", "a3f8c1d"]
+    },
+    "managedPaths": {
+      "type": "array",
+      "description": "Explicit list of host paths managed by CoDev. Defaults to all standard CoDev asset paths when omitted.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "examples": [
+          ".github/agents",
+          ".github/skills",
+          ".github/prompts",
+          ".github/instructions",
+          ".github/copilot-instructions.md"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1,
+      "default": [
+        ".github/agents",
+        ".github/skills",
+        ".github/prompts",
+        ".github/instructions",
+        ".github/copilot-instructions.md"
+      ],
+      "examples": [
+        [
+          ".github/agents",
+          ".github/skills",
+          ".github/prompts",
+          ".github/instructions",
+          ".github/copilot-instructions.md"
+        ]
+      ]
+    }
+  },
+  "examples": [
+    {
+      "$schema": "https://raw.githubusercontent.com/nist0/CoDev/main/schemas/codev.schema.json",
+      "version": "1",
+      "submodulePath": "tools/codev",
+      "overrideStrategy": "extend",
+      "overridesDir": "codev-overrides",
+      "pinnedRef": "v1.0.0",
+      "managedPaths": [
+        ".github/agents",
+        ".github/skills",
+        ".github/prompts",
+        ".github/instructions",
+        ".github/copilot-instructions.md"
+      ]
+    }
+  ]
+}

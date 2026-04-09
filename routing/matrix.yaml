@@ -1,0 +1,1148 @@
+﻿version: 1
+routing_rules:
+  # -------------------------
+  # Routing entry point — meta-capability that routes requests to other capabilities
+  # -------------------------
+  - when:
+      capability: routing
+    suggest:
+      agent: Router
+      prompts: ["route"]
+      skills: ["canonical-routing"]
+
+  # -------------------------
+  # Onboarding — interactive framework orientation
+  # -------------------------
+  - when:
+      capability: onboarding
+    suggest:
+      agent: Router
+      prompts: ["quickstart"]
+      skills: ["canonical-routing"]
+
+  # -------------------------
+  # MCP integration
+  # -------------------------
+  - when:
+      capability: mcp
+    suggest:
+      agent: mcp-specialist
+      prompts: ["mcp-setup", "mcp-analyze", "mcp-debug"]
+      skills:
+        - "mcp-integration"
+        - "vscode"
+
+  # -------------------------
+  # Debugging (domain-specific enrichment)
+  # -------------------------
+  - when:
+      capability: debugging
+      domain: devops-cloud
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["k8s-triage", "helm-triage"]
+      skills:
+        - "kubernetes"
+        - "aks"
+        - "helm"
+        - "logs-alerts"
+
+  - when:
+      capability: debugging
+      domain: observability
+    suggest:
+      agent: Reliability
+      prompts: ["logs-analysis", "apm-analysis"]
+      skills:
+        - "logs-alerts"
+        - "elastic"
+        - "apm"
+
+  - when:
+      capability: debugging
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["triage-error", "logs-analysis"]
+      skills:
+        - "triage"
+        - "logs-alerts"
+        - "apm"
+
+  - when:
+      capability: debugging
+      domain: native
+    suggest:
+      agent: Native/Systems
+      prompts: ["triage-error"]
+      skills:
+        - "triage"
+
+  - when:
+      capability: debugging
+      domain: frontend
+    suggest:
+      agent: Frontend
+      prompts: ["triage-error"]
+      skills:
+        - "react"
+        - "typescript"
+        - "triage"
+
+  - when:
+      capability: debugging
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["logs-analysis", "triage-error"]
+      skills:
+        - "github-actions"
+        - "logs-alerts"
+        - "triage"
+
+  - when:
+      capability: debugging
+      domain: scripting
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["triage-error"]
+      skills:
+        - "python"
+        - "perl"
+        - "triage"
+
+  - when:
+      capability: debugging
+      domain: shell-automation
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["triage-error"]
+      skills:
+        - "bash"
+        - "powershell"
+        - "triage"
+
+  - when:
+      capability: debugging
+      domain: github-delivery
+    suggest:
+      agent: Delivery Lead
+      prompts: ["triage-error", "logs-analysis"]
+      skills:
+        - "triage"
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: debugging
+    suggest:
+      agent: Reliability
+      prompts: ["triage-error"]
+      skills:
+        - "triage"
+
+  # -------------------------
+  # Postmortem
+  # -------------------------
+  - when:
+      capability: postmortem
+    suggest:
+      agent: Reliability
+      prompts: ["postmortem"]
+      skills:
+        - "rca-kit"
+
+  # -------------------------
+  # Code analysis / explanation
+  # -------------------------
+  - when:
+      capability: code-analysis
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["dotnet-excellence", "explain-code"]
+      skills:
+        - "aspnet-core"
+        - "ef-core"
+        - "dotnet-testing"
+        - "dotnet-cli"
+
+  - when:
+      capability: code-analysis
+      domain: frontend
+    suggest:
+      agent: Frontend
+      prompts: ["explain-code"]
+      skills:
+        - "react"
+        - "typescript"
+        - "js-testing"
+
+  - when:
+      capability: code-analysis
+      domain: devops-cloud
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["explain-code"]
+      skills:
+        - "helm"
+        - "kubernetes"
+        - "az"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: native
+    suggest:
+      agent: Native/Systems
+      prompts: ["explain-code"]
+      skills:
+        - "c"
+        - "cpp"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["explain-code"]
+      skills:
+        - "github-actions"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: scripting
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["explain-code"]
+      skills:
+        - "python"
+        - "perl"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: shell-automation
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["explain-code"]
+      skills:
+        - "bash"
+        - "powershell"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: observability
+    suggest:
+      agent: Reliability
+      prompts: ["explain-code"]
+      skills:
+        - "elastic"
+        - "apm"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: github-delivery
+    suggest:
+      agent: Delivery Lead
+      prompts: ["pr-review", "explain-code"]
+      skills:
+        - "pr-review"
+        - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: project-orchestration
+    suggest:
+      agent: Architect
+      prompts: ["explain-code"]
+      skills:
+        - "repo-understanding"
+        - "adr"
+
+  - when:
+      capability: code-analysis
+    suggest:
+      agent: Architect
+      prompts: ["explain-code"]
+      skills:
+        - "repo-understanding"
+
+  # -------------------------
+  # Documentation / Onboarding
+  # -------------------------
+  - when:
+      capability: docs
+    suggest:
+      agent: Delivery Lead
+      prompts: ["generate-onboarding", "generate-docs-tree"]
+      skills:
+        - "onboarding-factory"
+        - "repo-understanding"
+
+  - when:
+      capability: docs-system
+      domain: docs-system
+    suggest:
+      agent: Delivery Lead
+      prompts: ["generate-docs-tree", "doc-lint-fix", "diagram-ops", "markdown-ops"]
+      skills:
+        - "doc-architecture-model"
+        - "doc-qa"
+        - "diagram-tooling"
+        - "markdown-docops"
+
+  - when:
+      capability: docs-system
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-docs-tree", "doc-lint-fix"]
+      skills:
+        - "aspnet-core"
+        - "openapi"
+        - "doc-qa"
+
+  - when:
+      capability: docs-system
+      domain: frontend
+    suggest:
+      agent: Frontend
+      prompts: ["generate-docs-tree", "doc-lint-fix"]
+      skills:
+        - "react"
+        - "typescript"
+        - "doc-qa"
+
+  - when:
+      capability: docs-system
+      domain: devops-cloud
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["generate-docs-tree", "doc-lint-fix"]
+      skills:
+        - "helm"
+        - "kubernetes"
+        - "doc-qa"
+
+  - when:
+      capability: docs-system
+      domain: native
+    suggest:
+      agent: Native/Systems
+      prompts: ["generate-docs-tree", "doc-lint-fix"]
+      skills:
+        - "c"
+        - "cpp"
+        - "doc-qa"
+
+  - when:
+      capability: docs-system
+      domain: github-delivery
+    suggest:
+      agent: Delivery Lead
+      prompts: ["doc-lint-fix", "pr-review"]
+      skills:
+        - "doc-qa"
+        - "delivery"
+        - "pr-review"
+
+  - when:
+      capability: docs-system
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["doc-lint-fix"]
+      skills:
+        - "github-actions"
+        - "doc-qa"
+
+  - when:
+      capability: docs-system
+    suggest:
+      agent: Delivery Lead
+      prompts: ["generate-docs-tree", "doc-lint-fix", "diagram-ops", "markdown-ops"]
+      skills:
+        - "doc-architecture-model"
+        - "doc-qa"
+        - "diagram-tooling"
+        - "markdown-docops"
+
+  # -------------------------
+  # Testing & Quality
+  # -------------------------
+  - when:
+      capability: testing-quality
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "dotnet-testing"
+        - "linters"
+        - "github-actions"
+
+  - when:
+      capability: testing-quality
+      domain: frontend
+    suggest:
+      agent: Frontend
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "js-testing"
+        - "linters"
+        - "github-actions"
+
+  - when:
+      capability: testing-quality
+      domain: native
+    suggest:
+      agent: Native/Systems
+      prompts: ["test-plan", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "linters"
+
+  - when:
+      capability: testing-quality
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["test-plan", "linters-stack"]
+      skills:
+        - "github-actions"
+        - "linters"
+
+  - when:
+      capability: testing-quality
+      domain: devops-cloud
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["test-plan", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "github-actions"
+        - "helm"
+        - "kubernetes"
+
+  - when:
+      capability: testing-quality
+      domain: scripting
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "python"
+        - "perl"
+        - "linters"
+
+  - when:
+      capability: testing-quality
+      domain: shell-automation
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "bash"
+        - "powershell"
+        - "linters"
+
+  - when:
+      capability: testing-quality
+      domain: observability
+    suggest:
+      agent: Reliability
+      prompts: ["test-plan", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "logs-alerts"
+        - "apm"
+
+  - when:
+      capability: testing-quality
+      domain: docs-system
+    suggest:
+      agent: Delivery Lead
+      prompts: ["doc-lint-fix", "test-plan"]
+      skills:
+        - "doc-qa"
+        - "linters"
+
+  - when:
+      capability: testing-quality
+      domain: github-delivery
+    suggest:
+      agent: Delivery Lead
+      prompts: ["test-plan", "pr-review"]
+      skills:
+        - "delivery"
+        - "pr-review"
+        - "test-strategy"
+
+  - when:
+      capability: testing-quality
+      domain: project-orchestration
+    suggest:
+      agent: Architect
+      prompts: ["test-plan"]
+      skills:
+        - "test-strategy"
+        - "fullstack-test-strategy"
+
+  - when:
+      capability: testing-quality
+    suggest:
+      agent: Architect
+      prompts: ["test-plan", "write-tests", "linters-stack"]
+      skills:
+        - "test-strategy"
+        - "linters"
+
+  # -------------------------
+  # GitHub delivery
+  # -------------------------
+  - when:
+      capability: github-delivery
+      domain: github-delivery
+    suggest:
+      agent: GitHub Ops
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "issues"
+        - "commits"
+
+  - when:
+      capability: github-delivery
+      domain: devops-cloud
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "helm"
+        - "kubernetes"
+
+  - when:
+      capability: github-delivery
+    suggest:
+      agent: Delivery Lead
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+
+  # -------------------------
+  # Release
+  # -------------------------
+  - when:
+      capability: release
+    suggest:
+      agent: Delivery Lead
+      prompts: ["release-plan"]
+      skills:
+        - "release"
+        - "supply-chain"
+
+  # -------------------------
+  # Automation / Scripting
+  # -------------------------
+  - when:
+      capability: automation
+      domain: scripting
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["automation-script"]
+      skills:
+        - "python"
+        - "perl"
+
+  - when:
+      capability: automation
+      domain: shell-automation
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["automation-script"]
+      skills:
+        - "bash"
+        - "powershell"
+        - "batch"
+
+  - when:
+      capability: automation
+      domain: devops-cloud
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["automation-script"]
+      skills:
+        - "github-actions"
+        - "kubernetes"
+        - "az"
+
+  - when:
+      capability: automation
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["automation-script"]
+      skills:
+        - "github-actions"
+
+  - when:
+      capability: automation
+      domain: frontend
+    suggest:
+      agent: Frontend
+      prompts: ["automation-script"]
+      skills:
+        - "npm"
+        - "react"
+
+  - when:
+      capability: automation
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["automation-script"]
+      skills:
+        - "dotnet-cli"
+
+  - when:
+      capability: automation
+      domain: native
+    suggest:
+      agent: Native/Systems
+      prompts: ["automation-script"]
+      skills:
+        - "c"
+        - "cpp"
+
+  - when:
+      capability: automation
+      domain: observability
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["automation-script"]
+      skills:
+        - "logs-alerts"
+        - "python"
+        - "powershell"
+
+  - when:
+      capability: automation
+      domain: github-delivery
+    suggest:
+      agent: Delivery Lead
+      prompts: ["automation-script"]
+      skills:
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: automation
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["automation-script"]
+      skills:
+        - "python"
+        - "powershell"
+
+  # -------------------------
+  # Project orchestration
+  # -------------------------
+  - when:
+      capability: project-orchestration
+      domain: project-orchestration
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-kickoff", "project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+
+  - when:
+      capability: project-orchestration
+      domain: github-delivery
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+
+  - when:
+      capability: project-orchestration
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-kickoff", "project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+
+  # -------------------------
+  # Routing feedback loop
+  # -------------------------
+  - when:
+      capability: route-miss
+    suggest:
+      agent: Router
+      prompts: ["route-miss"]
+      skills: ["canonical-routing"]
+
+  # -------------------------
+  # Research
+  # -------------------------
+  - when:
+      capability: brainstorming
+    suggest:
+      agent: Innovator
+      prompts: ["brainstorm"]
+      skills:
+        - "innovation-sprint"
+        - "elite-brainstorming"
+
+  - when:
+      capability: tech-watch
+    suggest:
+      agent: Tech Scout
+      prompts: ["tech-watch-digest"]
+      skills:
+        - "weekly-digest"
+
+  # -------------------------
+  # Security
+  # -------------------------
+  - when:
+      capability: security
+      domain: backend-dotnet
+    suggest:
+      agent: Security
+      prompts: ["vuln-triage", "secrets-audit", "threat-model"]
+      skills:
+        - "threat-modeling"
+
+  - when:
+      capability: security
+      domain: devops-cloud
+    suggest:
+      agent: Security
+      prompts: ["threat-model", "vuln-triage"]
+      skills:
+        - "threat-modeling"
+
+  - when:
+      capability: security
+      domain: frontend
+    suggest:
+      agent: Security
+      prompts: ["threat-model", "vuln-triage", "secrets-audit"]
+      skills:
+        - "threat-modeling"
+        - "react"
+        - "typescript"
+
+  - when:
+      capability: security
+      domain: cicd
+    suggest:
+      agent: Security
+      prompts: ["secrets-audit", "vuln-triage"]
+      skills:
+        - "threat-modeling"
+        - "github-actions"
+        - "supply-chain"
+
+  - when:
+      capability: security
+      domain: native
+    suggest:
+      agent: Security
+      prompts: ["threat-model", "vuln-triage"]
+      skills:
+        - "threat-modeling"
+
+  - when:
+      capability: security
+      domain: scripting
+    suggest:
+      agent: Security
+      prompts: ["secrets-audit", "vuln-triage"]
+      skills:
+        - "threat-modeling"
+        - "bash"
+
+  - when:
+      capability: security
+      domain: shell-automation
+    suggest:
+      agent: Security
+      prompts: ["secrets-audit", "vuln-triage"]
+      skills:
+        - "threat-modeling"
+        - "bash"
+        - "powershell"
+
+  - when:
+      capability: security
+      domain: observability
+    suggest:
+      agent: Security
+      prompts: ["vuln-triage", "threat-model"]
+      skills:
+        - "threat-modeling"
+        - "logs-alerts"
+
+  - when:
+      capability: security
+      domain: github-delivery
+    suggest:
+      agent: Security
+      prompts: ["secrets-audit", "vuln-triage"]
+      skills:
+        - "threat-modeling"
+        - "pr-review"
+        - "supply-chain"
+
+  - when:
+      capability: security
+      domain: docs-system
+    suggest:
+      agent: Security
+      prompts: ["threat-model"]
+      skills:
+        - "threat-modeling"
+        - "doc-qa"
+
+  - when:
+      capability: security
+    suggest:
+      agent: Security
+      prompts: ["threat-model", "vuln-triage", "secrets-audit"]
+      skills:
+        - "threat-modeling"
+
+  # ── Scaffolding / Code Generation ────────────────────────────────────────
+  - when:
+      capability: scaffolding
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "rest-api-bootstrap"
+        - "aspnet-core"
+        - "mediatr"
+        - "openapi"
+        - "dotnet-testing"
+
+  - when:
+      capability: scaffolding
+      domain: scripting
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-bootstrap"
+        - "python"
+        - "bash"
+
+  - when:
+      capability: scaffolding
+      domain: shell-automation
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-bootstrap"
+        - "bash"
+
+  - when:
+      capability: scaffolding
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "rest-api-bootstrap"
+        - "aspnet-core"
+
+  # ── Mermaid Diagrams ─────────────────────────────────────────────────────
+  - when:
+      capability: mermaid
+    suggest:
+      agent: mermaid-diagrammer
+      prompts: ["mermaid-create", "mermaid-review", "mermaid-embed"]
+      skills:
+        - "mermaid"
+        - "diagram-tooling"
+        - "markdown-docops"
+
+  # ── CoDev Submodule Management ───────────────────────────────────────────
+  - when:
+      capability: codev-management
+      domain: cicd
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills:
+        - "codev-submodule"
+        - "codev-contributing"
+        - "github-actions"
+
+  - when:
+      capability: codev-management
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills:
+        - "codev-submodule"
+        - "codev-contributing"
+
+  # ── CV Coaching ─────────────────────────────────────────────────────────
+  - when:
+      capability: cv-coaching
+    suggest:
+      agent: CV Coach
+      prompts: ["cv-review"]
+      skills:
+        - "cv-coach"
+
+  # ── Project Takeover ────────────────────────────────────────────────────
+  - when:
+      capability: project-takeover
+    suggest:
+      agent: Project Takeover
+      prompts: ["project-takeover"]
+      skills:
+        - "project-takeover"
+        - "repo-understanding"
+        - "openapi"
+        - "postgres"
+        - "github-work-management"
+        - "onboarding-factory"
+        - "diagram-tooling"
+
+  # ── CLI Platform Onboarding ──────────────────────────────────────────────
+  - when:
+      capability: cli-platform-onboarding
+      domain: backend-dotnet
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills:
+        - "cli-platform-bootstrap"
+        - "cli-platform-analysis"
+        - "repo-understanding"
+        - "dotnet-testing"
+        - "dotnet-cli"
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: devops-cloud
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills:
+        - "cli-platform-bootstrap"
+        - "cli-platform-analysis"
+        - "github-actions"
+        - "az"
+        - "release"
+        - "delivery"
+
+  - when:
+      capability: cli-platform-onboarding
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills:
+        - "cli-platform-bootstrap"
+        - "cli-platform-analysis"
+        - "repo-understanding"
+        - "dotnet-cli"
+        - "delivery"
+  # --- Coverage hardening: explicit rules for key missing pairs ---
+  # Automation for project-orchestration
+  - when:
+      capability: automation
+      domain: project-orchestration
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["automation-script"]
+      skills: ["python", "powershell"]
+
+  # Automation for docs-system
+  - when:
+      capability: automation
+      domain: docs-system
+    suggest:
+      agent: Automation/Scripting
+      prompts: ["automation-script"]
+      skills: ["python", "markdown-docops"]
+
+  # CLI Platform Onboarding for missing domains
+  - when:
+      capability: cli-platform-onboarding
+      domain: observability
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: native
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: frontend
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: scripting
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: shell-automation
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: cicd
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: github-delivery
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: project-orchestration
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  - when:
+      capability: cli-platform-onboarding
+      domain: docs-system
+    suggest:
+      agent: CLI Platform Onboarder
+      prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
+      skills: ["cli-platform-analysis", "repo-understanding"]
+
+  # Codev-management for all domains
+  - when:
+      capability: codev-management
+      domain: backend-dotnet
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: devops-cloud
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: observability
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: native
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: frontend
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: scripting
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: shell-automation
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: github-delivery
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: project-orchestration
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+
+  - when:
+      capability: codev-management
+      domain: docs-system
+    suggest:
+      agent: CoDev Consumer
+      prompts: ["codev-init", "codev-update", "codev-contribute"]
+      skills: ["codev-submodule", "codev-contributing"]
+      

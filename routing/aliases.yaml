@@ -1,0 +1,382 @@
+version: 1
+aliases:
+  routing:
+  - /route
+  - route
+  - router
+  - which agent
+  - who should handle
+  - where to start
+  - new agent
+  - create agent
+  - scaffold agent
+  - new skill
+  - create skill
+  - new prompt
+  - create prompt
+  - extend the framework
+  - add a new agent
+  - add a new skill
+  debugging:
+  - bug
+  - exception
+  - stack trace
+  - stacktrace
+  - crash
+  - segfault
+  - core dump
+  - regression
+  - memory leak
+  - latency
+  - timeout
+  - helm upgrade failed
+  - pod crashloop
+  - readiness probe failed
+  - '503'
+  - gateway timeout
+  - hydration error
+  - component not rendering
+  - stale closure
+  - infinite rerender
+  postmortem:
+  - incident
+  - postmortem
+  - rca
+  - root cause
+  - timeline
+  - blameless
+  - retro
+  code-analysis:
+  - explain this code
+  - how does it work
+  - analyze code
+  - understand the module
+  - document this code
+  - dotnet excellence
+  - dotnet best practices
+  - aspnet hardening
+  - ef core best practices
+  - problemdetails
+  - options validation
+  - minimal api hardening
+  - openapi auth scheme
+  - react architecture
+  - component design
+  - hook design
+  - state management
+  - typescript best practices
+  - frontend architecture
+  docs:
+  - generate docs
+  - write documentation
+  - repo documentation
+  - readme
+  docs-system:
+  - docs tree
+  - documentation structure
+  - markdown lint
+  - doc standards
+  - doc architecture
+  - plantuml
+  - diagram conversion
+  - diagram tooling
+  - markdown conversion
+  - docs import export
+  - restructure markdown
+  - documentation lint fix
+  mermaid:
+  - mermaid diagram
+  - mermaid flowchart
+  - mermaid sequence diagram
+  - mermaid class diagram
+  - mermaid er diagram
+  - mermaid state diagram
+  - mermaid gitgraph
+  - mermaid gantt
+  - mermaid mindmap
+  - mermaid timeline
+  - mermaid c4
+  - create mermaid
+  - create a mermaid
+  - render mermaid
+  - embed diagram in github
+  - diagram in readme
+  - diagram in markdown
+  - review mermaid
+  - mermaid best practices
+  - mermaid github
+  - mermaid in github
+  - mermaid validation
+  testing-quality:
+  - write tests
+  - write test
+  - unit test
+  - unit tests
+  - testing
+  - tests
+  - test plan
+  - coverage
+  - lint
+  - linters
+  - clang-tidy
+  - cppcheck
+  - dotnet format
+  - roslyn analyzers
+  - ruff
+  - mypy
+  - shellcheck
+  - markdownlint
+  - quality gate
+  - static analysis
+  - vitest setup
+  - playwright e2e
+  - react testing library
+  - component tests
+  - rtl
+  - cypress tests
+  - frontend lint
+  - a11y testing
+  - accessibility tests
+  github-delivery:
+  - pr review
+  - review this pr
+  - commit message
+  - conventional commits
+  - issue triage
+  - project planning
+  release:
+  - release
+  - release plan
+  - tag
+  - version bump
+  - semver
+  - changelog
+  - github release
+  - artifact
+  - deployment rollout
+  - rollback
+  automation:
+  - automation script
+  - automate this
+  - write a script
+  - powershell script
+  - bash script
+  - python script
+  - perl script
+  - cli automation
+  - repo tooling
+  - batch script
+  project-orchestration:
+  - delegate whole project
+  - lead this project
+  - project orchestration
+  - orchestrate delivery
+  - dispatch tasks to agents
+  - manage github project
+  - kanban planning
+  - coordinate specialist agents
+  - project governance
+  - program management
+  brainstorming:
+  - ideas
+  - brainstorm
+  - innovate
+  - alternatives
+  - what if
+  - atelier d'ideation
+  - brainstorming
+  - co creation
+  - innovation sprint
+  - elite brainstorming
+  - orchestrer un brainstorming
+  - portfolio d'options
+  - safe adjacent bold
+  - idees pour notre roadmap
+  - session d'ideation
+  - hypotheses falsifiables
+  - kill criteria
+  tech-watch:
+  - watch
+  - veille
+  - what's new
+  - latest
+  - trends
+  - papers
+  - release notes
+  onboarding:
+  - quickstart
+  - getting started
+  - where do I start
+  - where to begin
+  - i'm new
+  - new here
+  - new to this
+  - first steps
+  - how do I use this
+  - what prompt should I use
+  - help me get started
+  - je débute
+  - par où commencer
+  - comment utiliser ce framework
+  mcp:
+  - mcp
+  - model context protocol
+  - mcp server
+  - mcp client
+  - mcp setup
+  - set up mcp
+  - configure mcp in vscode
+  - configure mcp for copilot
+  - analyze mcp config
+  - debug mcp
+  - onboarding
+  route-miss:
+  - route miss
+  - wrong agent
+  - bad route
+  - misrouted
+  - routing feedback
+  - routing was wrong
+  - routing missed
+  - the route was incorrect
+  - fix routing
+  - improve routing
+  - report a routing issue
+  - mauvais routage
+  - le routage était mauvais
+  - améliorer le routage
+  security:
+  - threat model
+  - threat modeling
+  - stride analysis
+  - attack surface
+  - security audit
+  - secrets audit
+  - check for secrets
+  - hardcoded secret
+  - api key in code
+  - vulnerability
+  - cve
+  - triage this cve
+  - audit my dependencies
+  - dependency vulnerability
+  - injection risk
+  - sql injection
+  - xss
+  - csrf
+  - privilege escalation
+  - idor
+  - authorization bypass
+  - authentication bypass
+  - secure this endpoint
+  - harden
+  - penetration test
+  - security review
+  - what are my attack surfaces
+  - security posture
+  scaffolding:
+  - generate controller
+  - scaffold controller
+  - generate REST API
+  - CRUD endpoint
+  - CRUD controller
+  - generate CRUD
+  - scaffold API
+  - generate handler
+  - generate endpoint
+  - create controller
+  - create CRUD
+  - controller from OpenAPI
+  - controller from description
+  - controller from schema
+  - generate a REST controller
+  - generate a CRUD controller
+  - generate ASP.NET controller
+  - scaffold ASP.NET Core
+  - scaffold MediatR handlers
+  - generate MediatR
+  - REST API scaffold
+  - générer un contrôleur
+  - générer une API REST
+  - bootstrap REST API
+  - bootstrap a rest api
+  - rest api template
+  - rest api starter
+  - start a rest api project
+  - new rest api project
+  - fastapi template
+  - fastapi bootstrap
+  - dotnet webapi template
+  - clean architecture template
+  - best template for rest api
+  - scaffold python api
+  - curl snippets
+  codev-management:
+  - codev init
+  - codev update
+  - codev teardown
+  - init codev
+  - update codev
+  - upgrade codev
+  - codev submodule
+  - bootstrap codev
+  - add codev submodule
+  - teardown codev
+  - remove codev
+  - contribute to codev
+  - upstream codev
+  - codev override
+  - codev-overrides
+  - sync codev
+  - update codev submodule
+  - install codev
+  - how do i contribute to codev
+  - propose change to codev
+  - fix in codev
+  - codev broken
+  - codev issue
+  cli-platform-onboarding:
+  - cli platform onboarding
+  - onboard to cli project
+  - bootstrap cli platform
+  - join cli platform project
+  - clone and bootstrap
+  - add codev to my project
+  - analyze cli repo
+  - analyze the project
+  - full project analysis
+  - analyze workflows and bicep
+  - analyze github workflows
+  - analyze bicep files
+  - analyze solution structure
+  - project context
+  - docs/project-context.md
+  - cli platform task
+  - start my first task
+  - i cloned the repo what do i do
+  - how to start on this project
+  - new developer on dotnet cli
+  - dotnet cli platform
+  project-takeover:
+  - project-takeover
+  cv-coaching:
+  - cv
+  - resume
+  - curriculum vitae
+  - rewrite cv
+  - review cv
+  - cv review
+  - cv critique
+  - cv coaching
+  - improve cv
+  - modernise cv
+  - modernize cv
+  - pimper cv
+  - pimp cv
+  - pimper mon cv
+  - analyser mon cv
+  - cv tailoring
+  - keyword gap
+  - ats compliance
+  - lettre de motivation
+  - cover letter

@@ -177,3 +177,25 @@ domains:
       - import docs
       - export docs
       - documentation restructure
+
+  - id: bot-platforms
+    keywords:
+      - teams
+      - telegram
+      - whatsapp
+      - discord
+      - slack
+      - bot
+      - chatbot
+      - webhook
+      - getUpdates
+      - setWebhook
+      - adaptive card
+      - m365 agents
+      - teams ai
+      - python-telegram-bot
+      - bot api
+      - graph.facebook.com
+      - whatsapp cloud api
+      - bot token
+      - conversational

@@ -125,6 +125,7 @@ Example:
 - `brainstorming`
 - `tech-watch`
 - `codev-management`
+- `bot-engineering`
 
 ## 9) Existing domains (source: `routing/domains.yaml`)
 
@@ -139,6 +140,7 @@ Example:
 - `github-delivery`
 - `project-orchestration`
 - `docs-system`
+- `bot-platforms`
 
 ## 10) Prompts and procedures worth reusing
 

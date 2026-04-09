@@ -1039,7 +1039,48 @@ routing_rules:
     suggest:
       agent: CLI Platform Onboarder
       prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
-      skills: ["cli-platform-analysis", "repo-understanding"]
+      skills: ["cli-platform-analysis", "repo-understanding", "github-actions", "dotnet-cli"]
+
+  # bot-engineering capability rules (domain-specific first, generic fallback last)
+
+  - when:
+      capability: bot-engineering
+      domain: bot-platforms
+    suggest:
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+
+  - when:
+      capability: bot-engineering
+      domain: backend-dotnet
+    suggest:
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "aspnet-core", "dotnet-testing"]
+
+  - when:
+      capability: bot-engineering
+      domain: scripting
+    suggest:
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "telegram-bot", "whatsapp-bot", "python"]
+
+  - when:
+      capability: bot-engineering
+      domain: devops-cloud
+    suggest:
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "azure"]
+
+  - when:
+      capability: bot-engineering
+    suggest:
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
 
   - when:
       capability: cli-platform-onboarding

@@ -831,7 +831,7 @@ Generated skill inventory:
 | `dotnet-cli` | .NET CLI build/test/publish workflow — reproducible CI commands, diagnostics, and artifact strategy. |
 | `dotnet-testing` | .NET unit and integration testing — xUnit, WebApplicationFactory, testcontainers, FluentAssertions, and CI gating. |
 | `e2e` | End-to-End testing — critical flow selection, stable environments, flakiness prevention, and CI gating strategy. |
-| `ef-core` |  |
+| `ef-core` | EF Core modeling, migrations, query performance, concurrency, and testing with real Postgres. |
 | `elastic` | Elasticsearch/Kibana/ELK - KQL queries, dashboards, alerting rules, and log analysis workflow. |
 | `elite-brainstorming` | High-rigor brainstorming playbook that converts ideas into testable bets, delegated execution, and named specialist reviews. |
 | `fullstack-test-strategy` | Full-stack test pyramid — risk mapping, unit/integration/contract/E2E allocation, data strategy, CI gating, and flakiness control. |

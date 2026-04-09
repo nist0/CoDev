@@ -51,11 +51,13 @@ authentication, and AI integration.
 Apply the skill from `.github/skills/bot-architecture/SKILL.md` for cross-platform patterns.
 
 Apply the platform-specific skill:
+
 - Teams: `.github/skills/teams-bot/SKILL.md`
 - Telegram: `.github/skills/telegram-bot/SKILL.md`
 - WhatsApp: `.github/skills/whatsapp-bot/SKILL.md`
 
 Ensure:
+
 - Turn/activity handler registered for each message type.
 - Middleware wired: logging, auth verification, error handling.
 - State storage configured (in-memory for dev, Redis/CosmosDB for production).

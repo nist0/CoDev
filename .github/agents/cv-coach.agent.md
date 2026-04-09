@@ -11,6 +11,7 @@ tools:
 ## Mission
 
 Produce modern, high-impact CVs and CV critiques. Expert in:
+
 - Diagnosing weak CVs and identifying critical blockers.
 - Rewriting experience bullets to the impact-first, quantified standard.
 - Tailoring CVs to specific job descriptions via keyword gap analysis.
@@ -37,6 +38,7 @@ Follow the full procedure defined in `.github/skills/cv-coach/SKILL.md`.
 Run a **guided interview** in a single message (never split over multiple turns):
 
 Ask:
+
 1. Full name, email, LinkedIn, GitHub/portfolio
 2. Last 3 roles (title, company, dates, 3-5 highlights per role)
 3. Key skills (languages, frameworks, tools, cloud platforms)

@@ -1,5 +1,5 @@
 #!/bin/sh
-# CoDev pre-commit hook — runs routing validation before every commit.
+# CoDev pre-commit hook — runs routing and markdown lint validation before every commit.
 #
 # Installation:
 #   cp scripts/hooks/pre-commit .git/hooks/pre-commit
@@ -14,22 +14,19 @@
 set -e
 
 PYTHON="${PYTHON:-python}"
-SCRIPTS_DIR="$(git rev-parse --show-toplevel)/scripts"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+SCRIPTS_DIR="$REPO_ROOT/scripts"
 
-echo "🔍 CoDev pre-commit validation..."
+echo "CoDev pre-commit validation..."
 
-# Only run if routing or .github files changed
 CHANGED=$(git diff --cached --name-only)
 ROUTING_CHANGED=$(echo "$CHANGED" | grep -E "^(routing/|\.github/(agents|prompts|skills|instructions))" || true)
+MD_CHANGED=$(echo "$CHANGED" | grep -E "\.md$" | grep -v "^\.venv/" | grep -v "/\.venv/" | grep -v "/node_modules/" || true)
 
-if [ -z "$ROUTING_CHANGED" ]; then
-  echo "  ⏭  No routing/.github changes — skipping validation."
+if [ -z "$ROUTING_CHANGED" ] && [ -z "$MD_CHANGED" ]; then
+  echo "  -- No routing/.github or Markdown changes -- skipping validation."
   exit 0
 fi
-
-echo "  Changed files in scope:"
-echo "$ROUTING_CHANGED" | sed 's/^/    /'
-echo ""
 
 FAILED=0
 
@@ -38,30 +35,47 @@ run_validator() {
   LABEL="$2"
   if [ -f "$SCRIPTS_DIR/$SCRIPT" ]; then
     if "$PYTHON" "$SCRIPTS_DIR/$SCRIPT"; then
-      echo "  ✅ $LABEL"
+      echo "  OK $LABEL"
     else
-      echo "  ❌ $LABEL — FAILED"
+      echo "  FAIL $LABEL"
       FAILED=1
     fi
   else
-    echo "  ⏭  $LABEL — script not found, skipping"
+    echo "  -- $LABEL -- script not found, skipping"
   fi
 }
 
-run_validator "validate-route-smoke.py"          "Route smoke tests"
-run_validator "validate-autofix.py"              "Auto-fix detection (detect only)"
-run_validator "validate-customization-registry.py" "Customization registry"
-run_validator "validate-readme-registry.py"      "README registry"
-run_validator "validate-routing-coverage.py"     "Routing coverage"
+# --- Routing validators (only when routing/.github files changed) ---
+if [ -n "$ROUTING_CHANGED" ]; then
+  echo ""
+  echo "  Routing/.github files changed:"
+  echo "$ROUTING_CHANGED" | sed 's/^/    /'
+  echo ""
+  run_validator "validate-route-smoke.py"            "Route smoke tests"
+  run_validator "validate-autofix.py"                "Auto-fix detection (detect only)"
+  run_validator "validate-customization-registry.py" "Customization registry"
+  run_validator "validate-readme-registry.py"        "README registry"
+  run_validator "validate-routing-coverage.py"       "Routing coverage"
+fi
+
+# --- Markdown lint (only when .md files changed) ---
+if [ -n "$MD_CHANGED" ]; then
+  echo ""
+  echo "  Markdown files changed:"
+  echo "$MD_CHANGED" | sed 's/^/    /'
+  echo ""
+  run_validator "validate-markdown-lint.py" "Markdown lint"
+fi
 
 echo ""
 if [ "$FAILED" -eq 1 ]; then
-  echo "❌ Pre-commit validation failed. Fix the issues above or run:"
-  echo "   python scripts/validate-autofix.py --fix"
+  echo "FAIL Pre-commit validation failed. Fix the issues above."
+  echo "     For routing fixes: python scripts/validate-autofix.py --fix"
+  echo "     For markdown fixes: npx markdownlint-cli2 --fix \"**/*.md\" \"!.venv/**\""
   echo ""
-  echo "   To bypass (emergency only): git commit --no-verify"
+  echo "     To bypass (emergency only): git commit --no-verify"
   exit 1
 fi
 
-echo "✅ All validations passed."
+echo "OK All validations passed."
 exit 0

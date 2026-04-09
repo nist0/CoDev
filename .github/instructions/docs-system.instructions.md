@@ -48,6 +48,28 @@ applyTo: "**/*.md"
 
 - `MD013` (line length): keep prose lines ≤120 characters; use soft-wrap in editors, not hard wraps at 80.
 
+- `MD026` (no trailing punctuation in headings): headings must not end with `:`, `.`, `!`, or `?`.
+
+  ```md
+  <!-- Wrong -->
+  ### Register webhook via curl:
+
+  <!-- Correct -->
+  ### Register webhook via curl
+  ```
+
+- `MD031` (fenced code blocks should be surrounded by blank lines): always leave one blank line before and after every fenced block.
+
+  ````md
+  Paragraph before the block.
+
+  ```bash
+  echo "surrounded by blank lines"
+  ```
+
+  Paragraph after the block.
+  ````
+
 - `MD040` (fenced code blocks must have a language tag):
 
   ````md
@@ -61,6 +83,19 @@ applyTo: "**/*.md"
 **Applies to**: every task that creates or modifies any `.md` file, regardless of scope or agent.
 
 This gate is **non-negotiable** — it must run before the task is marked done and before a PR is opened or updated.
+
+### Pre-commit automation (install once)
+
+The repository pre-commit hook runs `validate-markdown-lint.py` automatically whenever `.md` files are staged. Install it once after cloning:
+
+```bash
+cp scripts/hooks/pre-commit .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+# or
+python scripts/install-hooks.py
+```
+
+The hook blocks the commit and prints the fix command if any markdown error is found.
 
 ### Step 1 — Local lint (blocking)
 

@@ -88,7 +88,7 @@ _Summary: Orders progress from Pending → Confirmed → Shipped → Delivered._
 ## CI validation
 
 For repositories with Markdown docs that contain Mermaid diagrams, add a CI step:
- 
+
 ```yaml
 - name: Validate Mermaid diagrams
   run: |

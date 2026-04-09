@@ -233,7 +233,7 @@ async def shutdown():
     await telegram_app.shutdown()
 ```
 
-### Register webhook manually via curl:
+### Register webhook manually via curl
 
 ```bash
 curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook" \

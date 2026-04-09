@@ -1,4 +1,4 @@
-ok pleas---
+---
 name: ef-core
 description: EF Core modeling, migrations, query performance, concurrency, and testing with real Postgres.
 argument-hint: "[entity] [concern]"

@@ -55,11 +55,13 @@ Extract and organise all content into the following canonical sections:
 | Optional | Publications, open-source, volunteering, talks, awards |
 
 For each work experience entry, map bullets to:
+
 - **Action verb** (start of bullet)
 - **Task / context** (what was done)
 - **Result / impact** (quantified if possible)
 
 Flag sections that are:
+
 - Missing (mandatory: Identity, Work Experience, Skills, Education)
 - Thin (fewer than 2 bullet points per experience)
 - Unquantified (no numbers, %, timeframes, or scales)
@@ -86,6 +88,7 @@ Score each dimension on a 1-5 scale and produce a critique table:
 | Modern formatting | | | |
 
 **Scoring guide:**
+
 - 5 = Excellent, no change needed
 - 4 = Good, minor polish
 - 3 = Adequate, improvement recommended
@@ -93,6 +96,7 @@ Score each dimension on a 1-5 scale and produce a critique table:
 - 1 = Missing or severely deficient
 
 **Modern standards reference (2025):**
+
 - Length: 1 page for <5 yrs exp; 2 pages for 5-15 yrs; max 3 pages for senior/exec.
 - ATS: no tables, headers/footers, images, or text boxes for ATS-destined versions.
 - Action verbs: strong, varied, active voice — avoid "responsible for", "helped with".
@@ -124,7 +128,7 @@ Flag these as P0 (must fix before any application):
 
 For each work experience entry, rewrite bullets using the formula:
 
-```
+```text
 [Strong action verb] + [what you did / scope] + [measurable outcome / impact]
 ```
 
@@ -145,6 +149,7 @@ For each work experience entry, rewrite bullets using the formula:
 | Managed a team of developers | Managed a 5-engineer team across 3 time zones, delivering 4 major features on schedule in Q3 2024 |
 
 **Quantification prompts to ask the user when data is missing:**
+
 - "How many users / requests / transactions did this system handle?"
 - "By how much did the change improve performance / cost / time?"
 - "What was the team or budget size you managed?"

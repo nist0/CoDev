@@ -697,7 +697,7 @@ Generated instruction inventory:
 | --- | --- | --- |
 | 00-core.instructions.md | `**` | Core working agreement: deterministic steps, copy/paste-ready outputs, non-contradictory layering. |
 | bash.instructions.md | `**/*.sh` | Bash guidance: safe shell scripting. |
-| bot.instructions.md | `**/*bot*.{cs,py},**/*handler*.{cs,py},**/*webhook*.{cs,py},**/*adapter*.{cs,py}` | Always-on rules for bot code files across all platforms (Teams, Telegram, WhatsApp, Discord). Non-negotiable security baseline, SDK selection, and reliability standards. |
+| bot.instructions.md | `**/*bot*.{cs,py},**/*bot*handler*.{cs,py},**/*webhook*.{cs,py}` | Always-on rules for bot code files across all platforms (Teams, Telegram, WhatsApp, Discord). Non-negotiable security baseline, SDK selection, and reliability standards. |
 | brainstorming-governance.instructions.md | `**` | Mandatory brainstorm-first gate for all non-trivial tasks: require elite ideation quality, scored option portfolio, execution handoff, and named specialist reviews. |
 | cli-platform.instructions.md | `**` | Mandatory working standards for the .NET CLI platform project: three-phase workflow enforcement, context discipline, extension conventions, and infra/CI authoring rules. |
 | codev-consumer.instructions.md | `codev-overrides/**` | Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation. |
@@ -881,7 +881,7 @@ Generated skill inventory:
 | `rfc` | Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan. |
 | `roadmap` | Actionable roadmap — outcome-driven milestones, dependency and risk register, success metrics, and review cadence. |
 | `supply-chain` | Software supply chain hardening — dependency pinning, SBOM, artifact signing, provenance, and policy enforcement. |
-| `teams-bot` | Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration. |
+| `teams-bot` |  |
 | `telegram-bot` | Build production-grade Telegram bots in Python using python-telegram-bot v22+ (Bot API 9.5+). Covers async application setup, handler registration, ConversationHandler dialogs, webhook vs polling, persistence, and security. |
 | `test-strategy` | Test pyramid design — risk mapping, test type selection, data strategy, CI gate definition, and flakiness prevention. |
 | `threat-modeling` | Step-by-step STRIDE threat modeling playbook: enumerate assets, map trust boundaries, identify and score threats, define mitigations, document residual risk. |

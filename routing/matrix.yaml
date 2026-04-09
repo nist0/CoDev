@@ -1041,14 +1041,7 @@ routing_rules:
       prompts: ["cli-platform-init", "cli-platform-analyze", "cli-platform-task"]
       skills: ["cli-platform-analysis", "repo-understanding", "github-actions", "dotnet-cli"]
 
-  # bot-engineering capability rules
-
-  - when:
-      capability: bot-engineering
-    suggest:
-      agent: Bot Engineer
-      prompts: ["bot-scaffold", "bot-triage"]
-      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+  # bot-engineering capability rules (domain-specific first, generic fallback last)
 
   - when:
       capability: bot-engineering
@@ -1081,6 +1074,13 @@ routing_rules:
       agent: Bot Engineer
       prompts: ["bot-scaffold", "bot-triage"]
       skills: ["bot-architecture", "teams-bot", "azure"]
+
+  - when:
+      capability: bot-engineering
+    suggest:
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
 
   - when:
       capability: cli-platform-onboarding

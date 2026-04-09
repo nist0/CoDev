@@ -1,7 +1,7 @@
 ---
 name: "Bot Engineering"
 description: "Always-on rules for bot code files across all platforms (Teams, Telegram, WhatsApp, Discord). Non-negotiable security baseline, SDK selection, and reliability standards."
-applyTo: "**/*bot*.{cs,py},**/*handler*.{cs,py},**/*webhook*.{cs,py},**/*adapter*.{cs,py}"
+applyTo: "**/*bot*.{cs,py},**/*bot*handler*.{cs,py},**/*webhook*.{cs,py}"
 ---
 
 # Bot Engineering Standards

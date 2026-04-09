@@ -319,6 +319,22 @@ cases:
       prompts: ["bot-scaffold", "bot-triage"]
       skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
 
+
+  - request: "build a teams bot in c# with cosmos db state"
+    expect:
+      capability: bot-engineering
+      domain: bot-platforms
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
+
+  - request: "telegram bot in python with redis persistence"
+    expect:
+      capability: bot-engineering
+      domain: bot-platforms
+      agent: Bot Engineer
+      prompts: ["bot-scaffold", "bot-triage"]
+      skills: ["bot-architecture", "teams-bot", "telegram-bot", "whatsapp-bot"]
   - request: "bootstrap a REST API in C#"
     expect:
       capability: scaffolding

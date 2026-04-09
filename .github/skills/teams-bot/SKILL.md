@@ -1,4 +1,4 @@
----
+﻿---
 name: teams-bot
 description: Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration.
 argument-hint: "[language: csharp|python] [feature: adaptive-cards|sso|ai|mcp]"
@@ -181,7 +181,7 @@ Install:
 pip install teams-ai openai
 
 # C# (via Teams Toolkit or NuGet)
-dotnet add package Microsoft.Bot.Builder.AI.OpenAI
+dotnet add package Microsoft.Teams.AI
 ```
 
 Python example:
@@ -231,7 +231,7 @@ async def on_message(ctx: TurnContext, state) -> None:
 # Unit test with xUnit + Moq
 dotnet test --filter Category=Unit
 
-# Integration: use Bot Framework Emulator or Teams App Test Tool
+# Integration: Teams App Test Tool (preferred); Bot Framework Emulator also works as a lower-level fallback
 # https://learn.microsoft.com/microsoftteams/platform/toolkit/test-app-behavior
 ```
 

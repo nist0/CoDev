@@ -777,11 +777,12 @@ Generated prompt inventory:
 | `/project-kickoff` | project-kickoff.prompt.md | Project Orchestrator | Clarify project intent and produce a deep phased plan with risks and acceptance criteria. |
 | `/project-takeover` | project-takeover.prompt.md | Project Takeover | Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit une documentation complète en français dans .takeover/ (non commité). |
 | `/prompt-from-theme` | prompt-from-theme.prompt.md | promptsmith | Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs. |
-| `/quickstart` | quickstart.prompt.md | Router | Interactive onboarding: gather role + domain + goal in one turn, then emit a personalised first-command card. |
+| `/quickstart` | quickstart.prompt.md | Router | Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized first-command card. |
 | `/release-plan` | release-plan.prompt.md | Delivery Lead | Release plan: versioning, changelog, build artifacts, rollout/rollback, verification, comms. |
 | `/route-miss` | route-miss.prompt.md | Router | Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue. |
 | `/route` | route.prompt.md | Router | Route a request using the canonical matrix (capability + domain) and produce deterministic delegation when delivery tasks are requested. |
 | `/secrets-audit` | secrets-audit.prompt.md | Security | Audit a file, PR diff, or codebase description for secrets, tokens, credentials, and private keys. Every finding is Critical — emit rotation guidance immediately. |
+| `/session-handoff` | session-handoff.prompt.md | Project Orchestrator | Generate or load a zero-argument session handoff package, either inline, as a workspace file, or by initializing a new chat from an attached handoff file. |
 | `/tech-watch-digest` | tech-watch-digest.prompt.md | Tech Scout | Tech watch digest: what changed, why it matters, what to try next week. |
 | `/test-plan` | test-plan.prompt.md | Architect | Create a pragmatic test plan (scenarios → test type → rationale). |
 | `/threat-model` | threat-model.prompt.md | Security | Run a structured STRIDE threat model on a described system: enumerate assets, map trust boundaries, identify and score threats, define mitigations and residual risk. |

@@ -1,4 +1,4 @@
-﻿---
+---
 name: k8s-triage
 description: "Kubernetes/AKS triage: fast cluster checks, pod/service/ingress diagnosis, rollback and verification."
 agent: "DevOps/Cloud"

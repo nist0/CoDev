@@ -1,4 +1,4 @@
-﻿---
+---
 name: cli-platform-analyze
 description: "Full static analysis of a .NET CLI platform project — reads GH workflow files, Bicep/infra, solution structure, CLI surface, test projects, and existing docs — produces docs/project-context.md as the living context document. Phase 2 of the CLI platform onboarding workflow."
 agent: "CLI Platform Onboarder"

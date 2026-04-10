@@ -1,4 +1,4 @@
-﻿---
+---
 name: diagram-ops
 description: "Produce, modify, validate, and convert architecture diagrams using PlantUML/Mermaid and open-source workflows."
 agent: "Delivery Lead"

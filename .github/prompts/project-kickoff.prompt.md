@@ -1,4 +1,4 @@
-﻿---
+---
 name: project-kickoff
 description: "Clarify project intent and produce a deep phased plan with risks and acceptance criteria."
 agent: "Project Orchestrator"

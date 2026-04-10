@@ -1,4 +1,4 @@
-﻿---
+---
 name: apm-analysis
 description: "APM analysis: trace/transaction breakdown, latency hotspots, error correlation, next instrumentation steps."
 agent: "Reliability"

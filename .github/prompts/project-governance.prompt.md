@@ -1,4 +1,4 @@
-﻿---
+---
 name: project-governance
 description: Govern execution with GitHub issues + Kanban and review outcomes as approved or rework required.
 agent: "Project Orchestrator"

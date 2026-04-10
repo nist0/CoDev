@@ -1,4 +1,4 @@
-﻿---
+---
 name: doc-lint-fix
 description: "Rewrite Markdown to satisfy lint rules and match the doc architecture model."
 agent: "Delivery Lead"

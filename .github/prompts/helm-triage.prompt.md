@@ -1,4 +1,4 @@
-﻿---
+---
 name: helm-triage
 description: "Helm triage: chart rendering, values sanity, diff/upgrade failures, rollback and verification."
 agent: "DevOps/Cloud"

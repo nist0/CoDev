@@ -1,4 +1,4 @@
-﻿---
+---
 name: codev-init
 description: Guided CoDev submodule initialization — step-by-step with mode detection, validation, and commit.
 agent: CoDev Consumer

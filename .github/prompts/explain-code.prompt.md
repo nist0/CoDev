@@ -1,4 +1,4 @@
-﻿---
+---
 name: explain-code
 description: "Explain code and produce documentation-ready explanations."
 agent: "Architect"

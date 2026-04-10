@@ -1,4 +1,4 @@
-﻿---
+---
 name: pr-review
 description: "Elite PR review: 8-pass analysis, instruction compliance, merge gate, downgrade-risk."
 agent: "Delivery Lead"

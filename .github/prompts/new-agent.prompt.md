@@ -1,4 +1,4 @@
-﻿---
+---
 name: new-agent
 description: Create a new custom agent (.agent.md) with stable rules and boundaries.
 agent: promptsmith

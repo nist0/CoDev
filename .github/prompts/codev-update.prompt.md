@@ -1,4 +1,4 @@
-﻿---
+---
 name: codev-update
 description: Guided CoDev submodule update — sync after git submodule update, re-run bootstrap, validate, and commit.
 agent: CoDev Consumer

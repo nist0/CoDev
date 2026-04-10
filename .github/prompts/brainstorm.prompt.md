@@ -1,4 +1,4 @@
-﻿---
+---
 name: brainstorm
 description: "Elite multi-agent brainstorming workflow with idea portfolio scoring, execution handoff, and governance artifacts."
 agent: "Innovator"

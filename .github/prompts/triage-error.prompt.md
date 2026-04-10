@@ -1,4 +1,4 @@
-﻿---
+---
 name: triage-error
 description: "Triage an error: repro steps, ranked hypotheses, validation plan, fix options, verification checklist."
 agent: "Reliability"

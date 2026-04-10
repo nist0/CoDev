@@ -1,4 +1,4 @@
-﻿---
+---
 name: project-dispatch
 description: Convert a project plan into delegated specialist tasks with clear ownership and issue-ready definitions.
 agent: "Project Orchestrator"

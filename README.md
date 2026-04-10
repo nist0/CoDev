@@ -732,62 +732,62 @@ Generated prompt inventory:
 <!-- codev:generated:prompts:start -->
 | Prompt | File | Agent | Description |
 | --- | --- | --- | --- |
-| `/apm-analysis` | apm-analysis.prompt.md |  | ﻿--- |
-| `/automation-script` | automation-script.prompt.md |  | ﻿--- |
+| `/apm-analysis` | apm-analysis.prompt.md | Reliability | APM analysis: trace/transaction breakdown, latency hotspots, error correlation, next instrumentation steps. |
+| `/automation-script` | automation-script.prompt.md | Automation/Scripting | Create or improve automation scripts and CLI workflows. |
 | `/az-ops` | az-ops.prompt.md | DevOps/Cloud | Azure CLI operations — subscription context, resource discovery, AKS, Key Vault, ACR, RBAC, and monitoring queries. |
 | `/bot-scaffold` | bot-scaffold.prompt.md | Bot Engineer | Scaffold a production-ready bot project for Teams, Telegram, WhatsApp or other platforms in C# or Python. Gathers requirements and emits exact setup steps, project structure, and security baseline. |
 | `/bot-triage` | bot-triage.prompt.md | Bot Engineer | Systematically debug and triage bot issues across Teams, Telegram, WhatsApp and other platforms. Follows repro-first methodology: symptom collection, platform identification, SDK version, ranked hypotheses, and verified fix. |
-| `/brainstorm` | brainstorm.prompt.md |  | ﻿--- |
-| `/cli-platform-analyze` | cli-platform-analyze.prompt.md |  | ﻿--- |
-| `/cli-platform-init` | cli-platform-init.prompt.md |  | ﻿--- |
-| `/cli-platform-task` | cli-platform-task.prompt.md |  | ﻿--- |
-| `/codev-contribute` | codev-contribute.prompt.md |  | ﻿--- |
-| `/codev-init` | codev-init.prompt.md |  | ﻿--- |
-| `/codev-update` | codev-update.prompt.md |  | ﻿--- |
+| `/brainstorm` | brainstorm.prompt.md | Innovator | Elite multi-agent brainstorming workflow with idea portfolio scoring, execution handoff, and governance artifacts. |
+| `/cli-platform-analyze` | cli-platform-analyze.prompt.md | CLI Platform Onboarder | Full static analysis of a .NET CLI platform project — reads GH workflow files, Bicep/infra, solution structure, CLI surface, test projects, and existing docs — produces docs/project-context.md as the living context document. Phase 2 of the CLI platform onboarding workflow. |
+| `/cli-platform-init` | cli-platform-init.prompt.md | CLI Platform Onboarder | Guided CoDev submodule bootstrap for a .NET CLI platform repo — add submodule, codev init with extend strategy, author codev-overrides/ stub, verify, and commit. Phase 1 of the CLI platform onboarding workflow. |
+| `/cli-platform-task` | cli-platform-task.prompt.md | CLI Platform Onboarder | Execute an assigned task on the .NET CLI platform project using docs/project-context.md as preloaded context — routes, gathers task context, plans tests, implements, and ships. Phase 3 of the CLI platform onboarding workflow. |
+| `/codev-contribute` | codev-contribute.prompt.md | CoDev Consumer | Guided upstream contribution to CoDev — issue, fork, branch, fix, PR, review, and post-merge sync. |
+| `/codev-init` | codev-init.prompt.md | CoDev Consumer | Guided CoDev submodule initialization — step-by-step with mode detection, validation, and commit. |
+| `/codev-update` | codev-update.prompt.md | CoDev Consumer | Guided CoDev submodule update — sync after git submodule update, re-run bootstrap, validate, and commit. |
 | `/cv-review` | cv-review.prompt.md | CV Coach | Critique and rewrite a CV to modern professional standards: ATS compliance, quantified impact bullets, and optional keyword gap analysis against a job description. |
 | `/deep-plan` | deep-plan.prompt.md | plan | Elite planning entry point: runs a mandatory brainstorm (≥ 3 scored options), produces a ranked implementation plan, and emits a GitHub issue draft with full sub-task checklist — for any domain. |
-| `/diagram-ops` | diagram-ops.prompt.md |  | ﻿--- |
-| `/doc-lint-fix` | doc-lint-fix.prompt.md |  | ﻿--- |
-| `/dotnet-excellence` | dotnet-excellence.prompt.md |  | ﻿--- |
-| `/explain-code` | explain-code.prompt.md |  | ﻿--- |
+| `/diagram-ops` | diagram-ops.prompt.md | Delivery Lead | Produce, modify, validate, and convert architecture diagrams using PlantUML/Mermaid and open-source workflows. |
+| `/doc-lint-fix` | doc-lint-fix.prompt.md | Delivery Lead | Rewrite Markdown to satisfy lint rules and match the doc architecture model. |
+| `/dotnet-excellence` | dotnet-excellence.prompt.md | Backend .NET | Apply advanced .NET best practices with concrete examples, Microsoft references, and verification guidance. |
+| `/explain-code` | explain-code.prompt.md | Architect | Explain code and produce documentation-ready explanations. |
 | `/generate-controller` | generate-controller.prompt.md | Backend .NET | Generate a production-ready ASP.NET Core CRUD controller from a description, OpenAPI JSON contract, or resource theme. |
-| `/generate-docs-tree` | generate-docs-tree.prompt.md |  | ﻿--- |
-| `/generate-onboarding` | generate-onboarding.prompt.md |  | ﻿--- |
-| `/helm-triage` | helm-triage.prompt.md |  | ﻿--- |
-| `/k8s-triage` | k8s-triage.prompt.md |  | ﻿--- |
-| `/linters-stack` | linters-stack.prompt.md |  | ﻿--- |
-| `/logs-analysis` | logs-analysis.prompt.md |  | ﻿--- |
-| `/markdown-ops` | markdown-ops.prompt.md |  | ﻿--- |
+| `/generate-docs-tree` | generate-docs-tree.prompt.md | Delivery Lead | Propose a docs/ tree aligned with the Documentation Architecture Model. |
+| `/generate-onboarding` | generate-onboarding.prompt.md | Delivery Lead | Generate an onboarding guide for a repository. |
+| `/helm-triage` | helm-triage.prompt.md | DevOps/Cloud | Helm triage: chart rendering, values sanity, diff/upgrade failures, rollback and verification. |
+| `/k8s-triage` | k8s-triage.prompt.md | DevOps/Cloud | Kubernetes/AKS triage: fast cluster checks, pod/service/ingress diagnosis, rollback and verification. |
+| `/linters-stack` | linters-stack.prompt.md | Automation/Scripting | Design or improve polyglot linter strategy and CI quality gates across C/C++/C#/Python/Bash/Markdown. |
+| `/logs-analysis` | logs-analysis.prompt.md | Reliability | Logs/APM analysis: extract the first symptom, correlate traces, propose next queries and fixes. |
+| `/markdown-ops` | markdown-ops.prompt.md | Delivery Lead | Produce, modify, lint, restructure, convert, import, and export Markdown docs with no info loss. |
 | `/mcp-analyze` | mcp-analyze.prompt.md | mcp-specialist | Analyze an existing MCP design or configuration for topology correctness, least privilege, and VS Code or GitHub Copilot fit. |
 | `/mcp-debug` | mcp-debug.prompt.md | mcp-specialist | Debug MCP startup, discovery, auth, or invocation failures in VS Code or GitHub Copilot with a repro-first troubleshooting flow. |
 | `/mcp-setup` | mcp-setup.prompt.md | mcp-specialist | Design and install an MCP integration for VS Code or GitHub Copilot with a guided intake, strict topology decisions, and least-privilege verification steps. |
 | `/mermaid-create` | mermaid-create.prompt.md | mermaid-diagrammer | Generate a Mermaid diagram from a natural-language description. Outputs a GitHub-ready fenced code block with prose context. |
 | `/mermaid-embed` | mermaid-embed.prompt.md | mermaid-diagrammer | Embed a Mermaid diagram into an existing Markdown file (GitHub README, ADR, wiki, PR description). Handles correct fencing, placement, prose context, and accessibility. |
 | `/mermaid-review` | mermaid-review.prompt.md | mermaid-diagrammer | Review an existing Mermaid diagram snippet for syntax errors, deprecated patterns, GitHub rendering compatibility, and best-practice violations. Returns structured verdict + improved version. |
-| `/new-agent` | new-agent.prompt.md |  | ﻿--- |
-| `/new-instructions` | new-instructions.prompt.md |  | ﻿--- |
-| `/new-skill` | new-skill.prompt.md |  | ﻿--- |
-| `/new-theme-pack` | new-theme-pack.prompt.md |  | ﻿--- |
+| `/new-agent` | new-agent.prompt.md | promptsmith | Create a new custom agent (.agent.md) with stable rules and boundaries. |
+| `/new-instructions` | new-instructions.prompt.md | promptsmith | Create a new scoped instruction file with applyTo and concise rules. |
+| `/new-skill` | new-skill.prompt.md | promptsmith | Create a new reusable skill folder (SKILL.md + minimal assets) following repo conventions. |
+| `/new-theme-pack` | new-theme-pack.prompt.md | promptsmith | Generate a theme pack: 1 agent + 2 skills + 3 prompts + 1 scoped instruction, all consistent and reusable. |
 | `/obs` | obs.prompt.md | Reliability | Observability incident triage — first response for latency spikes, error rate surges, log anomalies, and missing traces across Elastic APM, Kibana, and log pipelines. |
 | `/pg` | pg.prompt.md | Backend .NET | PostgreSQL quick operations — schema inspection, query optimization, index analysis, lock triage, and connection pool management. |
-| `/postmortem` | postmortem.prompt.md |  | ﻿--- |
-| `/pr-review` | pr-review.prompt.md |  | ﻿--- |
-| `/project-dispatch` | project-dispatch.prompt.md |  | ﻿--- |
-| `/project-governance` | project-governance.prompt.md |  | ﻿--- |
-| `/project-kickoff` | project-kickoff.prompt.md |  | ﻿--- |
+| `/postmortem` | postmortem.prompt.md | Reliability | Generate a blameless postmortem draft with timeline, RCA, and action items. |
+| `/pr-review` | pr-review.prompt.md | Delivery Lead | Elite PR review: 8-pass analysis, instruction compliance, merge gate, downgrade-risk. |
+| `/project-dispatch` | project-dispatch.prompt.md | Project Orchestrator | Convert a project plan into delegated specialist tasks with clear ownership and issue-ready definitions. |
+| `/project-governance` | project-governance.prompt.md | Project Orchestrator | Govern execution with GitHub issues + Kanban and review outcomes as approved or rework required. |
+| `/project-kickoff` | project-kickoff.prompt.md | Project Orchestrator | Clarify project intent and produce a deep phased plan with risks and acceptance criteria. |
 | `/project-takeover` | project-takeover.prompt.md | Project Takeover | Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit une documentation complète en français dans .takeover/ (non commité). |
-| `/prompt-from-theme` | prompt-from-theme.prompt.md |  | ﻿--- |
-| `/quickstart` | quickstart.prompt.md |  | ﻿--- |
-| `/release-plan` | release-plan.prompt.md |  | ﻿--- |
-| `/route-miss` | route-miss.prompt.md |  | ﻿--- |
-| `/route` | route.prompt.md |  | ﻿--- |
-| `/secrets-audit` | secrets-audit.prompt.md |  | ﻿--- |
-| `/tech-watch-digest` | tech-watch-digest.prompt.md |  | ﻿--- |
-| `/test-plan` | test-plan.prompt.md |  | ﻿--- |
-| `/threat-model` | threat-model.prompt.md |  | ﻿--- |
-| `/triage-error` | triage-error.prompt.md |  | ﻿--- |
-| `/vuln-triage` | vuln-triage.prompt.md |  | ﻿--- |
-| `/write-tests` | write-tests.prompt.md |  | ﻿--- |
+| `/prompt-from-theme` | prompt-from-theme.prompt.md | promptsmith | Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs. |
+| `/quickstart` | quickstart.prompt.md | Router | Interactive onboarding: gather role + domain + goal in one turn, then emit a personalised first-command card. |
+| `/release-plan` | release-plan.prompt.md | Delivery Lead | Release plan: versioning, changelog, build artifacts, rollout/rollback, verification, comms. |
+| `/route-miss` | route-miss.prompt.md | Router | Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue. |
+| `/route` | route.prompt.md | Router | Route a request using the canonical matrix (capability + domain) and produce deterministic delegation when delivery tasks are requested. |
+| `/secrets-audit` | secrets-audit.prompt.md | Security | Audit a file, PR diff, or codebase description for secrets, tokens, credentials, and private keys. Every finding is Critical — emit rotation guidance immediately. |
+| `/tech-watch-digest` | tech-watch-digest.prompt.md | Tech Scout | Tech watch digest: what changed, why it matters, what to try next week. |
+| `/test-plan` | test-plan.prompt.md | Architect | Create a pragmatic test plan (scenarios → test type → rationale). |
+| `/threat-model` | threat-model.prompt.md | Security | Run a structured STRIDE threat model on a described system: enumerate assets, map trust boundaries, identify and score threats, define mitigations and residual risk. |
+| `/triage-error` | triage-error.prompt.md | Reliability | Triage an error: repro steps, ranked hypotheses, validation plan, fix options, verification checklist. |
+| `/vuln-triage` | vuln-triage.prompt.md | Security | Triage a CVE, dependency vulnerability, or code-level injection risk: classify severity, identify affected surface, recommend fix timeline and version. |
+| `/write-tests` | write-tests.prompt.md | Architect | Write tests based on a test plan; include how to run locally and in CI. |
 <!-- codev:generated:prompts:end -->
 
 ---

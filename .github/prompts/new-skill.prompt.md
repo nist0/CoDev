@@ -1,4 +1,4 @@
-﻿---
+---
 name: new-skill
 description: Create a new reusable skill folder (SKILL.md + minimal assets) following repo conventions.
 agent: promptsmith

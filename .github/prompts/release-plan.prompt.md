@@ -1,4 +1,4 @@
-﻿---
+---
 name: release-plan
 description: "Release plan: versioning, changelog, build artifacts, rollout/rollback, verification, comms."
 agent: "Delivery Lead"

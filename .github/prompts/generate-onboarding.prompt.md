@@ -1,4 +1,4 @@
-﻿---
+---
 name: generate-onboarding
 description: "Generate an onboarding guide for a repository."
 agent: "Delivery Lead"

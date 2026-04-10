@@ -7,6 +7,29 @@ tools:
   - read
   - edit
   - execute
+  - agent
+agents:
+  - Backend .NET
+  - DevOps/Cloud
+  - Project Orchestrator
+  - Delivery Lead
+handoffs:
+  - label: Application Code Fix
+    agent: Backend .NET
+    prompt: Fix the confirmed root cause in application code
+    send: true
+  - label: Infrastructure Fix
+    agent: DevOps/Cloud
+    prompt: /k8s-triage
+    send: true
+  - label: Track Action Items
+    agent: Project Orchestrator
+    prompt: /project-dispatch
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: Postmortem complete, fix shipped -- update Kanban and close
+    send: true
 ---
 
 # Reliability

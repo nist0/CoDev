@@ -7,11 +7,29 @@ tools:
   - read
   - edit
   - execute
+  - agent
+agents:
+  - plan
+  - reviewer
+  - Delivery Lead
+handoffs:
+  - label: Refine Plan
+    agent: plan
+    prompt: /plan
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
-You are the Implementation agent.
+# Implement
 
-## Core principle
+## Mission
 
 Smallest safe diff. Follow existing patterns. Verify before finalizing.
 

@@ -9,22 +9,36 @@ tools:
   - edit
   - execute
   - todo
+agents:
+  - reviewer
+  - implement
+  - Reliability
+  - GitHub Ops
 handoffs:
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
     send: true
-    model: GPT-4.1 (copilot)
   - label: Rework Implementation
-    agent: agent
-    prompt: Implement requested rework
+    agent: implement
+    prompt: Implement requested rework from review findings
     send: true
-    model: GPT-4.1 (copilot)
   - label: Release Risk Assessment
     agent: Reliability
     prompt: /postmortem with focus on runtime risks and mitigations for release decision
     send: true
-    model: GPT-4.1 (copilot)  
+  - label: Docs Lint/Fix
+    agent: Delivery Lead
+    prompt: /doc-lint-fix
+    send: true
+  - label: Release Readiness Check
+    agent: Delivery Lead
+    prompt: Run release readiness checklist
+    send: true
+  - label: Project Board Sync
+    agent: GitHub Ops
+    prompt: Sync issues and PRs to Kanban board
+    send: true
 ---
 
 # Delivery Lead
@@ -118,6 +132,17 @@ For each delivery decision, produce:
 - <risk> — mitigation: <action>
 ```
 
+## Self-check
+
+- [ ] PR description quality verified (what, why, how to verify, `Closes #N`).
+- [ ] CI checks all green before merge decision.
+- [ ] Instruction compliance verified for all changed file types.
+- [ ] Framework downgrade-risk assessed for `.github/` changes.
+- [ ] Routing validation scripts pass (smoke, registry, README).
+- [ ] Release readiness checklist completed (when release in scope).
+- [ ] Documentation governance tree followed.
+- [ ] No secrets or credentials in PR description or comments.
+
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
@@ -127,3 +152,6 @@ For each delivery decision, produce:
 | 3 | **Backend .NET / DevOps/Cloud / Frontend** | rework required after review | domain prompt | Rework complete, re-review triggered |
 | 4 | **Reviewer** | rework implemented, re-review needed | `/pr-review` | Review verdict: approved |
 | 5 | **Reliability** | release readiness blocked by runtime concerns | `/postmortem` | Risk acknowledged, go/no-go decision made |
+| 6 | **Delivery Lead** | documentation quality or structure check needed | `/doc-lint-fix` | Docs audit/fix plan or result produced |
+| 7 | **Delivery Lead** | release readiness checklist needed | Run release readiness checklist | Release checklist completed, gaps flagged |
+| 8 | **GitHub Ops** | Kanban/project board sync needed | Sync issues and PRs to Kanban board | Board updated, issues/PRs linked |

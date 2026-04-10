@@ -8,6 +8,29 @@ tools:
   - edit
   - execute
   - web
+  - agent
+agents:
+  - Reliability
+  - Security
+  - Automation/Scripting
+  - Delivery Lead
+handoffs:
+  - label: Incident Postmortem
+    agent: Reliability
+    prompt: /postmortem
+    send: true
+  - label: Security Assessment
+    agent: Security
+    prompt: /threat-model
+    send: true
+  - label: Runbook Automation
+    agent: Automation/Scripting
+    prompt: Automate the runbook or operational procedure
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
 # DevOps/Cloud

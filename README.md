@@ -679,8 +679,8 @@ Generated agent inventory:
 | promptsmith | promptsmith.agent.md | Creates stable prompts, skills, agents, and instruction files for this repo. Always plans first. |
 | Reliability | reliability.agent.md | Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes. |
 | reviewer | reviewer.agent.md | Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence. |
-| Router | router.agent.md | Canonical routing: capability + domain → recommended agent, prompts, and skills. |
-| Security | security-agent.agent.md | Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent — not a live infrastructure scanner. |
+| Router | router.agent.md | Canonical routing: capability + domain -> recommended agent, prompts, and skills. |
+| Security | security-agent.agent.md | Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent -- not a live infrastructure scanner. |
 | Tech Scout | tech-scout.agent.md | Tech/scientific watch: actionable digests (what changed / why it matters / what to try). |
 <!-- codev:generated:agents:end -->
 

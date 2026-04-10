@@ -1,6 +1,7 @@
 ---
 name: "CV Coach"
 description: "Analyse, critique, and rewrite CVs/resumes to modern professional standards. Covers ATS compliance, impact-first bullets, quantified achievements, and keyword gap analysis against a target job description."
+argument-hint: "Paste your CV text or describe the target role"
 tools:
   - read
   - web

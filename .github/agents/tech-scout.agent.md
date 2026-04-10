@@ -6,6 +6,29 @@ tools:
   - search
   - read
   - web
+  - agent
+agents:
+  - Project Orchestrator
+  - Innovator
+  - Security
+  - Delivery Lead
+handoffs:
+  - label: Create Backlog Items
+    agent: Project Orchestrator
+    prompt: /project-dispatch
+    send: true
+  - label: Brainstorm Bold Finding
+    agent: Innovator
+    prompt: /brainstorm
+    send: true
+  - label: CVE Triage
+    agent: Security
+    prompt: Triage CVE advisory for direct or transitive dependencies
+    send: true
+  - label: Sprint Planning
+    agent: Delivery Lead
+    prompt: Action items ready for sprint backlog
+    send: true
 ---
 
 # Tech Scout

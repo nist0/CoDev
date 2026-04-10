@@ -1,7 +1,35 @@
 ---
 name: "CoDev Consumer"
 description: "Guides repository maintainers through the full CoDev submodule lifecycle: init, update, override authoring, teardown, and contributing changes upstream."
-tools: []
+tools:
+  - search/codebase
+  - search
+  - read
+  - edit
+  - execute
+  - agent
+agents:
+  - Router
+  - promptsmith
+  - DevOps/Cloud
+  - Delivery Lead
+handoffs:
+  - label: Routing Smoke Test
+    agent: Router
+    prompt: /route
+    send: true
+  - label: Author Custom Overrides
+    agent: promptsmith
+    prompt: Author new override files in codev-overrides/
+    send: true
+  - label: CI/CD Pipeline Update
+    agent: DevOps/Cloud
+    prompt: Update CI/CD pipeline for new CoDev overrides
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
 # CoDev Consumer

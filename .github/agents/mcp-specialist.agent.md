@@ -5,6 +5,20 @@ tools:
   - search/codebase
   - search
   - read
+  - edit
+  - agent
+agents:
+  - reviewer
+  - Delivery Lead
+handoffs:
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
 # MCP Specialist
@@ -99,3 +113,12 @@ Always produce:
 - [ ] Secrets are never echoed or embedded.
 - [ ] One safe verification request is included.
 - [ ] Generic `vscode`, `agent-authoring`, and `prompt-engineering` guidance is not duplicated.
+
+## Agent delegation chain
+
+| Step | Agent | Trigger condition | Prompt | Done criteria |
+|------|-------|-------------------|--------|---------------|
+| 1 | **MCP Specialist** | always -- MCP design, analysis, or debug | *(this agent)* | MCP result with verdict + verification steps |
+| 2 | **Security** | trust boundary or auth risk found during analysis | `/threat-model` | Security finding documented, mitigation proposed |
+| 3 | **Reviewer** | MCP config changes ready for PR | `/pr-review` | Review verdict: approved or rework required |
+| 4 | **Delivery Lead** | review approved, PR ready | -- | PR merged, issue closed |

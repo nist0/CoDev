@@ -3,11 +3,31 @@ name: plan
 description: Converts a goal into a precise implementation plan + file checklist. No coding.
 tools:
   - search/codebase
+  - search
+  - read
+  - agent
+agents:
+  - implement
+  - reviewer
+  - Delivery Lead
+handoffs:
+  - label: Implement Plan
+    agent: implement
+    prompt: Implement the approved plan
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
-You are the Planning agent.
+# Plan
 
-## Core principle
+## Mission
 
 Produce plans that are independently verifiable and ready for handoff to the Implementation agent without ambiguity.
 

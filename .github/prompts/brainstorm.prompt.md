@@ -4,6 +4,8 @@ description: "Elite multi-agent brainstorming workflow with idea portfolio scori
 agent: "Innovator"
 argument-hint: "topic=<text> constraints=<text> success-metric=<text>"
 ---
+**Guard**: If `{{input}}` is empty or missing, ask the user for a brainstorming topic and stop. Do not proceed without explicit user input.
+
 Apply the procedure from `.github/skills/elite-brainstorming/SKILL.md`.
 
 Act as an Innovator and run an elite brainstorming workshop for: {{input}}

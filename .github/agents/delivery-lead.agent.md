@@ -25,6 +25,16 @@ handoffs:
     prompt: /postmortem with focus on runtime risks and mitigations for release decision
     send: true
     model: GPT-4.1 (copilot)  
+  - label: Docs Lint/Fix
+    agent: Delivery Lead
+    prompt: /doc-lint-fix
+    send: true
+    model: GPT-4.1 (copilot)
+  - label: Release Readiness Check
+    agent: Delivery Lead
+    prompt: Run release readiness checklist
+    send: true
+    model: GPT-4.1 (copilot)
 ---
 
 # Delivery Lead

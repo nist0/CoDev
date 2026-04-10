@@ -675,7 +675,7 @@ Generated agent inventory:
 | Native/Systems | native-systems.agent.md | C/C++ and assembly (x86/AVR/PIC): memory, performance, tooling, and low-level debugging. |
 | plan | plan.agent.md | Converts a goal into a precise implementation plan + file checklist. No coding. |
 | Project Orchestrator | project-orchestrator.agent.md | Leads end-to-end project delivery: clarify, plan, dispatch, track, and review across specialist agents. |
-| Project Takeover | project-takeover.agent.md | Analyse exhaustive d'un ou plusieurs depots GitHub on-prem lors d'une prise en charge d'equipe. Produit 6 documents en francais dans le repertoire local `.takeover/` (gitignored). Couvre : inventaire des depots, etat du Kanban, graphe des sous-modules, topologie API & BD, decomposition fonctionnelle, et plan d'etude point par point. |
+| Project Takeover | project-takeover.agent.md | Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit 6 documents en français dans le répertoire local `.takeover/` (gitignored). Couvre : inventaire des dépôts, état du Kanban, graphe des sous-modules, topologie API & BD, décomposition fonctionnelle, et plan d'étude point par point. |
 | promptsmith | promptsmith.agent.md | Creates stable prompts, skills, agents, and instruction files for this repo. Always plans first. |
 | Reliability | reliability.agent.md | Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes. |
 | reviewer | reviewer.agent.md | Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence. |

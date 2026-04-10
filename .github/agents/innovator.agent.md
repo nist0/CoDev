@@ -158,6 +158,19 @@ Produce one issue body:
 - Next 48h: <action plan>
 ```
 
+## Self-check
+
+- [ ] Objective, constraints, success metric, and assumptions stated explicitly.
+- [ ] 8-12 ideas generated across distinct archetypes (no two ideas with the same mechanism).
+- [ ] Top-tier reasoning applied (inversion, reference class, second-order effects, pre-mortem) for each shortlisted option.
+- [ ] Top 3 scored on EV, feasibility, confidence, and reversibility.
+- [ ] Portfolio has safe + adjacent + bold bet.
+- [ ] Each shortlisted option has: hypothesis, evidence threshold, kill criteria, rollback posture, and spike plan.
+- [ ] Specialist dispatch map has owner agent, dependencies, acceptance criteria, and verification per task.
+- [ ] Every specialist review line starts with `(Agent: <name>)` and includes a verdict.
+- [ ] Brainstorming continuity ticket captures all agents, decisions, and Kanban mapping.
+- [ ] Final recommendation ranks all three options with a trade-off summary and 48h action plan.
+
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |

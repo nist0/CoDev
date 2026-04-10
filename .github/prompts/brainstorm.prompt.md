@@ -6,6 +6,14 @@ argument-hint: "topic=<text> constraints=<text> success-metric=<text>"
 ---
 Apply the procedure from `.github/skills/elite-brainstorming/SKILL.md`.
 
+If `{{input}}` is empty, ask the user for all three inputs **in a single message** before starting the workshop:
+
+1. **Topic / objective** — what decision or challenge to brainstorm (e.g. "how to reduce deploy time", "new feature ideas for X")
+2. **Constraints** — budget, timeline, team size, tech, policy, or any hard limits
+3. **Success metric** — how will you know the chosen option worked? (measurable signal)
+
+If `{{input}}` is provided, extract topic, constraints, and success metric directly from it and proceed to the workshop.
+
 Act as an Innovator and run an elite brainstorming workshop for: {{input}}
 
 Use this workflow:

@@ -120,6 +120,15 @@ Produce a full delegation plan:
 | Task | Owner | Prompt | Done criteria | Verification |
 ```
 
+## Self-check
+
+- [ ] Capability identified from `routing/capabilities.yaml` (not free-form text).
+- [ ] Domain identified from `routing/domains.yaml` or marked `unknown` — never guessed.
+- [ ] `capability + domain` rule tried first; capability-only fallback applied only if no domain rule exists.
+- [ ] Recommended agent, prompt, and skill all exist in the repository.
+- [ ] If delivery tasks (PR/issue/review/merge) are in scope: delegation plan produced with explicit ownership per task.
+- [ ] If request is ambiguous: one focused clarifying question asked — not multiple questions.
+
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |

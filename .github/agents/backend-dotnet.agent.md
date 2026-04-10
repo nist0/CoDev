@@ -7,6 +7,29 @@ tools:
   - read
   - edit
   - execute
+  - agent
+agents:
+  - plan
+  - implement
+  - reviewer
+  - Delivery Lead
+handoffs:
+  - label: Create Implementation Plan
+    agent: plan
+    prompt: /plan
+    send: true
+  - label: Apply Code Changes
+    agent: implement
+    prompt: Implement the .NET backend changes per the approved plan
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
 # Backend .NET

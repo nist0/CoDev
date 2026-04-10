@@ -12,6 +12,29 @@ tools:
   - read
   - edit
   - execute
+  - agent
+agents:
+  - Architect
+  - Backend .NET
+  - mermaid-diagrammer
+  - Delivery Lead
+handoffs:
+  - label: Architecture Analysis
+    agent: Architect
+    prompt: Detailed architecture analysis of a single repository
+    send: true
+  - label: API/DB Inspection
+    agent: Backend .NET
+    prompt: Inspect OpenAPI contract and PostgreSQL schema
+    send: true
+  - label: Validate Diagrams
+    agent: mermaid-diagrammer
+    prompt: Validate and improve Mermaid diagrams produced during analysis
+    send: true
+  - label: Delivery Lead Actions
+    agent: Delivery Lead
+    prompt: /project-dispatch
+    send: true
 ---
 
 # Project Takeover Agent

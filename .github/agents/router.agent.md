@@ -1,9 +1,19 @@
 ---
 name: "Router"
-description: "Canonical routing: capability + domain → recommended agent, prompts, and skills."
+description: "Canonical routing: capability + domain -> recommended agent, prompts, and skills."
 tools: [
   vscode/extensions, vscode/askQuestions, vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, execute/getTerminalOutput, execute/awaitTerminal, execute/killTerminal, execute/createAndRunTask, execute/runTests, execute/runInTerminal, execute/runNotebookCell, execute/testFailure, read/readFile, agent/runSubagent, browser/openBrowserPage, azure-mcp/search, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/searchResults, search/textSearch, search/usages, web/fetch, web/githubRepo, todo
 ]
+agents: ["*"]
+handoffs:
+  - label: Route Miss Fix
+    agent: promptsmith
+    prompt: /route-miss
+    send: true
+  - label: Delivery Scope
+    agent: Delivery Lead
+    prompt: /project-dispatch
+    send: true
 ---
 
 # Router (Canonical Routing)

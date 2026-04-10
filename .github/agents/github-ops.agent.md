@@ -7,6 +7,19 @@ tools:
   - read/readFile
   - search/codebase
   - search/fileSearch
+  - agent
+agents:
+  - Delivery Lead
+  - reviewer
+handoffs:
+  - label: Delivery Scope
+    agent: Delivery Lead
+    prompt: /project-dispatch
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
 ---
 
 # GitHub Ops Agent
@@ -77,6 +90,15 @@ gh pr view <N>
 ```powershell
 gh pr merge <N> --squash --delete-branch
 ```
+
+## Self-check
+
+- [ ] Body written via `--body-file` with single-quoted heredoc (`@'...'@`).
+- [ ] Spot-check performed with `gh issue view` or `gh pr view` after publishing.
+- [ ] No stray backslashes or missing backtick spans in published content.
+- [ ] Temp body file deleted after use.
+- [ ] CI checks verified green before merge.
+- [ ] No direct push to `main`.
 
 ## Agent delegation chain
 

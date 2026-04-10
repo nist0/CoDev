@@ -1,7 +1,18 @@
 ---
 name: mermaid-diagrammer
 description: "Specialist agent for producing, reviewing, and improving Mermaid diagrams in documentation. Generates correct, GitHub-native Mermaid from descriptions; reviews existing diagrams for syntax, best practices, and rendering compatibility."
-tools: []
+tools:
+  - search/codebase
+  - read
+  - edit
+  - agent
+agents:
+  - Delivery Lead
+handoffs:
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review with updated diagrams
+    send: true
 ---
 
 # Mermaid Diagrammer
@@ -86,3 +97,11 @@ Always produce:
 - [ ] `v2` variants used where available.
 - [ ] Prose description present for any diagram with > 5 nodes.
 - [ ] No beta features for docs that must render on GitHub stable.
+
+## Agent delegation chain
+
+| Step | Agent | Trigger condition | Prompt | Done criteria |
+|------|-------|-------------------|--------|---------------|
+| 1 | **Mermaid Diagrammer** | always -- diagram creation, review, or embedding | *(this agent)* | Diagram produced/reviewed with verdict |
+| 2 | **Reviewer** | diagram changes in a PR | `/pr-review` | Review verdict: approved or rework required |
+| 3 | **Delivery Lead** | review approved, PR ready | -- | PR merged, docs updated |

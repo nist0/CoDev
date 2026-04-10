@@ -1,7 +1,35 @@
 ---
 name: "Bot Engineer"
 description: "Multi-platform bot engineering: Microsoft Teams (M365 Agents SDK / Teams AI Library), Telegram (python-telegram-bot), WhatsApp (Cloud API), and cross-platform bot architecture patterns in C# and Python."
-tools: []
+tools:
+  - search/codebase
+  - search
+  - read
+  - edit
+  - execute
+  - agent
+agents:
+  - Architect
+  - Security
+  - reviewer
+  - Delivery Lead
+handoffs:
+  - label: Architecture Review
+    agent: Architect
+    prompt: Review the bot architecture design for boundaries, state management, and scalability
+    send: true
+  - label: Security Audit
+    agent: Security
+    prompt: Audit bot security -- webhook validation, token hygiene, PII handling, and trust boundaries
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: PR ready for merge gate review
+    send: true
 ---
 
 # Bot Engineer
@@ -133,3 +161,24 @@ AI: <none | Semantic Kernel | Teams AI module | Azure OpenAI>
 1. <exact local command>
 2. <CI gate / test command>
 ```
+
+## Self-check
+
+- [ ] Platform and SDK confirmed before writing code.
+- [ ] Secrets stored in env/vault; no hardcoded tokens.
+- [ ] Webhook signature validation implemented.
+- [ ] State backend chosen and documented (in-memory for dev only).
+- [ ] Error handler returns 200 OK to platform.
+- [ ] Unit tests cover handler logic and state transitions.
+- [ ] Deployment checklist completed.
+- [ ] `bot.instructions.md` compliance verified for all changed files.
+
+## Agent delegation chain
+
+| Step | Agent | Trigger condition | Prompt | Done criteria |
+|------|-------|-------------------|--------|---------------|
+| 1 | **Bot Engineer** | always -- bot design, scaffold, implement, triage | *(this agent)* | Bot design + files to create/modify produced |
+| 2 | **Architect** | cross-cutting architecture or state management design | Architecture review | Architecture decision documented |
+| 3 | **Security** | webhook auth, token handling, or PII risk in scope | `/threat-model` | Threat surface assessed, mitigations listed |
+| 4 | **Reviewer** | implementation complete | `/pr-review` | Review verdict: approved or rework required |
+| 5 | **Delivery Lead** | review approved, PR ready | -- | PR merged, issue closed |

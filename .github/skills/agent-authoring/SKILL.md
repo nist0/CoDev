@@ -53,6 +53,11 @@ Before writing any content, gather authoritative references for the domain or th
 | `mcp-servers` | No | List of MCP server config |
 | `handoffs` | No | List of handoff objects (`label`, `agent`, `prompt`, `send`, `model`) |
 
+**Interaction constraint** — when both `agents` and `tools` are specified in the
+frontmatter, the `agent` tool **must** be included in the `tools` list. Without it
+VS Code cannot invoke the listed subagents. If only `agents` is set (no `tools`),
+the constraint does not apply because the default tool set already includes `agent`.
+
 **Deprecated attributes** — do not use:
 
 | Attribute | Status | Replacement |
@@ -66,6 +71,7 @@ Write the frontmatter:
 name: <agent-id>                    # kebab-case; used in matrix.yaml
 description: "<one sentence: what this agent does, when it is chosen>"
 # tools: [...]                      # start minimal; add only what is needed
+# agents: [...]                     # if set alongside tools, tools must include 'agent'
 # user-invocable: false             # uncomment to hide from the agents dropdown
 # disable-model-invocation: true    # uncomment to prevent auto-invocation as subagent
 ---
@@ -143,6 +149,7 @@ At minimum 5 items checking:
 - [ ] Non-negotiables section includes security and instruction compliance.
 - [ ] Output format template provided.
 - [ ] Self-check section with ≥ 5 items included.
+- [ ] If `agents` and `tools` are both set, `agent` tool is in the `tools` list.
 - [ ] Agent registered in `routing/matrix.yaml` and `capabilities.yaml`.
 - [ ] `validate-route-smoke.py` passed.
 
@@ -151,3 +158,9 @@ At minimum 5 items checking:
 - New or updated `.github/agents/*.agent.md` file.
 - Routing update in `routing/matrix.yaml` (and `capabilities.yaml` if needed).
 - Registry validation result.
+
+- Add a `handoffs` section to the agent definition, listing all key workflow handoffs (PR Review, Rework Implementation, Release Risk Assessment, Docs Lint/Fix, Release Readiness Check, Project Board Sync, etc.).
+- Include an explicit delegation chain table in the agent definition, showing step-by-step agent handoff, trigger, prompt, and done criteria.
+- Reference the delegation chain and handoffs as required sections in the agent authoring procedure.
+- Validate that all new/updated agents include these sections and that they are up to date with current workflow best practices.
+- Add a self-check item for handoffs/delegation chain coverage.

@@ -675,12 +675,12 @@ Generated agent inventory:
 | Native/Systems | native-systems.agent.md | C/C++ and assembly (x86/AVR/PIC): memory, performance, tooling, and low-level debugging. |
 | plan | plan.agent.md | Converts a goal into a precise implementation plan + file checklist. No coding. |
 | Project Orchestrator | project-orchestrator.agent.md | Leads end-to-end project delivery: clarify, plan, dispatch, track, and review across specialist agents. |
-| Project Takeover | project-takeover.agent.md | Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit 6 documents en français dans le répertoire local `.takeover/` (gitignored). Couvre : inventaire des dépôts, état du Kanban, graphe des sous-modules, topologie API & BD, décomposition fonctionnelle, et plan d'étude point par point. |
+| Project Takeover | project-takeover.agent.md | Analyse exhaustive d'un ou plusieurs depots GitHub on-prem lors d'une prise en charge d'equipe. Produit 6 documents en francais dans le repertoire local `.takeover/` (gitignored). Couvre : inventaire des depots, etat du Kanban, graphe des sous-modules, topologie API & BD, decomposition fonctionnelle, et plan d'etude point par point. |
 | promptsmith | promptsmith.agent.md | Creates stable prompts, skills, agents, and instruction files for this repo. Always plans first. |
 | Reliability | reliability.agent.md | Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes. |
 | reviewer | reviewer.agent.md | Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence. |
-| Router | router.agent.md | Canonical routing: capability + domain → recommended agent, prompts, and skills. |
-| Security | security-agent.agent.md | Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent — not a live infrastructure scanner. |
+| Router | router.agent.md | Canonical routing: capability + domain -> recommended agent, prompts, and skills. |
+| Security | security-agent.agent.md | Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent -- not a live infrastructure scanner. |
 | Tech Scout | tech-scout.agent.md | Tech/scientific watch: actionable digests (what changed / why it matters / what to try). |
 <!-- codev:generated:agents:end -->
 

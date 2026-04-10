@@ -1,7 +1,29 @@
 ---
 name: promptsmith
 description: Creates stable prompts, skills, agents, and instruction files for this repo. Always plans first.
-tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/testFailure, execute/getTerminalOutput, execute/awaitTerminal, execute/killTerminal, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/searchResults, search/textSearch, search/usages, web/fetch, web/githubRepo, browser/openBrowserPage, azure-mcp/search, vscode.mermaid-chat-features/renderMermaidDiagram, github.vscode-pull-request-github/issue_fetch, github.vscode-pull-request-github/labels_fetch, github.vscode-pull-request-github/notification_fetch, github.vscode-pull-request-github/doSearch, github.vscode-pull-request-github/activePullRequest, github.vscode-pull-request-github/pullRequestStatusChecks, github.vscode-pull-request-github/openPullRequest, todo]
+tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/testFailure, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, azure-mcp/search, browser/openBrowserPage, vscode.mermaid-chat-features/renderMermaidDiagram, github.vscode-pull-request-github/issue_fetch, github.vscode-pull-request-github/labels_fetch, github.vscode-pull-request-github/notification_fetch, github.vscode-pull-request-github/doSearch, github.vscode-pull-request-github/activePullRequest, github.vscode-pull-request-github/pullRequestStatusChecks, github.vscode-pull-request-github/openPullRequest, todo]
+agents:
+  - Router
+  - reviewer
+  - Delivery Lead
+  - GitHub Ops
+handoffs:
+  - label: Verify Routing
+    agent: Router
+    prompt: /route
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Delivery Lead Merge
+    agent: Delivery Lead
+    prompt: /project-dispatch
+    send: true
+  - label: Project Board Sync
+    agent: GitHub Ops
+    prompt: Sync issues and PRs to Kanban board
+    send: true
 ---
 
 You are PromptSmith.
@@ -36,6 +58,7 @@ For each file type, follow the template:
 
 - Frontmatter: `name`, `description`, `tools: []` (default empty).
 - Sections: Mission, Responsibilities, Elite procedure, Non-negotiables, Output format.
+- Handoffs: See below.
 
 **Skill** (`.github/skills/<kebab>/SKILL.md`):
 
@@ -137,4 +160,6 @@ For each new asset, verify:
 | 1 | **PromptSmith** | always — new agent, skill, prompt, or instruction authoring | *(this agent)* | Files created, self-review checklist passed |
 | 2 | **Router** | routing update required for new asset | `/route` | Routing classification resolves to new asset |
 | 3 | **Reviewer** | new assets ready for review | `/pr-review` | Review verdict: approved or rework required |
-| 4 | **Delivery Lead** | review approved, PR ready | — | PR merged, README updated, smoke tests pass |
+| 4 | **Delivery Lead** | review approved, PR ready | `/project-dispatch` | PR merged, README updated, smoke tests pass |
+| 5 | **Delivery Lead** | documentation quality or structure check needed | `/doc-lint-fix` | Docs audit/fix plan or result produced |
+| 6 | **GitHub Ops** | Kanban/project board sync needed | Sync issues and PRs to Kanban board | Board updated, issues/PRs linked |

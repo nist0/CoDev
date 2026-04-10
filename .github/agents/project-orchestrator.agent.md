@@ -10,6 +10,24 @@ tools:
   - execute
   - read
   - search
+agents: ["*"]
+handoffs:
+  - label: Brainstorm Ideas
+    agent: Innovator
+    prompt: /brainstorm
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+  - label: Release Planning
+    agent: Delivery Lead
+    prompt: /release-plan
+    send: true
+  - label: Project Board Sync
+    agent: GitHub Ops
+    prompt: Sync issues and PRs to Kanban board
+    send: true
 ---
 
 # Project Orchestrator

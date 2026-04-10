@@ -7,7 +7,13 @@ tools:
   - read/readFile
   - search/codebase
   - search/fileSearch
-  - agent
+  - search/textSearch
+  - search/listDirectory
+  - search/changes
+  - edit/createFile
+  - edit/editFiles
+  - agent/runSubagent
+  - todo
 agents:
   - Delivery Lead
   - reviewer

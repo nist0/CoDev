@@ -6,7 +6,25 @@ tools:
   - search
   - read
   - agent
+  - edit
   - execute
+  - todo
+handoffs:
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
+    model: GPT-4.1 (copilot)
+  - label: Rework Implementation
+    agent: agent
+    prompt: Implement requested rework
+    send: true
+    model: GPT-4.1 (copilot)
+  - label: Release Risk Assessment
+    agent: Reliability
+    prompt: /postmortem with focus on runtime risks and mitigations for release decision
+    send: true
+    model: GPT-4.1 (copilot)  
 ---
 
 # Delivery Lead

@@ -408,9 +408,9 @@ Expect: test plan (what/why/how/not-tested), then xUnit tests with Testcontainer
 |-------|-------|
 | Capability | `github-delivery` |
 | Domain | `github-delivery` |
-| Agent | `delivery-lead` |
+| Agent | `GitHub Ops` |
 | Prompts | `/pr-review` |
-| Skills | `pr-review`, `commits`, `git` |
+| Skills | `pr-review`, `delivery`, `issues`, `commits` |
 
 **Follow-up**
 
@@ -434,7 +434,7 @@ The agent produces a structured review with sections: correctness · security ·
 |-------|-------|
 | Capability | `brainstorming` |
 | Domain | `backend-dotnet` |
-| Agent | `innovator` |
+| Agent | `Innovator` |
 | Prompts | `/brainstorm` |
 | Skills | `elite-brainstorming`, `innovation-sprint`, `adr` |
 
@@ -460,7 +460,7 @@ Expect: 8–12 ideas → scored shortlist (safe / adjacent / bold) → time-boxe
 |-------|-------|
 | Capability | `tech-watch` |
 | Domain | `backend-dotnet` |
-| Agent | `tech-scout` |
+| Agent | `Tech Scout` |
 | Prompts | `/tech-watch-digest` |
 | Skills | `weekly-digest` |
 
@@ -486,7 +486,7 @@ Expect: structured digest entries with **What changed → Why it matters → Exp
 |-------|-------|
 | Capability | `release` |
 | Domain | `cicd` |
-| Agent | `delivery-lead` |
+| Agent | `Delivery Lead` |
 | Prompts | `/release-plan` |
 | Skills | `release`, `supply-chain` |
 
@@ -544,7 +544,7 @@ python scripts/validate-customization-registry.py
 |-------|-------|
 | Capability | `scaffolding` |
 | Domain | `backend-dotnet` |
-| Agent | `backend-dotnet` |
+| Agent | `Backend .NET` |
 | Prompts | `/generate-controller` |
 | Skills | `rest-api-controller-gen`, `aspnet-core`, `mediatr`, `openapi` |
 
@@ -881,7 +881,7 @@ Generated skill inventory:
 | `rfc` | Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan. |
 | `roadmap` | Actionable roadmap — outcome-driven milestones, dependency and risk register, success metrics, and review cadence. |
 | `supply-chain` | Software supply chain hardening — dependency pinning, SBOM, artifact signing, provenance, and policy enforcement. |
-| `teams-bot` |  |
+| `teams-bot` | Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration. |
 | `telegram-bot` | Build production-grade Telegram bots in Python using python-telegram-bot v22+ (Bot API 9.5+). Covers async application setup, handler registration, ConversationHandler dialogs, webhook vs polling, persistence, and security. |
 | `test-strategy` | Test pyramid design — risk mapping, test type selection, data strategy, CI gate definition, and flakiness prevention. |
 | `threat-modeling` | Step-by-step STRIDE threat modeling playbook: enumerate assets, map trust boundaries, identify and score threats, define mitigations, document residual risk. |
@@ -906,6 +906,7 @@ Generated skill inventory:
 | [docs/submodule-cli-contract.md](docs/submodule-cli-contract.md) | CLI contract reference: all flags, exit codes, file conventions |
 | [docs/mcp-integration-guide.md](docs/mcp-integration-guide.md) | MCP design and operating guide for setup, review, and debugging in VS Code and GitHub Copilot |
 | [schemas/codev.schema.json](schemas/codev.schema.json) | `codev.json` JSON Schema with field constraints |
+| [docs/spike-vscode-customization-roots.md](docs/spike-vscode-customization-roots.md) | Research spike: VS Code copilot.customization.roots feasibility -- decision: KILL, use symlink/lockfile mode instead |
 
 ### Bootstrap modes in detail
 

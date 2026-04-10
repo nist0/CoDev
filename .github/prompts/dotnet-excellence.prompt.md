@@ -1,4 +1,4 @@
-﻿---
+---
 name: dotnet-excellence
 description: "Apply advanced .NET best practices with concrete examples, Microsoft references, and verification guidance."
 agent: "Backend .NET"

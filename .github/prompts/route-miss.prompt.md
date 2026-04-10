@@ -1,4 +1,4 @@
-﻿---
+---
 name: route-miss
 description: "Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue."
 agent: "Router"

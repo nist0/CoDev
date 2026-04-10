@@ -1,4 +1,4 @@
-﻿---
+---
 name: secrets-audit
 description: "Audit a file, PR diff, or codebase description for secrets, tokens, credentials, and private keys. Every finding is Critical — emit rotation guidance immediately."
 agent: "Security"

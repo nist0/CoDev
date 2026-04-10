@@ -1,4 +1,4 @@
-﻿---
+---
 name: tech-watch-digest
 description: "Tech watch digest: what changed, why it matters, what to try next week."
 agent: "Tech Scout"

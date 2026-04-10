@@ -1,4 +1,4 @@
-﻿---
+---
 name: markdown-ops
 description: "Produce, modify, lint, restructure, convert, import, and export Markdown docs with no info loss."
 agent: "Delivery Lead"

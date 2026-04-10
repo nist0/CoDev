@@ -1,4 +1,4 @@
-﻿---
+---
 name: automation-script
 description: "Create or improve automation scripts and CLI workflows."
 agent: "Automation/Scripting"

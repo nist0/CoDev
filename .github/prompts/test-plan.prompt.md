@@ -1,4 +1,4 @@
-﻿---
+---
 name: test-plan
 description: "Create a pragmatic test plan (scenarios → test type → rationale)."
 agent: "Architect"

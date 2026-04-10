@@ -1,6 +1,6 @@
-﻿---
+---
 name: new-theme-pack
-description: Generate a theme pack: 1 agent + 2 skills + 3 prompts + 1 scoped instruction, all consistent and reusable.
+description: "Generate a theme pack: 1 agent + 2 skills + 3 prompts + 1 scoped instruction, all consistent and reusable."
 agent: promptsmith
 argument-hint: "theme=<text> primaryStack=<dotnet|ts|python|...> scope=<where it applies>"
 ---

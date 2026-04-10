@@ -1,4 +1,4 @@
-﻿---
+---
 name: prompt-from-theme
 description: Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs.
 agent: promptsmith

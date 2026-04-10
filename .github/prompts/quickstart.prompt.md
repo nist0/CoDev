@@ -1,4 +1,4 @@
-﻿---
+---
 name: quickstart
 description: "Interactive onboarding: gather role + domain + goal in one turn, then emit a personalised first-command card."
 agent: "Router"

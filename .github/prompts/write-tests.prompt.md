@@ -1,4 +1,4 @@
-﻿---
+---
 name: write-tests
 description: "Write tests based on a test plan; include how to run locally and in CI."
 agent: "Architect"

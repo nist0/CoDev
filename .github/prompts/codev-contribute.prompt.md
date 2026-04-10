@@ -1,4 +1,4 @@
-﻿---
+---
 name: codev-contribute
 description: Guided upstream contribution to CoDev — issue, fork, branch, fix, PR, review, and post-merge sync.
 agent: CoDev Consumer

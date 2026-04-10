@@ -1,4 +1,4 @@
-﻿---
+---
 name: linters-stack
 description: "Design or improve polyglot linter strategy and CI quality gates across C/C++/C#/Python/Bash/Markdown."
 agent: "Automation/Scripting"

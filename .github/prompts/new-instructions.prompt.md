@@ -1,4 +1,4 @@
-﻿---
+---
 name: new-instructions
 description: Create a new scoped instruction file with applyTo and concise rules.
 agent: promptsmith

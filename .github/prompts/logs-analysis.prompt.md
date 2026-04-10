@@ -1,4 +1,4 @@
-﻿---
+---
 name: logs-analysis
 description: "Logs/APM analysis: extract the first symptom, correlate traces, propose next queries and fixes."
 agent: "Reliability"

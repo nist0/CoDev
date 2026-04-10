@@ -1,4 +1,4 @@
-﻿---
+---
 name: postmortem
 description: "Generate a blameless postmortem draft with timeline, RCA, and action items."
 agent: "Reliability"

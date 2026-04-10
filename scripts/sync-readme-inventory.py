@@ -43,7 +43,7 @@ def _read_yaml(path: Path) -> dict[str, Any]:
 
 
 def _read_text(path: Path) -> str:
-    for encoding in ("utf-8", "utf-8-sig", "cp1252"):
+    for encoding in ("utf-8-sig", "utf-8", "cp1252"):
         try:
             return path.read_text(encoding=encoding)
         except UnicodeDecodeError:

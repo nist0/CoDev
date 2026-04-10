@@ -36,8 +36,7 @@ file → run 4 validators separately → cross-reference results manually.
 # 1. Health check — is the repo in a clean state?
 python scripts/codev-dev.py doctor
 #    ✅ 8 required files present
-#    ✅ 4/5 validators pass  (validate-routing-coverage.py has a known
-#       Windows Unicode issue — pre-existing, tracked separately)
+#    ✅ 5/5 validators pass
 
 # 2. Explore what phrases are already handled
 python scripts/codev-dev.py test-route --list

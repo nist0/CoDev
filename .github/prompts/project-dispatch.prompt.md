@@ -5,6 +5,8 @@ agent: "Project Orchestrator"
 argument-hint: "plan=<summary> stack=<text>"
 ---
 
+**Guard**: If both `plan` and `stack` inputs are empty or missing, ask the user to provide them and stop. Do not proceed without explicit user input.
+
 Inputs:
 
 - plan: ${input:plan:project plan summary}

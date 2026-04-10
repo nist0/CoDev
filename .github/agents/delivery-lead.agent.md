@@ -153,3 +153,6 @@ For each delivery decision, produce:
 | 3 | **Backend .NET / DevOps/Cloud / Frontend** | rework required after review | domain prompt | Rework complete, re-review triggered |
 | 4 | **Reviewer** | rework implemented, re-review needed | `/pr-review` | Review verdict: approved |
 | 5 | **Reliability** | release readiness blocked by runtime concerns | `/postmortem` | Risk acknowledged, go/no-go decision made |
+| 6 | **Delivery Lead** | documentation quality or structure check needed | `/doc-lint-fix` | Docs audit/fix plan or result produced |
+| 7 | **Delivery Lead** | release readiness checklist needed | Run release readiness checklist | Release checklist completed, gaps flagged |
+| 8 | **GitHub Ops** | Kanban/project board sync needed | Sync issues and PRs to Kanban board | Board updated, issues/PRs linked |

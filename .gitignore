@@ -28,6 +28,9 @@ routing-coverage.json
 # Local project-takeover analysis (never commit — sensitive, personal notes)
 .takeover/
 
+# Local session handoffs (never commit)
+docs/session-handoffs/
+
 # OS
 .DS_Store
 Thumbs.db

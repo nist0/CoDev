@@ -1,6 +1,6 @@
 ---
 name: quickstart
-description: "Interactive onboarding: gather role + domain + goal in one turn, then emit a personalised first-command card."
+description: "Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized first-command card."
 agent: "Router"
 argument-hint: "role=<your role> domain=<tech stack> goal=<what you want to do>"
 ---

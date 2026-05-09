@@ -14,9 +14,14 @@ from collections.abc import AsyncIterator
 from openai import AsyncOpenAI
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
 
 app = FastAPI()
 _client = AsyncOpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
+class ChatRequest(BaseModel):
+    # Validated at the boundary -- missing or wrong-type fields are rejected with 422
+    message: str
 
 async def _token_stream(user_message: str) -> AsyncIterator[str]:
     stream = await _client.chat.completions.create(
@@ -34,9 +39,9 @@ async def _token_stream(user_message: str) -> AsyncIterator[str]:
             yield delta
 
 @app.post("/chat/stream")
-async def chat_stream(body: dict) -> StreamingResponse:
+async def chat_stream(body: ChatRequest) -> StreamingResponse:
     return StreamingResponse(
-        _token_stream(body["message"]),
+        _token_stream(body.message),
         media_type="text/event-stream",
     )
 ```

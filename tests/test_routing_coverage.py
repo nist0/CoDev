@@ -43,7 +43,7 @@ def test_no_strict_always_exits_zero() -> None:
 def test_strict_zero_threshold_on_real_matrix(tmp_path: Path) -> None:
     """--strict --threshold 0 must exit 1 when the real matrix has any gaps."""
     rc = main(strict=True, threshold=0, json_out=None)
-    # The real matrix has 50 gaps; threshold=0 means 0 gaps allowed, so must exit 1.
+    # The real matrix has 63 gaps; threshold=0 means 0 gaps allowed, so must exit 1.
     assert rc == 1, "strict+threshold=0 must exit 1 when gaps exist"
 
 

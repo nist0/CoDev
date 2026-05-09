@@ -35,7 +35,7 @@ jobs:
       - name: Customization registry — agents, prompts, skills, instructions
         run: python scripts/validate-customization-registry.py
 
-      - name: Routing coverage — capability × domain gaps (strict, threshold=57)
+      - name: Routing coverage — capability x domain gaps (strict, threshold=63)
         run: >
           python scripts/validate-routing-coverage.py
           --strict --threshold 63

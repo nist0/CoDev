@@ -1,4 +1,4 @@
-﻿version: 1
+version: 1
 cases:
   - request: "create a mermaid flowchart for github"
     expect:
@@ -379,3 +379,19 @@ cases:
       agent: Router
       prompts: ["route"]
       skills: ["canonical-routing"]
+
+  - request: "write a production Dockerfile for my .NET API"
+    expect:
+      capability: code-analysis
+      domain: devops-cloud
+      agent: DevOps/Cloud
+      prompts: ["explain-code"]
+      skills: ["docker", "helm", "kubernetes", "az", "repo-understanding"]
+
+  - request: "add image scanning to my GitHub Actions workflow"
+    expect:
+      capability: automation
+      domain: devops-cloud
+      agent: DevOps/Cloud
+      prompts: ["automation-script"]
+      skills: ["github-actions", "docker", "kubernetes", "az"]

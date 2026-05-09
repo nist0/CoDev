@@ -66,6 +66,8 @@ aliases:
   - state management
   - typescript best practices
   - frontend architecture
+  - write a production dockerfile
+  - production dockerfile
   docs:
   - generate docs
   - write documentation
@@ -166,6 +168,16 @@ aliases:
   - cli automation
   - repo tooling
   - batch script
+  - write a dockerfile
+  - dockerfile for
+  - container image
+  - docker image
+  - docker build
+  - add image scanning to my github actions workflow
+  - image scanning workflow
+  - trivy scan
+  - grype scan
+  - image scan
   project-orchestration:
   - delegate whole project
   - lead this project

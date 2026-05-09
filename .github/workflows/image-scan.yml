@@ -1,0 +1,32 @@
+name: Dockerfile Scan (Trivy)
+
+on:
+  pull_request:
+    paths:
+      - "**/Dockerfile*"
+      - ".github/workflows/image-scan.yml"
+  push:
+    branches: [ main ]
+    paths:
+      - "**/Dockerfile*"
+      - ".github/workflows/image-scan.yml"
+
+jobs:
+  dockerfile-scan:
+    name: Scan Dockerfiles for misconfigurations
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Scan Dockerfiles with Trivy
+        uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # v0.24.0
+        with:
+          scan-type: fs
+          scan-ref: "."
+          scanners: "misconfig,secret"
+          format: table
+          exit-code: "1"
+          severity: "CRITICAL,HIGH"

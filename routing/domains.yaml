@@ -1,4 +1,4 @@
-﻿version: 1
+version: 1
 domains:
   - id: backend-dotnet
     keywords:
@@ -29,6 +29,13 @@ domains:
       - azure cli
       - ingress
       - deployment
+      - docker
+      - dockerfile
+      - docker compose
+      - container image
+      - image scanning
+      - trivy
+      - grype
       - statefulset
       - daemonset
       - namespace

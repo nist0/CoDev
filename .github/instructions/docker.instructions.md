@@ -1,7 +1,7 @@
 ---
 name: "Dockerfile Production Authoring"
 description: "Production-grade Dockerfile authoring guardrails for secure, reproducible, and cache-efficient images."
-applyTo: "**/Dockerfile*"
+applyTo: "**/Dockerfile,**/Dockerfile.*"
 ---
 
 # Dockerfile Production Authoring

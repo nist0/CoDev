@@ -703,7 +703,7 @@ Generated instruction inventory:
 | codev-consumer.instructions.md | `codev-overrides/**` | Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation. |
 | customization-governance.instructions.md | `.github/**/*.{md,yml,yaml}` | Mandatory governance for agents/prompts/skills/instructions and routing consistency. |
 | docs-system.instructions.md | `**/*.md` | Documentation Architecture Model (DAM), consistent markdown structure, lint-friendly docs. |
-| docker.instructions.md | `**/Dockerfile*` | Production-grade Dockerfile authoring guardrails for secure, reproducible, and cache-efficient images. |
+| docker.instructions.md | `**/Dockerfile,**/Dockerfile.*` | Production-grade Dockerfile authoring guardrails for secure, reproducible, and cache-efficient images. |
 | dotnet.instructions.md | `**/*.cs` | C#/.NET code standards: safety, readability, diagnostics, testing expectations. |
 | github-actions-yaml.instructions.md | `.github/workflows/**/*.yaml` | Same as .yml; provided separately for .yaml extension. |
 | github-actions.instructions.md | `.github/workflows/**/*.yml` | Workflow best practices: minimal permissions, reproducibility, clear steps. |

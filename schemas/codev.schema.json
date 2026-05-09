@@ -48,7 +48,7 @@
     },
     "managedPaths": {
       "type": "array",
-      "description": "Explicit list of host paths managed by CoDev. Defaults to all standard CoDev asset paths when omitted.",
+      "description": "Explicit list of host paths managed by CoDev. Defaults to all standard CoDev asset paths when omitted. Wiring strategy differs by path type: agents, prompts, and instructions use per-file wiring (individual file symlinks or copies) so that host project files can coexist in the same directories; skills use per-theme-directory wiring (one symlink or copy per theme subdirectory).",
       "items": {
         "type": "string",
         "minLength": 1,

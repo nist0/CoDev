@@ -72,6 +72,8 @@ python tools/codev/scripts/validate-route-smoke.py
 
 Use `codev-overrides/` to add new agents, skills, prompts, or instructions **without touching** any submodule-managed file.
 
+Project-specific agents, prompts, and instructions can also be placed directly in `.github/agents/`, `.github/prompts/`, and `.github/instructions/` alongside CoDev assets. CoDev only wires its own files into those directories; it never deletes or overwrites files with names it does not own. Running `codev teardown` removes only CoDev-managed files, so any host file placed directly in those directories is preserved.
+
 ### Create a host-specific agent
 
 ```bash

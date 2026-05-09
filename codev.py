@@ -40,6 +40,16 @@ MANAGED_PATHS_DEFAULT = [
     ".github/instructions",
     ".github/copilot-instructions.md",
 ]
+# Paths where per-FILE wiring is used (agents, prompts, instructions)
+PER_FILE_PATHS = [
+    ".github/agents",
+    ".github/prompts",
+    ".github/instructions",
+]
+# Paths where per-THEME-DIR wiring is used (skills)
+PER_THEME_DIR_PATHS = [
+    ".github/skills",
+]
 HOOK_MARKER = "# codev-managed: pre-commit hook"
 GITIGNORE_MARKER = "# codev-managed"
 MERGE_BEGIN = "<!-- codev:begin -->"
@@ -174,6 +184,17 @@ def make_symlink(src: Path, dst: Path) -> None:
         )
     dst.parent.mkdir(parents=True, exist_ok=True)
     os.symlink(str(src.resolve()), str(dst), target_is_directory=src.is_dir())
+
+
+def _is_codev_managed_symlink(path: Path, submodule_path: Path) -> bool:
+    """Return True if path is a symlink pointing into submodule_path."""
+    if not path.is_symlink():
+        return False
+    try:
+        target = Path(os.readlink(str(path))).resolve()
+        return str(target).startswith(str(submodule_path.resolve()))
+    except OSError:
+        return False
 
 
 # ---------------------------------------------------------------------------
@@ -466,6 +487,7 @@ def cmd_init(args: argparse.Namespace) -> None:
     if use_symlinks:
         print("  Mode: symlink")
         _init_symlinks(root, submodule_path, asset_paths)
+        _wire_override_symlinks(root, overrides_dir, asset_paths)
         update_gitignore(root, asset_paths)
     else:
         print(f"  Mode: lockfile ({lockfile_reason})")
@@ -486,14 +508,82 @@ def cmd_init(args: argparse.Namespace) -> None:
 
 
 def _init_symlinks(root: Path, submodule_path: Path, asset_paths: list[str]) -> None:
+    per_file = set(PER_FILE_PATHS)
+    per_theme = set(PER_THEME_DIR_PATHS)
     for rel in asset_paths:
-        src = submodule_path / rel
-        dst = root / rel
-        if not src.exists():
-            print(f"  WARN: submodule path not found, skipping: {rel}")
+        if rel in per_file:
+            src_dir = submodule_path / rel
+            dst_dir = root / rel
+            if dst_dir.is_symlink():
+                dst_dir.unlink()
+            dst_dir.mkdir(parents=True, exist_ok=True)
+            if not src_dir.is_dir():
+                print(f"  WARN: submodule path not found, skipping: {rel}")
+                continue
+            for src_file in src_dir.iterdir():
+                if not src_file.is_file():
+                    continue
+                dst_file = dst_dir / src_file.name
+                if dst_file.exists() and not _is_codev_managed_symlink(dst_file, submodule_path):
+                    print(
+                        f"ERROR: collision — {dst_file.relative_to(root)} already exists and is not a CoDev-managed symlink.\n"
+                        f"       Remove it or rename it before running 'codev init'.",
+                        file=sys.stderr,
+                    )
+                    sys.exit(3)
+                if dst_file.is_symlink():
+                    dst_file.unlink()
+                os.symlink(str(src_file.resolve()), str(dst_file))
+                print(f"  Symlinked {rel}/{src_file.name}")
+        elif rel in per_theme:
+            src_dir = submodule_path / rel
+            dst_dir = root / rel
+            if dst_dir.is_symlink():
+                dst_dir.unlink()
+            dst_dir.mkdir(parents=True, exist_ok=True)
+            if not src_dir.is_dir():
+                print(f"  WARN: submodule path not found, skipping: {rel}")
+                continue
+            for theme_src in src_dir.iterdir():
+                if not theme_src.is_dir():
+                    continue
+                theme_dst = dst_dir / theme_src.name
+                make_symlink(theme_src, theme_dst)
+                print(f"  Symlinked {rel}/{theme_src.name}/")
+        else:
+            src = submodule_path / rel
+            dst = root / rel
+            if not src.exists():
+                print(f"  WARN: submodule path not found, skipping: {rel}")
+                continue
+            make_symlink(src, dst)
+            print(f"  Symlinked {rel}")
+
+
+def _wire_override_symlinks(root: Path, overrides_dir: Path, asset_paths: list[str]) -> None:
+    """Symlink individual override files from overrides_dir into the matching host dirs."""
+    per_file = set(PER_FILE_PATHS)
+    for rel in asset_paths:
+        if rel not in per_file:
             continue
-        make_symlink(src, dst)
-        print(f"  Symlinked {rel}")
+        # e.g. rel=".github/agents" -> overrides subdir is overrides_dir/"agents"
+        rel_suffix = rel.split("/", 1)[-1]
+        overrides_src_dir = overrides_dir / rel_suffix
+        if not overrides_src_dir.is_dir():
+            continue
+        dst_dir = root / rel
+        dst_dir.mkdir(parents=True, exist_ok=True)
+        for src_file in overrides_src_dir.iterdir():
+            if not src_file.is_file():
+                continue
+            dst_file = dst_dir / src_file.name
+            if dst_file.exists() and not dst_file.is_symlink():
+                continue  # Existing non-symlink file takes precedence
+            if dst_file.is_symlink():
+                print(f"  WARN: override '{src_file.name}' shadows CoDev-managed file — using override version")
+                dst_file.unlink()
+            os.symlink(str(src_file.resolve()), str(dst_file))
+            print(f"  Symlinked override {rel}/{src_file.name}")
 
 
 def _init_lockfile(
@@ -502,25 +592,77 @@ def _init_lockfile(
     managed_paths: list[str],
     asset_paths: list[str],
 ) -> None:
+    per_file = set(PER_FILE_PATHS)
+    per_theme = set(PER_THEME_DIR_PATHS)
+
+    # Load existing lock to allow idempotent re-runs without false collision errors
+    existing_managed: set[str] = set()
+    lock_path = root / LOCK_FILE
+    if lock_path.exists():
+        try:
+            existing_managed = set(
+                json.loads(lock_path.read_text(encoding="utf-8-sig")).get("managed", {}).keys()
+            )
+        except (json.JSONDecodeError, KeyError):
+            existing_managed = set()
+
     managed_files: list[Path] = []
     for rel in asset_paths:
-        src = submodule_path / rel
-        dst = root / rel
-        if src.is_file():
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            if dst.is_symlink():
-                dst.unlink()
-            shutil.copy2(str(src), str(dst))
-            managed_files.append(dst)
-            print(f"  Copied {rel}")
-        elif src.is_dir():
-            if dst.is_symlink():
-                dst.unlink()
-            elif dst.exists():
-                shutil.rmtree(str(dst))
-            shutil.copytree(str(src), str(dst))
-            managed_files.extend(f for f in dst.rglob("*") if f.is_file())
-            print(f"  Copied {rel}/")
+        if rel in per_file:
+            src_dir = submodule_path / rel
+            dst_dir = root / rel
+            if dst_dir.is_symlink():
+                dst_dir.unlink()
+            dst_dir.mkdir(parents=True, exist_ok=True)
+            if not src_dir.is_dir():
+                print(f"  WARN: submodule path not found, skipping: {rel}")
+                continue
+            for src_file in src_dir.iterdir():
+                if not src_file.is_file():
+                    continue
+                dst_file = dst_dir / src_file.name
+                rel_key = dst_file.relative_to(root).as_posix()
+                if dst_file.exists() and not dst_file.is_symlink():
+                    if rel_key not in existing_managed:
+                        print(
+                            f"ERROR: collision — {dst_file.relative_to(root)} already exists and is not managed by CoDev.\n"
+                            f"       Remove it or rename it before running 'codev init'.",
+                            file=sys.stderr,
+                        )
+                        sys.exit(3)
+                if dst_file.is_symlink():
+                    dst_file.unlink()
+                shutil.copy2(str(src_file), str(dst_file))
+                managed_files.append(dst_file)
+                print(f"  Copied {rel}/{src_file.name}")
+        elif rel in per_theme:
+            src_dir = submodule_path / rel
+            dst_dir = root / rel
+            dst_dir.mkdir(parents=True, exist_ok=True)
+            if not src_dir.is_dir():
+                print(f"  WARN: submodule path not found, skipping: {rel}")
+                continue
+            for theme_src in src_dir.iterdir():
+                if not theme_src.is_dir():
+                    continue
+                theme_dst = dst_dir / theme_src.name
+                if theme_dst.is_symlink():
+                    theme_dst.unlink()
+                elif theme_dst.exists():
+                    shutil.rmtree(str(theme_dst))
+                shutil.copytree(str(theme_src), str(theme_dst))
+                managed_files.extend(f for f in theme_dst.rglob("*") if f.is_file())
+                print(f"  Copied {rel}/{theme_src.name}/")
+        else:
+            src = submodule_path / rel
+            dst = root / rel
+            if src.is_file():
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                if dst.is_symlink():
+                    dst.unlink()
+                shutil.copy2(str(src), str(dst))
+                managed_files.append(dst)
+                print(f"  Copied {rel}")
     lock = build_lock(managed_files, root)
     write_lock(root, lock)
 
@@ -540,6 +682,14 @@ def cmd_update(_args: argparse.Namespace) -> None:
 
     print(f"CoDev update — repository root: {root}")
 
+    # Migrate old per-directory symlinks to per-file wiring
+    for rel in PER_FILE_PATHS:
+        dst = root / rel
+        if dst.is_symlink():
+            dst.unlink()
+            dst.mkdir(parents=True, exist_ok=True)
+            print(f"  Migrating {rel}: old directory symlink -> per-file wiring")
+
     lock_path = root / LOCK_FILE
     symlink_mode_allowed, lockfile_reason = symlink_mode_status(root)
     use_symlinks = symlink_mode_allowed and not lock_path.exists()
@@ -547,6 +697,7 @@ def cmd_update(_args: argparse.Namespace) -> None:
     if use_symlinks:
         print("  Mode: symlink — re-generating manifest only")
         _init_symlinks(root, submodule_path, asset_paths)
+        _wire_override_symlinks(root, overrides_dir, asset_paths)
     else:
         if lock_path.exists() and symlink_mode_allowed:
             print("  Mode: lockfile — re-copying changed files")
@@ -580,6 +731,10 @@ def cmd_teardown(args: argparse.Namespace) -> None:
 
     managed_paths: list[str] = cfg.get("managedPaths", MANAGED_PATHS_DEFAULT)
     asset_paths = [p for p in managed_paths if not p.endswith("copilot-instructions.md")]
+    submodule_path = root / cfg.get("submodulePath", "tools/codev") if cfg else root / "tools/codev"
+
+    per_file = set(PER_FILE_PATHS)
+    per_theme = set(PER_THEME_DIR_PATHS)
 
     print(f"CoDev teardown — repository root: {root}")
 
@@ -592,20 +747,51 @@ def cmd_teardown(args: argparse.Namespace) -> None:
             if p.exists() and not p.is_symlink():
                 p.unlink()
                 print(f"  Removed {rel_path}")
-        # Remove now-empty directories
+        # Remove now-empty directories for per-theme-dir and other paths only
+        # (per-file directories are left even when empty — host may add files there)
         for rel in asset_paths:
+            if rel in per_file:
+                continue
             d = root / rel
             if d.is_dir() and not any(d.iterdir()):
                 d.rmdir()
         lock_path.unlink()
         print(f"  Removed {LOCK_FILE}")
     else:
-        # Symlink mode — remove symlinks
+        # Symlink mode — remove CoDev-managed symlinks
         for rel in asset_paths:
-            dst = root / rel
-            if dst.is_symlink():
-                dst.unlink()
-                print(f"  Removed symlink {rel}")
+            if rel in per_file:
+                dst_dir = root / rel
+                src_dir = submodule_path / rel
+                if dst_dir.is_symlink():
+                    # Old structure (pre-migration directory symlink)
+                    dst_dir.unlink()
+                    print(f"  Removed symlink {rel}")
+                elif dst_dir.is_dir() and src_dir.is_dir():
+                    for src_file in src_dir.iterdir():
+                        if src_file.is_file():
+                            dst_file = dst_dir / src_file.name
+                            if dst_file.is_symlink():
+                                dst_file.unlink()
+                                print(f"  Removed symlink {rel}/{src_file.name}")
+            elif rel in per_theme:
+                src_dir = submodule_path / rel
+                dst_dir = root / rel
+                if dst_dir.is_dir() and src_dir.is_dir():
+                    for theme_src in src_dir.iterdir():
+                        if theme_src.is_dir():
+                            theme_dst = dst_dir / theme_src.name
+                            if theme_dst.is_symlink():
+                                theme_dst.unlink()
+                                print(f"  Removed symlink {rel}/{theme_src.name}/")
+                elif dst_dir.is_symlink():
+                    dst_dir.unlink()
+                    print(f"  Removed symlink {rel}")
+            else:
+                dst = root / rel
+                if dst.is_symlink():
+                    dst.unlink()
+                    print(f"  Removed symlink {rel}")
 
     # Remove generated copilot-instructions.md
     ci = root / COPILOT_INSTRUCTIONS_DEST

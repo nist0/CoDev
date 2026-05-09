@@ -421,3 +421,135 @@ class TestWslLockfileFallback:
         assert (tmp_repo / "codev-lock.json").exists()
         assert (tmp_repo / ".github" / "agents" / "router.agent.md").exists()
         assert not (tmp_repo / ".github" / "agents").is_symlink()
+
+
+# ---------------------------------------------------------------------------
+# Coexistence — per-file wiring alongside host project files
+# ---------------------------------------------------------------------------
+
+
+class TestCoexistence:
+    def test_init_preserves_existing_project_agent(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        agents_dir = tmp_repo / ".github" / "agents"
+        agents_dir.mkdir(parents=True, exist_ok=True)
+        (agents_dir / "my-agent.agent.md").write_text("# My Agent\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (agents_dir / "my-agent.agent.md").exists()
+        assert (agents_dir / "my-agent.agent.md").read_text(encoding="utf-8") == "# My Agent\n"
+
+    def test_codev_agent_appears_alongside_project_agent(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        agents_dir = tmp_repo / ".github" / "agents"
+        agents_dir.mkdir(parents=True, exist_ok=True)
+        (agents_dir / "my-agent.agent.md").write_text("# My Agent\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (agents_dir / "router.agent.md").exists()
+        assert (agents_dir / "my-agent.agent.md").exists()
+
+    def test_collision_aborts_init(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        agents_dir = tmp_repo / ".github" / "agents"
+        agents_dir.mkdir(parents=True, exist_ok=True)
+        # Create a host file with the same name as a CoDev agent
+        (agents_dir / "router.agent.md").write_text("# My conflicting agent\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        with pytest.raises(SystemExit) as exc:
+            codev.cmd_init(args)
+        assert exc.value.code == 3
+
+    def test_teardown_preserves_project_agent(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        agents_dir = tmp_repo / ".github" / "agents"
+        agents_dir.mkdir(parents=True, exist_ok=True)
+        (agents_dir / "my-agent.agent.md").write_text("# My Agent\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        # Confirm CoDev agent is present after init
+        assert (agents_dir / "router.agent.md").exists()
+
+        codev.cmd_teardown(argparse.Namespace(force=True))
+
+        # Project agent preserved; CoDev agent removed
+        assert (agents_dir / "my-agent.agent.md").exists()
+        assert not (agents_dir / "router.agent.md").exists()
+
+    def test_override_agent_lands_in_parent_dir(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        overrides_agents = tmp_repo / "codev-overrides" / "agents"
+        overrides_agents.mkdir(parents=True, exist_ok=True)
+        (overrides_agents / "custom.agent.md").write_text("# Custom Agent\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (tmp_repo / ".github" / "agents" / "custom.agent.md").exists()
+
+
+# ---------------------------------------------------------------------------
+# Migration
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.skipif(platform.system() == "Windows", reason="symlinks require Developer Mode on Windows")
+class TestMigration:
+    def test_cmd_update_migrates_old_directory_symlink(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        # Simulate old-style structure: .github/agents/ is a directory symlink
+        # pointing to the submodule's agents directory (what old _init_symlinks produced)
+        submodule_agents_dir = tmp_repo / "tools" / "codev" / ".github" / "agents"
+        host_agents_dir = tmp_repo / ".github" / "agents"
+        host_agents_dir.parent.mkdir(parents=True, exist_ok=True)
+        os.symlink(str(submodule_agents_dir), str(host_agents_dir), target_is_directory=True)
+
+        codev.cmd_update(argparse.Namespace())
+
+        # Must be a real directory, not a symlink
+        assert not (tmp_repo / ".github" / "agents").is_symlink()
+        # CoDev agent file must be accessible inside it
+        assert (tmp_repo / ".github" / "agents" / "router.agent.md").exists()

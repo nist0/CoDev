@@ -22,11 +22,12 @@ codev init [--strategy <extend|override>] [--overrides-dir <path>]
 | --- | --- | --- |
 | `--strategy` | `extend` | Merge strategy: `extend` appends host assets alongside submodule assets; `override` replaces a managed asset when a same-named file exists in `overridesDir` |
 | `--overrides-dir` | `codev-overrides/` | Directory where host-specific customizations live (never managed by CoDev) |
+| `--submodule-path` | `tools/codev` | Override the submodule path (defaults to the value in `codev.json` or `tools/codev` on first init) |
 
 **What it does**
 
 1. Reads (or creates) `codev.json` at the repository root.
-2. Detects whether symlink mode is safe for the current environment. In **symlink mode** (preferred), CoDev creates OS directory symlinks from host `.github/{agents,skills,prompts,instructions}/` to the submodule equivalents. In **lockfile mode** (fallback, Windows without Developer Mode, or WSL on `/mnt/<drive>/...`), CoDev copies all managed assets to host `.github/` and writes `codev-lock.json`.
+2. Creates real directories at `.github/agents/`, `.github/prompts/`, `.github/instructions/`, and `.github/skills/`. In **symlink mode** (preferred), wires each CoDev agent, prompt, and instruction as an individual file symlink inside the corresponding real directory, leaving any pre-existing host files untouched. Skill themes are wired as theme-level directory symlinks inside `.github/skills/`. In **lockfile mode** (fallback, Windows without Developer Mode, or WSL on `/mnt/<drive>/...`), individual files are copied rather than symlinked, and `codev-lock.json` is written. Aborts with exit code 3 if a host file has the same name as a CoDev file.
 3. Generates `copilot-instructions.md` via the manifest merge script.
 4. Adds managed paths to `.gitignore` (symlink mode) or writes `codev-lock.json` (lockfile mode).
 5. Installs the pre-commit hook at `.git/hooks/pre-commit`.

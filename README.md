@@ -51,8 +51,8 @@ python tools/codev/scripts/validate-route-smoke.py
 
 | Mode | When | Mechanism |
 | --- | --- | --- |
-| **Symlink** (default) | Linux / macOS / Windows Developer Mode | OS symlinks `.github/{agents,skills,…}` → submodule |
-| **Lockfile** (fallback) | Windows without Developer Mode | File copy + SHA256 `codev-lock.json` |
+| **Symlink** (default) | Linux / macOS / Windows Developer Mode | Creates real directories at `.github/{agents,prompts,instructions}/`; wires each CoDev file as an individual symlink so host files can coexist. Skill themes are symlinked as whole theme directories under `.github/skills/`. |
+| **Lockfile** (fallback) | Windows without Developer Mode | Per-file copy into `.github/{agents,prompts,instructions}/` (host files preserved); skill themes copied as directories. SHA256 manifest written to `codev-lock.json`. |
 
 The CLI auto-detects which mode to use.
 
@@ -714,7 +714,9 @@ Generated instruction inventory:
 | python.instructions.md | `**/*.py` | Python guidance: readability, safety, robust CLI/script behavior. |
 | react.instructions.md | `**/*.tsx` | React/TSX guidance: component boundaries, hooks discipline, performance basics. |
 | reliability.instructions.md | `**` | Repro-first debugging, measurement-first performance, blameless postmortems, observability standards. |
+| repo-structure.instructions.md | `**` | Deterministic directory conventions: every file type has a single canonical location; generated files are never placed arbitrarily. |
 | security.instructions.md | `**/*` | Secure-by-default coding: secrets hygiene, least-privilege, threat modeling, supply chain. |
+| session-continuity.instructions.md | `**` | Maintain persistent, theme-scoped knowledge files with no redundancy so every new chat session can resume from an exact, up-to-date state. |
 | tech-watch.instructions.md | `**` | Actionable digests: what changed, why it matters, what to try. |
 | testing-quality.instructions.md | `**` | Test plans, regression tests for bug fixes, and lint/quality gate practices. |
 | typescript.instructions.md | `**/*.ts` | TS/JS guidance: types first, predictable state, lint-friendly patterns. |

@@ -63,7 +63,7 @@ Open VS Code in the repository. Confirm that `.github/agents/` lists CoDev agent
 
 ```bash
 # Run routing smoke tests
-python tools/codev/scripts/validate-route-smoke.py
+./.venv/bin/python tools/codev/scripts/validate-route-smoke.py
 ```
 
 ---

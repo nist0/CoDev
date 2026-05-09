@@ -34,16 +34,16 @@ file → run 4 validators separately → cross-reference results manually.
 
 ```bash
 # 1. Health check — is the repo in a clean state?
-python scripts/codev-dev.py doctor
+./.venv/bin/python scripts/codev-dev.py doctor
 #    ✅ 8 required files present
 #    ✅ 5/5 validators pass
 
 # 2. Explore what phrases are already handled
-python scripts/codev-dev.py test-route --list
+./.venv/bin/python scripts/codev-dev.py test-route --list
 #    Displays all aliases grouped by capability
 
 # 3. Test your specific request
-python scripts/codev-dev.py test-route "debug kubernetes pod"
+./.venv/bin/python scripts/codev-dev.py test-route "debug kubernetes pod"
 #    Capability   debugging   (matched alias: "bug")
 #    Domain       devops-cloud   (matched keyword: "kubernetes")
 #    Agent        DevOps/Cloud
@@ -51,7 +51,7 @@ python scripts/codev-dev.py test-route "debug kubernetes pod"
 #    Skills       kubernetes  aks  helm  logs-alerts
 
 # 4. If you want to add a new agent, preview it first
-python scripts/codev-dev.py new agent my-agent
+./.venv/bin/python scripts/codev-dev.py new agent my-agent
 #    Prints a full dry-run preview — nothing is written
 #    Add --write only when you are satisfied with the output
 ```
@@ -67,27 +67,27 @@ specialist agent.
 
 ```bash
 # 1. Full health check including validator output
-python scripts/codev-dev.py doctor
+./.venv/bin/python scripts/codev-dev.py doctor
 #    Shows: required files ✅, validator results (pass/fail + timing)
 
 # 2. Verify a routing hypothesis
-python scripts/codev-dev.py test-route "write integration tests for my OrderService"
+./.venv/bin/python scripts/codev-dev.py test-route "write integration tests for my OrderService"
 #    Capability   testing-quality   (matched alias: "write tests")
 #    Domain       unknown   ← signals a missing domain keyword for .NET
 #    Agent        Architect
 #    Prompts      /test-plan  /write-tests  /linters-stack
 
 # 3. Discover alias gaps — phrases that fail to route
-python scripts/codev-dev.py test-route "add a new agent"
+./.venv/bin/python scripts/codev-dev.py test-route "add a new agent"
 #    ❌ No capability matched — gap identified
 #    Tip: run test-route --list to see all aliases
 
 # 4. Scaffold the missing agent
-python scripts/codev-dev.py new agent observability-specialist
+./.venv/bin/python scripts/codev-dev.py new agent observability-specialist
 #    Prints full .agent.md preview — nothing written
 
 # 5. Write when ready
-python scripts/codev-dev.py new agent observability-specialist --write
+./.venv/bin/python scripts/codev-dev.py new agent observability-specialist --write
 #    Creates .github/agents/observability-specialist.agent.md
 ```
 

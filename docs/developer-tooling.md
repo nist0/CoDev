@@ -32,16 +32,16 @@ to run at any time — detect-only by default, no writes unless `--fix` is passe
 
 ```bash
 # Detect only (safe, no writes)
-python scripts/validate-autofix.py
+./.venv/bin/python scripts/validate-autofix.py
 
 # Detect and fix
-python scripts/validate-autofix.py --fix
+./.venv/bin/python scripts/validate-autofix.py --fix
 
 # Generate JSON report for CI
-python scripts/validate-autofix.py --report --report-format json
+./.venv/bin/python scripts/validate-autofix.py --report --report-format json
 
 # Generate Markdown report
-python scripts/validate-autofix.py --report --report-format markdown
+./.venv/bin/python scripts/validate-autofix.py --report --report-format markdown
 ```
 
 ### Historical error test results
@@ -90,13 +90,13 @@ development.
 
 ```bash
 # Watch mode (runs indefinitely — use during local development)
-python scripts/validate-watch.py
+./.venv/bin/python scripts/validate-watch.py
 
 # Single pass for CI (exits 0 if all pass, 1 if any fail)
-python scripts/validate-watch.py --once
+./.venv/bin/python scripts/validate-watch.py --once
 
 # Watch only specific validators
-python scripts/validate-watch.py --validators smoke autofix
+./.venv/bin/python scripts/validate-watch.py --validators smoke autofix
 ```
 
 ### validate-watch performance
@@ -123,10 +123,10 @@ files are staged, so it does not trigger on unrelated commits.
 
 ```bash
 # Install
-python scripts/install-hooks.py
+./.venv/bin/python scripts/install-hooks.py
 
 # Verify installation
-python scripts/install-hooks.py --check
+./.venv/bin/python scripts/install-hooks.py --check
 ```
 
 ---
@@ -145,7 +145,7 @@ never blocks a PR merge.
 # In .github/workflows/routing-ci.yml
 - name: Auto-fix report — detect routing errors (informational)
   run: >
-    python scripts/validate-autofix.py
+    ./.venv/bin/python scripts/validate-autofix.py
     --report --report-format json
   continue-on-error: true
 

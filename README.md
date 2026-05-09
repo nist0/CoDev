@@ -702,8 +702,8 @@ Generated instruction inventory:
 | cli-platform.instructions.md | `**` | Mandatory working standards for the .NET CLI platform project: three-phase workflow enforcement, context discipline, extension conventions, and infra/CI authoring rules. |
 | codev-consumer.instructions.md | `codev-overrides/**` | Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation. |
 | customization-governance.instructions.md | `.github/**/*.{md,yml,yaml}` | Mandatory governance for agents/prompts/skills/instructions and routing consistency. |
-| docs-system.instructions.md | `**/*.md` | Documentation Architecture Model (DAM), consistent markdown structure, lint-friendly docs. |
 | docker.instructions.md | `**/Dockerfile,**/Dockerfile.*` | Production-grade Dockerfile authoring guardrails for secure, reproducible, and cache-efficient images. |
+| docs-system.instructions.md | `**/*.md` | Documentation Architecture Model (DAM), consistent markdown structure, lint-friendly docs. |
 | dotnet.instructions.md | `**/*.cs` | C#/.NET code standards: safety, readability, diagnostics, testing expectations. |
 | github-actions-yaml.instructions.md | `.github/workflows/**/*.yaml` | Same as .yml; provided separately for .yaml extension. |
 | github-actions.instructions.md | `.github/workflows/**/*.yml` | Workflow best practices: minimal permissions, reproducibility, clear steps. |
@@ -832,9 +832,9 @@ Generated skill inventory:
 | `diagram-tooling` | Produce, modify, validate, and convert architecture diagrams with PlantUML, Mermaid, and open-source tooling. |
 | `doc-architecture-model` | Propose or enforce a Documentation Architecture Model (DAM) — purpose-driven doc tree, audience clarity, ownership, and lint compliance. |
 | `doc-qa` | Lint and validate Markdown docs — broken links, heading hierarchy, code block fences, and actionable fix list. |
+| `docker` | Docker production practices from Dockerfile authoring to CI image scanning, SBOM, and secure runtime defaults. |
 | `dotnet-cli` | .NET CLI build/test/publish workflow — reproducible CI commands, diagnostics, and artifact strategy. |
 | `dotnet-testing` | .NET unit and integration testing — xUnit, WebApplicationFactory, testcontainers, FluentAssertions, and CI gating. |
-| `docker` | Docker production practices from Dockerfile authoring to CI image scanning, SBOM, and secure runtime defaults. |
 | `e2e` | End-to-End testing — critical flow selection, stable environments, flakiness prevention, and CI gating strategy. |
 | `ef-core` | EF Core modeling, migrations, query performance, concurrency, and testing with real Postgres. |
 | `elastic` | Elasticsearch/Kibana/ELK - KQL queries, dashboards, alerting rules, and log analysis workflow. |

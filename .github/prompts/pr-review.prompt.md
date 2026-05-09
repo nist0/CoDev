@@ -12,20 +12,19 @@ Act as a Delivery Lead and apply the full 8-pass elite PR review procedure from 
 1. Load and follow `.github/skills/pr-review/SKILL.md` (all 8 passes).
 2. Search the codebase before making any correctness claim.
 3. Map changed file types to applicable instruction files (see Pass 3 of the skill).
+4. If any CI check is failing or `action_required`, inspect workflow runs and job logs before finalizing the merge gate.
 
-## Required output sections (produce all; do not skip)
+## Required output format (produce all; do not skip)
 
-- **Summary of changes** — one paragraph in own words.
-- **Correctness risks** — with file and line references; severity per finding.
-- **Security concerns** — secrets scan result; permission changes; dependency CVE flags.
-- **Performance concerns** — unbounded loops, missing caching, CI job duration.
-- **Test coverage gaps** — missing unit tests, missing regression tests for bug fixes.
-- **Documentation gaps** — missing release notes, README, routing entries.
-- **Instruction compliance table** — per file type vs. applicable instruction file (✅/❌).
-- **Framework downgrade-risk** — duplication, removal, contradiction findings.
-- **Suggested improvements** — prioritized by severity (`blocker` first, then `major`, then `minor`).
-- **Merge gate decision** — `ready` or `blocked` with explicit blocking checklist.
-- **Merge action** — `do not merge` or `merge now (strategy: squash|merge|rebase)`.
+Use the exact `Output format (copy/paste-ready)` section from `.github/skills/pr-review/SKILL.md`, including:
+
+- `## PR Review`
+- `**Verdict**: approved | rework required`
+- `### Findings` table with severity, file, finding, and required fix
+- `### Instruction compliance` table
+- `### Framework downgrade-risk`
+- `### Merge gate`
+- `### Merge action`
 
 ## Verification commands to include
 

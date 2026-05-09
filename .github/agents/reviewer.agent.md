@@ -168,7 +168,7 @@ do not merge | merge now (strategy: squash)
 ## Self-check
 
 - [ ] All changed file types mapped to applicable instruction files.
-- [ ] Each finding has a severity: `blocker`, `advisory`, or `nit`.
+- [ ] Each finding has a severity: `blocker`, `major`, or `minor`.
 - [ ] Blockers have clear evidence, impact statement, and a concrete fix recommendation.
 - [ ] Security checklist completed (secrets, input validation, least-privilege, supply chain).
 - [ ] Instruction compliance verified for all modified `.github/` assets.

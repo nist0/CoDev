@@ -9,6 +9,8 @@ If `{{input}}` is empty, ask the user for the following in a **single message** 
 1. **Topics** — comma-separated list of technologies, frameworks, or areas to cover (e.g. ".NET 10, GitHub Actions, Kubernetes")
 2. **Period** — time window for the digest (`week` or `month`)
 
+Do not produce the digest until the user has provided both topics and period.
+
 If `{{input}}` is provided, extract topics and period directly from it.
 
 Act as a Tech Scout and produce a digest for topics: {{input}}

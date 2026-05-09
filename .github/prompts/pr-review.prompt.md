@@ -16,7 +16,7 @@ Act as a Delivery Lead and apply the full 8-pass elite PR review procedure from 
 
 ## Required output format (produce all; do not skip)
 
-Use the exact `Output format (copy/paste-ready)` section from `.github/skills/pr-review/SKILL.md`, including:
+Use the `Output format (copy/paste-ready)` section from `.github/skills/pr-review/SKILL.md` without changing its required headings or verdict tokens. Ensure the final review includes:
 
 - `## PR Review`
 - `**Verdict**: approved | rework required`

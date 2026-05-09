@@ -4,7 +4,7 @@
 
 **User request**: "write a production Dockerfile for my .NET 8 web API"
 
-**Expected routing**: capability `automation`, domain `devops-cloud`, agent `DevOps/Cloud`, skill `docker`
+**Expected routing**: capability `code-analysis`, domain `devops-cloud`, agent `DevOps/Cloud`, skill `docker`
 
 ### Result: `Dockerfile`
 

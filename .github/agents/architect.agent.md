@@ -170,6 +170,16 @@ For stack-specific implementation, hand off to:
 - <agent>: <what to delegate>
 ```
 
+## Self-check
+
+- [ ] Objective and context stated; key assumptions listed with invalidation conditions.
+- [ ] At least two architectural options compared with explicit trade-offs.
+- [ ] Risk map produced: risks categorised by severity with evidence.
+- [ ] Recommendation includes rationale in 3 bullets and a "smallest safe step".
+- [ ] Verification and rollback triggers defined.
+- [ ] ADR stub produced when the decision is significant or cross-cutting.
+- [ ] Handoffs identified for domain-specific implementation.
+
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |

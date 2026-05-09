@@ -12,11 +12,11 @@ Act as a Delivery Lead and apply the full 8-pass elite PR review procedure from 
 1. Load and follow `.github/skills/pr-review/SKILL.md` (all 8 passes).
 2. Search the codebase before making any correctness claim.
 3. Map changed file types to applicable instruction files (see Pass 3 of the skill).
-4. If any CI check is failing or `action_required`, inspect workflow runs and job logs before finalizing the merge gate.
+4. If any CI check is failing or requires action (`action_required`), inspect workflow runs and job logs before finalizing the merge gate.
 
 ## Required output format (produce all; do not skip)
 
-Use the `Output format (copy/paste-ready)` section from `.github/skills/pr-review/SKILL.md` without changing its required headings or verdict tokens. Ensure the final review includes:
+Use the output format template in `.github/skills/pr-review/SKILL.md` without changing its required headings or verdict tokens. Ensure the final review includes:
 
 - `## PR Review`
 - `**Verdict**: approved | rework required`

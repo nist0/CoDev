@@ -41,7 +41,7 @@ ENTRYPOINT ["dotnet", "MyApi.dll"]
 
 ### Result: `.dockerignore`
 
-```
+```text
 .git
 .github
 .vscode
@@ -58,6 +58,7 @@ ENTRYPOINT ["dotnet", "MyApi.dll"]
 ```
 
 **Why each rule exists**:
+
 - Layer order: `csproj` copied first so NuGet restore is cached when only source changes.
 - Digest-pinned base image: `@sha256:...` guarantees reproducible builds and prevents upstream surprise updates.
 - Non-root user: limits blast radius of any container escape or RCE.
@@ -113,4 +114,3 @@ CMD ["node", "dist/index.js"]
 - Capability: `automation` (for authoring new Dockerfiles) or `code-analysis` (for reviewing existing ones)
 - Agent: `DevOps/Cloud`
 - Skill invoked: `docker`
-

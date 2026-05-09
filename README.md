@@ -213,7 +213,7 @@ Generated workflow inventory:
 | Workflow | File | Triggers |
 | --- | --- | --- |
 | CoDev Submodule Integrity | .github/workflows/codev-integrity.yml | workflow_call |
-| Image Scan (Trivy) | .github/workflows/image-scan.yml | pull_request, push |
+| Dockerfile Scan (Trivy) | .github/workflows/image-scan.yml | pull_request, push |
 | markdown-lint | .github/workflows/markdown-lint.yml | pull_request, push |
 | readme-registry | .github/workflows/readme-registry.yml | pull_request, push |
 | route-coverage | .github/workflows/route-coverage.yml | pull_request, push |

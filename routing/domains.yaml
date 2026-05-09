@@ -29,6 +29,13 @@ domains:
       - azure cli
       - ingress
       - deployment
+      - docker
+      - dockerfile
+      - docker compose
+      - container image
+      - image scanning
+      - trivy
+      - grype
       - statefulset
       - daemonset
       - namespace

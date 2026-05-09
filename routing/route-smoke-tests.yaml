@@ -395,3 +395,83 @@ cases:
       agent: DevOps/Cloud
       prompts: ["automation-script"]
       skills: ["github-actions", "docker", "kubernetes", "az"]
+
+  - request: "integrate openai into my api"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "build a RAG pipeline with pgvector"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "implement streaming chat completion"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "langchain integration for an agentic workflow"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "implement vector search with embedding model and vector store"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "responsible ai guardrails for llm output"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "write tests for my llm integration"
+    expect:
+      capability: testing-quality
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["test-plan", "write-tests"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "llm evaluation and hallucination rate for my rag pipeline"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "explain this code for fine-tuning a language model with rlhf"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]
+
+  - request: "openai function calling with structured json output -- explain this code"
+    expect:
+      capability: code-analysis
+      domain: ai-ml-engineering
+      agent: Architect
+      prompts: ["explain-code"]
+      skills: ["llm-integration", "rag-patterns"]

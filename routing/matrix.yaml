@@ -267,6 +267,16 @@ routing_rules:
 
   - when:
       capability: code-analysis
+      domain: ai-ml-engineering
+    suggest:
+      agent: Architect
+      prompts: ["explain-code"]
+      skills:
+        - "llm-integration"
+        - "rag-patterns"
+
+  - when:
+      capability: code-analysis
     suggest:
       agent: Architect
       prompts: ["explain-code"]
@@ -497,6 +507,16 @@ routing_rules:
       skills:
         - "test-strategy"
         - "fullstack-test-strategy"
+
+  - when:
+      capability: testing-quality
+      domain: ai-ml-engineering
+    suggest:
+      agent: Architect
+      prompts: ["test-plan", "write-tests"]
+      skills:
+        - "llm-integration"
+        - "rag-patterns"
 
   - when:
       capability: testing-quality

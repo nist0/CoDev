@@ -47,11 +47,11 @@ def test_strict_zero_threshold_on_real_matrix(tmp_path: Path) -> None:
     assert rc == 1, "strict+threshold=0 must exit 1 when gaps exist"
 
 
-def test_strict_threshold_57_passes_on_real_matrix() -> None:
-    """The CI gate uses --strict --threshold 57 (current gap count after cli-platform-onboarding capability added).
+def test_strict_threshold_63_passes_on_real_matrix() -> None:
+    """The CI gate uses --strict --threshold 63 (current gap count after ai-ml-engineering domain added).
     This must pass on the real matrix, proving the gate is correctly calibrated."""
-    rc = main(strict=True, threshold=57, json_out=None)
-    assert rc == 0, "strict+threshold=57 must exit 0 on the current matrix (57 gaps)"
+    rc = main(strict=True, threshold=63, json_out=None)
+    assert rc == 0, "strict+threshold=63 must exit 0 on the current matrix (63 gaps)"
 
 
 def test_strict_high_threshold_exits_zero() -> None:

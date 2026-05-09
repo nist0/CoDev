@@ -38,7 +38,7 @@ jobs:
       - name: Routing coverage — capability × domain gaps (strict, threshold=57)
         run: >
           python scripts/validate-routing-coverage.py
-          --strict --threshold 57
+          --strict --threshold 63
           --json-out routing-coverage.json
 
       - name: README registry — skill examples and doc completeness

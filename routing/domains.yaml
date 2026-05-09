@@ -206,3 +206,41 @@ domains:
       - whatsapp cloud api
       - bot token
       - conversational
+
+  - id: ai-ml-engineering
+    keywords:
+      - llm
+      - large language model
+      - openai
+      - anthropic
+      - gemini
+      - mistral
+      - ollama
+      - langchain
+      - llamaindex
+      - llama index
+      - retrieval augmented
+      - rag pipeline
+      - vector store
+      - vector database
+      - pgvector
+      - embedding model
+      - vector embedding
+      - semantic search
+      - context window
+      - system prompt
+      - chat completion
+      - streaming completion
+      - ai agent
+      - agentic workflow
+      - hallucination
+      - responsible ai
+      - llm eval
+      - ai eval
+      - fine-tuning
+      - rlhf
+      - qlora
+      - tokenizer
+      - token budget
+      - chunking strategy
+      - llm integration

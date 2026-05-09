@@ -68,6 +68,16 @@ aliases:
   - frontend architecture
   - write a production dockerfile
   - production dockerfile
+  - integrate openai into my api
+  - build a rag pipeline
+  - implement vector search
+  - add llm to my app
+  - langchain integration
+  - llamaindex rag
+  - streaming chat completion
+  - llm function calling
+  - responsible ai guardrails
+  - llm evaluation
   docs:
   - generate docs
   - write documentation

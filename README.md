@@ -44,7 +44,7 @@ Open VS Code in the repository — `.github/agents/` should list all CoDev agent
 Run a smoke test:
 
 ```bash
-python tools/codev/scripts/validate-route-smoke.py
+./.venv/bin/python tools/codev/scripts/validate-route-smoke.py
 ```
 
 ### Modes
@@ -170,7 +170,7 @@ Copilot will respond with:
 | Open PR / review | `pr review`, `commit message` |
 | Create a release | `release`, `changelog`, `semver` |
 | Brainstorm ideas | `brainstorm`, `alternatives` |
-| Write a script | `bash script`, `python script` |
+| Write a script | `bash script`, `./.venv/bin/python script` |
 | Tech watch digest | `what's new`, `trends` |
 | Set up or debug MCP | `mcp`, `set up mcp`, `debug mcp` |
 | Onboard to a .NET CLI platform project | `/cli-platform-init repo=.` |
@@ -180,11 +180,11 @@ Copilot will respond with:
 Use these checks before opening a PR for customization changes:
 
 ```bash
-python scripts/validate-route-smoke.py
-python scripts/validate-customization-registry.py
-python scripts/validate-readme-registry.py
-python scripts/validate-routing-coverage.py
-python scripts/validate-markdown-lint.py
+./.venv/bin/python scripts/validate-route-smoke.py
+./.venv/bin/python scripts/validate-customization-registry.py
+./.venv/bin/python scripts/validate-readme-registry.py
+./.venv/bin/python scripts/validate-routing-coverage.py
+./.venv/bin/python scripts/validate-markdown-lint.py
 ```
 
 Note: Markdown lint validation uses `markdownlint-cli2` via `npx` (Node.js required).
@@ -194,7 +194,7 @@ Note: Markdown lint validation uses `markdownlint-cli2` via `npx` (Node.js requi
 Install pre-commit hooks to catch routing errors before every push — no waiting for CI:
 
 ```bash
-pip install pre-commit
+./.venv/bin/python -m pip install pre-commit
 pre-commit install
 ```
 
@@ -212,14 +212,14 @@ Generated workflow inventory:
 <!-- codev:generated:workflows:start -->
 | Workflow | File | Triggers |
 | --- | --- | --- |
-| CoDev Submodule Integrity | .github/workflows/codev-integrity.yml | workflow_call |
+| CoDev Submodule Integrity | .github/workflows/codev-integrity.yml | workflow_call, workflow_dispatch |
 | Dockerfile Scan (Trivy) | .github/workflows/image-scan.yml | pull_request, push |
-| markdown-lint | .github/workflows/markdown-lint.yml | pull_request, push |
-| readme-registry | .github/workflows/readme-registry.yml | pull_request, push |
-| route-coverage | .github/workflows/route-coverage.yml | pull_request, push |
-| route-smoke | .github/workflows/route-smoke.yml | pull_request, push |
-| Routing CI | .github/workflows/routing-ci.yml | pull_request, push |
-| unit-tests | .github/workflows/unit-tests.yml | pull_request, push |
+| markdown-lint | .github/workflows/markdown-lint.yml | pull_request, push, workflow_dispatch |
+| readme-registry | .github/workflows/readme-registry.yml | pull_request, push, workflow_dispatch |
+| route-coverage | .github/workflows/route-coverage.yml | pull_request, push, workflow_dispatch |
+| route-smoke | .github/workflows/route-smoke.yml | pull_request, push, workflow_dispatch |
+| Routing CI | .github/workflows/routing-ci.yml | pull_request, push, workflow_dispatch |
+| unit-tests | .github/workflows/unit-tests.yml | pull_request, push, workflow_dispatch |
 <!-- codev:generated:workflows:end -->
 
 ### Developer Tooling
@@ -238,16 +238,16 @@ Detects and optionally fixes 3 common routing error classes:
 
 ```bash
 # Detect only (safe, no writes)
-python scripts/validate-autofix.py
+./.venv/bin/python scripts/validate-autofix.py
 
 # Detect and fix in place
-python scripts/validate-autofix.py --fix
+./.venv/bin/python scripts/validate-autofix.py --fix
 
 # Generate a Markdown report (written to reports/)
-python scripts/validate-autofix.py --report --report-format markdown
+./.venv/bin/python scripts/validate-autofix.py --report --report-format markdown
 
 # Generate a JSON report for CI artifact upload
-python scripts/validate-autofix.py --report --report-format json
+./.venv/bin/python scripts/validate-autofix.py --report --report-format json
 ```
 
 #### `scripts/validate-watch.py` — continuous validation on file change
@@ -256,13 +256,13 @@ Polls `routing/` and `.github/` directories and reruns validators automatically 
 
 ```bash
 # Watch mode (runs indefinitely)
-python scripts/validate-watch.py
+./.venv/bin/python scripts/validate-watch.py
 
 # Single run (CI-friendly, exits after one pass)
-python scripts/validate-watch.py --once
+./.venv/bin/python scripts/validate-watch.py --once
 
 # Watch only specific validators
-python scripts/validate-watch.py --validators smoke autofix
+./.venv/bin/python scripts/validate-watch.py --validators smoke autofix
 ```
 
 #### `scripts/install-hooks.py` — install pre-commit hooks
@@ -271,10 +271,10 @@ Installs the scope-filtered pre-commit hook from `scripts/hooks/pre-commit` into
 
 ```bash
 # Install the pre-commit hook
-python scripts/install-hooks.py
+./.venv/bin/python scripts/install-hooks.py
 
 # Check if hooks are installed (no writes)
-python scripts/install-hooks.py --check
+./.venv/bin/python scripts/install-hooks.py --check
 ```
 
 #### `scripts/codev-dev.py` — interactive developer CLI
@@ -289,19 +289,19 @@ Three commands to explore routing, scaffold agents, and run health checks — al
 
 ```bash
 # Route any phrase interactively
-python scripts/codev-dev.py test-route "debug kubernetes pod"
+./.venv/bin/python scripts/codev-dev.py test-route "debug kubernetes pod"
 
 # List all known routing aliases grouped by capability
-python scripts/codev-dev.py test-route --list
+./.venv/bin/python scripts/codev-dev.py test-route --list
 
 # Run repository health check
-python scripts/codev-dev.py doctor
+./.venv/bin/python scripts/codev-dev.py doctor
 
 # Scaffold a new agent (dry-run — prints output, writes nothing)
-python scripts/codev-dev.py new agent my-agent
+./.venv/bin/python scripts/codev-dev.py new agent my-agent
 
 # Scaffold and write to .github/agents/ (requires --write)
-python scripts/codev-dev.py new agent my-agent --write
+./.venv/bin/python scripts/codev-dev.py new agent my-agent --write
 ```
 
 > **Safety contract**: `test-route` and `doctor` are 100% read-only. `new agent` dry-runs by default and never overwrites an existing file.
@@ -527,8 +527,8 @@ Expect: SemVer bump decision, changelog draft, tag + GitHub Release steps, rollo
 Then update the four routing YAMLs (`capabilities.yaml`, `domains.yaml`, `aliases.yaml`, `matrix.yaml`) and validate:
 
 ```bash
-python scripts/validate-route-smoke.py
-python scripts/validate-customization-registry.py
+./.venv/bin/python scripts/validate-route-smoke.py
+./.venv/bin/python scripts/validate-customization-registry.py
 ```
 
 ---

@@ -32,6 +32,13 @@ applyTo: "**/*.py"
 - Use `pyproject.toml` as single source of truth for deps, tools, and metadata.
 - Pin dependencies in `requirements.txt` or `poetry.lock`; use Dependabot for updates.
 
+## Environment & dependency policy
+
+- Always run Python tooling inside a virtual environment (`.venv`).
+- Reuse an existing `.venv` when present; create it if missing (`python -m venv .venv`).
+- Install dependencies with the venv interpreter (`./.venv/bin/python -m pip ...` on Bash, `.venv\Scripts\python.exe -m pip ...` on Windows).
+- Never run project Python commands against the system interpreter.
+
 ## Examples
 
 ✅ Correct — typed, explicit, idempotent:

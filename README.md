@@ -637,6 +637,7 @@ Defines **where** capabilities apply. Keywords trigger automatic domain detectio
 | `project-orchestration` | `orchestrate`, `orchestration`, `project lead`, `delegate whole project`, `dispatch`, `work breakdown`, `task assignment`, `kanban` |
 | `docs-system` | `markdown`, `docs`, `documentation`, `docs lint`, `markdown lint`, `plantuml`, `mermaid`, `diagram` |
 | `bot-platforms` | `teams`, `telegram`, `whatsapp`, `discord`, `slack`, `bot`, `chatbot`, `webhook` |
+| `ai-ml-engineering` | `llm`, `large language model`, `openai`, `anthropic`, `gemini`, `mistral`, `ollama`, `langchain` |
 <!-- codev:generated:domains:end -->
 
 ### `routing/aliases.yaml`
@@ -697,6 +698,7 @@ Generated instruction inventory:
 | File | applyTo | Description |
 | --- | --- | --- |
 | 00-core.instructions.md | `**` | Core working agreement: deterministic steps, copy/paste-ready outputs, non-contradictory layering. |
+| ai-ml.instructions.md | `**/*llm*.{py,ts,cs,js},**/*rag*.{py,ts,cs,js},**/*openai*.{py,ts,cs,js},**/*anthropic*.{py,ts,cs,js},**/*langchain*.{py,ts,cs,js},**/*embedding*.{py,ts,cs,js},**/*vector_store*.{py,ts,cs,js},**/*chat_completion*.{py,ts,cs,js}` | Always-on responsible-AI defaults for LLM integration and RAG pipeline code: PII guards, no hardcoded model names, output sanitisation, and content-filter requirements. |
 | bash.instructions.md | `**/*.sh` | Bash guidance: safe shell scripting. |
 | bot.instructions.md | `**/*bot*.{cs,py},**/*bot*handler*.{cs,py},**/*webhook*.{cs,py}` | Always-on rules for bot code files across all platforms (Teams, Telegram, WhatsApp, Discord). Non-negotiable security baseline, SDK selection, and reliability standards. |
 | brainstorming-governance.instructions.md | `**` | Mandatory brainstorm-first gate for all non-trivial tasks: require elite ideation quality, scored option portfolio, execution handoff, and named specialist reviews. |
@@ -856,6 +858,7 @@ Generated skill inventory:
 | `kubernetes` | Kubernetes workload triage — workload spec review, resource limits, probes, RBAC, logs, and rollback. |
 | `lens` | Lens Kubernetes UI - cluster context confirmation, workload inspection, config review, and fix validation. |
 | `linters` | Lint and quality gate setup — polyglot linter matrix, CI integration, pre-commit hooks, and adoption strategy. |
+| `llm-integration` | LLM integration patterns -- provider abstraction, streaming, retries, rate limiting, token counting, structured output, and prompt-template discipline for production AI features. |
 | `logs-alerts` | Log analysis and alerting — symptom identification, time-scoped filtering, correlation, and alert rule design. |
 | `markdown-docops` | Markdown doc operations for production, modification, linting, restructuring, conversion, import, and export. |
 | `mcp-integration` | MCP integration for VS Code and GitHub Copilot - design, install, secure use, and troubleshoot client/server workflows. |
@@ -878,6 +881,7 @@ Generated skill inventory:
 | `prompt-authoring` | Create stable, reusable prompt files (.prompt.md) with consistent structure, inputs, outputs, and acceptance criteria. |
 | `prompt-engineering` | Prompt engineering for the Copilot Dev Framework - intent, constraints, context, deterministic output, verification, and framework change protocol. |
 | `python` | Python scripting — argparse, error handling, idempotency, type hints, and clean exit codes. |
+| `rag-patterns` | RAG (Retrieval-Augmented Generation) pipeline patterns -- chunking strategies, embedding model selection, vector store operations, dense/sparse/hybrid retrieval, context-window assembly, and hallucination mitigation. |
 | `rca-kit` | Blameless postmortem and root cause analysis — 5-Whys, timeline, action items, and prevention tracking. |
 | `react` | React architecture — component boundaries, state strategy, data fetching, performance, a11y, and testing. |
 | `release` | End-to-end release pipeline — SemVer tagging, artifact signing, changelog, smoke test, and rollback. |

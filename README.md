@@ -703,6 +703,7 @@ Generated instruction inventory:
 | codev-consumer.instructions.md | `codev-overrides/**` | Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation. |
 | customization-governance.instructions.md | `.github/**/*.{md,yml,yaml}` | Mandatory governance for agents/prompts/skills/instructions and routing consistency. |
 | docs-system.instructions.md | `**/*.md` | Documentation Architecture Model (DAM), consistent markdown structure, lint-friendly docs. |
+| docker.instructions.md | `**/Dockerfile*` | Production-grade Dockerfile authoring guardrails for secure, reproducible, and cache-efficient images. |
 | dotnet.instructions.md | `**/*.cs` | C#/.NET code standards: safety, readability, diagnostics, testing expectations. |
 | github-actions-yaml.instructions.md | `.github/workflows/**/*.yaml` | Same as .yml; provided separately for .yaml extension. |
 | github-actions.instructions.md | `.github/workflows/**/*.yml` | Workflow best practices: minimal permissions, reproducibility, clear steps. |
@@ -833,6 +834,7 @@ Generated skill inventory:
 | `doc-qa` | Lint and validate Markdown docs — broken links, heading hierarchy, code block fences, and actionable fix list. |
 | `dotnet-cli` | .NET CLI build/test/publish workflow — reproducible CI commands, diagnostics, and artifact strategy. |
 | `dotnet-testing` | .NET unit and integration testing — xUnit, WebApplicationFactory, testcontainers, FluentAssertions, and CI gating. |
+| `docker` | Docker production practices from Dockerfile authoring to CI image scanning, SBOM, and secure runtime defaults. |
 | `e2e` | End-to-End testing — critical flow selection, stable environments, flakiness prevention, and CI gating strategy. |
 | `ef-core` | EF Core modeling, migrations, query performance, concurrency, and testing with real Postgres. |
 | `elastic` | Elasticsearch/Kibana/ELK - KQL queries, dashboards, alerting rules, and log analysis workflow. |

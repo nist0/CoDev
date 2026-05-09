@@ -1,5 +1,13 @@
 # Docker skill -- examples
 
+Runnable example files live alongside this README:
+
+- `simple/Dockerfile` -- Python single-stage example (non-root, EXPOSE 8080)
+- `multi-stage/Dockerfile` -- Node.js two-stage example (build + runtime, HEALTHCHECK)
+- `docker-compose.yml` -- dev compose wiring both examples together
+
+---
+
 ## Worked example 1: .NET API (multi-stage, digest-pinned, non-root)
 
 **User request**: "write a production Dockerfile for my .NET 8 web API"

@@ -79,4 +79,3 @@ ENTRYPOINT ["dotnet", "MyApi.dll"]
 | `ENV API_KEY=...` in Dockerfile | Secret persists in image history | Inject at runtime or use BuildKit secrets |
 | `COPY . .` before dependency install | Poor layer cache reuse, slower CI | Copy manifests first, install deps, then source |
 | Missing `.dockerignore` | Secret/file leakage and large contexts | Add strict `.dockerignore` with denylist |
-

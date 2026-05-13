@@ -245,27 +245,6 @@ Generated workflow inventory:
 
 Additional scripts for day-to-day development — auto-fix, watch mode, and an interactive CLI.
 
-#### `scripts/benchmark-similar-projects.py` - competitive benchmark tooling
-
-Discovers similar projects (gh mode or manual input mode), selects top projects,
-optionally shallow-clones into `external/`, scores each project out of 100 with an
-explicit weighted rubric, and emits Markdown plus JSON reports.
-
-```bash
-# Deterministic baseline mode without network access
-./.venv/bin/python scripts/benchmark-similar-projects.py --mode baseline --dry-run --top-count 10
-
-# Manual input mode (offline)
-./.venv/bin/python scripts/benchmark-similar-projects.py --mode manual --input-file temp/benchmark-input.json --dry-run
-
-# GitHub API mode (requires gh auth)
-./.venv/bin/python scripts/benchmark-similar-projects.py --mode gh --top-count 10
-```
-
-Benchmark analysis and enhancement roadmap:
-
-- [docs/competitive-benchmark-and-enhancement-roadmap.md](docs/competitive-benchmark-and-enhancement-roadmap.md)
-
 #### `scripts/validate-autofix.py` — detect and auto-fix routing errors
 
 Detects and optionally fixes 3 common routing error classes:

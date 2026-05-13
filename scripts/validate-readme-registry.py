@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from pathlib import Path
+import importlib.util
 import re
 import sys
-import importlib.util
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +16,13 @@ _SYNC_SPEC = importlib.util.spec_from_file_location(
 )
 _SYNC = importlib.util.module_from_spec(_SYNC_SPEC)  # type: ignore[arg-type]
 _SYNC_SPEC.loader.exec_module(_SYNC)  # type: ignore[union-attr]
+
+_REPO_FILE_INDEX_SPEC = importlib.util.spec_from_file_location(
+    "repo_file_index",
+    ROOT / "scripts" / "repo-file-index.py",
+)
+_REPO_FILE_INDEX = importlib.util.module_from_spec(_REPO_FILE_INDEX_SPEC)  # type: ignore[arg-type]
+_REPO_FILE_INDEX_SPEC.loader.exec_module(_REPO_FILE_INDEX)  # type: ignore[union-attr]
 
 
 def validate_required_sections(readme_text: str) -> list[str]:
@@ -94,24 +101,15 @@ def validate_readme_links(readme_text: str) -> list[str]:
 def validate_file_locations() -> list[str]:
     errors: list[str] = []
 
-    for path in ROOT.rglob("*.agent.md"):
+    for path in _REPO_FILE_INDEX.list_repo_files(ROOT):
         rel = path.relative_to(ROOT).as_posix()
-        if not rel.startswith(".github/agents/"):
+        if rel.endswith(".agent.md") and not rel.startswith(".github/agents/"):
             errors.append(f"Misplaced agent file: {rel}")
-
-    for path in ROOT.rglob("*.prompt.md"):
-        rel = path.relative_to(ROOT).as_posix()
-        if not rel.startswith(".github/prompts/"):
+        if rel.endswith(".prompt.md") and not rel.startswith(".github/prompts/"):
             errors.append(f"Misplaced prompt file: {rel}")
-
-    for path in ROOT.rglob("*.instructions.md"):
-        rel = path.relative_to(ROOT).as_posix()
-        if not rel.startswith(".github/instructions/"):
+        if rel.endswith(".instructions.md") and not rel.startswith(".github/instructions/"):
             errors.append(f"Misplaced instruction file: {rel}")
-
-    for path in ROOT.rglob("SKILL.md"):
-        rel = path.relative_to(ROOT).as_posix()
-        if not rel.startswith(".github/skills/"):
+        if path.name == "SKILL.md" and not rel.startswith(".github/skills/"):
             errors.append(f"Misplaced skill definition file: {rel}")
 
     return errors

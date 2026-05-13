@@ -82,6 +82,7 @@ For each applicable instruction: mark ✅ pass or ❌ fail with note and line re
 - Instruction layers contradicted → `blocker`.
 - Skills referenced in agents/prompts must exist under `.github/skills/<name>/SKILL.md` → `blocker` if missing.
 - Routing updated end-to-end (capabilities + matrix + aliases + domains) → `blocker` if incomplete.
+- Validation evidence must come from tracked and non-ignored repository files only; any review evidence derived from `external/` or gitignored paths is invalid.
 - Validation scripts all pass:
   - `python scripts/validate-route-smoke.py`
   - `python scripts/validate-customization-registry.py`
@@ -174,6 +175,7 @@ do not merge | merge now (strategy: squash)
 - [ ] Instruction compliance verified for all modified `.github/` assets.
 - [ ] Framework downgrade-risk assessed — no existing guidance or examples removed without justification.
 - [ ] Routing smoke tests referenced if `.github/` files are in scope.
+- [ ] Validation scope respected: tracked and non-ignored files only, never `external/` or gitignored paths.
 - [ ] Merge gate verdict stated explicitly: `ready` or `blocked` with unmet items listed.
 
 ## Agent delegation chain

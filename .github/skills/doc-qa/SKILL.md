@@ -19,8 +19,15 @@ disable-model-invocation: false
 ### 1. Run markdownlint
 
 ```bash
-npx markdownlint-cli2 "**/*.md" --ignore node_modules
+python scripts/validate-markdown-lint.py
 ```
+
+Scope rule:
+
+- When validating CoDev docs, inspect tracked and non-ignored repository files only.
+- Never analyze `external/`.
+- Never analyze any path excluded by `.gitignore` or Git's standard excludes.
+- Do not replace the repository validator with broad workspace globs such as `**/*.md`.
 
 Common rules to enforce:
 
@@ -36,8 +43,8 @@ Common rules to enforce:
 ### 2. Check for broken links
 
 ```bash
-# Internal and external links
-npx markdown-link-check **/*.md --config .mlc.json
+# Internal and external links for tracked, non-ignored docs only
+# Prefer a file list derived from Git rather than recursive workspace globs.
 ```
 
 `.mlc.json` template:
@@ -96,10 +103,10 @@ Priority:
 
 ```yaml
 - name: Lint docs
-  run: npx markdownlint-cli2 "**/*.md" --ignore node_modules
+  run: python scripts/validate-markdown-lint.py
 
 - name: Check links
-  run: npx markdown-link-check **/*.md --config .mlc.json
+  run: <tracked-nonignored-doc-link-check command>
 ```
 
 Fail the PR if any HIGH issue is found. Warn on MEDIUM/LOW.
@@ -112,6 +119,7 @@ Fail the PR if any HIGH issue is found. Warn on MEDIUM/LOW.
 - [ ] All fenced code blocks have language identifiers.
 - [ ] Fix list produced with file, line, rule, and severity.
 - [ ] CI job added for ongoing lint enforcement.
+- [ ] Validation scope respected: tracked and non-ignored files only, never `external/` or gitignored paths.
 
 ## Outputs
 

@@ -99,14 +99,16 @@ The hook blocks the commit and prints the fix command if any markdown error is f
 
 ### Step 1 — Local lint (blocking)
 
-Run the linter against the full workspace immediately after writing or editing any markdown:
+Run the repository validator immediately after writing or editing any markdown:
 
 ```bash
-npx markdownlint-cli2 "**/*.md"
+python scripts/validate-markdown-lint.py
 ```
 
 - Exit code must be `0`. Any non-zero exit is a **blocking finding** — fix all violations before proceeding.
-- Do not selectively lint only the files you changed; run the full glob to catch cross-file regressions.
+- CoDev markdown validation must inspect tracked and non-ignored repository files only.
+- Never lint `external/` or any path excluded by `.gitignore` or Git's standard excludes.
+- Do not replace this with broad workspace globs such as `npx markdownlint-cli2 "**/*.md"`.
 
 ### Step 2 — Remote CI confirmation (blocking before done)
 

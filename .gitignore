@@ -45,3 +45,5 @@ reports/
 .generated/
 
 *.code-workspace
+
+temp/

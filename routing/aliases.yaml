@@ -6,7 +6,6 @@ aliases:
   - router
   - which agent
   - who should handle
-  - where to start
   - new agent
   - create agent
   - scaffold agent
@@ -152,6 +151,9 @@ aliases:
   github-delivery:
   - pr review
   - review this pr
+  - review my pr
+  - review my pull request
+  - review my open pull request
   - commit message
   - conventional commits
   - issue triage
@@ -228,6 +230,7 @@ aliases:
   onboarding:
   - quickstart
   - getting started
+  - where to start
   - where do I start
   - where to begin
   - i'm new
@@ -251,7 +254,6 @@ aliases:
   - configure mcp for copilot
   - analyze mcp config
   - debug mcp
-  - onboarding
   route-miss:
   - route miss
   - wrong agent

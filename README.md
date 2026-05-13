@@ -111,7 +111,7 @@ The CLI auto-detects which mode to use.
 
 **Core principles:**
 
-- Start every session with `/route` to select the right tool for the job.
+- If you are new or unsure, start with `/quickstart`; if your task is already clear, use `/route`.
 - Prefer copy/paste-ready outputs: commands, file content, checklists.
 - Never introduce secrets. Never log sensitive data.
 - Make small, reviewable changes with verification steps included.
@@ -143,9 +143,27 @@ CoDev/
 
 ## Getting Started
 
-### Primary entry point
+### First-run entry points
 
-Use the **`/route`** prompt (aliases: `route`, `router`, `which agent`, `where to start`) to classify your request and get a deterministic recommendation:
+If you are new to CoDev or not yet sure which capability matches your task, start with:
+
+```text
+/quickstart
+```
+
+`/quickstart` gathers role, domain, and goal in one turn, then gives you one recommended first command plus a small set of optional follow-ups.
+
+This first rollout is optimised for the three target newcomer scenarios in issue `#39`:
+
+- fixing a bug
+- writing tests
+- reviewing a pull request
+
+For other specialised first-run requests, `/route <your request>` remains the universal fallback.
+
+### Task-first entry point
+
+If you already know the task you want done, use the **`/route`** prompt (aliases: `route`, `router`, `which agent`) to classify your request and get a deterministic recommendation:
 
 ```text
 /route I need to debug a CrashLoopBackOff on my AKS pod
@@ -164,6 +182,7 @@ Copilot will respond with:
 
 | Task | Alias to type |
 |------|---------------|
+| First-time setup / unsure where to begin | `/quickstart` |
 | Route any request | `/route <your request>` |
 | Debug a bug | `bug`, `exception`, `stack trace` |
 | Write tests | `write tests`, `test plan` |
@@ -314,7 +333,7 @@ See [docs/codev-dev-guide.md](docs/codev-dev-guide.md) for persona walkthroughs,
 
 ## Usage Examples
 
-All examples start with `/route` to let the framework pick the right agent, prompts, and skills automatically. Each block shows: the command you type → what the router returns → the follow-up action.
+Use the shortest entry point for the job: `/quickstart` for first-run orientation in the supported newcomer scenarios, `/route` when your task is already clear or falls outside those scenarios. Each block shows: the command you type -> what the router returns -> the follow-up action.
 
 ---
 
@@ -563,6 +582,7 @@ Generates: controller class with CRUD endpoints, MediatR commands/queries, Fluen
 
 | What you want to do | What to type |
 |--------------------|--------------|
+| I am new here and need a starting point | `/quickstart` |
 | Route any request | `/route <your request>` |
 | Debug a crash or error | `/route <error/symptom>` → `/triage-error` |
 | Triage a K8s issue | `/route k8s <symptom>` → `/k8s-triage` |
@@ -573,7 +593,7 @@ Generates: controller class with CRUD endpoints, MediatR commands/queries, Fluen
 | Get a tech digest | `/route what's new in <technology>` → `/tech-watch-digest` |
 | Generate a CRUD controller | `/generate-controller resource=<Name> description="<desc>"` |
 | Add a new agent/skill | `/route new agent for <domain>` → `/new-agent` then `/new-skill` |
-| Onboard to a repo | `/quickstart` |
+| Onboard to the framework | `/quickstart` |
 | Diagnose a bad route | `/route-miss` |
 
 ---

@@ -163,6 +163,33 @@ cases:
       agent: Router
       prompts: ["quickstart"]
 
+  - request: "I'm new here and need to fix a bug in my API"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "getting started help me write tests for react"
+    expect:
+      capability: onboarding
+      domain: frontend
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "where do I start to review this pr before merge"
+    expect:
+      capability: onboarding
+      domain: github-delivery
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "review my open pull request before merge"
+    expect:
+      capability: github-delivery
+      domain: github-delivery
+      agent: GitHub Ops
+      prompts: ["pr-review"]
+
   - request: "route miss the wrong agent was suggested"
     expect:
       capability: route-miss

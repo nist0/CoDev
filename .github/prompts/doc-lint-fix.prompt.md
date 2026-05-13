@@ -20,6 +20,7 @@ Constraints:
 - Fix code fences (language identifiers where possible)
 - Do not remove existing information, procedures, or examples
 - If content is reorganized, preserve traceability (source section → target section)
+- When validating CoDev docs, use tracked and non-ignored repository files only; never inspect `external/` or gitignored paths
 
 Output:
 

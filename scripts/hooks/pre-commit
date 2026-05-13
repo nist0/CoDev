@@ -71,7 +71,7 @@ echo ""
 if [ "$FAILED" -eq 1 ]; then
   echo "FAIL Pre-commit validation failed. Fix the issues above."
   echo "     For routing fixes: python scripts/validate-autofix.py --fix"
-  echo "     For markdown fixes: npx markdownlint-cli2 --fix \"**/*.md\" \"!.venv/**\""
+  echo "     For markdown fixes: python scripts/validate-markdown-lint.py"
   echo ""
   echo "     To bypass (emergency only): git commit --no-verify"
   exit 1

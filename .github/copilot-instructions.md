@@ -108,6 +108,8 @@ Example:
   - `python scripts/validate-readme-registry.py`
   - `python scripts/validate-routing-coverage.py`
 
+- Validation scope is mandatory: when validating CoDev, analyze tracked and non-ignored repository files only. Never analyze `external/` or any gitignored path.
+
 ## 8) Existing capabilities (source: `routing/capabilities.yaml`)
 
 - `routing`

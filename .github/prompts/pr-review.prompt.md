@@ -36,6 +36,8 @@ python scripts/validate-customization-registry.py
 python scripts/validate-readme-registry.py
 ```
 
+Treat these commands as CoDev-scoped validators: they must operate on tracked and non-ignored repository files only, and review findings must ignore `external/` plus any gitignored path.
+
 ## Constraints
 
 - No finding without a concrete file reference or diff evidence.

@@ -110,6 +110,18 @@ No other attributes are valid for `.instructions.md` files.
 - In routing/configuration files, agent references must match `.github/agents/*.agent.md` frontmatter `name` exactly (no capability-style aliases).
 - Include routing smoke-test phrases and expected outcomes in every implementation summary.
 
+## Validation scope (mandatory)
+
+- When validating CoDev, inspect tracked and non-ignored repository files only.
+- Never analyze `external/`.
+- Never analyze any path excluded by `.gitignore` or Git's standard excludes.
+- Prefer repository validators that already enforce this scope over ad hoc recursive globbing:
+  - `python scripts/validate-markdown-lint.py`
+  - `python scripts/validate-readme-registry.py`
+  - `python scripts/validate-route-smoke.py`
+  - `python scripts/validate-customization-registry.py`
+- Broad workspace scans such as `**/*.md`, `**/*`, or recursive `rglob(...)` checks are non-compliant unless they are explicitly constrained to tracked and non-ignored files.
+
 ## Layering & information integrity
 
 - Keep instruction layering additive and non-contradictory.
@@ -149,6 +161,7 @@ Before finalizing any customization change:
 - [ ] Routing updated in all needed YAMLs
 - [ ] New/updated examples preserved or added (no info loss)
 - [ ] Route smoke tests performed with representative phrases
+- [ ] Validation commands inspect tracked and non-ignored repository files only (never `external/` or gitignored paths)
 - [ ] Security + reliability + testing expectations verified
 - [ ] `copilot-instructions.md` and `README.md` updated
 

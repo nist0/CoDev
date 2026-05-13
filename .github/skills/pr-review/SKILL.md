@@ -72,6 +72,7 @@ For each applicable instruction: pass ✅ or fail ❌ with exact note.
 - Does this introduce duplication of an existing skill/agent/prompt? → `major`
 - Does this contradict an existing instruction layer? → `blocker`
 - Are routing files updated end-to-end (capabilities + matrix + aliases + domains when needed)? → `blocker` if incomplete.
+- Review evidence and validator output must be scoped to tracked and non-ignored repository files only; ignore `external/` and all gitignored paths.
 
 ### Pass 7 — Performance & observability
 
@@ -146,6 +147,7 @@ do not merge | merge now (strategy: squash)
 - [ ] Instruction compliance table produced.
 - [ ] Merge gate decision is explicit and justified.
 - [ ] No claims made without evidence (file search or diff line reference).
+- [ ] Validation scope respected: tracked and non-ignored files only, never `external/` or gitignored paths.
 
 ## Outputs
 

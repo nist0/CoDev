@@ -34,6 +34,7 @@ handoffs:
 2. Identify the **primary intent** (what the user wants done).
 3. Identify the **domain context** (technology stack, repo area, or platform).
 4. If the request is ambiguous across multiple capabilities: ask one focused clarifying question, then route.
+5. If the request mixes a first-run signal (`i'm new`, `where do I start`, `getting started`, `what prompt should I use`) with a concrete task, classify it as `onboarding` first and recommend `/quickstart`. Let `/quickstart` choose the most useful task-specific first command.
 
 ### Step 2 — Capability classification
 
@@ -41,18 +42,19 @@ Match the intent to a capability from `routing/capabilities.yaml`:
 
 | User intent signal | Capability |
 |-------------------|------------|
-| Debug, fix, triage, crash | `engineering.debugging` |
-| Write / improve / refactor code | `engineering.code-analysis` or domain-specific |
-| Write / improve tests | `engineering.testing-quality` |
-| PR review, merge decision | `engineering.github-delivery` |
-| Issue, planning, Kanban, release | `engineering.github-delivery` or `engineering.release` |
-| CI/CD pipeline, workflows | `engineering.automation` or `engineering.cicd` |
-| Docs, README, onboarding | `engineering.docs` or `engineering.docs-system` |
-| Postmortem, RCA, incident | `engineering.postmortem` |
-| Architecture, ADR, design | `engineering.code-analysis` |
-| Brainstorm, innovation, alternatives | `research.brainstorming` |
-| Tech watch, digest, news | `research.tech-watch` |
-| Project kickoff, orchestration | `engineering.project-orchestration` |
+| Debug, fix, triage, crash | `debugging` |
+| Write / improve / refactor code | `code-analysis` |
+| Write / improve tests | `testing-quality` |
+| PR review, merge decision | `github-delivery` |
+| Issue, planning, Kanban, release | `github-delivery` or `release` |
+| CI/CD pipeline, workflows | `automation` |
+| Docs and README work | `docs` or `docs-system` |
+| Onboarding, getting started, what prompt should I use | `onboarding` |
+| Postmortem, RCA, incident | `postmortem` |
+| Architecture, ADR, design | `code-analysis` |
+| Brainstorm, innovation, alternatives | `brainstorming` |
+| Tech watch, digest, news | `tech-watch` |
+| Project kickoff, orchestration | `project-orchestration` |
 
 ### Step 3 — Domain classification
 
@@ -60,15 +62,15 @@ Match context to a domain from `routing/domains.yaml`:
 
 | Context signals | Domain |
 |----------------|--------|
-| .NET, C#, ASP.NET, EF Core | `engineering.backend-dotnet` |
-| React, TypeScript, npm, Vite | `engineering.frontend` |
-| Kubernetes, AKS, Helm, Docker, Azure | `engineering.devops-cloud` |
-| GitHub Actions, workflows, CI, CD | `engineering.cicd` |
-| Bash, PowerShell, Python scripts | `engineering.shell-automation` |
-| C, C++, ASM, AVR, PIC, firmware | `engineering.native` |
-| Logs, traces, APM, Elastic, alerting | `engineering.observability` |
-| Issues, PRs, GitHub Projects | `engineering.github-delivery` |
-| Docs, Markdown, onboarding | `engineering.docs-system` |
+| .NET, C#, ASP.NET, EF Core | `backend-dotnet` |
+| React, TypeScript, npm, Vite | `frontend` |
+| Kubernetes, AKS, Helm, Docker, Azure | `devops-cloud` |
+| GitHub Actions, workflows, CI, CD | `cicd` |
+| Bash, PowerShell, Python scripts | `shell-automation` or `scripting` |
+| C, C++, ASM, AVR, PIC, firmware | `native` |
+| Logs, traces, APM, Elastic, alerting | `observability` |
+| Issues, PRs, GitHub Projects | `github-delivery` |
+| Docs, Markdown, onboarding | `docs-system` |
 | (none of the above) | `unknown` — route on capability only |
 
 ### Step 4 — Matrix lookup
@@ -92,6 +94,8 @@ Produce a full delegation plan:
 
 - Prefer capability+domain first; fallback to capability-only.
 - Keep results concise, deterministic, and checklist-oriented.
+- For explicit first-run intents, recommend `/quickstart` before broader route exploration.
+- For mixed first-run + concrete-task requests, prefer `onboarding` over the concrete task capability.
 - If scope is ambiguous, ask one focused question before routing.
 - Never guess a domain; use `unknown` when context is insufficient.
 

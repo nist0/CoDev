@@ -52,7 +52,7 @@ Recommended capability : <capability>
 Recommended agent      : <agent>
 
 First command:
-  /route <natural-language restatement of the goal>
+  /<best first command for this goal>
 
   — or jump directly to:
   /<best-matching-prompt> <relevant args>
@@ -60,14 +60,30 @@ First command:
 Useful prompts for your profile:
   - /<prompt1> — <one-line description>
   - /<prompt2> — <one-line description>
+  - /<prompt3> — <one-line description>
 
 Tip: `/route <anything>` always works as the universal entry point.
 ```
+
+For the supported first-run scenarios in issue #39, prefer a direct first command instead of `/route`:
+
+| Capability | Preferred first command |
+| --- | --- |
+| `debugging` | `/triage-error` |
+| `testing-quality` | `/test-plan` |
+| `github-delivery` | `/pr-review` |
+| `release` | `/release-plan` |
+| `brainstorming` | `/brainstorm` |
+| `onboarding` or ambiguous intent | `/route <natural-language goal>` |
+| any other capability not listed here | `/route <natural-language goal>` |
 
 ## Rules
 
 - Ask all 3 questions in **one** message — no multi-step interrogation.
 - Only reference capabilities from `routing/capabilities.yaml` and prompts from `.github/prompts/`.
+- Recommend exactly one first command.
+- Keep optional prompts to three items maximum.
+- Optimise this prompt for the first-run scenarios covered by issue #39: fix a bug, write tests, and review a PR.
 - If the goal is ambiguous, default to `routing` + `/route`.
 - Keep the card concise; no marketing language.
 - If the user provides partial context (e.g. only domain), infer what you can and flag the assumption.

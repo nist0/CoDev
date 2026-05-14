@@ -604,6 +604,7 @@ class TestIntegrationNewAgent:
         result = _run(*CODEV_DEV, "new", "agent", "Integration Test Agent", cwd=str(ROOT))
         assert "integration-test-agent.agent.md" in result.stdout
         assert "dry-run" in result.stdout.lower() or "Dry-run" in result.stdout
+        assert "tools: []" not in result.stdout
 
     def test_dry_run_does_not_create_real_file(self) -> None:
         agent_path = ROOT / ".github" / "agents" / "integration-test-agent.agent.md"

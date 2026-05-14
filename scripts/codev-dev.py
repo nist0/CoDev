@@ -633,7 +633,6 @@ _AGENT_TEMPLATE = """\
 ---
 name: "{name}"
 description: "{description}"
-tools: []
 ---
 
 # {name}

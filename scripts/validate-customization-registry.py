@@ -314,6 +314,10 @@ def validate_structure_contracts(context: ValidationContext) -> None:
 
         agents = frontmatter.get("agents")
         tools = frontmatter.get("tools")
+        if isinstance(tools, list) and not tools:
+            context.add(
+                f"agent uses empty tools override: {display_path(path)} (omit 'tools:' unless the agent explicitly needs tools)"
+            )
         if not isinstance(agents, list) or not agents:
             continue
 

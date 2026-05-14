@@ -43,7 +43,7 @@ codev-overrides/
 
 ### Agents
 
-- Include frontmatter: `name`, `description`, `tools: []`.
+- Include frontmatter: `name`, `description`; omit `tools` unless the agent explicitly needs tools.
 - Define: mission, responsibilities, output format, handoff behavior.
 - Do not duplicate responsibilities already covered by an existing CoDev agent.
 

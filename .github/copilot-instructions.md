@@ -65,7 +65,7 @@ Example:
   - `.github/prompts/new-agent.prompt.md`
   - `.github/prompts/new-skill.prompt.md`
   - `.github/prompts/new-instructions.prompt.md`
-- Default new agents to `tools: []` unless tools are explicitly required.
+- Omit `tools` on new agents unless tools are explicitly required.
 - Keep IDs and naming consistent: short kebab-case IDs (no `engineering.` / `research.` prefix), kebab-case files.
 
 ## 6) Change workflow for framework updates

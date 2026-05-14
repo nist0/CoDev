@@ -73,6 +73,30 @@ def test_validate_structure_contracts_flags_missing_agent_tool_for_subagents(tmp
     assert any("agent declares subagents without agent tool" in error for error in context.errors)
 
 
+def test_validate_structure_contracts_flags_empty_agent_tools(tmp_path: Path, monkeypatch) -> None:
+    agents_dir = tmp_path / "agents"
+    agents_dir.mkdir()
+    (agents_dir / "bad.agent.md").write_text(
+        "---\n"
+        'name: bad-agent\n'
+        'description: "Test agent."\n'
+        "tools: []\n"
+        "---\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(registry, "PROMPTS_DIR", tmp_path / "prompts")
+    monkeypatch.setattr(registry, "AGENTS_DIR", agents_dir)
+    monkeypatch.setattr(registry, "INSTRUCTIONS_DIR", tmp_path / "instructions")
+    (tmp_path / "prompts").mkdir()
+    (tmp_path / "instructions").mkdir()
+
+    context = registry.ValidationContext(errors=[])
+    registry.validate_structure_contracts(context)
+
+    assert any("agent uses empty tools override" in error for error in context.errors)
+
+
 def test_validate_structure_contracts_flags_missing_instruction_apply_to(tmp_path: Path, monkeypatch) -> None:
     instructions_dir = tmp_path / "instructions"
     instructions_dir.mkdir()

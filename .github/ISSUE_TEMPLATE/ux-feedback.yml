@@ -1,0 +1,71 @@
+name: UX feedback
+description: Report whether a contributor flow felt useful, too long, or unclear.
+title: "[ux feedback]: "
+labels:
+  - area:ux
+  - type:feedback
+projects:
+  - nist0/2
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this short form after a contributor flow when you can describe the signal in under a minute.
+
+  - type: dropdown
+    id: flow
+    attributes:
+      label: Which flow were you using?
+      options:
+        - /quickstart
+        - codev-dev guided flow
+        - extension onboarding
+        - contributor docs
+        - PR or delivery workflow
+        - other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: What best describes the outcome?
+      options:
+        - useful
+        - too long
+        - unclear
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Keep it short and concrete.
+      placeholder: The flow was useful because..., or it felt too long at..., or it was unclear when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+      placeholder: I expected one next command, a shorter path, clearer wording, or a different prompt recommendation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Optional evidence
+      description: Add a command, screenshot, or link if it helps explain the friction.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Quick checks
+      options:
+        - label: I confirmed this is UX feedback about a contributor flow, not a request to implement a full feature directly.
+          required: true

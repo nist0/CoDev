@@ -9,8 +9,8 @@ Provides fast, read-safe tooling for CoDev contributors:
 
 Usage:
   python scripts/codev-dev.py test-route "debug kubernetes pod"
-    python scripts/codev-dev.py guide route "debug kubernetes pod"
-    python scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
+  python scripts/codev-dev.py guide route "debug kubernetes pod"
+  python scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
   python scripts/codev-dev.py doctor
   python scripts/codev-dev.py doctor --validators smoke registry
   python scripts/codev-dev.py new agent my-specialist
@@ -58,10 +58,11 @@ DIM    = lambda t: _c("2",  t)   # noqa: E731
 
 def _ensure_utf8_stdout() -> None:
     """Best-effort UTF-8 stdout setup for Windows and wrapped streams."""
-    if not hasattr(sys.stdout, "reconfigure"):
+    reconfigure = getattr(sys.stdout, "reconfigure", None)
+    if not callable(reconfigure):
         return
     try:
-        sys.stdout.reconfigure(encoding="utf-8")
+        reconfigure(encoding="utf-8")
     except (OSError, ValueError):
         return
 

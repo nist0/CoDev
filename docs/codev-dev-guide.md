@@ -48,6 +48,26 @@ instructions.
 Each flow prints exact next commands and a dry-run preview block. Nothing is
 written to disk, and no GitHub publication happens automatically.
 
+## Contributor profiles via `/quickstart`
+
+Issue `#42` adds four ready-to-use contributor profiles that keep first-run requests on onboarding while biasing the generated card toward a stable contribution style.
+
+| Profile | Use when | Designated agent | Prompt sequence | Validation | Rollback |
+| --- | --- | --- | --- | --- | --- |
+| `maintenance` | validator drift, repo hygiene, release or governance upkeep | `Delivery Lead` | `/quickstart` -> `/pr-review` -> `/route <maintenance task>` | `.venv\Scripts\python.exe scripts/validate-customization-registry.py`, `.venv\Scripts\python.exe scripts/validate-readme-registry.py`, `.venv\Scripts\python.exe scripts/validate-markdown-lint.py`, plus route smoke when routing changed | fall back to `/route <task>` if implementation work grows |
+| `fast-feature` | additive prompt, skill, alias, or capability work | `Architect` | `/quickstart` -> `/route <feature request>` -> `/<best-matching prompt>` | targeted tests plus the validators touched by the change | switch to `safe-refactor` when behaviour preservation becomes the main risk |
+| `safe-refactor` | behaviour-preserving cleanup or test-first restructuring | `Architect` | `/quickstart` -> `/test-plan` -> `/route <refactor request>` | regression coverage plus touched validators | narrow to `maintenance` when the change becomes hygiene-only |
+| `doc-only` | README, docs, prompt copy, and instruction wording | `Delivery Lead` | `/quickstart` -> `/doc-lint-fix` -> `/route <docs task>` | `.venv\Scripts\python.exe scripts/validate-markdown-lint.py` and `.venv\Scripts\python.exe scripts/validate-readme-registry.py` when inventory docs change | fall back to `/route <task>` if routing or code changes appear |
+
+Use the explicit phrases below to avoid routing ambiguity:
+
+```text
+/quickstart maintenance contributor profile for validator cleanup
+/quickstart fast-feature contributor profile for a new prompt
+/quickstart safe-refactor contributor profile for route cleanup
+/quickstart doc-only contributor profile for README cleanup
+```
+
 ## Guided extension onboarding
 
 Issue `#43` adds a minimal extension path for contributors who want the shortest safe route from idea to validated asset.

@@ -19,6 +19,9 @@ routing_rules:
       agent: Router
       prompts: ["quickstart"]
       skills: ["canonical-routing"]
+    # `quickstart` also handles named contributor profiles
+    # (`maintenance`, `fast-feature`, `safe-refactor`, `doc-only`)
+    # while keeping onboarding as the single routing entry point.
 
   # -------------------------
   # MCP integration

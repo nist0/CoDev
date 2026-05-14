@@ -97,13 +97,13 @@ def test_validate_structure_contracts_flags_empty_agent_tools(tmp_path: Path, mo
     assert any("agent uses empty tools override" in error for error in context.errors)
 
 
-def test_validate_structure_contracts_flags_missing_instruction_apply_to(tmp_path: Path, monkeypatch) -> None:
+def test_validate_structure_contracts_allows_manual_only_instruction_without_apply_to(tmp_path: Path, monkeypatch) -> None:
     instructions_dir = tmp_path / "instructions"
     instructions_dir.mkdir()
     (instructions_dir / "bad.instructions.md").write_text(
         "---\n"
-        'name: bad-instruction\n'
-        'description: "Test instruction."\n'
+        'name: manual-instruction\n'
+        'description: "Manual only instruction."\n'
         "---\n",
         encoding="utf-8",
     )
@@ -117,4 +117,4 @@ def test_validate_structure_contracts_flags_missing_instruction_apply_to(tmp_pat
     context = registry.ValidationContext(errors=[])
     registry.validate_structure_contracts(context)
 
-    assert any("instruction missing required applyTo" in error for error in context.errors)
+    assert not any("instruction missing required applyTo" in error for error in context.errors)

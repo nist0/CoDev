@@ -552,12 +552,19 @@ class TestGuideCommands:
             "instruction": "/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>",
             "prompt": "/prompt-from-theme theme=<goal> intent=<what the prompt should do>",
         }
+        expected_paths = {
+            "agent": ".github/agents/<id>.agent.md",
+            "skill": ".github/skills/<id>/SKILL.md + examples/README.md",
+            "instruction": ".github/instructions/<name>.instructions.md",
+            "prompt": ".github/prompts/<name>.prompt.md",
+        }
 
         for kind, expected_command in expected_commands.items():
             result = _run(*CODEV_DEV, "guide", "extension", "--kind", kind, cwd=str(ROOT))
             assert result.returncode == 0
             output = result.stdout + result.stderr
             assert expected_command in output
+            assert expected_paths[kind] in output
 
     def test_guide_extension_rejects_unknown_kind(self) -> None:
         result = _run(*CODEV_DEV, "guide", "extension", "--kind", "widget", cwd=str(ROOT))

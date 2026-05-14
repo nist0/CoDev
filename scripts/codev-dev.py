@@ -298,7 +298,7 @@ def cmd_guide_extension(kind: str | None) -> int:
     }
     output_path_map = {
         "agent": ".github/agents/<id>.agent.md",
-        "skill": ".github/skills/<theme>/SKILL.md + examples/README.md",
+        "skill": ".github/skills/<id>/SKILL.md + examples/README.md",
         "instruction": ".github/instructions/<name>.instructions.md",
         "prompt": ".github/prompts/<name>.prompt.md",
     }

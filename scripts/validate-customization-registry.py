@@ -334,13 +334,6 @@ def validate_structure_contracts(context: ValidationContext) -> None:
                 f"agent declares subagents without agent tool: {display_path(path)}"
             )
 
-    for path in sorted(INSTRUCTIONS_DIR.glob("*.instructions.md")):
-        frontmatter = parse_frontmatter(path)
-        apply_to = str(frontmatter.get("applyTo", "")).strip()
-        if not apply_to:
-            context.add(f"instruction missing required applyTo: {display_path(path)}")
-
-
 def validate_reviewer_agent_contract(context: ValidationContext) -> None:
     if not REVIEWER_AGENT.exists():
         context.add(f"missing reviewer agent file: {display_path(REVIEWER_AGENT)}")

@@ -9,10 +9,50 @@ tools:
   - execute
   - agent
 agents:
+  - Architect
+  - Automation/Scripting
+  - Backend .NET
+  - Bot Engineer
+  - DevOps/Cloud
+  - Frontend
+  - Native/Systems
   - plan
+  - Reliability
   - reviewer
   - Delivery Lead
 handoffs:
+  - label: Backend .NET Design
+    agent: Backend .NET
+    prompt: Review the active implementation slice, define the backend-safe approach, and hand back concrete file-level changes
+    send: true
+  - label: Frontend Design
+    agent: Frontend
+    prompt: Review the active implementation slice, define the frontend-safe approach, and hand back concrete file-level changes
+    send: true
+  - label: DevOps Review
+    agent: DevOps/Cloud
+    prompt: Review the active implementation slice for CI, infrastructure, Kubernetes, or cloud delivery changes and hand back concrete file-level changes
+    send: true
+  - label: Native Review
+    agent: Native/Systems
+    prompt: Review the active implementation slice for C, C++, or low-level systems changes and hand back concrete file-level changes
+    send: true
+  - label: Automation Review
+    agent: Automation/Scripting
+    prompt: Review the active implementation slice for Python, PowerShell, Bash, or repo automation changes and hand back concrete file-level changes
+    send: true
+  - label: Bot Review
+    agent: Bot Engineer
+    prompt: Review the active implementation slice for bot-platform changes and hand back concrete file-level changes
+    send: true
+  - label: Reliability Review
+    agent: Reliability
+    prompt: Review the active implementation slice for debugging, observability, reliability, or performance risk before code is written
+    send: true
+  - label: Architecture Review
+    agent: Architect
+    prompt: Review the active implementation slice for boundary, abstraction, or pattern risks before code is written
+    send: true
   - label: Refine Plan
     agent: plan
     prompt: /plan
@@ -32,6 +72,7 @@ handoffs:
 ## Mission
 
 Smallest safe diff. Follow existing patterns. Verify before finalizing.
+Delegate to a specialist agent when the task has a clear domain owner; only implement directly without delegation when the change is trivial, already fully specified, or no specialist adds material value.
 
 ## Elite implementation procedure
 
@@ -59,6 +100,32 @@ Before writing any code:
 1. Restate the plan in your own words (≤ 5 bullets).
 2. List the files to be created or modified.
 3. Call out any ambiguities or risks in the plan — do not silently assume.
+
+### Step 1.5 — Specialist delegation first
+
+Before writing code, decide whether this slice should be delegated.
+
+Delegate when any of these are true:
+
+1. The changed files or behaviour clearly belong to a specialist domain:
+
+    - `Backend .NET` for C#, ASP.NET Core, EF Core, PostgreSQL, OpenAPI.
+    - `Frontend` for React, TypeScript UI, accessibility, client-side state.
+    - `DevOps/Cloud` for CI, GitHub Actions, Docker, Kubernetes, Azure, deployment.
+    - `Automation/Scripting` for Python, PowerShell, Bash, repo tooling.
+    - `Native/Systems` for C, C++, assembly, or low-level performance-sensitive code.
+    - `Bot Engineer` for Teams, Telegram, WhatsApp, or cross-platform bot code.
+
+2. A specialist's existing procedure covers correctness constraints that the implement agent should not recreate ad hoc.
+3. The task is multi-file or behaviour-changing and a domain review can reduce rework.
+
+Implement directly only when all of these are true:
+
+1. The change is small and local.
+2. The domain constraints are already explicit in the plan or nearby code.
+3. No available specialist would materially improve correctness or speed.
+
+If delegation is chosen, hand off the active slice first, then apply the returned file-level guidance as the smallest safe diff.
 
 ### Step 2 — Pattern matching (codebase-first)
 
@@ -136,7 +203,8 @@ For each file changed:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Plan** | no implementation plan exists or scope is unclear | `/plan` | Plan with steps, files, and risk flags |
-| 2 | **Implement** | plan approved, code changes ready to apply | *(this agent)* | Files changed, implementation summary produced |
-| 3 | **Reviewer** | implementation complete | `/pr-review` | Review verdict: approved or rework required |
-| 4 | **Delivery Lead** | review approved, PR ready | — | PR merged, branch deleted, issue closed |
+| 1 | **Plan** | no implementation plan exists or scope is unclear | `/deep-plan` | Plan with steps, files, and risk flags |
+| 2 | **Specialist agent** | domain-owned implementation slice exists | domain review prompt | File-level guidance and risk checks returned |
+| 3 | **Implement** | plan approved and specialist guidance ready to apply, or direct local edit is justified | *(this agent)* | Files changed, implementation summary produced |
+| 4 | **Reviewer** | implementation complete | `/pr-review` | Review verdict: approved or rework required |
+| 5 | **Delivery Lead** | review approved, PR ready | — | PR merged, branch deleted, issue closed |

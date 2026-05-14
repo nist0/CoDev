@@ -542,8 +542,22 @@ class TestGuideCommands:
         result = _run(*CODEV_DEV, "guide", "extension", "--kind", "prompt", cwd=str(ROOT))
         assert result.returncode == 0
         output = result.stdout + result.stderr
-        assert "/prompt-from-theme" in output
+        assert "/prompt-from-theme theme=<goal> intent=<what the prompt should do>" in output
         assert "python scripts/validate-customization-registry.py" in output
+
+    def test_guide_extension_preview_shows_exact_commands_for_all_kinds(self) -> None:
+        expected_commands = {
+            "agent": "/new-agent agentId=<kebab> mission=<text>",
+            "skill": "/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>",
+            "instruction": "/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>",
+            "prompt": "/prompt-from-theme theme=<goal> intent=<what the prompt should do>",
+        }
+
+        for kind, expected_command in expected_commands.items():
+            result = _run(*CODEV_DEV, "guide", "extension", "--kind", kind, cwd=str(ROOT))
+            assert result.returncode == 0
+            output = result.stdout + result.stderr
+            assert expected_command in output
 
     def test_guide_extension_rejects_unknown_kind(self) -> None:
         result = _run(*CODEV_DEV, "guide", "extension", "--kind", "widget", cwd=str(ROOT))

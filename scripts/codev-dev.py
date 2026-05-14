@@ -294,7 +294,7 @@ def cmd_guide_extension(kind: str | None) -> int:
         "agent": "/new-agent agentId=<kebab> mission=<text>",
         "skill": "/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>",
         "instruction": "/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>",
-        "prompt": "/prompt-from-theme theme=<goal> capability=<id> domain=<id>",
+        "prompt": "/prompt-from-theme theme=<goal> intent=<what the prompt should do>",
     }
     output_path_map = {
         "agent": ".github/agents/<id>.agent.md",

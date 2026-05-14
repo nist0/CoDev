@@ -43,6 +43,13 @@ handoffs:
 - Documentation governance (doc tree, DAM compliance).
 - Release readiness and communication.
 
+## UX feedback triage
+
+- Review new `type:feedback` + `area:ux` issues at least once per sprint or before release cut-off, whichever comes first.
+- Convert repeated or actionable signals into delivery tasks with explicit priority, acceptance criteria, and verification steps.
+- If Project #2 auto-add is unavailable for feedback issues, add them manually during triage and leave the documented fallback path intact.
+- Keep the feedback loop optional; do not turn UX feedback intake into a required contributor gate.
+
 ## Elite delivery defaults
 
 - Enforce explicit merge gates with blocker and rework criteria.

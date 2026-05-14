@@ -15,6 +15,8 @@ Before creating any file, look up its type in this table and use the mapped path
 | --- | --- | --- |
 | Instruction files | `.github/instructions/<theme>.instructions.md` | One file per theme; see Naming below |
 | Agent files | `.github/agents/<kebab-id>.agent.md` | Lowercase kebab-case |
+| GitHub issue forms | `.github/ISSUE_TEMPLATE/<name>.yml` | Lowercase kebab-case issue form files |
+| GitHub issue template config | `.github/ISSUE_TEMPLATE/config.yml` | Repository-wide issue chooser config |
 | Prompt files | `.github/prompts/<kebab-id>.prompt.md` | Lowercase kebab-case |
 | Skill files | `.github/skills/<theme>/SKILL.md` | One folder per skill; always named `SKILL.md` |
 | Skill examples | `.github/skills/<theme>/examples/README.md` | Mandatory for every new skill |

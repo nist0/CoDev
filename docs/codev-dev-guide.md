@@ -48,6 +48,31 @@ instructions.
 Each flow prints exact next commands and a dry-run preview block. Nothing is
 written to disk, and no GitHub publication happens automatically.
 
+## UX feedback loop
+
+Issue `#44` adds a lightweight feedback path for contributors who complete a key flow and want to report that it was useful, too long, or unclear without opening a full delivery issue.
+
+Use the `UX feedback` issue form after workflows such as:
+
+- `/quickstart`
+- `guide route`, `guide issue`, `guide test-plan`, or `guide pr-checklist`
+- extension onboarding guidance
+
+Expected behavior:
+
+- the form lives at `.github/ISSUE_TEMPLATE/ux-feedback.yml`
+- submitted feedback is labeled `area:ux` and `type:feedback`
+- feedback should land on Project `#2` in `Todo`, or be added manually during triage if auto-add is unavailable
+
+The path stays optional and should take under 60 seconds for a simple report.
+
+What to include in one pass:
+
+- which flow you used
+- whether it felt useful, too long, or unclear
+- what you expected instead
+- optional evidence such as a command, screenshot, or link
+
 ## Contributor profiles via `/quickstart`
 
 Issue `#42` adds four ready-to-use contributor profiles that keep first-run requests on onboarding while biasing the generated card toward a stable contribution style.

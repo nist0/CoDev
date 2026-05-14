@@ -255,6 +255,19 @@ Longer references:
 - [Minimal prompt workflow](.github/skills/prompt-authoring/SKILL.md#minimal-extension-workflow)
 - [Interactive preview](docs/codev-dev-guide.md#guided-extension-onboarding)
 
+### UX feedback path
+
+After you complete a key contributor flow, use the `UX feedback` issue form if the path felt useful, too long, or unclear.
+
+What to expect:
+
+- one short GitHub-native issue form at `.github/ISSUE_TEMPLATE/ux-feedback.yml`
+- automatic labels `area:ux` and `type:feedback`
+- Project `#2` intake to `Todo` when GitHub project automation is available
+- documented manual fallback during triage if project auto-add does not fire reliably
+
+Use this path after flows such as `/quickstart`, guided `codev-dev` commands, and extension onboarding when you can describe the friction in under a minute.
+
 ### Local pre-commit hooks (recommended)
 
 Install pre-commit hooks to catch routing errors before every push — no waiting for CI:

@@ -5,6 +5,43 @@ Spike A tooling initiative (issues #118, #123).
 
 ---
 
+## `scripts/benchmark-similar-projects.py`
+
+Builds a competitive benchmark against similar projects with deterministic output.
+Supports both API-driven discovery (`gh`) and offline/manual discovery (`--input-file`),
+then applies a weighted 0-100 rubric and emits Markdown plus JSON reports.
+
+### benchmark flags
+
+| Flag | Effect |
+| --- | --- |
+| `--mode auto` | Prefer manual input if present, else try `gh`, else fallback to baseline dataset |
+| `--mode gh` | Force GitHub discovery with `gh search repos` |
+| `--mode manual` | Force manual file input (`--input-file`) |
+| `--mode baseline` | Force deterministic baseline dataset |
+| `--top-count N` | Keep top N projects after discovery |
+| `--clone-dir external` | Target directory for shallow clones |
+| `--markdown-output <path>` | Markdown report path |
+| `--json-output <path>` | JSON report path |
+| `--input-file <path>` | Offline input data file (`.json` or `.csv`) |
+| `--dry-run` | Do not clone or write files |
+| `--no-clone` | Skip cloning and generate reports only |
+
+### benchmark usage
+
+```bash
+# Deterministic and offline
+./.venv/bin/python scripts/benchmark-similar-projects.py --mode baseline --dry-run --top-count 10
+
+# Manual/offline mode with explicit input file
+./.venv/bin/python scripts/benchmark-similar-projects.py --mode manual --input-file temp/benchmark-input.json --dry-run
+
+# API mode with gh CLI
+./.venv/bin/python scripts/benchmark-similar-projects.py --mode gh --top-count 10 --clone-dir external
+```
+
+---
+
 ## `scripts/validate-autofix.py`
 
 Detects and optionally fixes three routing error classes in the YAML files. Safe

@@ -223,10 +223,10 @@ Use the shortest safe path below when adding or customizing one CoDev asset with
 3. Run the local validators before PR review:
 
 ```text
-python scripts/validate-customization-registry.py
-python scripts/validate-readme-registry.py
-python scripts/validate-markdown-lint.py
-python scripts/validate-route-smoke.py   # only when routing changed
+./.venv/bin/python scripts/validate-customization-registry.py
+./.venv/bin/python scripts/validate-readme-registry.py
+./.venv/bin/python scripts/validate-markdown-lint.py
+./.venv/bin/python scripts/validate-route-smoke.py   # only when routing changed
 ```
 
 Longer references:

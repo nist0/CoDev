@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import importlib.util
 import io
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -543,7 +544,8 @@ class TestGuideCommands:
         assert result.returncode == 0
         output = result.stdout + result.stderr
         assert "/prompt-from-theme theme=<goal> intent=<what the prompt should do>" in output
-        assert "python scripts/validate-customization-registry.py" in output
+        expected_python = ".venv\\Scripts\\python.exe" if os.name == "nt" else "./.venv/bin/python"
+        assert f"{expected_python} scripts/validate-customization-registry.py" in output
 
     def test_guide_extension_preview_shows_exact_commands_for_all_kinds(self) -> None:
         expected_commands = {
@@ -558,6 +560,7 @@ class TestGuideCommands:
             "instruction": ".github/instructions/<name>.instructions.md",
             "prompt": ".github/prompts/<name>.prompt.md",
         }
+        expected_python = ".venv\\Scripts\\python.exe" if os.name == "nt" else "./.venv/bin/python"
 
         for kind, expected_command in expected_commands.items():
             result = _run(*CODEV_DEV, "guide", "extension", "--kind", kind, cwd=str(ROOT))
@@ -565,11 +568,22 @@ class TestGuideCommands:
             output = result.stdout + result.stderr
             assert expected_command in output
             assert expected_paths[kind] in output
+            assert f"{expected_python} scripts/validate-customization-registry.py" in output
 
     def test_guide_extension_rejects_unknown_kind(self) -> None:
         result = _run(*CODEV_DEV, "guide", "extension", "--kind", "widget", cwd=str(ROOT))
         assert result.returncode != 0
         assert "--kind must be one of" in (result.stdout + result.stderr)
+
+    def test_guide_help_lists_extension_flow(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "--help", cwd=str(ROOT))
+        assert result.returncode == 0
+        assert "extension" in (result.stdout + result.stderr)
+
+    def test_guide_without_flow_mentions_extension(self) -> None:
+        result = _run(*CODEV_DEV, "guide", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "route, extension, issue, test-plan, pr-checklist" in (result.stdout + result.stderr)
 
     def test_guide_test_plan_preview_contains_ci_gate(self) -> None:
         result = _run(

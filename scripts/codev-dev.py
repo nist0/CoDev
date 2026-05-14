@@ -255,6 +255,12 @@ def _shell_quote(value: str) -> str:
     return f'"{escaped}"'
 
 
+def _repo_python_command() -> str:
+    if sys.platform.startswith("win"):
+        return ".venv\\Scripts\\python.exe"
+    return "./.venv/bin/python"
+
+
 def cmd_guide_route(request: str | None, routing: dict[str, Any]) -> int:
     if not request or not request.strip():
         print(f"  {YELLOW('WARN')} Please provide a request to route.", file=sys.stderr)
@@ -290,6 +296,7 @@ def cmd_guide_route(request: str | None, routing: dict[str, Any]) -> int:
 
 def cmd_guide_extension(kind: str | None) -> int:
     normalized_kind = (kind or "agent").strip().lower()
+    python_command = _repo_python_command()
     prompt_map = {
         "agent": "/new-agent agentId=<kebab> mission=<text>",
         "skill": "/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>",
@@ -317,11 +324,11 @@ def cmd_guide_extension(kind: str | None) -> int:
         "2. Confirm the generated file lands in the expected path:",
         f"   {output_path_map[normalized_kind]}",
         "3. Run the structural validators before opening a PR:",
-        "   python scripts/validate-customization-registry.py",
-        "   python scripts/validate-readme-registry.py",
-        "   python scripts/validate-markdown-lint.py",
+        f"   {python_command} scripts/validate-customization-registry.py",
+        f"   {python_command} scripts/validate-readme-registry.py",
+        f"   {python_command} scripts/validate-markdown-lint.py",
         "4. If the asset changes routing behavior, also run:",
-        "   python scripts/validate-route-smoke.py",
+        f"   {python_command} scripts/validate-route-smoke.py",
         "5. Open the relevant docs for the longer reference path:",
         "   docs/codev-dev-guide.md",
         "   docs/submodule-guide.md",
@@ -768,7 +775,7 @@ def build_parser() -> argparse.ArgumentParser:
     guide = sub.add_parser(
         "guide",
         help="Preview guided contributor flows with exact next commands.",
-        description="Show preview-first contributor workflows for route, issues, test plans, and PR checklists.",
+        description="Show preview-first contributor workflows for route, extension onboarding, issues, test plans, and PR checklists.",
     )
     guide_sub = guide.add_subparsers(dest="guide_type", metavar="FLOW")
 
@@ -931,7 +938,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "guide":
         if args.guide_type is None:
-            print("  WARN Specify guide flow: route, issue, test-plan, pr-checklist", file=sys.stderr)
+            print("  WARN Specify guide flow: route, extension, issue, test-plan, pr-checklist", file=sys.stderr)
             return 1
         if args.guide_type == "route":
             return cmd_guide_route(args.request, routing)

@@ -467,6 +467,27 @@ DOCTOR_VALIDATORS: dict[str, str] = {
     "coverage": "validate-routing-coverage.py",
 }
 
+DOCTOR_RECOVERY_HINTS: dict[str, list[str]] = {
+    "smoke": [
+        'Replay a phrase with: python scripts/codev-dev.py test-route "debug kubernetes pod"',
+        "Review routing/aliases.yaml, routing/matrix.yaml, and routing/route-smoke-tests.yaml.",
+    ],
+    "autofix": [
+        "Review the reported routing mismatch and then re-run: python scripts/validate-autofix.py",
+    ],
+    "registry": [
+        "Review .github/ agents/prompts/skills/instructions plus routing/*.yaml for the referenced contract mismatch.",
+        "Re-run: python scripts/validate-customization-registry.py",
+    ],
+    "readme": [
+        "Review README.md plus the referenced asset inventory entries, then re-run: python scripts/validate-readme-registry.py",
+    ],
+    "coverage": [
+        "Review routing/matrix.yaml and routing/domains.yaml for uncovered capability/domain pairs.",
+        "Re-run: python scripts/validate-routing-coverage.py",
+    ],
+}
+
 
 def _run_validator(name: str) -> tuple[bool, str, str, float]:
     """Run one validator. Returns (passed, stdout, stderr, elapsed_seconds)."""
@@ -527,6 +548,8 @@ def cmd_doctor(validators: list[str]) -> int:
             failed.append(name)
             for line in (stdout + stderr).strip().splitlines()[:3]:
                 print(f"       {DIM(line)}")
+            for hint in DOCTOR_RECOVERY_HINTS.get(name, []):
+                print(f"       {DIM(f'Next: {hint}')}")
         else:
             passed_count += 1
 
@@ -609,6 +632,8 @@ def cmd_new_agent(
     print(f"  {BOLD('Slug')}         {slug}")
     print()
     print(f"  {BOLD('Preview')} {'(dry-run — nothing written)' if not write else ''}")
+    if write:
+        print(f"  {BOLD('Execution')}    write requested — review the preview above before file creation continues")
     print()
     for line in content.splitlines():
         print(f"    {DIM(line)}")

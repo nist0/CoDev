@@ -50,6 +50,29 @@ class ValidationContext:
         self.errors.append(message)
 
 
+def build_recovery_actions(errors: list[str]) -> list[str]:
+    actions: list[str] = []
+    if any(
+        marker in error
+        for error in errors
+        for marker in ("frontmatter", "reviewer agent", "missing SKILL.md")
+    ):
+        actions.append(
+            "Review .github/agents/, .github/prompts/, .github/skills/*/SKILL.md, and .github/instructions/ for the referenced frontmatter or contract issue."
+        )
+    if any(
+        marker in error
+        for error in errors
+        for marker in ("routing rule", "capability references", "aliases references")
+    ):
+        actions.append(
+            "Review routing/matrix.yaml, routing/capabilities.yaml, routing/aliases.yaml, and routing/domains.yaml for the referenced ID mismatch."
+        )
+    actions.append("Re-run: python scripts/validate-customization-registry.py")
+    actions.append("Optional overview: python scripts/codev-dev.py doctor --validators registry")
+    return actions
+
+
 def parse_frontmatter(path: Path) -> dict[str, Any]:
     text = path.read_text(encoding="utf-8", errors="replace")
     match = FRONTMATTER_PATTERN.match(text)
@@ -301,6 +324,9 @@ def main() -> int:
         print("Customization registry validation failed:")
         for error in context.errors:
             print(f" - {error}")
+        print("Next actions:")
+        for action in build_recovery_actions(context.errors):
+            print(f" - {action}")
         return 1
 
     print("Customization registry validation passed.")

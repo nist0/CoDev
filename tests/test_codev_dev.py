@@ -38,11 +38,17 @@ SCRIPTS_DIR = ROOT / "scripts"
 def _load_module(name: str, path: Path) -> Any:
     spec = importlib.util.spec_from_file_location(name, path)
     mod = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
+    sys.modules[name] = mod
     spec.loader.exec_module(mod)  # type: ignore[union-attr]
     return mod
 
 
 codev_dev = _load_module("codev_dev", SCRIPTS_DIR / "codev-dev.py")
+validate_route_smoke = _load_module("validate_route_smoke", SCRIPTS_DIR / "validate-route-smoke.py")
+validate_customization_registry = _load_module(
+    "validate_customization_registry",
+    SCRIPTS_DIR / "validate-customization-registry.py",
+)
 
 
 # ---------------------------------------------------------------------------
@@ -474,6 +480,23 @@ class TestIntegrationDoctor:
         """Doctor must call validate-autofix.py in detect-only mode (no --fix flag)."""
         result = _run(*CODEV_DEV, "doctor", "--validators", "autofix", cwd=str(ROOT))
         assert result.returncode in (0, 1)
+
+
+class TestAssistiveGuardrailHelpers:
+    def test_route_smoke_recovery_actions_include_command_and_file(self) -> None:
+        actions = validate_route_smoke.build_recovery_actions(
+            ["[case 1] no capability matched for request='add a new agent'"],
+            ["add a new agent"],
+        )
+        assert any("python scripts/codev-dev.py test-route" in action for action in actions)
+        assert any("routing/aliases.yaml" in action for action in actions)
+
+    def test_registry_recovery_actions_include_command_and_files(self) -> None:
+        actions = validate_customization_registry.build_recovery_actions(
+            ["routing rule #1 references unknown agent: Missing Agent"]
+        )
+        assert any("python scripts/validate-customization-registry.py" in action for action in actions)
+        assert any("routing/matrix.yaml" in action for action in actions)
 
 
 class TestGuideCommands:

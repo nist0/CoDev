@@ -88,6 +88,25 @@ def assert_expected(
     return errors
 
 
+def build_recovery_actions(errors: list[str], failing_requests: list[str]) -> list[str]:
+    actions: list[str] = []
+    if any("no capability matched" in error for error in errors):
+        if failing_requests:
+            actions.append(
+                "Replay the failing phrase with: "
+                f'python scripts/codev-dev.py test-route "{failing_requests[0]}"'
+            )
+        actions.append(
+            "Review routing/aliases.yaml and routing/route-smoke-tests.yaml for the missing alias coverage."
+        )
+    if any("mismatch on" in error for error in errors):
+        actions.append(
+            "Review routing/matrix.yaml and routing/route-smoke-tests.yaml for the mismatched capability, domain, or suggestion."
+        )
+    actions.append("Re-run: python scripts/validate-route-smoke.py")
+    return actions
+
+
 def main() -> int:
     capabilities_doc = load_yaml(ROUTING_DIR / "capabilities.yaml")
     aliases_doc = load_yaml(ROUTING_DIR / "aliases.yaml")
@@ -102,6 +121,7 @@ def main() -> int:
     cases = smoke_doc.get("cases", [])
 
     errors: list[str] = []
+    failing_requests: list[str] = []
 
     for index, case in enumerate(cases, start=1):
         request = str(case["request"])
@@ -112,6 +132,7 @@ def main() -> int:
 
         if capability is None:
             errors.append(f"[case {index}] no capability matched for request={request!r}")
+            failing_requests.append(request)
             continue
 
         suggest = resolve_route(capability, domain, routing_rules, capabilities)
@@ -124,13 +145,19 @@ def main() -> int:
             "skills": suggest.get("skills", []),
         }
 
-        errors.extend(assert_expected(actual, expected, index, request))
+        case_errors = assert_expected(actual, expected, index, request)
+        if case_errors:
+            failing_requests.append(request)
+        errors.extend(case_errors)
 
     total_cases = len(cases)
     if errors:
         print(f"Route smoke validation failed: {len(errors)} issue(s) across {total_cases} case(s).")
         for error in errors:
             print(f" - {error}")
+        print("Next actions:")
+        for action in build_recovery_actions(errors, failing_requests):
+            print(f" - {action}")
         return 1
 
     print(f"Route smoke validation passed: {total_cases} case(s).")

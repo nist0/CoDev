@@ -1,21 +1,48 @@
 # codev-dev contributor guide
 
 `scripts/codev-dev.py` is the interactive developer CLI for CoDev. It provides
-three commands that cover the most common contributor workflows — routing
-exploration, repository health, and agent scaffolding — with zero risk of
-accidental side effects.
+guided contributor flows, routing exploration, repository health checks, and
+agent scaffolding with zero risk of accidental side effects unless the user
+chooses a later write or publish step outside the CLI preview.
 
 ## Commands at a glance
 
 | Command | What it does | Writes files? |
 | --- | --- | --- |
 | `test-route "<phrase>"` | Show routing result for any phrase | Never |
+| `guide route "<request>"` | Preview the best next routing command for a request | Never |
+| `guide issue --title ... --summary ...` | Preview a governance-compliant issue body | Never |
+| `guide test-plan --what ... --why ...` | Preview a test-plan block with CI gate | Never |
+| `guide pr-checklist --issue N` | Preview a PR checklist body | Never |
 | `test-route --list` | List all registered aliases by capability | Never |
 | `doctor` | Check required files and run all validators | Never |
 | `new agent <name>` | Scaffold a new agent file (dry-run by default) | Only with `--write` |
 
-> `test-route` and `doctor` are **100% read-only**. `new agent` dry-runs by
-> default and **never overwrites** an existing file.
+> `test-route`, `guide`, and `doctor` are **100% read-only**. `new agent`
+> dry-runs by default and **never overwrites** an existing file.
+
+## Guided contributor flows
+
+Issue `#40` adds preview-first workflows for the contributor tasks that were
+previously spread across issue templates, testing guidance, and PR review
+instructions.
+
+```bash
+# Route selection
+.venv\Scripts\python.exe scripts/codev-dev.py guide route "debug kubernetes pod"
+
+# Issue preparation
+.venv\Scripts\python.exe scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
+
+# Test-plan preparation
+.venv\Scripts\python.exe scripts/codev-dev.py guide test-plan --what "guided route flow" --why "Contributors need exact next commands"
+
+# PR checklist preparation
+.venv\Scripts\python.exe scripts/codev-dev.py guide pr-checklist --issue 40
+```
+
+Each flow prints exact next commands and a dry-run preview block. Nothing is
+written to disk, and no GitHub publication happens automatically.
 
 ---
 
@@ -30,7 +57,7 @@ and make a first routing contribution.
 read aliases.yaml → read domains.yaml → read matrix.yaml → open each agent
 file → run 4 validators separately → cross-reference results manually.
 
-**After `codev-dev`** (4 commands):
+**After `codev-dev`** (5 commands):
 
 ```bash
 # 1. Health check — is the repo in a clean state?
@@ -50,13 +77,17 @@ file → run 4 validators separately → cross-reference results manually.
 #    Prompts      /k8s-triage  /helm-triage
 #    Skills       kubernetes  aks  helm  logs-alerts
 
-# 4. If you want to add a new agent, preview it first
+# 4. If you need to open a delivery issue, preview the body first
+.venv\Scripts\python.exe scripts/codev-dev.py guide issue --title "Improve onboarding copy" --summary "Prepare an issue body before opening GitHub"
+#    Prints a complete issue body preview and the exact gh issue create command
+
+# 5. If you want to add a new agent, preview it first
 ./.venv/bin/python scripts/codev-dev.py new agent my-agent
 #    Prints a full dry-run preview — nothing is written
 #    Add --write only when you are satisfied with the output
 ```
 
-**Step count**: 15 → 4 commands. Target (≤ 5) met. ✅
+**Step count**: 15 -> 5 commands. Target (<= 5) met.
 
 ---
 
@@ -82,16 +113,20 @@ specialist agent.
 #    ❌ No capability matched — gap identified
 #    Tip: run test-route --list to see all aliases
 
-# 4. Scaffold the missing agent
+# 4. Prepare a focused test plan before editing
+.venv\Scripts\python.exe scripts/codev-dev.py guide test-plan --what "routing alias expansion" --why "Need targeted regression coverage before modifying aliases"
+#    Prints a reusable test-plan block with CI command
+
+# 5. Scaffold the missing agent
 ./.venv/bin/python scripts/codev-dev.py new agent observability-specialist
 #    Prints full .agent.md preview — nothing written
 
-# 5. Write when ready
+# 6. Write when ready
 ./.venv/bin/python scripts/codev-dev.py new agent observability-specialist --write
 #    Creates .github/agents/observability-specialist.agent.md
 ```
 
-**Step count**: 5 commands. Target (≤ 5) met. ✅
+**Step count**: 6 commands. This path adds one explicit test-planning step before writing.
 
 ---
 
@@ -144,5 +179,5 @@ Smoke tests and registry validator pass after the fix (37/37 smoke cases). ✅
 
 ```bash
 .venv\Scripts\python.exe -m pytest tests/test_codev_dev.py -v
-# 67 passed in ~13 sec
+# 78 passed in ~36 sec
 ```

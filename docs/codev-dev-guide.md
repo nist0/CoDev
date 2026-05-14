@@ -44,6 +44,57 @@ instructions.
 Each flow prints exact next commands and a dry-run preview block. Nothing is
 written to disk, and no GitHub publication happens automatically.
 
+## Assistive guardrails
+
+Issue `#41` makes validator and CLI failures more actionable without weakening
+the underlying checks.
+
+### Before and after: route smoke failure
+
+Before:
+
+```text
+Route smoke validation failed: 1 issue(s) across 37 case(s).
+ - [case 3] no capability matched for request='add a new agent'
+```
+
+After:
+
+```text
+Route smoke validation failed: 1 issue(s) across 37 case(s).
+ - [case 3] no capability matched for request='add a new agent'
+Next actions:
+ - Replay the failing phrase with: python scripts/codev-dev.py test-route "add a new agent"
+ - Review routing/aliases.yaml and routing/route-smoke-tests.yaml for the missing alias coverage.
+ - Re-run: python scripts/validate-route-smoke.py
+```
+
+### Before and after: customization registry failure
+
+Before:
+
+```text
+Customization registry validation failed:
+ - routing rule #7 references unknown agent: Missing Agent
+```
+
+After:
+
+```text
+Customization registry validation failed:
+ - routing rule #7 references unknown agent: Missing Agent
+Next actions:
+ - Review routing/matrix.yaml, routing/capabilities.yaml, routing/aliases.yaml, and routing/domains.yaml for the referenced ID mismatch.
+ - Re-run: python scripts/validate-customization-registry.py
+ - Optional overview: python scripts/codev-dev.py doctor --validators registry
+```
+
+### Write-capable preview guardrail
+
+`new agent --write` still prints the full generated file preview before the
+write happens, and now labels that execution mode explicitly so the last step is
+obvious before any file is created.
+
 ---
 
 ## Persona walkthroughs

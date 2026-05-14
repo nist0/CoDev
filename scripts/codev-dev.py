@@ -2,12 +2,15 @@
 codev-dev — CoDev interactive developer CLI.
 
 Provides fast, read-safe tooling for CoDev contributors:
-  test-route  : run the routing engine on a phrase and explain the result
-  doctor      : health-check the repository (read-only, calls all validators)
-  new agent   : scaffold a new agent file (dry-run by default, --write to persist)
+    test-route  : run the routing engine on a phrase and explain the result
+    guide       : preview guided contributor flows with exact next commands
+    doctor      : health-check the repository (read-only, calls all validators)
+    new agent   : scaffold a new agent file (dry-run by default, --write to persist)
 
 Usage:
   python scripts/codev-dev.py test-route "debug kubernetes pod"
+    python scripts/codev-dev.py guide route "debug kubernetes pod"
+    python scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
   python scripts/codev-dev.py doctor
   python scripts/codev-dev.py doctor --validators smoke registry
   python scripts/codev-dev.py new agent my-specialist
@@ -51,6 +54,16 @@ YELLOW = lambda t: _c("93", t)   # noqa: E731
 CYAN   = lambda t: _c("96", t)   # noqa: E731
 BOLD   = lambda t: _c("1",  t)   # noqa: E731
 DIM    = lambda t: _c("2",  t)   # noqa: E731
+
+
+def _ensure_utf8_stdout() -> None:
+    """Best-effort UTF-8 stdout setup for Windows and wrapped streams."""
+    if not hasattr(sys.stdout, "reconfigure"):
+        return
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except (OSError, ValueError):
+        return
 
 
 # ---------------------------------------------------------------------------
@@ -214,6 +227,215 @@ def cmd_test_route(phrase: str, routing: dict[str, Any]) -> int:
     else:
         print(f"  {BOLD('Skills')}       {DIM('none')}")
 
+    print()
+    return 0
+
+
+# ---------------------------------------------------------------------------
+# command: guide
+# ---------------------------------------------------------------------------
+
+
+def _print_next_command(command: str) -> None:
+    print(f"  {BOLD('Next command')} {command}")
+
+
+def _print_preview_block(title: str, lines: list[str]) -> None:
+    print()
+    print(f"  {BOLD(title)}")
+    print()
+    for line in lines:
+        print(f"    {line}")
+
+
+def _shell_quote(value: str) -> str:
+    escaped = value.replace('"', '\\"')
+    return f'"{escaped}"'
+
+
+def cmd_guide_route(request: str | None, routing: dict[str, Any]) -> int:
+    if not request or not request.strip():
+        print(f"  {YELLOW('WARN')} Please provide a request to route.", file=sys.stderr)
+        print(
+            "       Example: python scripts/codev-dev.py guide route \"debug kubernetes pod\"",
+            file=sys.stderr,
+        )
+        return 1
+
+    normalized_request = request.strip()
+    result = route(normalized_request, routing)
+
+    print()
+    print(BOLD("  guide: route"))
+    print()
+    print(f"  {BOLD('Request')}      {normalized_request}")
+
+    if result["ok"]:
+        _print_next_command(f"/route {normalized_request}")
+        print(f"  {BOLD('Capability')}   {result['capability']}")
+        print(f"  {BOLD('Domain')}       {result['domain'] or 'unknown'}")
+        print(f"  {BOLD('Agent')}        {result['agent'] or 'none'}")
+        if result["prompts"]:
+            print(f"  {BOLD('Prompts')}      {' '.join(f'/{prompt}' for prompt in result['prompts'])}")
+    else:
+        _print_next_command("/quickstart")
+        print(f"  {BOLD('Why')}          {result['error']}")
+        print(f"  {BOLD('Fallback')}     Use /quickstart to narrow role, domain, and goal first.")
+
+    print()
+    return 0 if result["ok"] else 1
+
+
+def cmd_guide_issue(
+    title: str | None,
+    summary: str | None,
+    files: list[str],
+    acceptance: list[str],
+    verification: list[str],
+) -> int:
+    if not title or not title.strip() or not summary or not summary.strip():
+        print(f"  {YELLOW('WARN')} --title and --summary are required.", file=sys.stderr)
+        print(
+            "       Example: python scripts/codev-dev.py guide issue --title \"Add guided CLI flow\" --summary \"Help contributors prepare issue bodies\"",
+            file=sys.stderr,
+        )
+        return 1
+
+    normalized_title = title.strip()
+    normalized_summary = summary.strip()
+    issue_slug = re.sub(r"[^a-z0-9]+", "-", normalized_title.lower()).strip("-") or "new-issue"
+    issue_title = f"enh: {normalized_title}"
+    body_lines = [
+        "## Summary",
+        normalized_summary,
+        "",
+        "## Technical approach",
+        "- Preview-first contributor flow through scripts/codev-dev.py.",
+        "- Keep guided commands read-safe unless the user explicitly writes/publishes later.",
+        "",
+        "## Files to modify",
+    ]
+    if files:
+        body_lines.extend(f"- `{path}` -- update for this contributor workflow" for path in files)
+    else:
+        body_lines.append("- `scripts/codev-dev.py` -- implement the guided flow")
+        body_lines.append("- `tests/test_codev_dev.py` -- add focused coverage")
+    body_lines.extend(
+        [
+            "",
+            "## Sub-tasks",
+            "- [ ] Implement the CLI guidance flow",
+            "- [ ] Add regression coverage",
+            "- [ ] Update contributor docs",
+            "",
+            "## Acceptance criteria",
+        ]
+    )
+    if acceptance:
+        body_lines.extend(f"- [ ] {item}" for item in acceptance)
+    else:
+        body_lines.append("- [ ] Preview output shows exact next commands")
+        body_lines.append("- [ ] Incomplete input returns actionable guidance")
+    body_lines.extend(["", "## Verification steps"])
+    if verification:
+        body_lines.extend(f"1. {step}" for step in verification)
+    else:
+        body_lines.append("1. python -m pytest tests/test_codev_dev.py -q")
+    body_lines.extend(["", "## Progress log", "- Created from codev-dev guide issue preview."])
+
+    print()
+    print(BOLD("  guide: issue"))
+    print()
+    print(f"  {BOLD('Issue title')}   {issue_title}")
+    _print_next_command(
+        "gh issue create --title "
+        f"{_shell_quote(issue_title)} --body-file temp/{issue_slug}.md"
+    )
+    _print_preview_block("Preview body", body_lines)
+    print()
+    return 0
+
+
+def cmd_guide_test_plan(
+    what: str | None,
+    why: str | None,
+    unit_items: list[str],
+    integration_items: list[str],
+    manual_items: list[str],
+    not_tested_items: list[str],
+) -> int:
+    if not what or not what.strip() or not why or not why.strip():
+        print(f"  {YELLOW('WARN')} --what and --why are required.", file=sys.stderr)
+        print(
+            "       Example: python scripts/codev-dev.py guide test-plan --what \"guided route flow\" --why \"Contributors need exact next commands\"",
+            file=sys.stderr,
+        )
+        return 1
+
+    unit_lines = unit_items or ["parser accepts the guided flow arguments", "happy path preview renders exact next commands"]
+    integration_lines = integration_items or ["subprocess invocation returns preview-only output", "missing input exits non-zero with actionable guidance"]
+    manual_lines = manual_items or ["spot-check the suggested command text against the intended workflow"]
+    not_tested_lines = not_tested_items or ["publishing to GitHub -- preview only in this flow"]
+
+    preview_lines = [
+        f"## Test plan -- {what.strip()}",
+        "",
+        f"**What**: {what.strip()}",
+        f"**Why**: {why.strip()}",
+        "**How**:",
+        f"- Unit: {'; '.join(unit_lines)}",
+        f"- Integration: {'; '.join(integration_lines)}",
+        f"- E2E / manual: {'; '.join(manual_lines)}",
+        f"**Not tested**: {'; '.join(not_tested_lines)}",
+        "**CI gate**: `python -m pytest tests/test_codev_dev.py -q` exits 0",
+    ]
+
+    print()
+    print(BOLD("  guide: test-plan"))
+    print()
+    _print_next_command("python -m pytest tests/test_codev_dev.py -q")
+    _print_preview_block("Preview test plan", preview_lines)
+    print()
+    return 0
+
+
+def cmd_guide_pr_checklist(
+    issue: str | None,
+    verification: list[str],
+    risks: list[str],
+) -> int:
+    if not issue or not issue.strip():
+        print(f"  {YELLOW('WARN')} --issue is required.", file=sys.stderr)
+        print(
+            "       Example: python scripts/codev-dev.py guide pr-checklist --issue 40",
+            file=sys.stderr,
+        )
+        return 1
+
+    verification_items = verification or [
+        "python -m pytest tests/test_codev_dev.py -q",
+        "python scripts/validate-markdown-lint.py",
+    ]
+    risk_items = risks or [
+        "CLI preview text drifts from actual repository workflow -- mitigation: keep tests on exact command strings",
+    ]
+    preview_lines = [
+        f"Closes #{issue.strip()}",
+        "",
+        "## Summary",
+        "- Add guided contributor CLI flows with preview-first output.",
+        "",
+        "## Verification",
+    ]
+    preview_lines.extend(f"- {item}" for item in verification_items)
+    preview_lines.extend(["", "## Risk notes"])
+    preview_lines.extend(f"- {item}" for item in risk_items)
+
+    print()
+    print(BOLD("  guide: pr-checklist"))
+    print()
+    _print_next_command(f"gh pr create --fill --body-file temp/pr-{issue.strip()}.md")
+    _print_preview_block("Preview PR checklist", preview_lines)
     print()
     return 0
 
@@ -467,6 +689,91 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
 
+    # --- guide ---
+    guide = sub.add_parser(
+        "guide",
+        help="Preview guided contributor flows with exact next commands.",
+        description="Show preview-first contributor workflows for route, issues, test plans, and PR checklists.",
+    )
+    guide_sub = guide.add_subparsers(dest="guide_type", metavar="FLOW")
+
+    guide_route = guide_sub.add_parser(
+        "route",
+        help="Preview the best next routing command for a request.",
+    )
+    guide_route.add_argument(
+        "request",
+        nargs="?",
+        help="Free-form request to route.",
+    )
+
+    guide_issue = guide_sub.add_parser(
+        "issue",
+        help="Preview a governance-compliant issue body.",
+    )
+    guide_issue.add_argument("--title", help="Short issue title without the enh: prefix.")
+    guide_issue.add_argument("--summary", help="Why this work is needed.")
+    guide_issue.add_argument(
+        "--file",
+        dest="files",
+        action="append",
+        default=[],
+        help="File to include under Files to modify. Repeat as needed.",
+    )
+    guide_issue.add_argument(
+        "--acceptance",
+        action="append",
+        default=[],
+        help="Acceptance criterion to include. Repeat as needed.",
+    )
+    guide_issue.add_argument(
+        "--verification",
+        action="append",
+        default=[],
+        help="Verification step to include. Repeat as needed.",
+    )
+
+    guide_test_plan = guide_sub.add_parser(
+        "test-plan",
+        help="Preview a test-plan template for the current change.",
+    )
+    guide_test_plan.add_argument("--what", help="Behavior or change under test.")
+    guide_test_plan.add_argument("--why", help="Why this test coverage matters.")
+    guide_test_plan.add_argument("--unit", action="append", default=[], help="Unit-test focus area. Repeat as needed.")
+    guide_test_plan.add_argument(
+        "--integration",
+        action="append",
+        default=[],
+        help="Integration-test focus area. Repeat as needed.",
+    )
+    guide_test_plan.add_argument("--manual", action="append", default=[], help="Manual verification step. Repeat as needed.")
+    guide_test_plan.add_argument(
+        "--not-tested",
+        dest="not_tested",
+        action="append",
+        default=[],
+        help="Explicit exclusion. Repeat as needed.",
+    )
+
+    guide_pr = guide_sub.add_parser(
+        "pr-checklist",
+        help="Preview a PR description checklist.",
+    )
+    guide_pr.add_argument("--issue", help="Linked issue number.")
+    guide_pr.add_argument(
+        "--verification",
+        action="append",
+        default=[],
+        help="Verification command or result. Repeat as needed.",
+    )
+    guide_pr.add_argument(
+        "--risk",
+        dest="risks",
+        action="append",
+        default=[],
+        help="Risk note with mitigation. Repeat as needed.",
+    )
+
     # --- new ---
     new = sub.add_parser(
         "new",
@@ -504,8 +811,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     # Ensure UTF-8 output on Windows terminals
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
+    _ensure_utf8_stdout()
 
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -537,6 +843,36 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "doctor":
         return cmd_doctor(args.validators)
+
+    if args.command == "guide":
+        if args.guide_type is None:
+            print("  WARN Specify guide flow: route, issue, test-plan, pr-checklist", file=sys.stderr)
+            return 1
+        if args.guide_type == "route":
+            return cmd_guide_route(args.request, routing)
+        if args.guide_type == "issue":
+            return cmd_guide_issue(
+                title=args.title,
+                summary=args.summary,
+                files=args.files,
+                acceptance=args.acceptance,
+                verification=args.verification,
+            )
+        if args.guide_type == "test-plan":
+            return cmd_guide_test_plan(
+                what=args.what,
+                why=args.why,
+                unit_items=args.unit,
+                integration_items=args.integration,
+                manual_items=args.manual,
+                not_tested_items=args.not_tested,
+            )
+        if args.guide_type == "pr-checklist":
+            return cmd_guide_pr_checklist(
+                issue=args.issue,
+                verification=args.verification,
+                risks=args.risks,
+            )
 
     if args.command == "new":
         if args.asset_type is None:

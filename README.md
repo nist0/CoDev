@@ -298,15 +298,27 @@ Installs the scope-filtered pre-commit hook from `scripts/hooks/pre-commit` into
 
 #### `scripts/codev-dev.py` — interactive developer CLI
 
-Three commands to explore routing, scaffold agents, and run health checks — all safe to run at any time.
+Guide contributors through route selection, issue drafting, test-plan drafting,
+PR checklist preparation, routing exploration, agent scaffolding, and
+repository health checks.
 
 | Command | Description | Writes files? |
 | --- | --- | --- |
 | `test-route "<phrase>"` | Show routing result for any phrase with rationale | Never |
+| `guide route "<request>"` | Preview whether `/route` or `/quickstart` is the right next step | Never |
+| `guide issue --title ... --summary ...` | Preview a governance-compliant issue body | Never |
+| `guide test-plan --what ... --why ...` | Preview a test-plan block with CI gate | Never |
+| `guide pr-checklist --issue N` | Preview a PR checklist body | Never |
 | `doctor` | Check required files and run all validators | Never |
 | `new agent <name>` | Scaffold a new agent file (dry-run by default) | Only with `--write` |
 
 ```bash
+# Preview the next routing move without touching files
+./.venv/bin/python scripts/codev-dev.py guide route "debug kubernetes pod"
+
+# Preview an issue body before opening GitHub
+./.venv/bin/python scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
+
 # Route any phrase interactively
 ./.venv/bin/python scripts/codev-dev.py test-route "debug kubernetes pod"
 
@@ -323,7 +335,7 @@ Three commands to explore routing, scaffold agents, and run health checks — al
 ./.venv/bin/python scripts/codev-dev.py new agent my-agent --write
 ```
 
-> **Safety contract**: `test-route` and `doctor` are 100% read-only. `new agent` dry-runs by default and never overwrites an existing file.
+> **Safety contract**: `test-route`, `guide`, and `doctor` are 100% read-only. `new agent` dry-runs by default and never overwrites an existing file.
 
 See [docs/codev-dev-guide.md](docs/codev-dev-guide.md) for persona walkthroughs, step-count measurements, and doctor verification results.
 

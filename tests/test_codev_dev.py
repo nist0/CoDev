@@ -19,6 +19,7 @@ Run:
 from __future__ import annotations
 
 import importlib.util
+import io
 import subprocess
 import sys
 from pathlib import Path
@@ -310,6 +311,46 @@ class TestParser:
         args = self._parse(["doctor", "--validators", "smoke", "registry"])
         assert args.validators == ["smoke", "registry"]
 
+    def test_guide_route_request(self) -> None:
+        args = self._parse(["guide", "route", "debug kubernetes pod"])
+        assert args.command == "guide"
+        assert args.guide_type == "route"
+        assert args.request == "debug kubernetes pod"
+
+    def test_guide_issue_args(self) -> None:
+        args = self._parse([
+            "guide",
+            "issue",
+            "--title",
+            "Add guided flow",
+            "--summary",
+            "Help contributors prepare issue bodies",
+            "--file",
+            "scripts/codev-dev.py",
+        ])
+        assert args.guide_type == "issue"
+        assert args.title == "Add guided flow"
+        assert args.summary == "Help contributors prepare issue bodies"
+        assert args.files == ["scripts/codev-dev.py"]
+
+    def test_guide_test_plan_args(self) -> None:
+        args = self._parse([
+            "guide",
+            "test-plan",
+            "--what",
+            "guided route flow",
+            "--why",
+            "Contributors need exact next commands",
+        ])
+        assert args.guide_type == "test-plan"
+        assert args.what == "guided route flow"
+        assert args.why == "Contributors need exact next commands"
+
+    def test_guide_pr_checklist_args(self) -> None:
+        args = self._parse(["guide", "pr-checklist", "--issue", "40"])
+        assert args.guide_type == "pr-checklist"
+        assert args.issue == "40"
+
     def test_new_agent_defaults_no_write(self) -> None:
         args = self._parse(["new", "agent", "My Agent"])
         assert args.write is False
@@ -435,6 +476,69 @@ class TestIntegrationDoctor:
         assert result.returncode in (0, 1)
 
 
+class TestGuideCommands:
+    def test_guide_route_known_request_exits_zero(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "route", "debug kubernetes pod", cwd=str(ROOT))
+        assert result.returncode == 0
+        output = result.stdout + result.stderr
+        assert "/route debug kubernetes pod" in output
+
+    def test_guide_route_missing_request_exits_nonzero(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "route", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "Please provide a request to route" in (result.stdout + result.stderr)
+
+    def test_guide_issue_preview_contains_expected_sections(self) -> None:
+        result = _run(
+            *CODEV_DEV,
+            "guide",
+            "issue",
+            "--title",
+            "Add guided flow",
+            "--summary",
+            "Help contributors prepare issue bodies",
+            cwd=str(ROOT),
+        )
+        assert result.returncode == 0
+        output = result.stdout + result.stderr
+        assert "enh: Add guided flow" in output
+        assert "## Summary" in output
+        assert "gh issue create --title" in output
+
+    def test_guide_issue_missing_required_args_exits_nonzero(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "issue", "--title", "Add guided flow", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "--title and --summary are required" in (result.stdout + result.stderr)
+
+    def test_guide_test_plan_preview_contains_ci_gate(self) -> None:
+        result = _run(
+            *CODEV_DEV,
+            "guide",
+            "test-plan",
+            "--what",
+            "guided route flow",
+            "--why",
+            "Contributors need exact next commands",
+            cwd=str(ROOT),
+        )
+        assert result.returncode == 0
+        output = result.stdout + result.stderr
+        assert "## Test plan -- guided route flow" in output
+        assert "python -m pytest tests/test_codev_dev.py -q" in output
+
+    def test_guide_pr_checklist_requires_issue(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "pr-checklist", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "--issue is required" in (result.stdout + result.stderr)
+
+    def test_guide_pr_checklist_preview_contains_close_reference(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "pr-checklist", "--issue", "40", cwd=str(ROOT))
+        assert result.returncode == 0
+        output = result.stdout + result.stderr
+        assert "Closes #40" in output
+        assert "gh pr create --fill --body-file temp/pr-40.md" in output
+
+
 class TestIntegrationNewAgent:
     """New agent integration tests — all use --dry-run or tmp dirs."""
 
@@ -541,6 +645,14 @@ class TestRealRoutingConsistency:
 # ===========================================================================
 
 class TestEdgeCases:
+    def test_main_ignores_stdout_reconfigure_failure(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        class BadStdout(io.StringIO):
+            def reconfigure(self, **kwargs: Any) -> None:
+                raise ValueError("boom")
+
+        monkeypatch.setattr(codev_dev.sys, "stdout", BadStdout())
+        assert codev_dev.main([]) == 0
+
     def test_route_very_long_phrase(self) -> None:
         routing = MINIMAL_ROUTING
         long_phrase = "debug " * 200

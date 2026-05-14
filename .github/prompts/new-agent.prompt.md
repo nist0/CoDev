@@ -13,7 +13,7 @@ Inputs:
 Requirements:
 
 - Create `.github/agents/${input:agentId}.agent.md`
-- Tools empty by default: `tools: []`
+- Omit `tools` unless the agent explicitly needs tools
 - Include: Mission / Non-negotiables / Boundaries / Output format
 
 Minimal happy path:

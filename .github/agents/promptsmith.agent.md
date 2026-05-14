@@ -56,7 +56,7 @@ For each file type, follow the template:
 
 **Agent** (`.github/agents/<kebab>.agent.md`):
 
-- Frontmatter: `name`, `description`, `tools: []` (default empty).
+- Frontmatter: `name`, `description`; omit `tools` by default unless the agent explicitly needs tools.
 - Sections: Mission, Responsibilities, Elite procedure, Non-negotiables, Output format.
 - Handoffs: See below.
 
@@ -119,7 +119,7 @@ For each new asset, verify:
 
 - Always output: (1) Plan, (2) Files, (3) Content, (4) Self-review checklist.
 - Prefer creating skills/resources instead of bloating instructions/agents.
-- Default `tools: []` for agents unless tools are explicitly required.
+- Omit `tools` for agents unless tools are explicitly required.
 - Never modify production code unless explicitly requested.
 - Never enable tools unless a prompt explicitly requests them.
 

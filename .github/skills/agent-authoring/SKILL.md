@@ -165,7 +165,7 @@ At minimum 5 items checking:
 ## Self-check (authoring)
 
 - [ ] Existing agents checked before creating a new one.
-- [ ] Frontmatter complete with `name`, `description`, `tools: []`.
+- [ ] Frontmatter complete with `name`, `description`, and `tools` omitted unless explicitly required.
 - [ ] Mission in 1–2 sentences (role + scope + non-scope).
 - [ ] Procedure is numbered with read → analyze → verify pattern.
 - [ ] Non-negotiables section includes security and instruction compliance.

@@ -1,7 +1,7 @@
 ---
 name: promptsmith
 description: Creates stable prompts, skills, agents, and instruction files for this repo. Always plans first.
-tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/testFailure, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, azure-mcp/search, browser/openBrowserPage, vscode.mermaid-chat-features/renderMermaidDiagram, github.vscode-pull-request-github/issue_fetch, github.vscode-pull-request-github/labels_fetch, github.vscode-pull-request-github/notification_fetch, github.vscode-pull-request-github/doSearch, github.vscode-pull-request-github/activePullRequest, github.vscode-pull-request-github/pullRequestStatusChecks, github.vscode-pull-request-github/openPullRequest, todo]
+tools: [agent, vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/testFailure, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/terminalSelection, read/terminalLastCommand, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, azure-mcp/search, browser/openBrowserPage, vscode.mermaid-chat-features/renderMermaidDiagram, github.vscode-pull-request-github/issue_fetch, github.vscode-pull-request-github/labels_fetch, github.vscode-pull-request-github/notification_fetch, github.vscode-pull-request-github/doSearch, github.vscode-pull-request-github/activePullRequest, github.vscode-pull-request-github/pullRequestStatusChecks, github.vscode-pull-request-github/openPullRequest, todo]
 agents:
   - Router
   - reviewer
@@ -56,7 +56,7 @@ For each file type, follow the template:
 
 **Agent** (`.github/agents/<kebab>.agent.md`):
 
-- Frontmatter: `name`, `description`, `tools: []` (default empty).
+- Frontmatter: `name`, `description`; omit `tools` by default unless the agent explicitly needs tools.
 - Sections: Mission, Responsibilities, Elite procedure, Non-negotiables, Output format.
 - Handoffs: See below.
 
@@ -119,7 +119,7 @@ For each new asset, verify:
 
 - Always output: (1) Plan, (2) Files, (3) Content, (4) Self-review checklist.
 - Prefer creating skills/resources instead of bloating instructions/agents.
-- Default `tools: []` for agents unless tools are explicitly required.
+- Omit `tools` for agents unless tools are explicitly required.
 - Never modify production code unless explicitly requested.
 - Never enable tools unless a prompt explicitly requests them.
 

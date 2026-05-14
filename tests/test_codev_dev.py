@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import importlib.util
 import io
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -339,6 +340,11 @@ class TestParser:
         assert args.summary == "Help contributors prepare issue bodies"
         assert args.files == ["scripts/codev-dev.py"]
 
+    def test_guide_extension_args(self) -> None:
+        args = self._parse(["guide", "extension", "--kind", "skill"])
+        assert args.guide_type == "extension"
+        assert args.kind == "skill"
+
     def test_guide_test_plan_args(self) -> None:
         args = self._parse([
             "guide",
@@ -533,6 +539,52 @@ class TestGuideCommands:
         assert result.returncode != 0
         assert "--title and --summary are required" in (result.stdout + result.stderr)
 
+    def test_guide_extension_preview_contains_validator_commands(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "extension", "--kind", "prompt", cwd=str(ROOT))
+        assert result.returncode == 0
+        output = result.stdout + result.stderr
+        assert "/prompt-from-theme theme=<goal> intent=<what the prompt should do>" in output
+        expected_python = ".venv\\Scripts\\python.exe" if os.name == "nt" else "./.venv/bin/python"
+        assert f"{expected_python} scripts/validate-customization-registry.py" in output
+
+    def test_guide_extension_preview_shows_exact_commands_for_all_kinds(self) -> None:
+        expected_commands = {
+            "agent": "/new-agent agentId=<kebab> mission=<text>",
+            "skill": "/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>",
+            "instruction": "/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>",
+            "prompt": "/prompt-from-theme theme=<goal> intent=<what the prompt should do>",
+        }
+        expected_paths = {
+            "agent": ".github/agents/<id>.agent.md",
+            "skill": ".github/skills/<id>/SKILL.md + examples/README.md",
+            "instruction": ".github/instructions/<name>.instructions.md",
+            "prompt": ".github/prompts/<name>.prompt.md",
+        }
+        expected_python = ".venv\\Scripts\\python.exe" if os.name == "nt" else "./.venv/bin/python"
+
+        for kind, expected_command in expected_commands.items():
+            result = _run(*CODEV_DEV, "guide", "extension", "--kind", kind, cwd=str(ROOT))
+            assert result.returncode == 0
+            output = result.stdout + result.stderr
+            assert expected_command in output
+            assert expected_paths[kind] in output
+            assert f"{expected_python} scripts/validate-customization-registry.py" in output
+
+    def test_guide_extension_rejects_unknown_kind(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "extension", "--kind", "widget", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "--kind must be one of" in (result.stdout + result.stderr)
+
+    def test_guide_help_lists_extension_flow(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "--help", cwd=str(ROOT))
+        assert result.returncode == 0
+        assert "extension" in (result.stdout + result.stderr)
+
+    def test_guide_without_flow_mentions_extension(self) -> None:
+        result = _run(*CODEV_DEV, "guide", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "route, extension, issue, test-plan, pr-checklist" in (result.stdout + result.stderr)
+
     def test_guide_test_plan_preview_contains_ci_gate(self) -> None:
         result = _run(
             *CODEV_DEV,
@@ -573,6 +625,7 @@ class TestIntegrationNewAgent:
         result = _run(*CODEV_DEV, "new", "agent", "Integration Test Agent", cwd=str(ROOT))
         assert "integration-test-agent.agent.md" in result.stdout
         assert "dry-run" in result.stdout.lower() or "Dry-run" in result.stdout
+        assert "tools: []" not in result.stdout
 
     def test_dry_run_does_not_create_real_file(self) -> None:
         agent_path = ROOT / ".github" / "agents" / "integration-test-agent.agent.md"

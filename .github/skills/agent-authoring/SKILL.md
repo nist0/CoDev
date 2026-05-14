@@ -14,6 +14,28 @@ disable-model-invocation: false
 - Updating an existing agent to add procedure, output format, or self-check.
 - Upgrading a thin agent definition to elite standard.
 
+## Minimal extension workflow
+
+Use this path when you want the shortest safe route from idea to a validated agent file:
+
+1. Run `/new-agent agentId=<kebab> mission=<text>`.
+2. Save the generated file as `.github/agents/<id>.agent.md`.
+3. If the agent must be reachable through `/route`, update `routing/matrix.yaml` plus any required capability, alias, or domain entries in the same change.
+4. Validate locally before opening a PR:
+
+    - `python scripts/validate-customization-registry.py`
+    - `python scripts/validate-readme-registry.py`
+    - `python scripts/validate-markdown-lint.py`
+    - `python scripts/validate-route-smoke.py` when routing changed
+
+Minimal example:
+
+```text
+/new-agent agentId=ux-guide mission="Owns contributor onboarding ergonomics for CoDev."
+```
+
+This path is additive: it reuses the existing prompt, routing files, and validators instead of introducing a second template system.
+
 ## Procedure
 
 ### Domain research (mandatory for new domains/themes)
@@ -143,7 +165,7 @@ At minimum 5 items checking:
 ## Self-check (authoring)
 
 - [ ] Existing agents checked before creating a new one.
-- [ ] Frontmatter complete with `name`, `description`, `tools: []`.
+- [ ] Frontmatter complete with `name`, `description`, and `tools` omitted unless explicitly required.
 - [ ] Mission in 1–2 sentences (role + scope + non-scope).
 - [ ] Procedure is numbered with read → analyze → verify pattern.
 - [ ] Non-negotiables section includes security and instruction compliance.

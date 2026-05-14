@@ -11,6 +11,7 @@ chooses a later write or publish step outside the CLI preview.
 | --- | --- | --- |
 | `test-route "<phrase>"` | Show routing result for any phrase | Never |
 | `guide route "<request>"` | Preview the best next routing command for a request | Never |
+| `guide extension --kind <kind>` | Preview the shortest extension onboarding path | Never |
 | `guide issue --title ... --summary ...` | Preview a governance-compliant issue body | Never |
 | `guide test-plan --what ... --why ...` | Preview a test-plan block with CI gate | Never |
 | `guide pr-checklist --issue N` | Preview a PR checklist body | Never |
@@ -31,6 +32,9 @@ instructions.
 # Route selection
 .venv\Scripts\python.exe scripts/codev-dev.py guide route "debug kubernetes pod"
 
+# Extension onboarding path
+.venv\Scripts\python.exe scripts/codev-dev.py guide extension --kind agent
+
 # Issue preparation
 .venv\Scripts\python.exe scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
 
@@ -43,6 +47,26 @@ instructions.
 
 Each flow prints exact next commands and a dry-run preview block. Nothing is
 written to disk, and no GitHub publication happens automatically.
+
+## Guided extension onboarding
+
+Issue `#43` adds a minimal extension path for contributors who want the shortest safe route from idea to validated asset.
+
+```bash
+# Agent path
+.venv\Scripts\python.exe scripts/codev-dev.py guide extension --kind agent
+
+# Skill path
+.venv\Scripts\python.exe scripts/codev-dev.py guide extension --kind skill
+
+# Prompt path
+.venv\Scripts\python.exe scripts/codev-dev.py guide extension --kind prompt
+
+# Instruction path
+.venv\Scripts\python.exe scripts/codev-dev.py guide extension --kind instruction
+```
+
+The preview points to the matching slash prompt, the expected output path, and the exact validator commands to run before PR review.
 
 ## Assistive guardrails
 

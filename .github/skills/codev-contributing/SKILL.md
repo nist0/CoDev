@@ -73,7 +73,7 @@ git push fork <type>/<slug>
 Follow CoDev authoring conventions:
 
 - **Skills**: `SKILL.md` with frontmatter + procedure + examples + self-check + elite section.
-- **Agents**: frontmatter `name`, `description`, `tools: []`; mission + responsibilities + output format + handoff.
+- **Agents**: frontmatter `name`, `description`, with `tools` omitted unless explicitly needed; mission + responsibilities + output format + handoff.
 - **Prompts**: frontmatter with `agent:` matching an existing agent `name`; `argument-hint` defined.
 - **Routing**: update all four YAMLs atomically (`capabilities.yaml`, `aliases.yaml`, `matrix.yaml`, `domains.yaml` if needed).
 - **Instructions**: tight `applyTo` glob; additive and non-contradictory.

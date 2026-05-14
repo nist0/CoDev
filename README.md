@@ -161,6 +161,26 @@ This first rollout is optimised for the three target newcomer scenarios in issue
 
 For other specialised first-run requests, `/route <your request>` remains the universal fallback.
 
+### Ready-to-use contributor profiles
+
+Use one of these explicit onboarding phrases when you want `/quickstart` to bias the first card toward a known contribution style without bypassing onboarding:
+
+| Profile | Best for | Designated agent | Prompt sequence | Validation | Rollback |
+| --- | --- | --- | --- | --- | --- |
+| `maintenance` | validator fixes, repo hygiene, governance, and low-risk upkeep | `Delivery Lead` | `/quickstart` -> `/pr-review` -> `/route <maintenance task>` | `./.venv/bin/python scripts/validate-customization-registry.py`, `./.venv/bin/python scripts/validate-readme-registry.py`, `./.venv/bin/python scripts/validate-markdown-lint.py`, plus route smoke when routing changed | fall back to `/route <task>` if the work becomes implementation-heavy |
+| `fast-feature` | additive prompts, skills, routing improvements, and small new capabilities | `Architect` | `/quickstart` -> `/route <feature request>` -> `/<best-matching prompt>` | targeted tests for the touched slice plus touched validators | switch to `safe-refactor` if preserving behaviour becomes the primary concern |
+| `safe-refactor` | behaviour-preserving cleanup, restructuring, and test-first change | `Architect` | `/quickstart` -> `/test-plan` -> `/route <refactor request>` | regression coverage plus touched validators | narrow to `maintenance` if the change becomes hygiene-only |
+| `doc-only` | README, docs, prompt copy, and instruction wording updates | `Delivery Lead` | `/quickstart` -> `/doc-lint-fix` -> `/route <docs task>` | `./.venv/bin/python scripts/validate-markdown-lint.py` and `./.venv/bin/python scripts/validate-readme-registry.py` when inventory docs change | fall back to `/route <task>` if docs work exposes routing or code edits |
+
+Profile entry examples:
+
+```text
+/quickstart maintenance contributor profile for validator cleanup
+/quickstart fast-feature contributor profile for a new route alias
+/quickstart safe-refactor contributor profile for a prompt cleanup
+/quickstart doc-only contributor profile for README updates
+```
+
 ### Task-first entry point
 
 If you already know the task you want done, use the **`/route`** prompt (aliases: `route`, `router`, `which agent`) to classify your request and get a deterministic recommendation:
@@ -846,7 +866,7 @@ Generated prompt inventory:
 | `/project-kickoff` | project-kickoff.prompt.md | Project Orchestrator | Clarify project intent and produce a deep phased plan with risks and acceptance criteria. |
 | `/project-takeover` | project-takeover.prompt.md | Project Takeover | Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit une documentation complète en français dans .takeover/ (non commité). |
 | `/prompt-from-theme` | prompt-from-theme.prompt.md | promptsmith | Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs. |
-| `/quickstart` | quickstart.prompt.md | Router | Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized first-command card. |
+| `/quickstart` | quickstart.prompt.md | Router | Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized contributor-profile quickstart card. |
 | `/release-plan` | release-plan.prompt.md | Delivery Lead | Release plan: versioning, changelog, build artifacts, rollout/rollback, verification, comms. |
 | `/route-miss` | route-miss.prompt.md | Router | Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue. |
 | `/route` | route.prompt.md | Router | Route a request using the canonical matrix (capability + domain) and produce deterministic delegation when delivery tasks are requested. |

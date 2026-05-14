@@ -158,7 +158,7 @@ Example:
 - `/mcp-debug` - troubleshoot MCP startup, discovery, auth, and invocation failures
 - `/diagram-ops`, `/markdown-ops`
 - `/new-agent`, `/new-skill`, `/new-instructions`, `/new-theme-pack`, `/prompt-from-theme`
-- `/quickstart` — onboard a new user: gather role + domain + goal, emit a first-command card
+- `/quickstart` — onboard a new user: gather role + domain + goal, select a contributor profile, and emit a first-command card
 - `/session-handoff` - package the current chat into a copy-paste or file-based continuation handoff, or initialize a new session from a saved handoff file
 - `/route-miss` — feedback loop: diagnose a bad route and emit a ready-to-open fix issue
 

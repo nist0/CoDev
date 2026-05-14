@@ -183,6 +183,48 @@ cases:
       agent: Router
       prompts: ["quickstart"]
 
+  - request: "maintenance contributor profile for validator cleanup"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "fast-feature contributor profile for a new prompt"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "fast feature contributor profile for a new prompt"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "safe-refactor contributor profile for route cleanup"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "safe refactor contributor profile for route cleanup"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "doc-only contributor profile for README cleanup"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
+  - request: "doc only contributor profile for README cleanup"
+    expect:
+      capability: onboarding
+      agent: Router
+      prompts: ["quickstart"]
+
   - request: "review my open pull request before merge"
     expect:
       capability: github-delivery

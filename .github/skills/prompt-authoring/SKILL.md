@@ -14,6 +14,28 @@ disable-model-invocation: false
 - Updating an existing prompt to add structure, inputs, or a self-check.
 - Migrating an ad hoc chat pattern into a repeatable slash command.
 
+## Minimal extension workflow
+
+Use this path when you want the shortest safe route from idea to a validated prompt file:
+
+1. Run `/prompt-from-theme theme=<goal> intent=<what the prompt should do>`.
+2. Save the generated file as `.github/prompts/<name>.prompt.md`.
+3. If the prompt is referenced by routing, update `routing/matrix.yaml` plus any needed capability, alias, or domain entries in the same change.
+4. Validate locally before opening a PR:
+
+    - `python scripts/validate-customization-registry.py`
+    - `python scripts/validate-readme-registry.py`
+    - `python scripts/validate-markdown-lint.py`
+    - `python scripts/validate-route-smoke.py` when routing changed
+
+Minimal example:
+
+```text
+/prompt-from-theme theme="Contributor UX" intent="generate a minimal extension onboarding checklist"
+```
+
+This path stays additive: it uses the existing prompt-authoring system and validators rather than adding a new scaffold flow.
+
 ## Procedure
 
 ### Domain research (mandatory for new domains/themes)

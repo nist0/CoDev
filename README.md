@@ -208,6 +208,33 @@ Use these checks before opening a PR for customization changes:
 
 Note: Markdown lint validation uses `markdownlint-cli2` via `npx` (Node.js required).
 
+### Minimal extension path
+
+Use the shortest safe path below when adding or customizing one CoDev asset without rediscovering the whole framework:
+
+1. Create the asset with the matching authoring prompt:
+
+- Agent: `/new-agent agentId=<kebab> mission=<text>`
+- Skill: `/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>`
+- Prompt: `/prompt-from-theme theme=<goal> intent=<what the prompt should do>`
+- Instruction: `/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>`
+
+2. Save the generated file in the canonical path under `.github/`.
+3. Run the local validators before PR review:
+
+```text
+python scripts/validate-customization-registry.py
+python scripts/validate-readme-registry.py
+python scripts/validate-markdown-lint.py
+python scripts/validate-route-smoke.py   # only when routing changed
+```
+
+Longer references:
+
+- [Minimal agent workflow](.github/skills/agent-authoring/SKILL.md#minimal-extension-workflow)
+- [Minimal prompt workflow](.github/skills/prompt-authoring/SKILL.md#minimal-extension-workflow)
+- [Interactive preview](docs/codev-dev-guide.md#guided-extension-onboarding)
+
 ### Local pre-commit hooks (recommended)
 
 Install pre-commit hooks to catch routing errors before every push — no waiting for CI:
@@ -306,6 +333,7 @@ repository health checks.
 | --- | --- | --- |
 | `test-route "<phrase>"` | Show routing result for any phrase with rationale | Never |
 | `guide route "<request>"` | Preview whether `/route` or `/quickstart` is the right next step | Never |
+| `guide extension --kind <kind>` | Preview the shortest extension onboarding path and validators | Never |
 | `guide issue --title ... --summary ...` | Preview a governance-compliant issue body | Never |
 | `guide test-plan --what ... --why ...` | Preview a test-plan block with CI gate | Never |
 | `guide pr-checklist --issue N` | Preview a PR checklist body | Never |
@@ -315,6 +343,9 @@ repository health checks.
 ```bash
 # Preview the next routing move without touching files
 ./.venv/bin/python scripts/codev-dev.py guide route "debug kubernetes pod"
+
+# Preview the shortest extension onboarding path
+./.venv/bin/python scripts/codev-dev.py guide extension --kind agent
 
 # Preview an issue body before opening GitHub
 ./.venv/bin/python scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"

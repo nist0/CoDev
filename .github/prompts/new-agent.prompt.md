@@ -16,6 +16,21 @@ Requirements:
 - Tools empty by default: `tools: []`
 - Include: Mission / Non-negotiables / Boundaries / Output format
 
+Minimal happy path:
+
+1. Run `/new-agent agentId=<kebab> mission=<text>`.
+2. Save the generated file at `.github/agents/<id>.agent.md`.
+3. If the new agent needs routing, update `routing/matrix.yaml` and related routing files in the same change.
+4. Validate locally before PR review:
+   - `python scripts/validate-customization-registry.py`
+   - `python scripts/validate-readme-registry.py`
+   - `python scripts/validate-markdown-lint.py`
+   - `python scripts/validate-route-smoke.py` when routing changed
+
+Minimal example:
+
+- `/new-agent agentId=ux-guide mission="Owns contributor onboarding ergonomics for CoDev."`
+
 Output: plan + file content + checklist.
 
 ## Agent delegation chain

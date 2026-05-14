@@ -114,6 +114,13 @@ def read_yaml(path: Path) -> dict[str, Any]:
     return data if isinstance(data, dict) else {}
 
 
+def display_path(path: Path) -> str:
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
+
 def validate_registry(context: ValidationContext) -> None:
     agent_files = sorted(AGENTS_DIR.glob("*.agent.md"))
     prompt_files = sorted(PROMPTS_DIR.glob("*.prompt.md"))
@@ -129,7 +136,7 @@ def validate_registry(context: ValidationContext) -> None:
         frontmatter = parse_frontmatter(path)
         name = str(frontmatter.get("name", "")).strip()
         if not name:
-            context.add(f"missing frontmatter name in agent file: {path.relative_to(ROOT)}")
+            context.add(f"missing frontmatter name in agent file: {display_path(path)}")
         else:
             agent_names.append(name)
 
@@ -145,7 +152,7 @@ def validate_registry(context: ValidationContext) -> None:
         if not name:
             # security.instructions.md intentionally has no name in this repo
             if path.name != "security.instructions.md":
-                context.add(f"missing frontmatter name in instruction file: {path.relative_to(ROOT)}")
+                context.add(f"missing frontmatter name in instruction file: {display_path(path)}")
         else:
             instruction_names.append(name)
 
@@ -162,7 +169,7 @@ def validate_registry(context: ValidationContext) -> None:
         if name and name != skill_dir.name:
             context.add(
                 "skill name mismatch: "
-                f"{skill_md.relative_to(ROOT)} frontmatter name '{name}' != folder '{skill_dir.name}'"
+                f"{display_path(skill_md)} frontmatter name '{name}' != folder '{skill_dir.name}'"
             )
 
     assert_unique(agent_names, context, "agent name")
@@ -281,14 +288,58 @@ def validate_frontmatter_attributes(context: ValidationContext) -> None:
                 )
             elif key not in allowed:
                 context.add(
-                    f"unknown frontmatter attribute '{key}' in {path.relative_to(ROOT)} "
+                    f"unknown frontmatter attribute '{key}' in {display_path(path)} "
                     f"(allowed for {ftype}: {sorted(allowed)})"
                 )
 
 
+def validate_structure_contracts(context: ValidationContext) -> None:
+    for path in sorted(PROMPTS_DIR.glob("*.prompt.md")):
+        frontmatter = parse_frontmatter(path)
+        description = str(frontmatter.get("description", "")).strip()
+        if not description:
+            context.add(f"prompt missing required description: {display_path(path)}")
+
+        tools = frontmatter.get("tools")
+        if isinstance(tools, list) and not tools:
+            context.add(
+                f"prompt uses empty tools override: {display_path(path)} (omit 'tools:' to inherit agent tools)"
+            )
+
+    for path in sorted(AGENTS_DIR.glob("*.agent.md")):
+        frontmatter = parse_frontmatter(path)
+        description = str(frontmatter.get("description", "")).strip()
+        if not description:
+            context.add(f"agent missing required description: {display_path(path)}")
+
+        agents = frontmatter.get("agents")
+        tools = frontmatter.get("tools")
+        if not isinstance(agents, list) or not agents:
+            continue
+
+        normalized_tools: set[str] = set()
+        if isinstance(tools, str):
+            normalized_tools = {tools.strip().lower()}
+        elif isinstance(tools, list):
+            normalized_tools = {str(tool).strip().lower() for tool in tools}
+        else:
+            normalized_tools = set()
+
+        if normalized_tools and "agent" not in normalized_tools:
+            context.add(
+                f"agent declares subagents without agent tool: {display_path(path)}"
+            )
+
+    for path in sorted(INSTRUCTIONS_DIR.glob("*.instructions.md")):
+        frontmatter = parse_frontmatter(path)
+        apply_to = str(frontmatter.get("applyTo", "")).strip()
+        if not apply_to:
+            context.add(f"instruction missing required applyTo: {display_path(path)}")
+
+
 def validate_reviewer_agent_contract(context: ValidationContext) -> None:
     if not REVIEWER_AGENT.exists():
-        context.add(f"missing reviewer agent file: {REVIEWER_AGENT.relative_to(ROOT)}")
+        context.add(f"missing reviewer agent file: {display_path(REVIEWER_AGENT)}")
         return
 
     frontmatter = parse_frontmatter(REVIEWER_AGENT)
@@ -317,6 +368,7 @@ def main() -> int:
     context = ValidationContext(errors=[])
     validate_registry(context)
     validate_frontmatter_attributes(context)
+    validate_structure_contracts(context)
     validate_routing_references(context)
     validate_reviewer_agent_contract(context)
 

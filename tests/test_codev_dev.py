@@ -339,6 +339,11 @@ class TestParser:
         assert args.summary == "Help contributors prepare issue bodies"
         assert args.files == ["scripts/codev-dev.py"]
 
+    def test_guide_extension_args(self) -> None:
+        args = self._parse(["guide", "extension", "--kind", "skill"])
+        assert args.guide_type == "extension"
+        assert args.kind == "skill"
+
     def test_guide_test_plan_args(self) -> None:
         args = self._parse([
             "guide",
@@ -532,6 +537,18 @@ class TestGuideCommands:
         result = _run(*CODEV_DEV, "guide", "issue", "--title", "Add guided flow", cwd=str(ROOT))
         assert result.returncode != 0
         assert "--title and --summary are required" in (result.stdout + result.stderr)
+
+    def test_guide_extension_preview_contains_validator_commands(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "extension", "--kind", "prompt", cwd=str(ROOT))
+        assert result.returncode == 0
+        output = result.stdout + result.stderr
+        assert "/prompt-from-theme" in output
+        assert "python scripts/validate-customization-registry.py" in output
+
+    def test_guide_extension_rejects_unknown_kind(self) -> None:
+        result = _run(*CODEV_DEV, "guide", "extension", "--kind", "widget", cwd=str(ROOT))
+        assert result.returncode != 0
+        assert "--kind must be one of" in (result.stdout + result.stderr)
 
     def test_guide_test_plan_preview_contains_ci_gate(self) -> None:
         result = _run(

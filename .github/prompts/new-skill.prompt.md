@@ -20,6 +20,21 @@ Requirements:
 - Provide: When to use / Procedure / Self-check
 - Create `examples/README.md`
 
+Minimal happy path:
+
+1. Run `/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>`.
+2. Save both `.github/skills/<id>/SKILL.md` and `.github/skills/<id>/examples/README.md`.
+3. If the skill is routed directly, update the relevant `routing/*.yaml` files in the same change.
+4. Validate locally before PR review:
+   - `python scripts/validate-customization-registry.py`
+   - `python scripts/validate-readme-registry.py`
+   - `python scripts/validate-markdown-lint.py`
+   - `python scripts/validate-route-smoke.py` when routing changed
+
+Minimal example:
+
+- `/new-skill skillId=ux-guardrails theme="Contributor UX" scope="Use when tightening the shortest safe path for customization contributors."`
+
 Output:
 
 1) Plan

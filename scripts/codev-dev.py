@@ -10,6 +10,7 @@ Provides fast, read-safe tooling for CoDev contributors:
 Usage:
   python scripts/codev-dev.py test-route "debug kubernetes pod"
   python scripts/codev-dev.py guide route "debug kubernetes pod"
+    python scripts/codev-dev.py guide extension --kind prompt
   python scripts/codev-dev.py guide issue --title "Add guided CLI flow" --summary "Help contributors prepare issue bodies"
   python scripts/codev-dev.py doctor
   python scripts/codev-dev.py doctor --validators smoke registry
@@ -285,6 +286,55 @@ def cmd_guide_route(request: str | None, routing: dict[str, Any]) -> int:
 
     print()
     return 0 if result["ok"] else 1
+
+
+def cmd_guide_extension(kind: str | None) -> int:
+    normalized_kind = (kind or "agent").strip().lower()
+    prompt_map = {
+        "agent": "/new-agent agentId=<kebab> mission=<text>",
+        "skill": "/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>",
+        "instruction": "/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>",
+        "prompt": "/prompt-from-theme theme=<goal> capability=<id> domain=<id>",
+    }
+    output_path_map = {
+        "agent": ".github/agents/<id>.agent.md",
+        "skill": ".github/skills/<theme>/SKILL.md + examples/README.md",
+        "instruction": ".github/instructions/<name>.instructions.md",
+        "prompt": ".github/prompts/<name>.prompt.md",
+    }
+
+    if normalized_kind not in prompt_map:
+        print(f"  {YELLOW('WARN')} --kind must be one of: agent, skill, instruction, prompt.", file=sys.stderr)
+        print(
+            "       Example: python scripts/codev-dev.py guide extension --kind skill",
+            file=sys.stderr,
+        )
+        return 1
+
+    preview_lines = [
+        "1. Create the asset with the shortest matching slash prompt:",
+        f"   {prompt_map[normalized_kind]}",
+        "2. Confirm the generated file lands in the expected path:",
+        f"   {output_path_map[normalized_kind]}",
+        "3. Run the structural validators before opening a PR:",
+        "   python scripts/validate-customization-registry.py",
+        "   python scripts/validate-readme-registry.py",
+        "   python scripts/validate-markdown-lint.py",
+        "4. If the asset changes routing behavior, also run:",
+        "   python scripts/validate-route-smoke.py",
+        "5. Open the relevant docs for the longer reference path:",
+        "   docs/codev-dev-guide.md",
+        "   docs/submodule-guide.md",
+    ]
+
+    print()
+    print(BOLD("  guide: extension"))
+    print()
+    print(f"  {BOLD('Kind')}         {normalized_kind}")
+    _print_next_command(prompt_map[normalized_kind])
+    _print_preview_block("Minimal extension path", preview_lines)
+    print()
+    return 0
 
 
 def cmd_guide_issue(
@@ -733,6 +783,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="Free-form request to route.",
     )
 
+    guide_extension = guide_sub.add_parser(
+        "extension",
+        help="Preview the shortest extension onboarding path.",
+    )
+    guide_extension.add_argument(
+        "--kind",
+        default="agent",
+        help="Asset kind: agent, skill, instruction, or prompt.",
+    )
+
     guide_issue = guide_sub.add_parser(
         "issue",
         help="Preview a governance-compliant issue body.",
@@ -876,6 +936,8 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         if args.guide_type == "route":
             return cmd_guide_route(args.request, routing)
+        if args.guide_type == "extension":
+            return cmd_guide_extension(args.kind)
         if args.guide_type == "issue":
             return cmd_guide_issue(
                 title=args.title,

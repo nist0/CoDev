@@ -2,7 +2,6 @@
 name: generate-controller
 description: Generate a production-ready ASP.NET Core CRUD controller from a description, OpenAPI JSON contract, or resource theme.
 agent: Backend .NET
-tools: []
 ---
 
 Use the `rest-api-controller-gen` skill to generate a complete, production-grade ASP.NET Core CRUD controller.

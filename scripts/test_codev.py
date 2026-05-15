@@ -730,6 +730,59 @@ class TestDirectoryManagedPaths:
         assert (root / "scripts" / "validate-route-smoke.py").exists()
         assert (root / "schemas" / "codev.schema.json").exists()
 
+    def test_init_backfill_preserves_custom_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            "custom/path",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "custom/path" in updated_manifest["managedPaths"]
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+
+    def test_update_backfill_preserves_custom_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            "custom/path",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        codev.cmd_update(argparse.Namespace())
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "custom/path" in updated_manifest["managedPaths"]
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+
     def test_lockfile_init_copies_routing_directory(self, tmp_repo_with_routing: Path) -> None:
         root = tmp_repo_with_routing
         submodule = root / "tools" / "codev"

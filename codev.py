@@ -498,6 +498,7 @@ def cmd_init(args: argparse.Namespace) -> None:
     codev_json_path = root / CODEV_JSON
     if codev_json_path.exists():
         cfg = json.loads(codev_json_path.read_text(encoding="utf-8-sig"))
+        managed_paths = sync_codev_manifest(root, cfg)
     else:
         cfg = {
             "$schema": "https://raw.githubusercontent.com/nist0/CoDev/main/schemas/codev.schema.json",
@@ -505,19 +506,19 @@ def cmd_init(args: argparse.Namespace) -> None:
             "submodulePath": args.submodule_path or "tools/codev",
             "overrideStrategy": args.strategy,
             "overridesDir": args.overrides_dir,
-            "managedPaths": MANAGED_PATHS_DEFAULT,
+            "managedPaths": MANAGED_PATHS_DEFAULT.copy(),
         }
         with codev_json_path.open("w", encoding="utf-8") as f:
             json.dump(cfg, f, indent=2)
             f.write("\n")
         print(f"  Created {CODEV_JSON}")
+        managed_paths = cfg["managedPaths"]
 
     _validate_codev_json(cfg, root)
 
     submodule_path = root / cfg["submodulePath"]
     overrides_dir = root / cfg.get("overridesDir", "codev-overrides")
     overrides_dir.mkdir(parents=True, exist_ok=True)
-    managed_paths = sync_codev_manifest(root, cfg)
     # Exclude copilot-instructions.md from symlink targets (generated separately)
     asset_paths = [p for p in managed_paths if not p.endswith("copilot-instructions.md")]
 

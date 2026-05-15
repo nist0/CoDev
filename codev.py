@@ -482,6 +482,7 @@ def cmd_init(args: argparse.Namespace) -> None:
 
     submodule_path = root / cfg["submodulePath"]
     overrides_dir = root / cfg.get("overridesDir", "codev-overrides")
+    overrides_dir.mkdir(parents=True, exist_ok=True)
     managed_paths: list[str] = cfg.get("managedPaths", MANAGED_PATHS_DEFAULT)
     # Exclude copilot-instructions.md from symlink targets (generated separately)
     asset_paths = [p for p in managed_paths if not p.endswith("copilot-instructions.md")]

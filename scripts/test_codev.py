@@ -524,6 +524,24 @@ class TestCoexistence:
 
         assert (tmp_repo / ".github" / "agents" / "custom.agent.md").exists()
 
+    def test_init_creates_overrides_directory(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        overrides_dir = tmp_repo / "codev-overrides"
+        if overrides_dir.exists():
+            raise AssertionError("precondition failed: overrides directory should not exist")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert overrides_dir.exists()
+        assert overrides_dir.is_dir()
+
 
 # ---------------------------------------------------------------------------
 # Directory managed paths (routing, scripts, schemas)

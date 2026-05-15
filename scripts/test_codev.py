@@ -604,6 +604,86 @@ class TestDirectoryManagedPaths:
         assert "scripts" in codev.MANAGED_PATHS_DEFAULT
         assert "schemas" in codev.MANAGED_PATHS_DEFAULT
 
+    def test_symlink_init_wires_routing_scripts_and_schemas(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (root / "routing").is_symlink()
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts").is_symlink()
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "schemas").is_symlink()
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_init_backfills_missing_default_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            ".github/prompts",
+            ".github/instructions",
+            ".github/copilot-instructions.md",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_update_backfills_missing_default_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            ".github/prompts",
+            ".github/instructions",
+            ".github/copilot-instructions.md",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        codev.cmd_update(argparse.Namespace())
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "schemas" / "codev.schema.json").exists()
+
     def test_lockfile_init_copies_routing_directory(self, tmp_repo_with_routing: Path) -> None:
         root = tmp_repo_with_routing
         submodule = root / "tools" / "codev"

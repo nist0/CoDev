@@ -110,6 +110,28 @@ def _validate_codev_json(data: dict[str, Any], root: Path) -> None:
         sys.exit(1)
 
 
+def normalize_managed_paths(managed_paths: Any) -> list[str]:
+    """Return managed paths with current defaults appended in stable order."""
+    normalized: list[str] = []
+    candidates = managed_paths if isinstance(managed_paths, list) else []
+    for path in [*candidates, *MANAGED_PATHS_DEFAULT]:
+        if isinstance(path, str) and path not in normalized:
+            normalized.append(path)
+    return normalized
+
+
+def sync_codev_manifest(root: Path, cfg: dict[str, Any]) -> list[str]:
+    """Backfill current managed path defaults into codev.json when needed."""
+    managed_paths = normalize_managed_paths(cfg.get("managedPaths"))
+    manifest_path = root / CODEV_JSON
+    if manifest_path.exists() and cfg.get("managedPaths") != managed_paths:
+        cfg["managedPaths"] = managed_paths
+        with manifest_path.open("w", encoding="utf-8") as f:
+            json.dump(cfg, f, indent=2)
+            f.write("\n")
+    return managed_paths
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
@@ -362,10 +384,11 @@ def main() -> int:
         if not codev_json.exists():
             return 0  # CoDev not active
         cfg = json.loads(codev_json.read_text(encoding="utf-8-sig"))
-        managed = set(cfg.get("managedPaths", [
+        managed = set((cfg.get("managedPaths") or []) + [
             ".github/agents", ".github/skills", ".github/prompts",
             ".github/instructions", ".github/copilot-instructions.md",
-        ]))
+            "routing", "scripts", "schemas",
+        ])
         staged = subprocess.check_output(
             ["git", "diff", "--cached", "--name-only"], text=True
         ).splitlines()
@@ -483,7 +506,7 @@ def cmd_init(args: argparse.Namespace) -> None:
     submodule_path = root / cfg["submodulePath"]
     overrides_dir = root / cfg.get("overridesDir", "codev-overrides")
     overrides_dir.mkdir(parents=True, exist_ok=True)
-    managed_paths: list[str] = cfg.get("managedPaths", MANAGED_PATHS_DEFAULT)
+    managed_paths = sync_codev_manifest(root, cfg)
     # Exclude copilot-instructions.md from symlink targets (generated separately)
     asset_paths = [p for p in managed_paths if not p.endswith("copilot-instructions.md")]
 
@@ -691,7 +714,7 @@ def cmd_update(_args: argparse.Namespace) -> None:
     cfg = load_codev_json(root)
     submodule_path = root / cfg["submodulePath"]
     overrides_dir = root / cfg.get("overridesDir", "codev-overrides")
-    managed_paths: list[str] = cfg.get("managedPaths", MANAGED_PATHS_DEFAULT)
+    managed_paths = sync_codev_manifest(root, cfg)
     asset_paths = [p for p in managed_paths if not p.endswith("copilot-instructions.md")]
 
     print(f"CoDev update — repository root: {root}")
@@ -743,7 +766,7 @@ def cmd_teardown(args: argparse.Namespace) -> None:
     if (root / CODEV_JSON).exists():
         cfg = json.loads((root / CODEV_JSON).read_text(encoding="utf-8-sig"))
 
-    managed_paths: list[str] = cfg.get("managedPaths", MANAGED_PATHS_DEFAULT)
+    managed_paths = sync_codev_manifest(root, cfg)
     asset_paths = [p for p in managed_paths if not p.endswith("copilot-instructions.md")]
     submodule_path = root / cfg.get("submodulePath", "tools/codev") if cfg else root / "tools/codev"
 

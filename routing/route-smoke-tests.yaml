@@ -360,6 +360,30 @@ cases:
       prompts: ["generate-controller"]
       skills: ["rest-api-controller-gen", "rest-api-bootstrap", "aspnet-core", "mediatr", "openapi", "dotnet-testing"]
 
+  - request: "design a controller based rest api with cqrs and openapi for aspnet core"
+    expect:
+      capability: rest-api-engineering
+      domain: backend-dotnet
+      agent: REST API Engineer
+      prompts: ["rest-api-new-service", "rest-api-add-resource", "rest-api-review"]
+      skills: ["rest-api-design-governance", "rest-api-runtime-quality", "aspnet-core", "mediatr", "openapi", "ef-core", "postgres", "dotnet-testing"]
+
+  - request: "add a products resource to my aspnet core api"
+    expect:
+      capability: rest-api-engineering
+      domain: backend-dotnet
+      agent: REST API Engineer
+      prompts: ["rest-api-new-service", "rest-api-add-resource", "rest-api-review"]
+      skills: ["rest-api-design-governance", "rest-api-runtime-quality", "aspnet-core", "mediatr", "openapi", "ef-core", "postgres", "dotnet-testing"]
+
+  - request: "audit my aspnet core api validation and problemdetails consistency"
+    expect:
+      capability: rest-api-engineering
+      domain: backend-dotnet
+      agent: REST API Engineer
+      prompts: ["rest-api-new-service", "rest-api-add-resource", "rest-api-review"]
+      skills: ["rest-api-design-governance", "rest-api-runtime-quality", "aspnet-core", "mediatr", "openapi", "ef-core", "postgres", "dotnet-testing"]
+
   - request: "build a telegram bot in python"
     expect:
       capability: bot-engineering

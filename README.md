@@ -708,6 +708,7 @@ Defines **what** Copilot can do. Each capability has an `id` and a `default_agen
 | `cli-platform-onboarding` | Three-phase onboarding for a .NET CLI platform project: bootstrap CoDev as submodule, run full static analysis (GH workflows, Bicep, solution), then execute tasks using deduced project context. | CLI Platform Onboarder |
 | `mcp` | Design, install, analyze, and debug Model Context Protocol integrations for VS Code and GitHub Copilot. | mcp-specialist |
 | `scaffolding` | Generate production-ready code artefacts (controllers, handlers, tests) from a description, OpenAPI contract, or resource theme; or bootstrap a new REST API project from scratch using curated templates. | Backend .NET |
+| `rest-api-engineering` | Design, evolve, and audit controller-based ASP.NET Core REST APIs with CQRS + IMediator, explicit DTO contracts, EF Core/PostgreSQL boundaries, OpenAPI quality, and production readiness checks. | REST API Engineer |
 | `mermaid` | Produce, review, and embed Mermaid diagrams in Markdown files — GitHub-native rendering, best practices, and CI validation. | mermaid-diagrammer |
 | `codev-management` | CoDev submodule lifecycle: init, update, override authoring, teardown, and upstream contribution. | CoDev Consumer |
 | `cv-coaching` | Analyse, critique, and rewrite CVs/resumes to modern professional standards: ATS compliance, impact-first bullets, quantified achievements, and keyword gap analysis against a target job offer. | CV Coach |
@@ -776,6 +777,7 @@ Generated agent inventory:
 | Project Takeover | project-takeover.agent.md | Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit 6 documents en français dans le répertoire local `.takeover/` (gitignored). Couvre : inventaire des dépôts, état du Kanban, graphe des sous-modules, topologie API & BD, décomposition fonctionnelle, et plan d'étude point par point. |
 | promptsmith | promptsmith.agent.md | Creates stable prompts, skills, agents, and instruction files for this repo. Always plans first. |
 | Reliability | reliability.agent.md | Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes. |
+| REST API Engineer | rest-api-engineer.agent.md | Design, evolve, and audit ASP.NET Core REST APIs with controller-first architecture, CQRS + IMediator, EF Core/PostgreSQL, and production governance. |
 | reviewer | reviewer.agent.md | Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence. |
 | Router | router.agent.md | Canonical routing: capability + domain -> recommended agent, prompts, and skills. |
 | Security | security-agent.agent.md | Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent -- not a live infrastructure scanner. |
@@ -815,6 +817,7 @@ Generated instruction inventory:
 | react.instructions.md | `**/*.tsx` | React/TSX guidance: component boundaries, hooks discipline, performance basics. |
 | reliability.instructions.md | `**` | Repro-first debugging, measurement-first performance, blameless postmortems, observability standards. |
 | repo-structure.instructions.md | `**` | Deterministic directory conventions: every file type has a single canonical location; generated files are never placed arbitrarily. |
+| rest-api-engineering.instructions.md | `**/*Controller.cs` | Controller-first REST API governance for ASP.NET Core controllers: resource routes, thin controllers, IMediator flow, ProblemDetails, and contract discipline. |
 | security.instructions.md | `**/*` | Secure-by-default coding: secrets hygiene, least-privilege, threat modeling, supply chain. |
 | session-continuity.instructions.md | `**` | Maintain persistent, theme-scoped knowledge files with no redundancy so every new chat session can resume from an exact, up-to-date state. |
 | tech-watch.instructions.md | `**` | Actionable digests: what changed, why it matters, what to try. |
@@ -881,6 +884,9 @@ Generated prompt inventory:
 | `/prompt-from-theme` | prompt-from-theme.prompt.md | promptsmith | Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs. |
 | `/quickstart` | quickstart.prompt.md | Router | Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized contributor-profile quickstart card. |
 | `/release-plan` | release-plan.prompt.md | Delivery Lead | Release plan: versioning, changelog, build artifacts, rollout/rollback, verification, comms. |
+| `/rest-api-add-resource` | rest-api-add-resource.prompt.md | REST API Engineer | Add a new resource to an existing ASP.NET Core REST API with consistent routes, DTOs, IMediator handlers, validation, and OpenAPI updates. |
+| `/rest-api-new-service` | rest-api-new-service.prompt.md | REST API Engineer | Design a new controller-based ASP.NET Core REST API with CQRS + IMediator, DTO contracts, EF Core/PostgreSQL boundaries, and production quality gates. |
+| `/rest-api-review` | rest-api-review.prompt.md | REST API Engineer | Audit and improve an existing ASP.NET Core REST API for contract quality, error handling, EF Core/PostgreSQL correctness, security, observability, and tests. |
 | `/route-miss` | route-miss.prompt.md | Router | Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue. |
 | `/route` | route.prompt.md | Router | Route a request using the canonical matrix (capability + domain) and produce deterministic delegation when delivery tasks are requested. |
 | `/secrets-audit` | secrets-audit.prompt.md | Security | Audit a file, PR diff, or codebase description for secrets, tokens, credentials, and private keys. Every finding is Critical — emit rotation guidance immediately. |
@@ -984,6 +990,8 @@ Generated skill inventory:
 | `repo-understanding` | Produce a navigable codebase summary — module map, entry points, key data flows, dependency overview, and doc structure. |
 | `rest-api-bootstrap` | Bootstrap a REST API project from zero — curated GitHub template repos, dotnet/pip/cookiecutter CLI commands, and quality snippet sources for C# (.NET), Python (FastAPI/Flask), and Bash (curl/jq client patterns). |
 | `rest-api-controller-gen` | Generate a production-ready ASP.NET Core REST API controller (CRUD) from a description, OpenAPI JSON contract, or resource theme — with MediatR handlers, FluentValidation, ProblemDetails, OpenAPI annotations, versioning, and an integration-test checklist. |
+| `rest-api-design-governance` | Design and govern ASP.NET Core REST APIs with resource-first contracts, controller boundaries, CQRS + IMediator, versioning, and OpenAPI quality. |
+| `rest-api-runtime-quality` | Improve runtime quality for ASP.NET Core APIs through validation/error consistency, EF Core/PostgreSQL safety, security baselines, observability, and testing. |
 | `rfc` | Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan. |
 | `roadmap` | Actionable roadmap — outcome-driven milestones, dependency and risk register, success metrics, and review cadence. |
 | `supply-chain` | Software supply chain hardening — dependency pinning, SBOM, artifact signing, provenance, and policy enforcement. |

@@ -305,6 +305,25 @@ aliases:
   - security review
   - what are my attack surfaces
   - security posture
+  rest-api-engineering:
+  - rest api engineering
+  - design rest api
+  - design aspnet core api
+  - controller based rest api
+  - controller-based rest api
+  - add resource to api
+  - add resource to my aspnet core api
+  - add a products resource to my aspnet core api
+  - add crud resource
+  - api readiness review
+  - audit rest api
+  - audit my aspnet core api
+  - audit my aspnet core api validation and problemdetails consistency
+  - improve openapi
+  - improve api validation
+  - improve api error handling
+  - cqrs api design
+  - problemdetails api
   scaffolding:
   - generate controller
   - scaffold controller

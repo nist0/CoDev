@@ -140,6 +140,22 @@ capabilities:
       - clean architecture template
     default_agent: Backend .NET
 
+  - id: rest-api-engineering
+    description: "Design, evolve, and audit controller-based ASP.NET Core REST APIs with CQRS + IMediator, explicit DTO contracts, EF Core/PostgreSQL boundaries, OpenAPI quality, and production readiness checks."
+    keywords:
+      - rest api engineering
+      - api governance
+      - api design
+      - add api resource
+      - api readiness review
+      - problemdetails
+      - controller based api
+      - cqrs api
+      - mediator api
+      - openapi quality
+      - api refactor
+    default_agent: REST API Engineer
+
   - id: mermaid
     description: "Produce, review, and embed Mermaid diagrams in Markdown files — GitHub-native rendering, best practices, and CI validation."
     keywords:

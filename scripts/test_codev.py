@@ -297,6 +297,52 @@ class TestGitignore:
         gi = (tmp_repo / ".gitignore").read_text(encoding="utf-8") if (tmp_repo / ".gitignore").exists() else ""
         assert codev.GITIGNORE_MARKER not in gi
 
+    def test_gitignore_created_fresh(self, tmp_repo: Path) -> None:
+        """No .gitignore exists — creates one containing all supplied paths."""
+        gi_path = tmp_repo / ".gitignore"
+        assert not gi_path.exists()
+        codev.update_gitignore(tmp_repo, [".github/agents", "routing", "scripts", "schemas"])
+        gi = gi_path.read_text(encoding="utf-8")
+        assert codev.GITIGNORE_MARKER in gi
+        for p in [".github/agents", "routing", "scripts", "schemas"]:
+            assert f"/{p}" in gi
+        assert gi.count(f"{codev.GITIGNORE_MARKER} end") == 1
+
+    def test_gitignore_block_updated_when_paths_change(self, tmp_repo: Path) -> None:
+        """Block with old paths is replaced when new paths are supplied."""
+        gi_path = tmp_repo / ".gitignore"
+        # Write an old-style block that only includes .github paths
+        old_block = (
+            f"\n{codev.GITIGNORE_MARKER}\n"
+            "/.github/agents\n"
+            "/.github/skills\n"
+            f"{codev.GITIGNORE_MARKER} end\n"
+        )
+        gi_path.write_text(old_block, encoding="utf-8")
+
+        # Call update with the expanded set that now includes routing/scripts/schemas
+        new_paths = [".github/agents", ".github/skills", "routing", "scripts", "schemas"]
+        codev.update_gitignore(tmp_repo, new_paths)
+
+        gi = gi_path.read_text(encoding="utf-8")
+        # Block must appear exactly once
+        assert gi.count(f"{codev.GITIGNORE_MARKER} end") == 1
+        # All new paths must be present
+        for p in new_paths:
+            assert f"/{p}" in gi
+
+    def test_gitignore_unchanged_when_paths_same(self, tmp_repo: Path) -> None:
+        """Calling update_gitignore twice with identical paths does not duplicate the block."""
+        paths = [".github/agents", "routing", "scripts", "schemas"]
+        codev.update_gitignore(tmp_repo, paths)
+        content_after_first = (tmp_repo / ".gitignore").read_text(encoding="utf-8")
+
+        codev.update_gitignore(tmp_repo, paths)
+        content_after_second = (tmp_repo / ".gitignore").read_text(encoding="utf-8")
+
+        assert content_after_first == content_after_second
+        assert content_after_second.count(f"{codev.GITIGNORE_MARKER} end") == 1
+
 
 # ---------------------------------------------------------------------------
 # Lockfile init (file-copy mode) — integration

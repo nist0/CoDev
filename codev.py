@@ -343,16 +343,27 @@ def update_gitignore(root: Path, paths: list[str], remove: bool = False) -> None
         print("  Cleaned .gitignore")
         return
 
-    if f"{GITIGNORE_MARKER} end" in existing:
-        return  # Already present — match end-marker to avoid false positives
-
     block_lines = [f"\n{GITIGNORE_MARKER}\n"]
     for p in paths:
         block_lines.append(f"/{p}\n")
     block_lines.append(f"{GITIGNORE_MARKER} end\n")
+    new_block = "".join(block_lines)
+
+    if f"{GITIGNORE_MARKER} end" in existing:
+        # Block already present — replace it only if the content has changed
+        pattern = re.compile(
+            rf"\n{re.escape(GITIGNORE_MARKER)}\n.*?{re.escape(GITIGNORE_MARKER)} end\n",
+            re.DOTALL,
+        )
+        updated = pattern.sub(new_block, existing)
+        if updated == existing:
+            return  # Nothing changed
+        gi.write_text(updated, encoding="utf-8")
+        print("  Updated .gitignore")
+        return
 
     with gi.open("a", encoding="utf-8") as f:
-        f.writelines(block_lines)
+        f.write(new_block)
     print("  Updated .gitignore")
 
 

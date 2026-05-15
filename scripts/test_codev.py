@@ -526,6 +526,128 @@ class TestCoexistence:
 
 
 # ---------------------------------------------------------------------------
+# Directory managed paths (routing, scripts, schemas)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture()
+def tmp_repo_with_routing(tmp_path: Path) -> Path:
+    """Fake git repo with routing/, scripts/, schemas/ in the submodule."""
+    subprocess.run(["git", "init", str(tmp_path)], check=True, capture_output=True)
+    subprocess.run(
+        ["git", "config", "user.email", "test@test.com"],
+        check=True, capture_output=True, cwd=str(tmp_path),
+    )
+    subprocess.run(
+        ["git", "config", "user.name", "Test"],
+        check=True, capture_output=True, cwd=str(tmp_path),
+    )
+
+    codev_sub = tmp_path / "tools" / "codev"
+
+    # .github assets
+    (codev_sub / ".github" / "agents").mkdir(parents=True, exist_ok=True)
+    (codev_sub / ".github" / "agents" / "router.agent.md").write_text(
+        "---\nname: router\n---\n", encoding="utf-8"
+    )
+    (codev_sub / ".github" / "copilot-instructions.md").write_text(
+        "# Base\n", encoding="utf-8"
+    )
+
+    # routing/ directory with nested files
+    (codev_sub / "routing").mkdir(parents=True, exist_ok=True)
+    (codev_sub / "routing" / "capabilities.yaml").write_text("capabilities: []\n", encoding="utf-8")
+    (codev_sub / "routing" / "matrix.yaml").write_text("matrix: {}\n", encoding="utf-8")
+
+    # scripts/ directory with a subdirectory
+    (codev_sub / "scripts" / "hooks").mkdir(parents=True, exist_ok=True)
+    (codev_sub / "scripts" / "validate-route-smoke.py").write_text("# validator\n", encoding="utf-8")
+    (codev_sub / "scripts" / "hooks" / "pre-push").write_text("#!/bin/bash\n", encoding="utf-8")
+
+    # schemas/ directory
+    (codev_sub / "schemas").mkdir(parents=True, exist_ok=True)
+    (codev_sub / "schemas" / "codev.schema.json").write_text("{}\n", encoding="utf-8")
+
+    manifest = {
+        "version": "1",
+        "submodulePath": "tools/codev",
+        "overrideStrategy": "extend",
+        "overridesDir": "codev-overrides",
+        "managedPaths": codev.MANAGED_PATHS_DEFAULT,
+    }
+    (tmp_path / "codev.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    (tmp_path / ".git" / "hooks").mkdir(parents=True, exist_ok=True)
+    return tmp_path
+
+
+class TestDirectoryManagedPaths:
+    def test_managed_paths_default_includes_routing_scripts_schemas(self) -> None:
+        assert "routing" in codev.MANAGED_PATHS_DEFAULT
+        assert "scripts" in codev.MANAGED_PATHS_DEFAULT
+        assert "schemas" in codev.MANAGED_PATHS_DEFAULT
+
+    def test_lockfile_init_copies_routing_directory(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "routing" / "matrix.yaml").exists()
+
+    def test_lockfile_init_copies_scripts_including_subdir(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "scripts" / "hooks" / "pre-push").exists()
+
+    def test_lockfile_init_copies_schemas_directory(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_lockfile_tracks_routing_files_in_lock(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        lock = json.loads((root / "codev-lock.json").read_text(encoding="utf-8"))
+        assert "routing/capabilities.yaml" in lock["managed"]
+        assert "routing/matrix.yaml" in lock["managed"]
+        assert "schemas/codev.schema.json" in lock["managed"]
+        assert "scripts/validate-route-smoke.py" in lock["managed"]
+        assert "scripts/hooks/pre-push" in lock["managed"]
+
+    def test_teardown_removes_routing_and_nested_dirs(self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: False)
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts" / "hooks" / "pre-push").exists()
+
+        codev.cmd_teardown(argparse.Namespace(force=True))
+
+        assert not (root / "routing").exists()
+        assert not (root / "scripts").exists()
+        assert not (root / "schemas").exists()
+
+
+# ---------------------------------------------------------------------------
 # Migration
 # ---------------------------------------------------------------------------
 

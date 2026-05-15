@@ -39,6 +39,9 @@ MANAGED_PATHS_DEFAULT = [
     ".github/prompts",
     ".github/instructions",
     ".github/copilot-instructions.md",
+    "routing",
+    "scripts",
+    "schemas",
 ]
 # Paths where per-FILE wiring is used (agents, prompts, instructions)
 PER_FILE_PATHS = [
@@ -663,6 +666,16 @@ def _init_lockfile(
                 shutil.copy2(str(src), str(dst))
                 managed_files.append(dst)
                 print(f"  Copied {rel}")
+            elif src.is_dir():
+                if dst.is_symlink():
+                    dst.unlink()
+                elif dst.exists():
+                    shutil.rmtree(str(dst))
+                shutil.copytree(str(src), str(dst))
+                managed_files.extend(f for f in dst.rglob("*") if f.is_file())
+                print(f"  Copied {rel}/")
+            else:
+                print(f"  WARN: submodule path not found, skipping: {rel}")
     lock = build_lock(managed_files, root)
     write_lock(root, lock)
 
@@ -753,8 +766,18 @@ def cmd_teardown(args: argparse.Namespace) -> None:
             if rel in per_file:
                 continue
             d = root / rel
-            if d.is_dir() and not any(d.iterdir()):
-                d.rmdir()
+            if d.is_dir():
+                # Remove empty subdirectories bottom-up, then the top-level dir
+                for sub in sorted(d.rglob("*"), reverse=True):
+                    if sub.is_dir():
+                        try:
+                            sub.rmdir()  # only succeeds when empty
+                        except OSError:
+                            pass  # not empty — leave host files intact
+                try:
+                    d.rmdir()
+                except OSError:
+                    pass  # not empty — leave host files intact
         lock_path.unlink()
         print(f"  Removed {LOCK_FILE}")
     else:

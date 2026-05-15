@@ -901,6 +901,34 @@ routing_rules:
         - "rest-api-bootstrap"
         - "aspnet-core"
 
+  # ── REST API Engineering Lifecycle ───────────────────────────────────────
+  - when:
+      capability: rest-api-engineering
+      domain: backend-dotnet
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-new-service", "rest-api-add-resource", "rest-api-review"]
+      skills:
+        - "rest-api-design-governance"
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "mediatr"
+        - "openapi"
+        - "ef-core"
+        - "postgres"
+        - "dotnet-testing"
+
+  - when:
+      capability: rest-api-engineering
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-new-service", "rest-api-add-resource", "rest-api-review"]
+      skills:
+        - "rest-api-design-governance"
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+
   # ── Mermaid Diagrams ─────────────────────────────────────────────────────
   - when:
       capability: mermaid

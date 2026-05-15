@@ -128,6 +128,7 @@ Example:
 - `tech-watch`
 - `codev-management`
 - `bot-engineering`
+- `rest-api-engineering`
 
 ## 9) Existing domains (source: `routing/domains.yaml`)
 
@@ -154,6 +155,9 @@ Example:
 - `/project-kickoff`, `/project-dispatch`, `/project-governance`
 - `/generate-onboarding`, `/generate-docs-tree`, `/doc-lint-fix`
 - `/mcp-setup` - gather MCP topology, install target, trust/auth constraints, and emit a concrete setup plan for VS Code or GitHub Copilot
+- `/rest-api-new-service` - design a controller-first ASP.NET Core REST API blueprint with CQRS + IMediator and quality gates
+- `/rest-api-add-resource` - add a new resource to an existing API with contract consistency and OpenAPI updates
+- `/rest-api-review` - audit and improve API quality across validation, ProblemDetails, persistence, security, observability, and tests
 - `/mcp-analyze` - review an existing MCP design or configuration for topology, least privilege, and host fit
 - `/mcp-debug` - troubleshoot MCP startup, discovery, auth, and invocation failures
 - `/diagram-ops`, `/markdown-ops`
@@ -170,6 +174,7 @@ Routing boundary for brainstorming-heavy work:
 ## 11) Safety and quality defaults
 
 - `/dotnet-excellence`
+- `/rest-api-new-service`, `/rest-api-add-resource`, `/rest-api-review`
 
 - Never add secrets/tokens/keys (including examples).
 - Keep instruction layering additive and non-contradictory.

@@ -297,6 +297,52 @@ class TestGitignore:
         gi = (tmp_repo / ".gitignore").read_text(encoding="utf-8") if (tmp_repo / ".gitignore").exists() else ""
         assert codev.GITIGNORE_MARKER not in gi
 
+    def test_gitignore_created_fresh(self, tmp_repo: Path) -> None:
+        """No .gitignore exists — creates one containing all supplied paths."""
+        gi_path = tmp_repo / ".gitignore"
+        assert not gi_path.exists()
+        codev.update_gitignore(tmp_repo, [".github/agents", "routing", "scripts", "schemas"])
+        gi = gi_path.read_text(encoding="utf-8")
+        assert codev.GITIGNORE_MARKER in gi
+        for p in [".github/agents", "routing", "scripts", "schemas"]:
+            assert f"/{p}" in gi
+        assert gi.count(f"{codev.GITIGNORE_MARKER} end") == 1
+
+    def test_gitignore_block_updated_when_paths_change(self, tmp_repo: Path) -> None:
+        """Block with old paths is replaced when new paths are supplied."""
+        gi_path = tmp_repo / ".gitignore"
+        # Write an old-style block that only includes .github paths
+        old_block = (
+            f"\n{codev.GITIGNORE_MARKER}\n"
+            "/.github/agents\n"
+            "/.github/skills\n"
+            f"{codev.GITIGNORE_MARKER} end\n"
+        )
+        gi_path.write_text(old_block, encoding="utf-8")
+
+        # Call update with the expanded set that now includes routing/scripts/schemas
+        new_paths = [".github/agents", ".github/skills", "routing", "scripts", "schemas"]
+        codev.update_gitignore(tmp_repo, new_paths)
+
+        gi = gi_path.read_text(encoding="utf-8")
+        # Block must appear exactly once
+        assert gi.count(f"{codev.GITIGNORE_MARKER} end") == 1
+        # All new paths must be present
+        for p in new_paths:
+            assert f"/{p}" in gi
+
+    def test_gitignore_unchanged_when_paths_same(self, tmp_repo: Path) -> None:
+        """Calling update_gitignore twice with identical paths does not duplicate the block."""
+        paths = [".github/agents", "routing", "scripts", "schemas"]
+        codev.update_gitignore(tmp_repo, paths)
+        content_after_first = (tmp_repo / ".gitignore").read_text(encoding="utf-8")
+
+        codev.update_gitignore(tmp_repo, paths)
+        content_after_second = (tmp_repo / ".gitignore").read_text(encoding="utf-8")
+
+        assert content_after_first == content_after_second
+        assert content_after_second.count(f"{codev.GITIGNORE_MARKER} end") == 1
+
 
 # ---------------------------------------------------------------------------
 # Lockfile init (file-copy mode) — integration
@@ -523,6 +569,279 @@ class TestCoexistence:
         codev.cmd_init(args)
 
         assert (tmp_repo / ".github" / "agents" / "custom.agent.md").exists()
+
+    def test_init_creates_overrides_directory(
+        self, tmp_repo: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setattr(codev, "repo_root", lambda: tmp_repo)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        overrides_dir = tmp_repo / "codev-overrides"
+        if overrides_dir.exists():
+            raise AssertionError("precondition failed: overrides directory should not exist")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert overrides_dir.exists()
+        assert overrides_dir.is_dir()
+
+
+# ---------------------------------------------------------------------------
+# Directory managed paths (routing, scripts, schemas)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture()
+def tmp_repo_with_routing(tmp_path: Path) -> Path:
+    """Fake git repo with routing/, scripts/, schemas/ in the submodule."""
+    subprocess.run(["git", "init", str(tmp_path)], check=True, capture_output=True)
+    subprocess.run(
+        ["git", "config", "user.email", "test@test.com"],
+        check=True, capture_output=True, cwd=str(tmp_path),
+    )
+    subprocess.run(
+        ["git", "config", "user.name", "Test"],
+        check=True, capture_output=True, cwd=str(tmp_path),
+    )
+
+    codev_sub = tmp_path / "tools" / "codev"
+
+    # .github assets
+    (codev_sub / ".github" / "agents").mkdir(parents=True, exist_ok=True)
+    (codev_sub / ".github" / "agents" / "router.agent.md").write_text(
+        "---\nname: router\n---\n", encoding="utf-8"
+    )
+    (codev_sub / ".github" / "copilot-instructions.md").write_text(
+        "# Base\n", encoding="utf-8"
+    )
+
+    # routing/ directory with nested files
+    (codev_sub / "routing").mkdir(parents=True, exist_ok=True)
+    (codev_sub / "routing" / "capabilities.yaml").write_text("capabilities: []\n", encoding="utf-8")
+    (codev_sub / "routing" / "matrix.yaml").write_text("matrix: {}\n", encoding="utf-8")
+
+    # scripts/ directory with a subdirectory
+    (codev_sub / "scripts" / "hooks").mkdir(parents=True, exist_ok=True)
+    (codev_sub / "scripts" / "validate-route-smoke.py").write_text("# validator\n", encoding="utf-8")
+    (codev_sub / "scripts" / "hooks" / "pre-push").write_text("#!/bin/bash\n", encoding="utf-8")
+
+    # schemas/ directory
+    (codev_sub / "schemas").mkdir(parents=True, exist_ok=True)
+    (codev_sub / "schemas" / "codev.schema.json").write_text("{}\n", encoding="utf-8")
+
+    manifest = {
+        "version": "1",
+        "submodulePath": "tools/codev",
+        "overrideStrategy": "extend",
+        "overridesDir": "codev-overrides",
+        "managedPaths": codev.MANAGED_PATHS_DEFAULT,
+    }
+    (tmp_path / "codev.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    (tmp_path / ".git" / "hooks").mkdir(parents=True, exist_ok=True)
+    return tmp_path
+
+
+class TestDirectoryManagedPaths:
+    def test_managed_paths_default_includes_routing_scripts_schemas(self) -> None:
+        assert "routing" in codev.MANAGED_PATHS_DEFAULT
+        assert "scripts" in codev.MANAGED_PATHS_DEFAULT
+        assert "schemas" in codev.MANAGED_PATHS_DEFAULT
+
+    def test_symlink_init_wires_routing_scripts_and_schemas(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (root / "routing").is_symlink()
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts").is_symlink()
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "schemas").is_symlink()
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_init_backfills_missing_default_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            ".github/prompts",
+            ".github/instructions",
+            ".github/copilot-instructions.md",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_update_backfills_missing_default_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            ".github/prompts",
+            ".github/instructions",
+            ".github/copilot-instructions.md",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        codev.cmd_update(argparse.Namespace())
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_init_backfill_preserves_custom_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            "custom/path",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "custom/path" in updated_manifest["managedPaths"]
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+
+    def test_update_backfill_preserves_custom_managed_paths(
+        self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: True)
+        monkeypatch.setattr(codev, "running_in_wsl", lambda: False)
+        monkeypatch.setattr(codev, "is_windows_mount_path", lambda _path: False)
+
+        manifest_path = root / "codev.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["managedPaths"] = [
+            ".github/agents",
+            ".github/skills",
+            "custom/path",
+        ]
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+        codev.cmd_update(argparse.Namespace())
+
+        updated_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        assert "custom/path" in updated_manifest["managedPaths"]
+        assert "routing" in updated_manifest["managedPaths"]
+        assert "scripts" in updated_manifest["managedPaths"]
+        assert "schemas" in updated_manifest["managedPaths"]
+
+    def test_lockfile_init_copies_routing_directory(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "routing" / "matrix.yaml").exists()
+
+    def test_lockfile_init_copies_scripts_including_subdir(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        assert (root / "scripts" / "validate-route-smoke.py").exists()
+        assert (root / "scripts" / "hooks" / "pre-push").exists()
+
+    def test_lockfile_init_copies_schemas_directory(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        assert (root / "schemas" / "codev.schema.json").exists()
+
+    def test_lockfile_tracks_routing_files_in_lock(self, tmp_repo_with_routing: Path) -> None:
+        root = tmp_repo_with_routing
+        submodule = root / "tools" / "codev"
+        managed = codev.MANAGED_PATHS_DEFAULT
+        asset_paths = [p for p in managed if not p.endswith("copilot-instructions.md")]
+        codev._init_lockfile(root, submodule, managed, asset_paths)
+
+        lock = json.loads((root / "codev-lock.json").read_text(encoding="utf-8"))
+        assert "routing/capabilities.yaml" in lock["managed"]
+        assert "routing/matrix.yaml" in lock["managed"]
+        assert "schemas/codev.schema.json" in lock["managed"]
+        assert "scripts/validate-route-smoke.py" in lock["managed"]
+        assert "scripts/hooks/pre-push" in lock["managed"]
+
+    def test_teardown_removes_routing_and_nested_dirs(self, tmp_repo_with_routing: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        root = tmp_repo_with_routing
+        monkeypatch.setattr(codev, "repo_root", lambda: root)
+        monkeypatch.setattr(codev, "symlinks_supported", lambda: False)
+
+        args = argparse.Namespace(submodule_path=None, strategy="extend", overrides_dir="codev-overrides")
+        codev.cmd_init(args)
+
+        assert (root / "routing" / "capabilities.yaml").exists()
+        assert (root / "scripts" / "hooks" / "pre-push").exists()
+
+        codev.cmd_teardown(argparse.Namespace(force=True))
+
+        assert not (root / "routing").exists()
+        assert not (root / "scripts").exists()
+        assert not (root / "schemas").exists()
 
 
 # ---------------------------------------------------------------------------

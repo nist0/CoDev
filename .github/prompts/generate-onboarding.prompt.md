@@ -5,6 +5,14 @@ agent: "Delivery Lead"
 argument-hint: "repo=<name> stack=<technologies> audience=<new engineers|contractors|all>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Inputs:
 
 - repo: ${input:repo:repository name or path}

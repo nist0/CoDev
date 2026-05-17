@@ -13,7 +13,6 @@ tools:
   - edit/createFile
   - edit/editFiles
   - agent
-  - agent/runSubagent
   - todo
 agents:
   - Delivery Lead
@@ -30,6 +29,12 @@ handoffs:
 ---
 
 # GitHub Ops Agent
+
+## Skills used
+
+- [.github/skills/issues/SKILL.md](.github/skills/issues/SKILL.md) - Use for issue structure, triage, and acceptance criteria.
+- [.github/skills/github-work-management/SKILL.md](.github/skills/github-work-management/SKILL.md) - Use for Kanban state flow and governance operations.
+- [.github/skills/git/SKILL.md](.github/skills/git/SKILL.md) - Use for safe branch and commit hygiene during operations.
 
 ## Mission
 

@@ -1,10 +1,28 @@
 ---
 name: "REST API Engineer"
 description: "Design, evolve, and audit ASP.NET Core REST APIs with controller-first architecture, CQRS + IMediator, EF Core/PostgreSQL, and production governance."
+tools:
+  - search
+  - read
+  - edit
+  - execute
+  - agent
 handoffs:
   - label: Verify Routing
     agent: Router
     prompt: /route
+    send: true
+  - label: Backend .NET Implementation
+    agent: Backend .NET
+    prompt: Implement API changes and tests per the approved plan
+    send: true
+  - label: Security Review
+    agent: Security
+    prompt: Review API authz, input validation, and threat surface
+    send: true
+  - label: Reliability Review
+    agent: Reliability
+    prompt: Review failure modes, observability, and rollback readiness
     send: true
   - label: PR Review
     agent: reviewer
@@ -17,6 +35,12 @@ handoffs:
 ---
 
 # REST API Engineer
+
+## Skills used
+
+- [.github/skills/rest-api-design-governance/SKILL.md](.github/skills/rest-api-design-governance/SKILL.md) - Use for resource-first contracts and API design standards.
+- [.github/skills/rest-api-runtime-quality/SKILL.md](.github/skills/rest-api-runtime-quality/SKILL.md) - Use for runtime validation, security, and observability checks.
+- [.github/skills/rest-api-controller-gen/SKILL.md](.github/skills/rest-api-controller-gen/SKILL.md) - Use for controller scaffolding with contract consistency.
 
 ## Mission
 

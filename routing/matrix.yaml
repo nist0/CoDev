@@ -52,6 +52,15 @@ routing_rules:
 
   - when:
       capability: debugging
+      domain: web-hosting
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["triage-error", "logs-analysis"]
+      skills:
+        - "cloud-web-hosting"
+
+  - when:
+      capability: debugging
       domain: observability
     suggest:
       agent: Reliability
@@ -193,6 +202,15 @@ routing_rules:
         - "kubernetes"
         - "az"
         - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: web-hosting
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["explain-code"]
+      skills:
+        - "cloud-web-hosting"
 
   - when:
       capability: code-analysis
@@ -559,6 +577,39 @@ routing_rules:
 
   - when:
       capability: github-delivery
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "dotnet-testing"
+
+  - when:
+      capability: github-delivery
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "github-actions"
+
+  - when:
+      capability: github-delivery
+      domain: docs-system
+    suggest:
+      agent: Delivery Lead
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "doc-qa"
+
+  - when:
+      capability: github-delivery
     suggest:
       agent: Delivery Lead
       prompts: ["pr-review"]
@@ -612,6 +663,15 @@ routing_rules:
         - "docker"
         - "kubernetes"
         - "az"
+
+  - when:
+      capability: automation
+      domain: web-hosting
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["automation-script"]
+      skills:
+        - "cloud-web-hosting"
 
   - when:
       capability: automation
@@ -703,6 +763,71 @@ routing_rules:
       skills:
         - "project-orchestration"
         - "github-work-management"
+
+  - when:
+      capability: project-orchestration
+      domain: backend-dotnet
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "aspnet-core"
+        - "dotnet-testing"
+
+  - when:
+      capability: project-orchestration
+      domain: devops-cloud
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "github-actions"
+        - "kubernetes"
+
+  - when:
+      capability: project-orchestration
+      domain: cicd
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: project-orchestration
+      domain: docs-system
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "doc-architecture-model"
+        - "markdown-docops"
+
+  - when:
+      capability: project-orchestration
+      domain: frontend
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "react"
+        - "js-testing"
 
   - when:
       capability: project-orchestration
@@ -893,6 +1018,42 @@ routing_rules:
 
   - when:
       capability: scaffolding
+      domain: cicd
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "rest-api-bootstrap"
+        - "aspnet-core"
+        - "github-actions"
+
+  - when:
+      capability: scaffolding
+      domain: github-delivery
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "aspnet-core"
+        - "openapi"
+        - "pr-review"
+
+  - when:
+      capability: scaffolding
+      domain: docs-system
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "rest-api-bootstrap"
+        - "openapi"
+        - "markdown-docops"
+
+  - when:
+      capability: scaffolding
     suggest:
       agent: Backend .NET
       prompts: ["generate-controller"]
@@ -917,6 +1078,58 @@ routing_rules:
         - "ef-core"
         - "postgres"
         - "dotnet-testing"
+
+  - when:
+      capability: rest-api-engineering
+      domain: devops-cloud
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review", "rest-api-add-resource"]
+      skills:
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: rest-api-engineering
+      domain: observability
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review"]
+      skills:
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "apm"
+        - "logs-alerts"
+
+  - when:
+      capability: rest-api-engineering
+      domain: github-delivery
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review"]
+      skills:
+        - "rest-api-design-governance"
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "pr-review"
+
+  - when:
+      capability: rest-api-engineering
+      domain: cicd
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review"]
+      skills:
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "github-actions"
+        - "delivery"
 
   - when:
       capability: rest-api-engineering

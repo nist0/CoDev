@@ -5,6 +5,14 @@ agent: "Reliability"
 argument-hint: "service=<name> time-range=<window> symptom=<description>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Inputs:
 
 - service: ${input:service:service name or APM app}

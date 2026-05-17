@@ -2,7 +2,6 @@
 name: "CoDev Consumer"
 description: "Guides repository maintainers through the full CoDev submodule lifecycle: init, update, override authoring, teardown, and contributing changes upstream."
 tools:
-  - search/codebase
   - search
   - read
   - edit
@@ -33,6 +32,12 @@ handoffs:
 ---
 
 # CoDev Consumer
+
+## Skills used
+
+- [.github/skills/codev-submodule/SKILL.md](.github/skills/codev-submodule/SKILL.md) - Use for consumer-side submodule management operations.
+- [.github/skills/codev-contributing/SKILL.md](.github/skills/codev-contributing/SKILL.md) - Use for upstream contribution workflow and governance.
+- [.github/skills/github-work-management/SKILL.md](.github/skills/github-work-management/SKILL.md) - Use for issue, board, and delivery-state discipline.
 
 ## Mission
 

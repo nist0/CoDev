@@ -4,6 +4,14 @@ description: "PostgreSQL quick operations — schema inspection, query optimizat
 agent: "Backend .NET"
 argument-hint: "concern=<connect|schema|query|locks|vacuum|pool|user> table=<name>"
 ---
+
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
 
 Apply the procedure from `.github/skills/postgres/SKILL.md`.
 

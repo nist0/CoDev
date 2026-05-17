@@ -5,6 +5,14 @@ agent: "Automation/Scripting"
 argument-hint: "task=<description> language=<bash|ps1|python|other>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply procedures from `.github/skills/bash/SKILL.md` and `.github/skills/powershell/SKILL.md`.
 
 Inputs:

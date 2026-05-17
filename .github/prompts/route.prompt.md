@@ -4,6 +4,14 @@ description: "Route a request using the canonical matrix (capability + domain) a
 agent: "Router"
 argument-hint: "request=<free-text description of the task>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Act as the Router and route the user request using the canonical routing model (capability + domain).
 
 Input:
@@ -43,5 +51,5 @@ Rules:
 |------|-------|-------------------|--------|---------------|
 | 1 | **Router** | always — route classification | *(this prompt)* | Capability + domain identified, recommended agent + prompt + skill produced |
 | 2 | **Recommended specialist agent** | routing complete | /<recommended-prompt> <args> | Task executed by the right agent for the capability+domain |
-| 3 | **Delivery Lead** | delivery tasks in scope (PR/issue/review/merge) | /project-dispatch | Delegation plan produced with owner, done criteria, and verification per task |
+| 3 | **Project Orchestrator** | delivery tasks in scope (PR/issue/review/merge) | /project-dispatch | Delegation plan produced with owner, done criteria, and verification per task |
 | 4 | **Router** | route was wrong or empty | /route-miss | Root cause diagnosed, additive fix proposed, routing improved |

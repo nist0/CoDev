@@ -2,7 +2,6 @@
 name: plan
 description: Converts a goal into a precise implementation plan + file checklist. No coding.
 tools:
-  - search/codebase
   - search
   - read
   - agent
@@ -26,6 +25,12 @@ handoffs:
 ---
 
 # Plan
+
+## Skills used
+
+- [.github/skills/planning/SKILL.md](.github/skills/planning/SKILL.md) - Use for structured execution plans and milestone framing.
+- [.github/skills/test-strategy/SKILL.md](.github/skills/test-strategy/SKILL.md) - Use for verification-first planning and test coverage intent.
+- [.github/skills/elite-brainstorming/SKILL.md](.github/skills/elite-brainstorming/SKILL.md) - Use when planning depends on option analysis.
 
 ## Mission
 

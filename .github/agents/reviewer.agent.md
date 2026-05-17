@@ -2,7 +2,6 @@
 name: reviewer
 description: Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence.
 tools:
-  - search/codebase
   - search
   - azure-mcp/search
   - read
@@ -23,6 +22,12 @@ handoffs:
 ---
 
 # Reviewer
+
+## Skills used
+
+- [.github/skills/pr-review/SKILL.md](.github/skills/pr-review/SKILL.md) - Use as the canonical multi-pass review procedure.
+- [.github/skills/github-work-management/SKILL.md](.github/skills/github-work-management/SKILL.md) - Use for verdict tracking and governance closure.
+- [.github/skills/delivery/SKILL.md](.github/skills/delivery/SKILL.md) - Use for release-risk and quality gate readiness checks.
 
 ## Mission
 

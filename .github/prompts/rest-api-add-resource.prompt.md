@@ -5,6 +5,14 @@ agent: REST API Engineer
 argument-hint: "resource=<name> operations=<list> apiVersion=<v1|v2>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Goal
 
 Add a resource to an existing API without breaking architecture or contracts.

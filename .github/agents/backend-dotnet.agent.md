@@ -2,7 +2,6 @@
 name: "Backend .NET"
 description: "ASP.NET Core, EF Core, PostgreSQL, MediatR, OpenAPI; production-grade REST APIs and CLIs."
 tools:
-  - search/codebase
   - search
   - read
   - edit
@@ -33,6 +32,12 @@ handoffs:
 ---
 
 # Backend .NET
+
+## Skills used
+
+- [.github/skills/aspnet-core/SKILL.md](.github/skills/aspnet-core/SKILL.md) - Use for API/controller conventions and production readiness.
+- [.github/skills/ef-core/SKILL.md](.github/skills/ef-core/SKILL.md) - Use for EF Core modelling, migrations, and query correctness.
+- [.github/skills/mediatr/SKILL.md](.github/skills/mediatr/SKILL.md) - Use for CQRS and pipeline behavior patterns.
 
 ## Responsibilities
 

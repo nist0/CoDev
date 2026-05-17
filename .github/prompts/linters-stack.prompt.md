@@ -5,6 +5,14 @@ agent: "Automation/Scripting"
 argument-hint: "stack=<list> scope=<paths> ci=<github-actions|other>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Inputs:
 
 - stack: ${input:stack:C/C++, C#, Python, Bash, Markdown}

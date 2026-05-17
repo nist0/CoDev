@@ -2,7 +2,6 @@
 name: "Security"
 description: "Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent -- not a live infrastructure scanner."
 tools:
-  - search/codebase
   - search
   - read
   - agent
@@ -26,6 +25,12 @@ handoffs:
 ---
 
 # Security
+
+## Skills used
+
+- [.github/skills/threat-modeling/SKILL.md](.github/skills/threat-modeling/SKILL.md) - Use for STRIDE analysis and mitigation planning.
+- [.github/skills/supply-chain/SKILL.md](.github/skills/supply-chain/SKILL.md) - Use for dependency and CI supply-chain hardening checks.
+- [.github/skills/logs-alerts/SKILL.md](.github/skills/logs-alerts/SKILL.md) - Use for security signal correlation in logs and alerts.
 
 ## Mission
 

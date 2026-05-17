@@ -5,6 +5,14 @@ agent: CoDev Consumer
 argument-hint: "[strategy: extend|override] [submodule-path: tools/codev]"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 # CoDev Init — Guided Bootstrap
 
 Walk me through initializing CoDev as a Git submodule in this repository.

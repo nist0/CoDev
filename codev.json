@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nist0/CoDev/main/schemas/codev.schema.json",
+  "version": "1",
+  "submodulePath": "tools/codev",
+  "overrideStrategy": "extend",
+  "overridesDir": "codev-overrides",
+  "managedPaths": [
+    ".github/agents",
+    ".github/skills",
+    ".github/prompts",
+    ".github/instructions",
+    ".github/copilot-instructions.md"
+  ]
+}

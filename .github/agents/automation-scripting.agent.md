@@ -2,7 +2,6 @@
 name: "Automation/Scripting"
 description: "Bash/PowerShell/Python/Perl automation, CLI tooling, and repo tooling scripts."
 tools:
-  - search/codebase
   - search
   - read
   - edit
@@ -28,6 +27,12 @@ handoffs:
 ---
 
 # Automation/Scripting
+
+## Skills used
+
+- [.github/skills/python/SKILL.md](.github/skills/python/SKILL.md) - Use for robust Python automation patterns.
+- [.github/skills/powershell/SKILL.md](.github/skills/powershell/SKILL.md) - Use for safe PowerShell automation on Windows workflows.
+- [.github/skills/bash/SKILL.md](.github/skills/bash/SKILL.md) - Use for shell scripting safety, idempotency, and error handling.
 
 ## Responsibilities
 

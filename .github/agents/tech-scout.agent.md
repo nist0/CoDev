@@ -2,7 +2,6 @@
 name: "Tech Scout"
 description: "Tech/scientific watch: actionable digests (what changed / why it matters / what to try)."
 tools:
-  - search/codebase
   - search
   - read
   - web
@@ -32,6 +31,12 @@ handoffs:
 ---
 
 # Tech Scout
+
+## Skills used
+
+- [.github/skills/weekly-digest/SKILL.md](.github/skills/weekly-digest/SKILL.md) - Use for recurring digest structure and curation workflow.
+- [.github/skills/innovation-sprint/SKILL.md](.github/skills/innovation-sprint/SKILL.md) - Use to turn watch findings into concrete experiments.
+- [.github/skills/supply-chain/SKILL.md](.github/skills/supply-chain/SKILL.md) - Use when advisories affect dependency security posture.
 
 ## Mission
 

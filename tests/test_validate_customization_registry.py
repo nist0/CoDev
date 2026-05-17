@@ -73,6 +73,84 @@ def test_validate_structure_contracts_flags_missing_agent_tool_for_subagents(tmp
     assert any("agent declares subagents without agent tool" in error for error in context.errors)
 
 
+def test_validate_structure_contracts_flags_duplicate_prompt_tools(tmp_path: Path, monkeypatch) -> None:
+    prompts_dir = tmp_path / "prompts"
+    prompts_dir.mkdir()
+    (prompts_dir / "bad.prompt.md").write_text(
+        "---\n"
+        'name: bad\n'
+        'description: "Test prompt."\n'
+        "tools:\n"
+        "  - search/codebase\n"
+        "  - SEARCH/CODEBASE\n"
+        "---\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(registry, "PROMPTS_DIR", prompts_dir)
+    monkeypatch.setattr(registry, "AGENTS_DIR", tmp_path / "agents")
+    monkeypatch.setattr(registry, "INSTRUCTIONS_DIR", tmp_path / "instructions")
+    (tmp_path / "agents").mkdir()
+    (tmp_path / "instructions").mkdir()
+
+    context = registry.ValidationContext(errors=[])
+    registry.validate_structure_contracts(context)
+
+    assert any("prompt declares duplicate tools" in error for error in context.errors)
+
+
+def test_validate_structure_contracts_flags_duplicate_agent_tools(tmp_path: Path, monkeypatch) -> None:
+    agents_dir = tmp_path / "agents"
+    agents_dir.mkdir()
+    (agents_dir / "bad.agent.md").write_text(
+        "---\n"
+        'name: bad-agent\n'
+        'description: "Test agent."\n'
+        "tools:\n"
+        "  - agent/runSubagent\n"
+        "  - agent/runSubagent\n"
+        "---\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(registry, "PROMPTS_DIR", tmp_path / "prompts")
+    monkeypatch.setattr(registry, "AGENTS_DIR", agents_dir)
+    monkeypatch.setattr(registry, "INSTRUCTIONS_DIR", tmp_path / "instructions")
+    (tmp_path / "prompts").mkdir()
+    (tmp_path / "instructions").mkdir()
+
+    context = registry.ValidationContext(errors=[])
+    registry.validate_structure_contracts(context)
+
+    assert any("agent declares duplicate tools" in error for error in context.errors)
+
+
+def test_validate_structure_contracts_flags_tool_alias_collisions(tmp_path: Path, monkeypatch) -> None:
+    agents_dir = tmp_path / "agents"
+    agents_dir.mkdir()
+    (agents_dir / "bad.agent.md").write_text(
+        "---\n"
+        'name: bad-agent\n'
+        'description: "Test agent."\n'
+        "tools:\n"
+        "  - search\n"
+        "  - search/codebase\n"
+        "---\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(registry, "PROMPTS_DIR", tmp_path / "prompts")
+    monkeypatch.setattr(registry, "AGENTS_DIR", agents_dir)
+    monkeypatch.setattr(registry, "INSTRUCTIONS_DIR", tmp_path / "instructions")
+    (tmp_path / "prompts").mkdir()
+    (tmp_path / "instructions").mkdir()
+
+    context = registry.ValidationContext(errors=[])
+    registry.validate_structure_contracts(context)
+
+    assert any("mixes tool-set aliases with specific tools" in error for error in context.errors)
+
+
 def test_validate_structure_contracts_flags_empty_agent_tools(tmp_path: Path, monkeypatch) -> None:
     agents_dir = tmp_path / "agents"
     agents_dir.mkdir()

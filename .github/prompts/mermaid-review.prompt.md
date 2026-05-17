@@ -5,6 +5,14 @@ agent: mermaid-diagrammer
 argument-hint: "snippet=<mermaid code block or file path>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Inputs:
 
 - snippet: ${input:snippet:paste your Mermaid code block or provide the file path}

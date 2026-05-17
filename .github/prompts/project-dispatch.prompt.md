@@ -5,7 +5,15 @@ agent: "Project Orchestrator"
 argument-hint: "plan=<summary> stack=<text>"
 ---
 
-**Guard**: If both `plan` and `stack` inputs are empty or missing, ask the user to provide them and stop. Do not proceed without explicit user input.
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
+**Guard**: If both `plan` and `stack` are missing, infer them from the current workspace, active file, and session context first. If they still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
 
 Inputs:
 

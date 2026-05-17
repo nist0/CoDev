@@ -5,6 +5,14 @@ agent: REST API Engineer
 argument-hint: "scope=<api-area> focus=<comma-list>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Goal
 
 Produce a risk-ranked API quality audit with a pragmatic remediation plan.

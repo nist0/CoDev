@@ -7,7 +7,6 @@ description: >
   graphe des sous-modules, topologie API & BD, décomposition fonctionnelle, et
   plan d'étude point par point.
 tools:
-  - search/codebase
   - search
   - read
   - edit
@@ -38,6 +37,12 @@ handoffs:
 ---
 
 # Project Takeover Agent
+
+## Skills used
+
+- [.github/skills/project-takeover/SKILL.md](.github/skills/project-takeover/SKILL.md) - Use for complete takeover analysis procedure and outputs.
+- [.github/skills/repo-understanding/SKILL.md](.github/skills/repo-understanding/SKILL.md) - Use for module map and dependency-grounded discovery.
+- [.github/skills/github-work-management/SKILL.md](.github/skills/github-work-management/SKILL.md) - Use for backlog and ownership mapping after analysis.
 
 ## Mission
 

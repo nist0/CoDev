@@ -1,5 +1,19 @@
 ﻿version: 1
 domains:
+  - id: web-hosting
+    keywords:
+      - static web apps
+      - container apps
+      - container apps consumption
+      - cloudflare
+      - dns
+      - custom domain
+      - custom domains
+      - azure sql database
+      - azure sql free tier
+      - app hosting
+      - web hosting
+
   - id: backend-dotnet
     keywords:
       - dotnet
@@ -27,6 +41,11 @@ domains:
       - kubectl
       - azure
       - azure cli
+      - static web apps
+      - container apps
+      - cloudflare
+      - dns
+      - sql database
       - ingress
       - deployment
       - docker

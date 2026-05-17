@@ -2,7 +2,6 @@
 name: "CLI Platform Onboarder"
 description: "Bootstrap CoDev into a .NET CLI platform repo, run full static analysis (GH workflows, Bicep/infra, solution), and drive task execution using deduced project context."
 tools:
-  - search/codebase
   - search
   - read
   - edit
@@ -16,7 +15,7 @@ agents:
   - reviewer
   - Delivery Lead
 handoffs:
-  - label: Security Assessment
+  - label: Security Review
     agent: Security
     prompt: /threat-model
     send: true
@@ -43,6 +42,12 @@ handoffs:
 ---
 
 # CLI Platform Onboarder
+
+## Skills used
+
+- [.github/skills/cli-platform-bootstrap/SKILL.md](.github/skills/cli-platform-bootstrap/SKILL.md) - Use for bootstrap sequence and verification gates.
+- [.github/skills/cli-platform-analysis/SKILL.md](.github/skills/cli-platform-analysis/SKILL.md) - Use for static analysis and project-context generation.
+- [.github/skills/codev-submodule/SKILL.md](.github/skills/codev-submodule/SKILL.md) - Use for submodule lifecycle operations and troubleshooting.
 
 ## Mission
 

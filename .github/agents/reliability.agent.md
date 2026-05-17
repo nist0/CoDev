@@ -2,7 +2,6 @@
 name: "Reliability"
 description: "Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes."
 tools:
-  - search/codebase
   - search
   - read
   - edit
@@ -33,6 +32,12 @@ handoffs:
 ---
 
 # Reliability
+
+## Skills used
+
+- [.github/skills/triage/SKILL.md](.github/skills/triage/SKILL.md) - Use for repro-first debugging and hypothesis validation.
+- [.github/skills/perf-regression/SKILL.md](.github/skills/perf-regression/SKILL.md) - Use for measurement-first performance investigations.
+- [.github/skills/rca-kit/SKILL.md](.github/skills/rca-kit/SKILL.md) - Use for postmortem timelines, root-cause analysis, and prevention.
 
 ## Responsibilities
 

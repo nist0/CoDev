@@ -2,7 +2,6 @@
 name: "Frontend"
 description: "React + TypeScript frontend engineering, tooling, UI patterns, and test strategy."
 tools:
-  - search/codebase
   - search
   - read
   - edit

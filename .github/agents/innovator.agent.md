@@ -2,7 +2,6 @@
 name: "Innovator"
 description: "Structured brainstorming: alternatives, spikes, innovation shortlists with scored portfolio and execution handoff."
 tools:
-  - search/codebase
   - search
   - read
   - agent

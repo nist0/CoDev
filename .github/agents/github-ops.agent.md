@@ -13,7 +13,6 @@ tools:
   - edit/createFile
   - edit/editFiles
   - agent
-  - agent/runSubagent
   - todo
 agents:
   - Delivery Lead

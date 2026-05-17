@@ -108,6 +108,44 @@ def assert_unique(values: list[str], context: ValidationContext, label: str) -> 
             context.add(f"duplicate {label}: '{key}' appears {count} times")
 
 
+def validate_unique_tools(
+    path: Path,
+    frontmatter: dict[str, Any],
+    context: ValidationContext,
+    label: str,
+) -> None:
+    tools = frontmatter.get("tools")
+    if isinstance(tools, str):
+        tools = [tools]
+    if not isinstance(tools, list):
+        return
+
+    counts: dict[str, int] = {}
+    for tool in tools:
+        key = str(tool).strip().lower()
+        if key:
+            counts[key] = counts.get(key, 0) + 1
+
+    duplicates = [tool for tool, count in counts.items() if count > 1]
+    if duplicates:
+        duplicate_list = ", ".join(f"'{tool}'" for tool in sorted(duplicates))
+        context.add(
+            f"{label} declares duplicate tools in {display_path(path)}: {duplicate_list}"
+        )
+
+    aliases = {tool for tool in counts if "/" not in tool}
+    alias_collisions = sorted(
+        tool
+        for tool in counts
+        if "/" in tool and tool.split("/", 1)[0] in aliases
+    )
+    if alias_collisions:
+        collision_list = ", ".join(f"'{tool}'" for tool in alias_collisions)
+        context.add(
+            f"{label} mixes tool-set aliases with specific tools in {display_path(path)}: {collision_list}"
+        )
+
+
 def read_yaml(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as file:
         data = yaml.safe_load(file)
@@ -301,6 +339,7 @@ def validate_structure_contracts(context: ValidationContext) -> None:
             context.add(f"prompt missing required description: {display_path(path)}")
 
         tools = frontmatter.get("tools")
+        validate_unique_tools(path, frontmatter, context, "prompt")
         if isinstance(tools, list) and not tools:
             context.add(
                 f"prompt uses empty tools override: {display_path(path)} (omit 'tools:' to inherit agent tools)"
@@ -314,6 +353,7 @@ def validate_structure_contracts(context: ValidationContext) -> None:
 
         agents = frontmatter.get("agents")
         tools = frontmatter.get("tools")
+        validate_unique_tools(path, frontmatter, context, "agent")
         if isinstance(tools, list) and not tools:
             context.add(
                 f"agent uses empty tools override: {display_path(path)} (omit 'tools:' unless the agent explicitly needs tools)"
@@ -348,8 +388,8 @@ def validate_reviewer_agent_contract(context: ValidationContext) -> None:
         tools = []
 
     normalized_tools = {str(tool).strip().lower() for tool in tools}
-    if "search/codebase" not in normalized_tools:
-        context.add("reviewer agent must include 'search/codebase' in frontmatter tools")
+    if "search/codebase" not in normalized_tools and "search" not in normalized_tools:
+        context.add("reviewer agent must include 'search/codebase' or 'search' in frontmatter tools")
 
     text = REVIEWER_AGENT.read_text(encoding="utf-8").lower()
     required_markers = ["instructions", "skills", "verdict"]

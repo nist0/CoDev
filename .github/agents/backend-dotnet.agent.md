@@ -2,7 +2,6 @@
 name: "Backend .NET"
 description: "ASP.NET Core, EF Core, PostgreSQL, MediatR, OpenAPI; production-grade REST APIs and CLIs."
 tools:
-  - search/codebase
   - search
   - read
   - edit

@@ -2,7 +2,6 @@
 name: "Reliability"
 description: "Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes."
 tools:
-  - search/codebase
   - search
   - read
   - edit

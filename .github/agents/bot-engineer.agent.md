@@ -2,7 +2,6 @@
 name: "Bot Engineer"
 description: "Multi-platform bot engineering: Microsoft Teams (M365 Agents SDK / Teams AI Library), Telegram (python-telegram-bot), WhatsApp (Cloud API), and cross-platform bot architecture patterns in C# and Python."
 tools:
-  - search/codebase
   - search
   - read
   - edit

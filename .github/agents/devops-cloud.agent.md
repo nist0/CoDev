@@ -2,7 +2,6 @@
 name: "DevOps/Cloud"
 description: "AKS/Kubernetes, Helm, GitHub Actions CI/CD, Azure tooling, delivery and runtime operations."
 tools:
-  - search/codebase
   - search
   - read
   - edit

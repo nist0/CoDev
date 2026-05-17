@@ -2,7 +2,6 @@
 name: reviewer
 description: Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence.
 tools:
-  - search/codebase
   - search
   - azure-mcp/search
   - read

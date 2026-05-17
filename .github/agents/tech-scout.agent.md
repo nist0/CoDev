@@ -2,7 +2,6 @@
 name: "Tech Scout"
 description: "Tech/scientific watch: actionable digests (what changed / why it matters / what to try)."
 tools:
-  - search/codebase
   - search
   - read
   - web

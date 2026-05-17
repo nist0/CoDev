@@ -2,7 +2,6 @@
 name: "Automation/Scripting"
 description: "Bash/PowerShell/Python/Perl automation, CLI tooling, and repo tooling scripts."
 tools:
-  - search/codebase
   - search
   - read
   - edit

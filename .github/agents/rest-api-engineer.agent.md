@@ -2,7 +2,6 @@
 name: "REST API Engineer"
 description: "Design, evolve, and audit ASP.NET Core REST APIs with controller-first architecture, CQRS + IMediator, EF Core/PostgreSQL, and production governance."
 tools:
-  - search/codebase
   - search
   - read
   - edit

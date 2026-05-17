@@ -2,7 +2,6 @@
 name: mcp-specialist
 description: "Specialist agent for designing, installing, analyzing, and debugging MCP integrations for VS Code and GitHub Copilot."
 tools:
-  - search/codebase
   - search
   - read
   - edit

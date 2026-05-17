@@ -2,7 +2,6 @@
 name: "Architect"
 description: "Cross-cutting architecture: boundaries, patterns, tradeoffs, ADR proposals, and documentation-ready explanations."
 tools:
-  - search/codebase
   - search
   - read
   - agent

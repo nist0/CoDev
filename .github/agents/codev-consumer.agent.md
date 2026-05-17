@@ -2,7 +2,6 @@
 name: "CoDev Consumer"
 description: "Guides repository maintainers through the full CoDev submodule lifecycle: init, update, override authoring, teardown, and contributing changes upstream."
 tools:
-  - search/codebase
   - search
   - read
   - edit

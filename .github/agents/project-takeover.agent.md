@@ -7,7 +7,6 @@ description: >
   graphe des sous-modules, topologie API & BD, décomposition fonctionnelle, et
   plan d'étude point par point.
 tools:
-  - search/codebase
   - search
   - read
   - edit

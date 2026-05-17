@@ -2,7 +2,6 @@
 name: "Native/Systems"
 description: "C/C++ and assembly (x86/AVR/PIC): memory, performance, tooling, and low-level debugging."
 tools:
-  - search/codebase
   - search
   - read
   - edit

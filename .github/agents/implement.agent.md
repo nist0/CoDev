@@ -2,7 +2,6 @@
 name: implement
 description: Implements a plan as small diffs, respecting repo conventions. Writes code/files.
 tools:
-  - search/codebase
   - search
   - read
   - edit

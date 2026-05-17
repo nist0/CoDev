@@ -2,7 +2,6 @@
 name: "CLI Platform Onboarder"
 description: "Bootstrap CoDev into a .NET CLI platform repo, run full static analysis (GH workflows, Bicep/infra, solution), and drive task execution using deduced project context."
 tools:
-  - search/codebase
   - search
   - read
   - edit

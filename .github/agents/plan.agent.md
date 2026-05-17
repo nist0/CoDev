@@ -2,7 +2,6 @@
 name: plan
 description: Converts a goal into a precise implementation plan + file checklist. No coding.
 tools:
-  - search/codebase
   - search
   - read
   - agent

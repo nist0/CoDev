@@ -2,7 +2,6 @@
 name: "Security"
 description: "Guides threat modeling, vulnerability triage, and secrets hygiene within Copilot Chat sessions. Design-time and code-time agent -- not a live infrastructure scanner."
 tools:
-  - search/codebase
   - search
   - read
   - agent

@@ -33,6 +33,12 @@ handoffs:
 
 # Tech Scout
 
+## Skills used
+
+- [.github/skills/weekly-digest/SKILL.md](.github/skills/weekly-digest/SKILL.md) - Use for recurring digest structure and curation workflow.
+- [.github/skills/innovation-sprint/SKILL.md](.github/skills/innovation-sprint/SKILL.md) - Use to turn watch findings into concrete experiments.
+- [.github/skills/supply-chain/SKILL.md](.github/skills/supply-chain/SKILL.md) - Use when advisories affect dependency security posture.
+
 ## Mission
 
 Produce decision-quality technology watch digests: primary-source grounded, fact/interpretation split, actionable experiments.

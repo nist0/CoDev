@@ -5,6 +5,14 @@ agent: mcp-specialist
 argument-hint: "symptom=<what is failing> [host=<vscode|github-copilot|both>] [target=<config path or server name>]"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/mcp-integration/SKILL.md`.
 
 Goal: triage an MCP failure and produce ranked hypotheses, exact checks, the smallest likely fix, and one prevention step.
@@ -15,63 +23,26 @@ Inputs:
 - host: ${input:host:vscode | github-copilot | both | unknown}
 - target: ${input:target:server name, config path, or short description}
 
-## Step 1 - Gather the repro facts
+Single source of truth:
 
-If details are missing, ask for them in one message only:
+- MCP troubleshooting workflow and hypothesis-to-fix flow are defined in `mcp-integration`.
+- Do not restate or redefine those procedures here.
 
-1. Exact symptom and expected behavior
-2. Host: VS Code chat, GitHub Copilot custom agent, or both
-3. Server model: local stdio or remote HTTP
-4. Relevant config path or snippet
-5. Any error output or logs already observed
+Execution contract:
 
-## Step 2 - Classify the failure
+1. Gather missing repro facts.
+2. Classify the primary failure bucket.
+3. Produce ranked hypotheses and exact checks.
+4. Propose the smallest likely fix.
+5. Provide verification and one prevention action.
 
-Classify it as one primary bucket:
+Required output sections:
 
-- startup failure
-- discovery failure
-- auth failure
-- invocation failure
-- trust/approval problem
-- wrong-host or wrong-install-target problem
-
-## Step 3 - Emit the debug plan
-
-Output exactly this structure:
-
-```markdown
-## MCP debug plan
-
-**Symptom**: <symptom>
-**Host**: <vscode | github-copilot | both | unknown>
-**Primary bucket**: <startup | discovery | auth | invocation | trust | wrong target>
-
-### Ranked hypotheses
-1. <hypothesis>
-2. <hypothesis>
-
-### Checks
-1. <exact check>
-2. <exact check>
-
-### Likely fix
-1. <smallest fix>
-
-### Verification
-1. <exact step>
-2. <safe sample request>
-
-### Prevention
-- <one regression-prevention step>
-```
-
-## Rules
-
-- Keep the troubleshooting flow repro-first and MCP-specific.
-- Separate facts from hypotheses.
-- Prefer the smallest fix that explains all observed symptoms.
-- Call out trust and secret-handling problems explicitly.
+- MCP debug plan summary
+- Ranked hypotheses
+- Checks and likely fix
+- Verification
+- Prevention
 
 ## Agent delegation chain
 

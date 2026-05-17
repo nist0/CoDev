@@ -5,6 +5,14 @@ agent: mcp-specialist
 argument-hint: "target=<mcp.json path, agent file, or design description> [host=<vscode|github-copilot|both>]"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/mcp-integration/SKILL.md`.
 
 Goal: review an existing MCP setup and return the smallest safe set of changes needed to make it correct, least-privilege, and verifiable.
@@ -14,59 +22,25 @@ Inputs:
 - target: ${input:target:mcp.json path, agent file path, or design description}
 - host: ${input:host:vscode | github-copilot | both | unknown}
 
-## Step 1 - Gather missing review context
+Single source of truth:
 
-If the input is incomplete, ask in one message for the missing facts only:
+- MCP review methodology and analysis criteria are defined in `mcp-integration`.
+- Do not restate or redefine those procedures here.
 
-1. The current MCP config or design snippet
-2. Where it is used: VS Code chat, GitHub Copilot custom agent, or both
-3. Whether the server is local or remote
-4. Whether the current behavior is acceptable, failing, or risky
+Execution contract:
 
-## Step 2 - Analyze the current state
+1. Gather only missing MCP review context.
+2. Analyze topology, least privilege, and host fit.
+3. Recommend the smallest safe set of changes.
+4. Provide verification steps and residual risk.
 
-Assess explicitly:
+Required output sections:
 
-- host, client, server model
-- tools vs resources vs prompts choice
-- transport fit: stdio vs HTTP
-- install target fit: workspace, user, or remote config
-- trust posture and secret handling
-- whether MCP is appropriately scoped to the current role or workflow
-
-## Step 3 - Emit the review
-
-Output exactly this structure:
-
-```markdown
-## MCP review
-
-**Target**: <target>
-**Intent**: analyze
-**Host**: <vscode | github-copilot | both | unknown>
-**Verdict**: approved | rework required
-
-### Findings
-- <fact or issue>
-
-### Recommended changes
-1. <minimal change>
-
-### Verification
-1. <exact step>
-2. <safe sample request>
-
-### Residual risk
-- <what remains after the changes>
-```
-
-## Rules
-
-- Keep the review MCP-specific.
-- Prefer the smallest safe delta over redesigning the whole setup.
-- Flag over-broad tool exposure explicitly.
-- Flag secret-handling problems explicitly.
-- If the setup belongs in generic `vscode` guidance rather than MCP, say so.
+- MCP review summary and verdict
+- Findings
+- Recommended changes
+- Verification
+- Residual risk
 
 ## Agent delegation chain
 

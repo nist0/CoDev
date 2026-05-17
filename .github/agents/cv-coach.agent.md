@@ -3,11 +3,26 @@ name: "CV Coach"
 description: "Analyse, critique, and rewrite CVs/resumes to modern professional standards. Covers ATS compliance, impact-first bullets, quantified achievements, and keyword gap analysis against a target job description."
 argument-hint: "Paste your CV text or describe the target role"
 tools:
+  - agent
   - read
   - web
+handoffs:
+  - label: Verify Routing
+    agent: Router
+    prompt: /route
+    send: true
+  - label: PR Review
+    agent: reviewer
+    prompt: /pr-review
+    send: true
 ---
 
 # CV Coach
+
+## Skills used
+
+- [.github/skills/cv-coach/SKILL.md](.github/skills/cv-coach/SKILL.md) - Use for the canonical CV analysis and rewrite workflow.
+- [.github/skills/markdown-docops/SKILL.md](.github/skills/markdown-docops/SKILL.md) - Use for markdown output structure and quality.
 
 ## Mission
 

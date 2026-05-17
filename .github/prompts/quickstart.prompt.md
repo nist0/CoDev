@@ -4,6 +4,14 @@ description: "Interactive onboarding: gather role + domain + goal in one turn, t
 agent: "Router"
 argument-hint: "role=<your role> domain=<tech stack> goal=<what you want to do>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/canonical-routing/SKILL.md`.
 
 Act as a friendly Router and onboard the user to the CoDev framework in ≤2 turns.

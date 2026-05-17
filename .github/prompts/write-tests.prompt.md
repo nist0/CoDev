@@ -4,6 +4,14 @@ description: "Write tests based on a test plan; include how to run locally and i
 agent: "Architect"
 argument-hint: "scope=<file or module> framework=<vitest|jest|xunit|pytest|other>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/test-strategy/SKILL.md`.
 
 Act as an Architect and write tests.

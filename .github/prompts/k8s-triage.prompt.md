@@ -4,6 +4,14 @@ description: "Kubernetes/AKS triage: fast cluster checks, pod/service/ingress di
 agent: "DevOps/Cloud"
 argument-hint: "cluster=<name> namespace=<ns> workload=<name> symptom=<text>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply procedures from `.github/skills/kubernetes/SKILL.md` and `.github/skills/kubectl/SKILL.md`.
 
 Act as a DevOps/Cloud engineer and triage the Kubernetes/AKS issue.

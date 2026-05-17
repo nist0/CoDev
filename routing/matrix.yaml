@@ -52,6 +52,15 @@ routing_rules:
 
   - when:
       capability: debugging
+      domain: web-hosting
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["triage-error", "logs-analysis"]
+      skills:
+        - "cloud-web-hosting"
+
+  - when:
+      capability: debugging
       domain: observability
     suggest:
       agent: Reliability
@@ -193,6 +202,15 @@ routing_rules:
         - "kubernetes"
         - "az"
         - "repo-understanding"
+
+  - when:
+      capability: code-analysis
+      domain: web-hosting
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["explain-code"]
+      skills:
+        - "cloud-web-hosting"
 
   - when:
       capability: code-analysis
@@ -612,6 +630,15 @@ routing_rules:
         - "docker"
         - "kubernetes"
         - "az"
+
+  - when:
+      capability: automation
+      domain: web-hosting
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["automation-script"]
+      skills:
+        - "cloud-web-hosting"
 
   - when:
       capability: automation

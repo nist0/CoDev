@@ -4,6 +4,14 @@ description: "Generate a blameless postmortem draft with timeline, RCA, and acti
 agent: "Reliability"
 argument-hint: "incident=<title> date=<YYYY-MM-DD> duration=<HHhMMm> severity=<P1-P4>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/rca-kit/SKILL.md`.
 
 Act as a Reliability engineer and create a blameless postmortem in Markdown.

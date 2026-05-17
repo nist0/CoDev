@@ -13,7 +13,8 @@ disable-model-invocation: false
 - You need a **complete Azure CLI command reference** across services (Key Vault, ACR, RBAC, Monitoring).
 - You work on Azure resources and need safe operational defaults and common pitfalls.
 
-> For a step-by-step **procedural sequence** (identity confirmation → AKS connect → node pool ops → failure triage), see the [`az` skill](.github/skills/az/SKILL.md).
+> For Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL Database Free Tier, and Cloudflare DNS workflows, use the [`cloud-web-hosting` skill](.github/skills/cloud-web-hosting/SKILL.md).
+> For a step-by-step **procedural sequence** (identity confirmation -> AKS connect -> node pool ops -> failure triage), see the [`az` skill](.github/skills/az/SKILL.md).
 
 ## Workflow
 

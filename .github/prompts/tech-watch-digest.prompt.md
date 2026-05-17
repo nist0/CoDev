@@ -4,6 +4,14 @@ description: "Tech watch digest: what changed, why it matters, what to try next 
 agent: "Tech Scout"
 argument-hint: "topics=<comma-separated list> period=<week|month>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 If `{{input}}` is empty, ask the user for the following in a **single message** before producing the digest:
 
 1. **Topics** — comma-separated list of technologies, frameworks, or areas to cover (e.g. ".NET 10, GitHub Actions, Kubernetes")

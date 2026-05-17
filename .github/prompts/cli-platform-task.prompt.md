@@ -5,6 +5,14 @@ agent: "CLI Platform Onboarder"
 argument-hint: "task=<description of assigned task>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply procedures from `.github/skills/cli-platform-analysis/SKILL.md`, `.github/skills/dotnet-testing/SKILL.md`, `.github/skills/dotnet-cli/SKILL.md`, `.github/skills/delivery/SKILL.md`, and `.github/skills/github-actions/SKILL.md`.
 
 Inputs:
@@ -18,102 +26,29 @@ Inputs:
 
 **Preload `docs/project-context.md` now** before any analysis below.
 
-Act as a CLI Platform Onboarder coordinating **Phase 3 (Task Execution)** for:
+Act as a CLI Platform Onboarder coordinating **Phase 3 (Task Execution)** for the provided `task` input.
 
-> **Task**: `{{task}}`
+Single source of truth:
 
----
+- Task routing, context extraction, test planning, implementation quality gates, and shipping flow are defined in the linked skills.
+- Do not restate or redefine those procedures here.
 
-## Step 1 — Task routing
+Execution contract:
 
-```text
-/route <task description>
-```
+1. Route the task and confirm capability/domain handoff.
+2. Derive scoped context from `docs/project-context.md`.
+3. Produce and review a test plan before implementation.
+4. Implement using .NET, delivery, and CI security conventions from the linked skills.
+5. Run review and release gates as required.
+6. Emit final phase status with outputs, blockers, and next action.
 
-Output: capability + domain + recommended agent + skills. Confirm before proceeding.
+Required outputs:
 
----
-
-## Step 2 — Task context (using docs/project-context.md)
-
-Using the `## CLI Surface`, `## Solution Structure`, `## Test Infrastructure`, and `## Deduced Task Patterns` sections of `docs/project-context.md`, answer:
-
-1. Which CLI commands and handlers are in scope?
-2. Which extension points and domain models are touched?
-3. Which existing tests already cover this area?
-4. What is the minimal change surface — the files to read before writing any code?
-5. What are the top 2 risk areas (breaking existing commands, schema changes, CI regressions, monitoring gaps)?
-6. What observability is already emitted in this area, and what new instrumentation is needed?
-
----
-
-## Step 3 — Test plan
-
-```text
-/test-plan scope=<area identified in Step 2> stack=".NET C# CLI"
-```
-
-Produce a test plan table: scenario → test type → why → notes.
-
----
-
-## ⏸ REVIEW CHECKPOINT
-
-**Do not proceed to Step 4 until the test plan above has been reviewed.**
-The test plan must be approved (by you or a reviewer) before implementation begins.
-Regression tests must be written to fail before the fix and pass after.
-
----
-
-## Step 4 — Implementation
-
-```text
-@backend-dotnet Implement the changes identified in Step 2.
-
-Conventions:
-- Architecture direction: handler → application → domain → infrastructure. No domain logic in handlers.
-- Apply dotnet.instructions.md and cli-platform.instructions.md for all C# files.
-- Regression tests: must fail before the fix, pass after — non-negotiable.
-- After implementation: dotnet build -warnaserror && dotnet test --no-build
-
-If this task touches CI/CD workflows: apply github-actions skill security standards (SHA-pinned actions, minimal GITHUB_TOKEN permissions).
-If this task touches Bicep files: run bicep build --lint before committing.
-```
-
----
-
-## Step 5 — Review and ship
-
-```text
-/pr-review
-```
-
-Verify all CI gates are green:
-
-- [ ] `dotnet build -warnaserror` exits 0
-- [ ] `dotnet test` exits 0
-- [ ] `dotnet format --verify-no-changes` exits 0
-- [ ] `dotnet list package --vulnerable` shows no Critical/High
-
-Open the PR referencing the GitHub issue (`Closes #N`). Body written via `--body-file`.
-
-If this task is release-gated:
-
-```text
-/release-plan scope=<feature> target-env=prod version=<vX.Y.Z>
-```
-
----
-
-## Phase status on completion
-
-```text
-Phase: Task Execution
-Status: verified
-Outputs: [<list changed files>, PR #N]
-Next action: await next task assignment → /cli-platform-task task="<next task>"
-Blockers: none
-```
+- Routing summary
+- Task context summary
+- Approved test plan
+- Verification results
+- Phase status block
 
 ## Agent delegation chain
 

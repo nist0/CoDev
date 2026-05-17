@@ -34,6 +34,12 @@ handoffs:
 
 # CoDev Consumer
 
+## Skills used
+
+- [.github/skills/codev-submodule/SKILL.md](.github/skills/codev-submodule/SKILL.md) - Use for consumer-side submodule management operations.
+- [.github/skills/codev-contributing/SKILL.md](.github/skills/codev-contributing/SKILL.md) - Use for upstream contribution workflow and governance.
+- [.github/skills/github-work-management/SKILL.md](.github/skills/github-work-management/SKILL.md) - Use for issue, board, and delivery-state discipline.
+
 ## Mission
 
 Help repository maintainers who use CoDev as a Git submodule. Cover every lifecycle stage:

@@ -5,6 +5,14 @@ agent: "CLI Platform Onboarder"
 argument-hint: "repo-root=<path, default: .>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply procedures from `.github/skills/cli-platform-analysis/SKILL.md`, `.github/skills/repo-understanding/SKILL.md`, and `.github/skills/github-actions/SKILL.md`.
 
 Inputs:
@@ -13,58 +21,26 @@ Inputs:
 
 **Prerequisite**: Phase 1 (Bootstrap) must be verified — `validate-route-smoke.py` must have passed.
 
-Act as a CLI Platform Onboarder and execute **Phase 2 (Analysis)** using the `cli-platform-analysis` skill.
+Single source of truth:
 
-Run all 7 analysis steps in order, reading files statically — do not execute any project code:
+- Analysis workflow and section-by-section method are defined in `cli-platform-analysis`.
+- Repository and workflow interpretation patterns are defined in `repo-understanding` and `github-actions`.
+- Do not restate or redefine those procedures here.
 
-1. **GitHub Workflow Analysis** — scan every file in `.github/workflows/`
-2. **Infrastructure Analysis** — scan every `*.bicep`, ARM `*.json`, `*.tf`, `*.tfvars` file
-3. **Solution Structure Analysis** — read `.sln`, every `.csproj`, `Program.cs`, `Directory.Build.props`
-4. **CLI Surface Analysis** — catalog every command, handler, and side-effect
-5. **Test Infrastructure Analysis** — identify test projects, frameworks, coverage gaps
-6. **Existing Docs Analysis** — inventory `README.md`, `docs/`, `CHANGELOG`
-7. **Produce `docs/project-context.md`** — combine all sections using the canonical structure from the skill
+Execution contract:
 
-## Output requirements
+1. Execute Phase 2 analysis statically (no runtime execution).
+2. Produce `docs/project-context.md` using the canonical skill structure.
+3. Surface material gaps explicitly, including risk-tagged findings.
+4. Emit a phase status block and a concise summary for handoff.
+5. Provide the next command `/cli-platform-task task="<assigned task>"`.
 
-- Produce `docs/project-context.md` with all 7 sections populated.
-- Flag any gaps found during analysis as explicit items (not silent omissions).
-- For each gap that represents a risk (undocumented secret, unpinned action, uncovered test area), note it with an ⚠️ marker and suggest a GitHub issue title.
+Required outputs:
 
-## After producing the file, emit
-
-```text
-Phase: Analysis
-Status: verified
-Outputs: [docs/project-context.md]
-Next action: /cli-platform-task task="<assign your task here>"
-Blockers: <none | list any files that could not be read or sections that are incomplete>
-```
-
-## Then present the ≤10-line summary
-
-```text
-CI/CD toolchain   : <deduce from Step 1>
-Deploy target     : <deduce from Steps 1+2>
-CLI framework     : <deduce from Step 3>
-Solution layers   : <deduce from Step 3>
-Persistence       : <deduce from Step 3>
-Environments      : <deduce from Step 2>
-Test coverage     : <deduce from Step 5: good | partial | minimal>
-Monitoring        : <deduce from Steps 1+2>
-Top risk area     : <the most critical gap found>
-Next action       : /cli-platform-task task="<your assigned task>"
-```
-
-## Self-check
-
-- [ ] All 7 steps completed; no section is placeholder-only.
-- [ ] CLI Surface table has at least one row per top-level command.
-- [ ] Test Infrastructure section identifies gaps explicitly.
-- [ ] All `${{ secrets.* }}` names captured (values never logged).
-- [ ] All deployment environments identified.
-- [ ] `docs/project-context.md` committed on the current branch.
-- [ ] ≤10-line summary presented for review.
+- `docs/project-context.md`
+- Gap list and risk notes
+- Phase status block
+- <=10-line summary and next action
 
 ## Agent delegation chain
 

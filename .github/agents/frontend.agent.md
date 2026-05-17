@@ -34,6 +34,12 @@ handoffs:
 
 # Frontend
 
+## Skills used
+
+- [.github/skills/react/SKILL.md](.github/skills/react/SKILL.md) - Use for component architecture, hooks, and app structure.
+- [.github/skills/typescript/SKILL.md](.github/skills/typescript/SKILL.md) - Use for type-safe boundaries and runtime validation patterns.
+- [.github/skills/js-testing/SKILL.md](.github/skills/js-testing/SKILL.md) - Use for frontend test strategy and stable test design.
+
 ## Responsibilities
 
 - React architecture and state patterns.

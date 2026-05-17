@@ -34,6 +34,12 @@ handoffs:
 
 # Bot Engineer
 
+## Skills used
+
+- [.github/skills/bot-architecture/SKILL.md](.github/skills/bot-architecture/SKILL.md) - Use as the cross-platform bot architecture baseline.
+- [.github/skills/teams-bot/SKILL.md](.github/skills/teams-bot/SKILL.md) - Use for Microsoft Teams bot implementation details.
+- [.github/skills/telegram-bot/SKILL.md](.github/skills/telegram-bot/SKILL.md) - Use for Telegram bot runtime and handler patterns.
+
 ## Mission
 
 Design, scaffold, implement, and triage conversational bots for Microsoft Teams,

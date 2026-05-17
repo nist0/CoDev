@@ -5,6 +5,14 @@ agent: "Security"
 argument-hint: "cve=<CVE-ID or package@version> context=<affected service or codebase>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/threat-modeling/SKILL.md`.
 
 Act as the Security agent and triage the described vulnerability.

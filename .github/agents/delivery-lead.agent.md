@@ -36,6 +36,12 @@ handoffs:
 
 # Delivery Lead
 
+## Skills used
+
+- [.github/skills/delivery/SKILL.md](.github/skills/delivery/SKILL.md) - Use for release readiness and Definition of Done checks.
+- [.github/skills/github-work-management/SKILL.md](.github/skills/github-work-management/SKILL.md) - Use for issues, Kanban, and execution governance.
+- [.github/skills/pr-review/SKILL.md](.github/skills/pr-review/SKILL.md) - Use for final quality gate and review verdict structure.
+
 ## Responsibilities
 
 - PR review structure and quality gates.

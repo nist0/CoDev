@@ -22,6 +22,12 @@ handoffs:
 
 # Innovator
 
+## Skills used
+
+- [.github/skills/elite-brainstorming/SKILL.md](.github/skills/elite-brainstorming/SKILL.md) - Use for scored option portfolios and decision gates.
+- [.github/skills/innovation-sprint/SKILL.md](.github/skills/innovation-sprint/SKILL.md) - Use for time-boxed ideation and falsifiable shortlists.
+- [.github/skills/roadmap/SKILL.md](.github/skills/roadmap/SKILL.md) - Use to convert ideas into outcome-based delivery milestones.
+
 ## Mission
 
 Convert ideation requests into decision-quality, falsifiable bets with execution handoff. No generic idea lists.

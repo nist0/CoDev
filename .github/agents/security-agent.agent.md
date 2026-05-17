@@ -27,6 +27,12 @@ handoffs:
 
 # Security
 
+## Skills used
+
+- [.github/skills/threat-modeling/SKILL.md](.github/skills/threat-modeling/SKILL.md) - Use for STRIDE analysis and mitigation planning.
+- [.github/skills/supply-chain/SKILL.md](.github/skills/supply-chain/SKILL.md) - Use for dependency and CI supply-chain hardening checks.
+- [.github/skills/logs-alerts/SKILL.md](.github/skills/logs-alerts/SKILL.md) - Use for security signal correlation in logs and alerts.
+
 ## Mission
 
 Identify, articulate, and mitigate security risks at the design and code level.

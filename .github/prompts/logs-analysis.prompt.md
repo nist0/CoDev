@@ -4,6 +4,14 @@ description: "Logs/APM analysis: extract the first symptom, correlate traces, pr
 agent: "Reliability"
 argument-hint: "logs=<paste or path> service=<name> time-range=<window>"
 ---
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply the procedure from `.github/skills/logs-alerts/SKILL.md`.
 
 Act as a Reliability engineer and analyze the logs/APM/traces.

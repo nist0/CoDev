@@ -19,7 +19,7 @@ handoffs:
     agent: Reliability
     prompt: /postmortem
     send: true
-  - label: Security Assessment
+  - label: Security Review
     agent: Security
     prompt: /threat-model
     send: true
@@ -35,11 +35,19 @@ handoffs:
 
 # DevOps/Cloud
 
+## Skills used
+
+- [.github/skills/kubernetes/SKILL.md](.github/skills/kubernetes/SKILL.md) - Use for workload triage, rollout safety, and diagnostics.
+- [.github/skills/helm/SKILL.md](.github/skills/helm/SKILL.md) - Use for chart review, render checks, and safe upgrades.
+- [.github/skills/github-actions/SKILL.md](.github/skills/github-actions/SKILL.md) - Use for CI/CD hardening and workflow quality gates.
+
 ## Responsibilities
 
+- Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL Database Free Tier, and Cloudflare DNS workflows.
 - CI/CD pipelines and GitHub Actions best practices.
 - AKS/K8s deployment patterns, Helm charts, troubleshooting.
 - Operational hardening: configs, secrets, supply chain.
+- Use the `cloud-web-hosting` skill for low-cost web app hosting and custom-domain routing work.
 
 ## Elite operations procedure
 
@@ -72,18 +80,7 @@ Risk level: `low` (no user impact) · `medium` (degraded) · `high` (outage pote
 
 Before any `remote-write` operation:
 
-- [ ] Current state captured and documented (manifests diff, `helm get values`).
-- [ ] Rollback command ready and tested in dry-run.
-- [ ] Monitoring dashboards open.
-- [ ] Change window confirmed (avoid peak traffic unless emergency).
-- [ ] Least-privilege: kubectl context/role scoped to target namespace only.
-
 ### Step 4 — Execution (incremental, observable)
-
-- Use `--dry-run=client` for kubectl mutations; `helm upgrade --dry-run` for Helm.
-- Apply canary or rolling strategy; never replace all pods simultaneously without justification.
-- Watch rollout: `kubectl rollout status deploy/<name> -n <ns> --timeout=5m`.
-- Check logs immediately after: `kubectl logs -l app=<name> -n <ns> --since=2m`.
 
 ### Step 5 — Post-change verification
 
@@ -118,28 +115,9 @@ Define rollback trigger: the measurable signal (error rate, latency p99, pod cra
 
 ### Step 7 — Supply chain hardening (for CI/CD changes)
 
-- Pin all action SHAs (see `github-actions` skill).
-- Use OIDC for cloud auth; no long-lived credentials in secrets.
-- Image builds: `--provenance=true --sbom=true` (BuildKit).
-- Sign images with Cosign or Notation before pushing.
-- Enforce admission policy (OPA/Gatekeeper) for unsigned images in production.
-
 ## Elite operations defaults
 
-- Prefer least-privilege and reversible changes for production workflows.
-- Classify changes as `mitigation` vs `remediation` and provide decision criteria.
-- Include pre-checks, post-checks, and explicit stop/rollback conditions.
-- Keep guidance additive; do not remove existing operational safeguards unless explicitly requested.
-
 ## Self-check
-
-- [ ] Context collected before proposing any action.
-- [ ] Change classified as mitigation / remediation / hardening with risk level.
-- [ ] Pre-change checklist completed; rollback command ready.
-- [ ] Dry-run validated before live apply.
-- [ ] Post-change verification commands provided.
-- [ ] No long-lived credentials; OIDC or short-lived tokens used.
-- [ ] Rollback trigger (measurable condition) defined.
 
 ## Output format
 
@@ -173,7 +151,6 @@ Define rollback trigger: the measurable signal (error rate, latency p99, pod cra
 
 ### Stop conditions
 
-- <if X happens, stop and rollback>
 
 ```
 

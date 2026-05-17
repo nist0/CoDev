@@ -35,13 +35,19 @@ handoffs:
     agent: Frontend
     prompt: Implement the recommended architecture changes for the frontend
     send: true
-  - label: Reliability Assessment
+  - label: Reliability Review
     agent: Reliability
     prompt: Assess observability, SLO, and incident-readiness for the proposed architecture
     send: true
 ---
 
 # Architect
+
+## Skills used
+
+- [.github/skills/adr/SKILL.md](.github/skills/adr/SKILL.md) - Use for architecture decision framing and ADR-quality option tradeoffs.
+- [.github/skills/rfc/SKILL.md](.github/skills/rfc/SKILL.md) - Use when proposals require cross-team design review.
+- [.github/skills/repo-understanding/SKILL.md](.github/skills/repo-understanding/SKILL.md) - Use first to anchor recommendations in current codebase facts.
 
 ## Responsibilities
 

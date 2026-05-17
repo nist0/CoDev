@@ -5,6 +5,14 @@ agent: "CLI Platform Onboarder"
 argument-hint: "repo=<clone-url-or-local-path> branch=<feat/bootstrap-codev>"
 ---
 
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
+
 Apply procedures from `.github/skills/cli-platform-bootstrap/SKILL.md` and `.github/skills/codev-submodule/SKILL.md`.
 
 Inputs:
@@ -12,57 +20,25 @@ Inputs:
 - repo: ${input:repo:path to the already-cloned repo root, or a clone URL}
 - branch: ${input:branch:feat/bootstrap-codev}
 
-Act as a CLI Platform Onboarder and execute **Phase 1 (Bootstrap)** using the `cli-platform-bootstrap` skill.
+Single source of truth:
 
-## What to produce
+- Bootstrap procedure and command sequence are defined in `cli-platform-bootstrap` and `codev-submodule`.
+- Do not restate or redefine those steps here.
 
-For every step in the skill, show:
+Execution contract:
 
-1. **Exact command** — PowerShell and bash variants where they differ.
-2. **What happens** — which files are created or modified.
-3. **Verify** — exact command and expected output to confirm success.
-4. **Rollback** — exact command to undo if the step fails.
+1. Run Phase 1 bootstrap using the linked skills.
+2. Show command, effect, verification, and rollback for each executed step.
+3. Validate route smoke and customization registry before phase completion.
+4. Emit phase status with outputs, blockers, and the next command.
+5. Transition to `/cli-platform-analyze` after successful bootstrap.
 
-## Steps to cover
+Required outputs:
 
-1. Clone the repo and create the feature branch (if not already done).
-2. Add CoDev as a git submodule at `tools/codev`.
-3. Run `codev init --strategy extend` — explain symlink vs lockfile mode implications.
-4. Author the `codev-overrides/` stub and mandatory `README.md`.
-5. Run `validate-route-smoke.py` and `validate-customization-registry.py`.
-6. Commit all bootstrap artefacts with conventional commit message.
-7. Push and confirm CI passes on the branch.
-
-## After each verification passes, emit a step status
-
-```text
-Step N: <name>
-Status: verified
-Output: <file(s) created>
-```
-
-## When all steps are verified, emit the phase status block
-
-```text
-Phase: Bootstrap
-Status: verified
-Outputs: [tools/codev/, codev.json, codev-lock.json, codev-overrides/README.md, .pre-commit-config.yaml, .gitmodules]
-Next action: /cli-platform-analyze repo-root=.
-Blockers: none
-```
-
-Then automatically transition by invoking `/cli-platform-analyze`.
-
-## Self-check at the end
-
-- [ ] `validate-route-smoke.py` passed (all cases).
-- [ ] `validate-customization-registry.py` passed (no errors).
-- [ ] `codev.json` committed and valid.
-- [ ] Symlinks verified OR `codev-lock.json` committed.
-- [ ] Pre-commit hook active.
-- [ ] `codev-overrides/README.md` committed with correct table structure.
-- [ ] No managed `.github/` files overwritten.
-- [ ] CI green on the pushed branch.
+- Step-by-step execution log
+- Verification results
+- Phase status block
+- Explicit next action
 
 ## Agent delegation chain
 

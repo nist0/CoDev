@@ -8,16 +8,21 @@ tools: [
 agents: ["*"]
 handoffs:
   - label: Route Miss Fix
-    agent: promptsmith
+    agent: Router
     prompt: /route-miss
     send: true
   - label: Delivery Scope
-    agent: Delivery Lead
+    agent: Project Orchestrator
     prompt: /project-dispatch
     send: true
 ---
 
 # Router (Canonical Routing)
+
+## Skills used
+
+- [.github/skills/canonical-routing/SKILL.md](.github/skills/canonical-routing/SKILL.md) - Use for capability+domain routing precedence and fallback logic.
+- [.github/skills/repo-understanding/SKILL.md](.github/skills/repo-understanding/SKILL.md) - Use when routing requires repository context disambiguation.
 
 ## Responsibilities
 
@@ -66,6 +71,7 @@ Match context to a domain from `routing/domains.yaml`:
 | .NET, C#, ASP.NET, EF Core | `backend-dotnet` |
 | React, TypeScript, npm, Vite | `frontend` |
 | Kubernetes, AKS, Helm, Docker, Azure | `devops-cloud` |
+| Azure Static Web Apps, Azure Container Apps, Cloudflare DNS, custom domains | `web-hosting` |
 | GitHub Actions, workflows, CI, CD | `cicd` |
 | Bash, PowerShell, Python scripts | `shell-automation` or `scripting` |
 | C, C++, ASM, AVR, PIC, firmware | `native` |
@@ -86,7 +92,7 @@ Produce a full delegation plan:
 
 | Task | Owner agent | Prompt | Done criteria | Verification |
 |------|-------------|--------|---------------|--------------|
-| Issue definition | Delivery Lead | `/project-dispatch` | Issue has scope + AC + verification | GitHub issue opened |
+| Issue definition | Project Orchestrator | `/project-dispatch` | Dispatch plan and issue-ready tasks produced | Dispatch output includes owner, done criteria, and verification per task |
 | Implementation | Implement / domain agent | domain prompt | PR opened, CI green | PR linked to issue |
 | Review | Reviewer | `/pr-review` | No blockers, gate = ready | Review verdict: approved |
 | Merge | Delivery Lead | — | All gate checks pass | PR merged, branch deleted |
@@ -140,5 +146,5 @@ Produce a full delegation plan:
 |------|-------|-------------------|--------|---------------|
 | 1 | **Router** | always — classify capability + domain, produce handoff | *(this agent)* | Routing result: agent + prompts + skills |
 | 2 | **Specialist agent** | routing result produced — handoff to recommended agent | recommended prompt | Specialist agent task complete |
-| 3 | **Delivery Lead** | delivery scope (PR / issue / release) detected in request | `/project-dispatch` | Issue opened, branch created, PR linked |
-| 4 | **PromptSmith** | route-miss detected — routing was wrong or incomplete | `/route-miss` | Fix issue opened, routing updated, smoke tests pass |
+| 3 | **Project Orchestrator** | delivery scope (PR / issue / release) detected in request | `/project-dispatch` | Dispatch plan and issue-ready tasks produced |
+| 4 | **Router** | route-miss detected — routing was wrong or incomplete | `/route-miss` | Fix issue opened, routing updated, smoke tests pass |

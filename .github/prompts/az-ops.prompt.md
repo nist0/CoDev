@@ -4,6 +4,14 @@ description: "Azure CLI operations — subscription context, resource discovery,
 agent: "DevOps/Cloud"
 argument-hint: "concern=<context|aks|keyvault|acr|rbac|monitor> resource-group=<name>"
 ---
+
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
 
 Apply procedures from `.github/skills/az/SKILL.md` and `.github/skills/azure/SKILL.md`.
 

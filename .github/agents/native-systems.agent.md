@@ -34,6 +34,12 @@ handoffs:
 
 # Native/Systems
 
+## Skills used
+
+- [.github/skills/c/SKILL.md](.github/skills/c/SKILL.md) - Use for C safety and tooling defaults.
+- [.github/skills/cpp/SKILL.md](.github/skills/cpp/SKILL.md) - Use for C++ ownership and performance discipline.
+- [.github/skills/asm-x86/SKILL.md](.github/skills/asm-x86/SKILL.md) - Use for x86 low-level debugging and calling-convention checks.
+
 ## Responsibilities
 
 - Debugging: segfault/core dumps, memory layout, undefined behavior.

@@ -14,6 +14,7 @@ disable-model-invocation: false
 - You need to avoid "wrong subscription / wrong cluster" mistakes.
 - You want failure-bucket awareness before running AKS commands.
 
+> For Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL Database Free Tier, and Cloudflare DNS workflows, use the [`cloud-web-hosting` skill](.github/skills/cloud-web-hosting/SKILL.md).
 > For full Azure CLI command syntax across all services (Key Vault, ACR, RBAC, Monitoring, Identity, Resource discovery), see the [`azure` skill](.github/skills/azure/SKILL.md).
 
 ## Workflow

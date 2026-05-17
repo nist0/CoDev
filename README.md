@@ -722,6 +722,7 @@ Defines **where** capabilities apply. Keywords trigger automatic domain detectio
 <!-- codev:generated:domains:start -->
 | Domain ID | Example Keywords |
 | --- | --- |
+| `web-hosting` | `static web apps`, `container apps`, `container apps consumption`, `cloudflare`, `dns`, `custom domain`, `custom domains`, `azure sql database` |
 | `backend-dotnet` | `dotnet`, `.net`, `asp.net`, `aspnet`, `c#`, `ef core`, `entity framework`, `mediatr` |
 | `devops-cloud` | `aks`, `kubernetes`, `k8s`, `helm`, `chart`, `charts`, `values.yaml`, `kubectl` |
 | `observability` | `elastic`, `elasticsearch`, `kibana`, `kql`, `lucene`, `apm`, `trace`, `tracing` |
@@ -927,6 +928,7 @@ Generated skill inventory:
 | `canonical-routing` | Deterministic routing using capability + domain matrix — classification, fallback, and handoff. |
 | `cli-platform-analysis` | Full static analysis of a .NET CLI platform project — GH workflow files, Bicep/ARM/Terraform infra, solution structure, CLI surface, test projects, and existing docs — producing docs/project-context.md as the living context document for all subsequent task prompts. |
 | `cli-platform-bootstrap` | Add CoDev as a git submodule to a .NET CLI platform repo, run codev init with the extend strategy, author the codev-overrides/ stub, verify, and commit — ready for full project analysis. |
+| `cloud-web-hosting` | Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL Database Free Tier, and Cloudflare DNS for web app hosting and custom domains. |
 | `codev-contributing` | How to propose changes to CoDev from a consumer repository — fork, fix, PR, upstream sync, and review protocol. |
 | `codev-submodule` | Full reference for managing CoDev as a Git submodule — init, update, override authoring, teardown, and troubleshooting. |
 | `commits` | Conventional Commits — type/scope/subject rules, commit size, merge strategy, and message quality checklist. |

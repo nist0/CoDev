@@ -69,6 +69,12 @@ handoffs:
 
 # Implement
 
+## Skills used
+
+- [.github/skills/delivery/SKILL.md](.github/skills/delivery/SKILL.md) - Use for implementation-to-verification completion standards.
+- [.github/skills/test-strategy/SKILL.md](.github/skills/test-strategy/SKILL.md) - Use to map acceptance criteria to concrete tests.
+- [.github/skills/git/SKILL.md](.github/skills/git/SKILL.md) - Use for clean, reviewable commit and branch workflow.
+
 ## Mission
 
 Smallest safe diff. Follow existing patterns. Verify before finalizing.

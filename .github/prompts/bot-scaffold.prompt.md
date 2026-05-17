@@ -2,21 +2,22 @@
 name: bot-scaffold
 description: "Scaffold a production-ready bot project for Teams, Telegram, WhatsApp or other platforms in C# or Python. Gathers requirements and emits exact setup steps, project structure, and security baseline."
 agent: Bot Engineer
+argument-hint: "platform=<teams|telegram|whatsapp|discord|slack|multi> language=<csharp|python> [ai=<none|llm-chat|function-calling|semantic-kernel|rag>] [state=<stateless|redis|cosmosdb>] [deploy=<app-service|container-apps|docker|other>]"
 ---
+
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
 
 # Bot Scaffold
 
 ## Goal
 
 You are asked to scaffold a new bot project.
-
-Gather the following inputs from the user (if not already provided):
-
-1. **Platform(s)**: Teams, Telegram, WhatsApp, Discord, Slack, or multi-channel.
-2. **Language**: C# (.NET 8+) or Python (3.10+).
-3. **AI features needed**: yes/no, and if yes which (LLM chat, function calling, Semantic Kernel, RAG).
-4. **State requirements**: stateless, short-lived (Redis), or durable (CosmosDB).
-5. **Deployment target**: Azure App Service, Azure Container Apps, Docker standalone, or other.
 
 ## Requirements
 
@@ -29,61 +30,28 @@ For Telegram bots, apply the procedure from `.github/skills/telegram-bot/SKILL.m
 For WhatsApp bots, apply the procedure from `.github/skills/whatsapp-bot/SKILL.md`.
 
 Enforce all rules from `.github/instructions/bot.instructions.md`.
+Single source of truth:
 
-## Output format
+- Scaffold procedure, platform-specific implementation details, and security baseline are defined in the linked bot skills and bot instructions.
+- Do not restate or redefine those procedures here.
 
-Produce in this order:
+Execution contract:
 
-### 1. Architecture summary
+1. Normalize platform, language, AI, state, and deployment intent.
+2. Apply the relevant bot skills by platform.
+3. Generate a runnable scaffold with secure defaults.
+4. Provide setup commands, core files, and verification commands.
+5. Include a security checklist mapped to bot instructions.
 
-Short paragraph (3-5 sentences): platform(s), SDK choice and rationale, state backend, deployment model.
+Required output sections:
 
-### 2. Required secrets
-
-Table listing every secret the bot needs, its purpose, and where to store it:
-
-| Secret key | Purpose | Storage |
-| --- | --- | --- |
-| `BOT_TOKEN` | Bot authentication | Key Vault / env |
-
-### 3. Project structure
-
-File tree of the scaffold (directories and key files only).
-
-### 4. Setup steps
-
-Numbered, copy/paste-ready commands:
-
-1. `dotnet new web -n <BotName>` or `python -m venv .venv`
-2. ...
-
-### 5. Core files
-
-Full content of the minimum files needed to run the bot (main entry point, handler, webhook controller).
-
-### 6. Security checklist
-
-From `.github/instructions/bot.instructions.md` -- confirm each item is implemented in the scaffold.
-
-- [ ] Tokens from env/secrets; startup fails if missing.
-- [ ] Webhook signature/secret validated.
-- [ ] HTTP 200 returned before async processing.
-- [ ] State backend appropriate for environment.
-- [ ] Error handler in place.
-
-### 7. Verification steps
-
-Exact commands to verify the scaffold runs locally:
-
-```bash
-# Python
-pip install -r requirements.txt
-TELEGRAM_BOT_TOKEN=test python -m pytest tests/ -v
-
-# C#
-dotnet build
-dotnet test
-```
+- Architecture summary
+- Required secrets and storage
+- Project structure
+- Setup steps
+- Core runnable files
+- Security checklist
+- Verification steps
 
 ## Constraints
 

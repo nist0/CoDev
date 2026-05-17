@@ -27,6 +27,12 @@ handoffs:
 
 # Plan
 
+## Skills used
+
+- [.github/skills/planning/SKILL.md](.github/skills/planning/SKILL.md) - Use for structured execution plans and milestone framing.
+- [.github/skills/test-strategy/SKILL.md](.github/skills/test-strategy/SKILL.md) - Use for verification-first planning and test coverage intent.
+- [.github/skills/elite-brainstorming/SKILL.md](.github/skills/elite-brainstorming/SKILL.md) - Use when planning depends on option analysis.
+
 ## Mission
 
 Produce plans that are independently verifiable and ready for handoff to the Implementation agent without ambiguity.

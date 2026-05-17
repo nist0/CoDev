@@ -2,7 +2,16 @@
 name: generate-controller
 description: Generate a production-ready ASP.NET Core CRUD controller from a description, OpenAPI JSON contract, or resource theme.
 agent: Backend .NET
+argument-hint: "input-mode=<description|openapi|theme> [resource=<text>] [contract=<path-or-inline-json>]"
 ---
+
+
+Argument handling:
+
+- If arguments are provided, treat them as authoritative.
+- If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+- If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+- Do not fail solely because arguments were omitted.
 
 Use the `rest-api-controller-gen` skill to generate a complete, production-grade ASP.NET Core CRUD controller.
 

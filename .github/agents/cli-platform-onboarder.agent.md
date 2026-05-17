@@ -16,7 +16,7 @@ agents:
   - reviewer
   - Delivery Lead
 handoffs:
-  - label: Security Assessment
+  - label: Security Review
     agent: Security
     prompt: /threat-model
     send: true
@@ -43,6 +43,12 @@ handoffs:
 ---
 
 # CLI Platform Onboarder
+
+## Skills used
+
+- [.github/skills/cli-platform-bootstrap/SKILL.md](.github/skills/cli-platform-bootstrap/SKILL.md) - Use for bootstrap sequence and verification gates.
+- [.github/skills/cli-platform-analysis/SKILL.md](.github/skills/cli-platform-analysis/SKILL.md) - Use for static analysis and project-context generation.
+- [.github/skills/codev-submodule/SKILL.md](.github/skills/codev-submodule/SKILL.md) - Use for submodule lifecycle operations and troubleshooting.
 
 ## Mission
 

@@ -577,6 +577,39 @@ routing_rules:
 
   - when:
       capability: github-delivery
+      domain: backend-dotnet
+    suggest:
+      agent: Backend .NET
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "dotnet-testing"
+
+  - when:
+      capability: github-delivery
+      domain: cicd
+    suggest:
+      agent: DevOps/Cloud
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "github-actions"
+
+  - when:
+      capability: github-delivery
+      domain: docs-system
+    suggest:
+      agent: Delivery Lead
+      prompts: ["pr-review"]
+      skills:
+        - "pr-review"
+        - "delivery"
+        - "doc-qa"
+
+  - when:
+      capability: github-delivery
     suggest:
       agent: Delivery Lead
       prompts: ["pr-review"]
@@ -944,6 +977,58 @@ routing_rules:
         - "ef-core"
         - "postgres"
         - "dotnet-testing"
+
+  - when:
+      capability: rest-api-engineering
+      domain: devops-cloud
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review", "rest-api-add-resource"]
+      skills:
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: rest-api-engineering
+      domain: observability
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review"]
+      skills:
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "apm"
+        - "logs-alerts"
+
+  - when:
+      capability: rest-api-engineering
+      domain: github-delivery
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review"]
+      skills:
+        - "rest-api-design-governance"
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "pr-review"
+
+  - when:
+      capability: rest-api-engineering
+      domain: cicd
+    suggest:
+      agent: REST API Engineer
+      prompts: ["rest-api-review"]
+      skills:
+        - "rest-api-runtime-quality"
+        - "aspnet-core"
+        - "openapi"
+        - "github-actions"
+        - "delivery"
 
   - when:
       capability: rest-api-engineering

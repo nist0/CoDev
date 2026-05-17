@@ -766,6 +766,71 @@ routing_rules:
 
   - when:
       capability: project-orchestration
+      domain: backend-dotnet
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "aspnet-core"
+        - "dotnet-testing"
+
+  - when:
+      capability: project-orchestration
+      domain: devops-cloud
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "github-actions"
+        - "kubernetes"
+
+  - when:
+      capability: project-orchestration
+      domain: cicd
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "github-actions"
+        - "delivery"
+
+  - when:
+      capability: project-orchestration
+      domain: docs-system
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "doc-architecture-model"
+        - "markdown-docops"
+
+  - when:
+      capability: project-orchestration
+      domain: frontend
+    suggest:
+      agent: Project Orchestrator
+      prompts: ["project-dispatch", "project-governance"]
+      skills:
+        - "project-orchestration"
+        - "github-work-management"
+        - "planning"
+        - "react"
+        - "js-testing"
+
+  - when:
+      capability: project-orchestration
     suggest:
       agent: Project Orchestrator
       prompts: ["project-kickoff", "project-dispatch", "project-governance"]
@@ -950,6 +1015,42 @@ routing_rules:
       skills:
         - "rest-api-bootstrap"
         - "bash"
+
+  - when:
+      capability: scaffolding
+      domain: cicd
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "rest-api-bootstrap"
+        - "aspnet-core"
+        - "github-actions"
+
+  - when:
+      capability: scaffolding
+      domain: github-delivery
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "aspnet-core"
+        - "openapi"
+        - "pr-review"
+
+  - when:
+      capability: scaffolding
+      domain: docs-system
+    suggest:
+      agent: Backend .NET
+      prompts: ["generate-controller"]
+      skills:
+        - "rest-api-controller-gen"
+        - "rest-api-bootstrap"
+        - "openapi"
+        - "markdown-docops"
 
   - when:
       capability: scaffolding

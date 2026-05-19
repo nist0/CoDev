@@ -4,7 +4,8 @@ description: Create stable custom agents (.agent.md) with clear mission, boundar
 argument-hint: "[role] [boundaries]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # agent-authoring Skill (Elite)
 

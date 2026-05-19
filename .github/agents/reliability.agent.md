@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "Reliability"
 description: "Reliability engineering: debugging triage, postmortems, performance regressions, observability-first fixes."
 tools:
@@ -27,23 +26,19 @@ handoffs:
   - label: Application Code Fix
     agent: Backend .NET
     prompt: Fix the confirmed root cause in application code
-    send: true
 
   - label: Infrastructure Fix
     agent: DevOps/Cloud
     prompt: /k8s-triage
-    send: true
 
   - label: Track Action Items
     agent: Project Orchestrator
     prompt: /project-dispatch
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: Postmortem complete, fix shipped -- update Kanban and close
-
-## send: true
+---
 
 # Reliability
 
@@ -118,7 +113,8 @@ For each confirmed hypothesis:
 ### Step 5 â€” Postmortem (blameless)
 
 ```markdown
-## Postmortem: <incident title>
+Postmortem: <incident title>
+---
 
 **Severity**: P0 | P1 | P2
 **Duration**: <start> â†’ <end> (<total minutes>)

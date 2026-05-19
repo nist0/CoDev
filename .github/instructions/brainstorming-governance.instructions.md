@@ -2,7 +2,8 @@
 name: "Brainstorming Governance"
 description: "Mandatory brainstorm-first gate for all non-trivial tasks: require elite ideation quality, scored option portfolio, execution handoff, and named specialist reviews."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Brainstorming Governance
 
@@ -104,7 +105,8 @@ Before presenting options, verify:
 
 - [ ] Kill criteria defined: what signal would cause us to abandon this option?
 
-## Example: option portfolio entry
+Example: option portfolio entry
+---
 
 ```markdown
 ### Option B — Event-driven migration (adjacent)

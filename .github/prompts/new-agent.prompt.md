@@ -3,7 +3,8 @@ name: new-agent
 description: Create a new custom agent (.agent.md) with stable rules and boundaries.
 agent: promptsmith
 
-## argument-hint: "agentId=<kebab> mission=<text>"
+argument-hint: "agentId=<kebab> mission=<text>"
+---
 
 Argument handling:
 

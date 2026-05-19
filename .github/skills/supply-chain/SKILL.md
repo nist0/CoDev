@@ -4,7 +4,8 @@ description: Software supply chain hardening — dependency pinning, SBOM, artif
 argument-hint: "[repository] [risk-level]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Supply Chain & Artifact Security (Elite)
 

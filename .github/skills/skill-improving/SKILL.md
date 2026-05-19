@@ -2,7 +2,8 @@
 name: skill-improving
 description: Audit, enhance, and refactor Copilot skills to meet elite quality standards.
 
-## user-invocable: true
+user-invocable: true
+---
 
 ## When to use
 

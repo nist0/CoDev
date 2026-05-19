@@ -3,7 +3,8 @@ name: new-skill
 description: Create a new reusable skill folder (SKILL.md + minimal assets) following repo conventions.
 agent: promptsmith
 
-## argument-hint: "skillId=<kebab> theme=<text> scope=<when-to-use>"
+argument-hint: "skillId=<kebab> theme=<text> scope=<when-to-use>"
+---
 
 Argument handling:
 

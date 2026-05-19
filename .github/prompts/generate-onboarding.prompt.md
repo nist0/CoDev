@@ -3,7 +3,8 @@ name: generate-onboarding
 description: "Generate an onboarding guide for a repository."
 agent: "Delivery Lead"
 
-## argument-hint: "repo=<name> stack=<technologies> audience=<new engineers|contractors|all>"
+argument-hint: "repo=<name> stack=<technologies> audience=<new engineers|contractors|all>"
+---
 
 Argument handling:
 

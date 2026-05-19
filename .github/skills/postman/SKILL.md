@@ -4,7 +4,8 @@ description: Postman API collections — domain organization, environment strate
 argument-hint: "[API name or domain]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Postman (API Collections) (Elite)
 

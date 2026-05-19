@@ -4,7 +4,8 @@ description: Full-stack test pyramid — risk mapping, unit/integration/contract
 argument-hint: "[system-name] [risk-areas]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Full-stack Test Strategy (Elite)
 

@@ -3,7 +3,8 @@ name: prompt-from-theme
 description: Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs.
 agent: promptsmith
 
-## argument-hint: "theme=<text> intent=<what the prompt should do>"
+argument-hint: "theme=<text> intent=<what the prompt should do>"
+---
 
 Argument handling:
 

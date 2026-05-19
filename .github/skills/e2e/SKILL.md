@@ -4,7 +4,8 @@ description: End-to-End testing — critical flow selection, stable environments
 argument-hint: "[application or user flow]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # End-to-End (E2E) Testing (Elite)
 

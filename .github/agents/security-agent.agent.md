@@ -20,20 +20,18 @@ handoffs:
   - label: Infrastructure Hardening
     agent: DevOps/Cloud
     prompt: /k8s-triage
-    send: true
 
   - label: Runtime Incident
     agent: Reliability
     prompt: /postmortem
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: Security fix ready for merge gate review
-
 ---
 
-## send: true
+send: true
+---
 
 # Security
 

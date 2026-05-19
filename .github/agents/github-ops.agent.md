@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "GitHub Ops"
 description: "Executes GitHub CLI operations: create/close issues, open/merge PRs, add comments, and link work items. Use when a GitHub action needs to be performed, not just planned."
 tools:
@@ -37,13 +36,11 @@ handoffs:
   - label: Delivery Scope
     agent: Delivery Lead
     prompt: /project-dispatch
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-
-## send: true
+---
 
 # GitHub Ops Agent
 

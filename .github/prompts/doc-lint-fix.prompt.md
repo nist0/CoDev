@@ -3,7 +3,8 @@ name: doc-lint-fix
 description: "Rewrite Markdown to satisfy lint rules and match the doc architecture model."
 agent: "Delivery Lead"
 
-## argument-hint: "scope=<file or folder> constraints=<style rules>"
+argument-hint: "scope=<file or folder> constraints=<style rules>"
+---
 
 Argument handling:
 

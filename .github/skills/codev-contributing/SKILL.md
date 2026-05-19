@@ -4,7 +4,8 @@ description: How to propose changes to CoDev from a consumer repository — fork
 argument-hint: "[type: bug|enhancement|new-skill|new-agent]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Contributing to CoDev Upstream
 

@@ -16,23 +16,19 @@ handoffs:
   - label: Verify Routing
     agent: Router
     prompt: /route
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: /project-dispatch
-    send: true
 
   - label: Project Board Sync
     agent: GitHub Ops
     prompt: Sync issues and PRs to Kanban board
-
-## send: true
+---
 
 You are PromptSmith.
 
@@ -182,7 +178,8 @@ For each new asset, verify:
 
 ---
 
-## File: `.github/<type>/<file>`
+File: `.github/<type>/<file>`
+---
 
 <full file content>
 

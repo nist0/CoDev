@@ -4,7 +4,8 @@ description: Elite GitHub delivery planning — milestones, roadmaps, prioritiza
 argument-hint: "[project-name] [horizon]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Planning (Elite Delivery)
 

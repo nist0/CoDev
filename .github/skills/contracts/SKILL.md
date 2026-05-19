@@ -4,7 +4,8 @@ description: Full-stack API contracts — ownership, versioning, schema generati
 argument-hint: "[API name or bounded context]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Full-stack Contracts (API <-> Client) (Elite)
 

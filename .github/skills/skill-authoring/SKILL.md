@@ -2,7 +2,8 @@
 name: skill-authoring
 description: Author, structure, and maintain high-quality Copilot skills with onboarding, examples, and tools.
 
-## user-invocable: true
+user-invocable: true
+---
 
 ## When to use
 

@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: reviewer
 description: Reviews changes for correctness, security, consistency, and instruction/skill compliance with codebase-first evidence.
 tools:
@@ -23,13 +22,11 @@ handoffs:
   - label: Security Deep Dive
     agent: Security
     prompt: /threat-model
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: Review approved -- PR ready for merge gate
-
-## send: true
+---
 
 # Reviewer
 

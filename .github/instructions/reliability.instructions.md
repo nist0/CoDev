@@ -2,7 +2,8 @@
 name: "Reliability Defaults"
 description: "Repro-first debugging, measurement-first performance, blameless postmortems, observability standards."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Reliability Defaults
 
@@ -52,7 +53,8 @@ Always follow this sequence — never skip to fix before reproducing:
 
 - Share postmortem within 5 business days of incident resolution.
 
-## Example: minimal repro template
+Example: minimal repro template
+---
 
 ```text
 **Environment**: Docker / local / prod-like

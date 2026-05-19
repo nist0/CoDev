@@ -3,7 +3,8 @@ name: rest-api-add-resource
 description: Add a new resource to an existing ASP.NET Core REST API with consistent routes, DTOs, IMediator handlers, validation, and OpenAPI updates.
 agent: REST API Engineer
 
-## argument-hint: "resource=<name> operations=<list> apiVersion=<v1|v2>"
+argument-hint: "resource=<name> operations=<list> apiVersion=<v1|v2>"
+---
 
 Argument handling:
 

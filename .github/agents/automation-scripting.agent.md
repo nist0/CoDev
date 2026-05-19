@@ -24,18 +24,15 @@ handoffs:
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: DevOps/Cloud Validation
     agent: DevOps/Cloud
     prompt: Validate infrastructure impact of this automation script
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # Automation/Scripting
 

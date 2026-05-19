@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "Innovator"
 description: "Structured brainstorming: alternatives, spikes, innovation shortlists with scored portfolio and execution handoff."
 tools:
@@ -19,13 +18,11 @@ handoffs:
   - label: Dispatch Execution
     agent: Project Orchestrator
     prompt: /project-dispatch
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: Tasks ready for PR and merge
-
-## send: true
+---
 
 # Innovator
 
@@ -154,7 +151,8 @@ Produce one issue body:
 ## Output format (strict)
 
 ```markdown
-## Brainstorming: <objective>
+Brainstorming: <objective>
+---
 
 ### Objective + assumptions
 - Objective: <measurable>

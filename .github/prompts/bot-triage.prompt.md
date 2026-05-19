@@ -3,7 +3,8 @@ name: bot-triage
 description: "Systematically debug and triage bot issues across Teams, Telegram, WhatsApp and other platforms. Follows repro-first methodology: symptom collection, platform identification, SDK version, ranked hypotheses, and verified fix."
 agent: Bot Engineer
 
-## argument-hint: "platform=<teams|telegram|whatsapp|discord|other> language=<csharp|python> [sdk=<name-version>] [symptom=<text>] [repro=<text>] [env=<local|staging|prod>]"
+argument-hint: "platform=<teams|telegram|whatsapp|discord|other> language=<csharp|python> [sdk=<name-version>] [symptom=<text>] [repro=<text>] [env=<local|staging|prod>]"
+---
 
 Argument handling:
 

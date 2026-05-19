@@ -4,7 +4,8 @@ description: Full static analysis of a .NET CLI platform project — GH workflow
 argument-hint: "[repo-root: .] [output: docs/project-context.md]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # CLI Platform Analysis (Full Static Analysis) (Elite)
 

@@ -3,7 +3,8 @@ name: new-instructions
 description: Create a new scoped instruction file with applyTo and concise rules.
 agent: promptsmith
 
-## argument-hint: "file=<name>.instructions.md applyTo=<glob> rules=<text>"
+argument-hint: "file=<name>.instructions.md applyTo=<glob> rules=<text>"
+---
 
 Argument handling:
 

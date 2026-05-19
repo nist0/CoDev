@@ -3,7 +3,8 @@ name: whatsapp-bot
 description: Build WhatsApp bots using the WhatsApp Business Cloud API (Meta). Covers webhook verification, HMAC-SHA256 signature validation, message types (text, template, interactive), Python and C# outbound patterns, and deployment checklist.
 argument-hint: "[language: python|csharp] [feature: webhook|templates|interactive|media]"
 
-## user-invocable: true
+user-invocable: true
+---
 
 # WhatsApp Bot Development (Cloud API)
 

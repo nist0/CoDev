@@ -3,7 +3,8 @@ name: helm-triage
 description: "Helm triage: chart rendering, values sanity, diff/upgrade failures, rollback and verification."
 agent: "DevOps/Cloud"
 
-## argument-hint: "chart=<name> release=<name> namespace=<ns> symptom=<text>"
+argument-hint: "chart=<name> release=<name> namespace=<ns> symptom=<text>"
+---
 
 Argument handling:
 

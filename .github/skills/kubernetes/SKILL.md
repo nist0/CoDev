@@ -4,7 +4,8 @@ description: Kubernetes workload triage — workload spec review, resource limit
 argument-hint: "[namespace] [workload]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Kubernetes (K8s) (Elite)
 

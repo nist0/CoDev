@@ -4,7 +4,8 @@ description: HTML/CSS — semantic structure, accessibility baseline, responsive
 argument-hint: "[component or page name]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # HTML/CSS (Structure, Accessibility, Maintainability) (Elite)
 

@@ -3,7 +3,8 @@ name: vuln-triage
 description: "Triage a CVE, dependency vulnerability, or code-level injection risk: classify severity, identify affected surface, recommend fix timeline and version."
 agent: "Security"
 
-## argument-hint: "cve=<CVE-ID or package@version> context=<affected service or codebase>"
+argument-hint: "cve=<CVE-ID or package@version> context=<affected service or codebase>"
+---
 
 Argument handling:
 

@@ -2,7 +2,8 @@
 name: rest-api-runtime-quality
 description: Improve runtime quality for ASP.NET Core APIs through validation/error consistency, EF Core/PostgreSQL safety, security baselines, observability, and testing.
 
-## user-invocable: true
+user-invocable: true
+---
 
 # REST API Runtime Quality
 

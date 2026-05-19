@@ -4,7 +4,8 @@ description: JavaScript/TypeScript testing — tooling selection, unit/component
 argument-hint: "[component or module to test]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # JavaScript/TypeScript Testing (Elite)
 

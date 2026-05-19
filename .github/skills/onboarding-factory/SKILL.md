@@ -4,7 +4,8 @@ description: Generate a developer onboarding guide — setup, architecture, conv
 argument-hint: "[repo-name] [team-conventions]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Onboarding Factory (Elite)
 

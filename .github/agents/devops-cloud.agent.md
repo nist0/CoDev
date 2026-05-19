@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "DevOps/Cloud"
 description: "AKS/Kubernetes, Helm, GitHub Actions CI/CD, Azure tooling, delivery and runtime operations."
 tools:
@@ -29,23 +28,19 @@ handoffs:
   - label: Incident Postmortem
     agent: Reliability
     prompt: /postmortem
-    send: true
 
   - label: Security Review
     agent: Security
     prompt: /threat-model
-    send: true
 
   - label: Runbook Automation
     agent: Automation/Scripting
     prompt: Automate the runbook or operational procedure
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # DevOps/Cloud
 

@@ -26,25 +26,22 @@ handoffs:
   - label: Architecture Review
     agent: Architect
     prompt: Review the bot architecture design for boundaries, state management, and scalability
-    send: true
 
   - label: Security Audit
     agent: Security
     prompt: Audit bot security -- webhook validation, token hygiene, PII handling, and trust boundaries
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
 ---
 
-## send: true
+send: true
+---
 
 # Bot Engineer
 

@@ -4,7 +4,8 @@ description: Python scripting — argparse, error handling, idempotency, type hi
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Python Scripting (Elite)
 

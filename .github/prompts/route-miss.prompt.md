@@ -3,7 +3,8 @@ name: route-miss
 description: "Feedback loop: capture a routing miss, diagnose root cause, propose an additive fix, and emit a ready-to-open GitHub issue."
 agent: "Router"
 
-## argument-hint: "request=<original request that was misrouted> expected=<what you expected> got=<what you got>"
+argument-hint: "request=<original request that was misrouted> expected=<what you expected> got=<what you got>"
+---
 
 Argument handling:
 

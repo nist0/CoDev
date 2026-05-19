@@ -3,7 +3,8 @@ name: teams-bot
 description: Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration.
 argument-hint: "[language: csharp|python] [feature: adaptive-cards|sso|ai|mcp]"
 
-## user-invocable: true
+user-invocable: true
+---
 
 # Teams Bot Development (Elite)
 

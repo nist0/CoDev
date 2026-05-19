@@ -4,7 +4,8 @@ description: Propose or enforce a Documentation Architecture Model (DAM) — pur
 argument-hint: "[repo] [doc-types]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Documentation Architecture Model (DAM) (Elite)
 

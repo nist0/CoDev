@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "Frontend"
 description: "React + TypeScript frontend engineering, tooling, UI patterns, and test strategy."
 tools:
@@ -27,23 +26,19 @@ handoffs:
   - label: Architecture Decision
     agent: Architect
     prompt: Review frontend architecture -- state management, routing, or API contract changes
-    send: true
 
   - label: Apply Code Changes
     agent: implement
     prompt: Implement the frontend changes per the approved plan
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # Frontend
 

@@ -2,7 +2,8 @@
 name: "TypeScript Defaults"
 description: "TS/JS guidance: types first, predictable state, lint-friendly patterns."
 
-## applyTo: "**/*.ts"
+applyTo: "**/*.ts"
+---
 
 # TypeScript Defaults
 

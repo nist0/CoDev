@@ -2,7 +2,8 @@
 name: "Copilot Dev Framework - Core"
 description: "Core working agreement: deterministic steps, copy/paste-ready outputs, non-contradictory layering."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Core Rules (Framework)
 
@@ -244,7 +245,8 @@ Every piece of work — no matter how small — **must** follow this sequence:
 
 - Keep tools/MCP scope least-privilege and only enable what is required for the task.
 
-## Example: well-formed task response
+Example: well-formed task response
+---
 
 ```text
 **Plan** (3 steps)

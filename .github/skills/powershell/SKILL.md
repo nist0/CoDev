@@ -4,7 +4,8 @@ description: PowerShell automation — error handling, param validation, idempot
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # PowerShell Automation (Elite)
 

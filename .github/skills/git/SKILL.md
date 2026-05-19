@@ -4,7 +4,8 @@ description: Elite Git workflow — branching discipline, conventional commits, 
 argument-hint: "[branch-name] [issue-number]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Git (Elite Workflow)
 

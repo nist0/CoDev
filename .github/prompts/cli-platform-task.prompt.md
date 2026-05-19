@@ -3,7 +3,8 @@ name: cli-platform-task
 description: "Execute an assigned task on the .NET CLI platform project using docs/project-context.md as preloaded context — routes, gathers task context, plans tests, implements, and ships. Phase 3 of the CLI platform onboarding workflow."
 agent: "CLI Platform Onboarder"
 
-## argument-hint: "task=<description of assigned task>"
+argument-hint: "task=<description of assigned task>"
+---
 
 Argument handling:
 

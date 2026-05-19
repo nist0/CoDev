@@ -2,7 +2,8 @@
 name: "CoDev Consumer — Override Authoring"
 description: "Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation."
 
-## applyTo: "codev-overrides/**"
+applyTo: "codev-overrides/**"
+---
 
 # CoDev Consumer — Override Authoring Rules
 
@@ -85,7 +86,8 @@ python tools/codev/scripts/validate-route-smoke.py
 
 Both must pass before committing.
 
-## Example: `codev-overrides/README.md` template
+Example: `codev-overrides/README.md` template
+---
 
 ```markdown
 # CoDev Overrides — This Repository

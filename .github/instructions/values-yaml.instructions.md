@@ -2,7 +2,8 @@
 name: "Helm values.yaml Hygiene"
 description: "Values file clarity: documentation, naming consistency, safe defaults."
 
-## applyTo: "**/values*.{yml,yaml}"
+applyTo: "**/values*.{yml,yaml}"
+---
 
 # values*.yml / values*.yaml Hygiene
 
@@ -30,7 +31,8 @@ description: "Values file clarity: documentation, naming consistency, safe defau
 
 - Never hardcode environment-specific values (registry URL, domain, TLS cert) in `values.yaml`; use environment-specific override files.
 
-## Example: well-documented values block
+Example: well-documented values block
+---
 
 ```yaml
 # Number of pod replicas. Increase to 2+ for production HA.

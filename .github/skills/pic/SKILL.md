@@ -4,7 +4,8 @@ description: PIC firmware — MCU identification, ISR safety, peripheral configu
 argument-hint: "[PIC model] [peripheral or subsystem]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # PIC Firmware (Elite)
 

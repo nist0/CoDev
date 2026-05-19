@@ -3,7 +3,8 @@ name: apm-analysis
 description: "APM analysis: trace/transaction breakdown, latency hotspots, error correlation, next instrumentation steps."
 agent: "Reliability"
 
-## argument-hint: "service=<name> time-range=<window> symptom=<description>"
+argument-hint: "service=<name> time-range=<window> symptom=<description>"
+---
 
 Argument handling:
 

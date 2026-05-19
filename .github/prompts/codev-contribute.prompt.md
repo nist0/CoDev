@@ -3,7 +3,8 @@ name: codev-contribute
 description: Guided upstream contribution to CoDev — issue, fork, branch, fix, PR, review, and post-merge sync.
 agent: CoDev Consumer
 
-## argument-hint: "[type: bug|enhancement|new-skill|new-agent] [issue-title: <short description>]"
+argument-hint: "[type: bug|enhancement|new-skill|new-agent] [issue-title: <short description>]"
+---
 
 Argument handling:
 

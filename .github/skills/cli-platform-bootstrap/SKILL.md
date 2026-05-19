@@ -4,7 +4,8 @@ description: Add CoDev as a git submodule to a .NET CLI platform repo, run codev
 argument-hint: "[repo-root] [submodule-path: tools/codev]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # CLI Platform Bootstrap (Elite)
 

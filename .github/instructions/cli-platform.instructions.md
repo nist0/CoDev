@@ -2,7 +2,8 @@
 name: "CLI Platform — Working Standards"
 description: "Mandatory working standards for the .NET CLI platform project: three-phase workflow enforcement, context discipline, extension conventions, and infra/CI authoring rules."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # CLI Platform — Working Standards
 

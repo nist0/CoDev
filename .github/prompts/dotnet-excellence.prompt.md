@@ -3,7 +3,8 @@ name: dotnet-excellence
 description: "Apply advanced .NET best practices with concrete examples, Microsoft references, and verification guidance."
 agent: "Backend .NET"
 
-## argument-hint: "scope=<module|files> goal=<hardening|refactor|performance|reliability>"
+argument-hint: "scope=<module|files> goal=<hardening|refactor|performance|reliability>"
+---
 
 Argument handling:
 

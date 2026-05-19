@@ -4,7 +4,8 @@ description: Produce a navigable codebase summary — module map, entry points, 
 argument-hint: "[repo-or-feature] [depth]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Repo Understanding (Elite)
 

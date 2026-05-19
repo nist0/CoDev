@@ -4,7 +4,8 @@ description: MediatR CQRS patterns — commands, queries, handlers, pipeline beh
 argument-hint: "[feature or bounded context]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # MediatR (CQRS Patterns) (Elite)
 

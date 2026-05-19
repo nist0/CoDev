@@ -3,7 +3,8 @@ name: obs
 description: "Observability incident triage — first response for latency spikes, error rate surges, log anomalies, and missing traces across Elastic APM, Kibana, and log pipelines."
 agent: Reliability
 
-## argument-hint: "symptom=<description> service=<name> time-range=<window e.g. last 15m>"
+argument-hint: "symptom=<description> service=<name> time-range=<window e.g. last 15m>"
+---
 
 Argument handling:
 

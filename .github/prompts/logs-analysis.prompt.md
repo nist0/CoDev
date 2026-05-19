@@ -3,7 +3,8 @@ name: logs-analysis
 description: "Logs/APM analysis: extract the first symptom, correlate traces, propose next queries and fixes."
 agent: "Reliability"
 
-## argument-hint: "logs=<paste or path> service=<name> time-range=<window>"
+argument-hint: "logs=<paste or path> service=<name> time-range=<window>"
+---
 
 Argument handling:
 

@@ -4,7 +4,8 @@ description: Bruno API testing — collection structure, environment strategy, r
 argument-hint: "[domain or endpoint group]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Bruno (API Testing Client) (Elite)
 

@@ -28,33 +28,27 @@ handoffs:
   - label: Create Implementation Plan
     agent: plan
     prompt: /plan
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Backend .NET Implementation
     agent: Backend .NET
     prompt: Implement the recommended architecture changes for the .NET backend
-    send: true
 
   - label: DevOps/Cloud Infrastructure
     agent: DevOps/Cloud
     prompt: Implement infrastructure and deployment changes from the architecture review
-    send: true
 
   - label: Frontend Implementation
     agent: Frontend
     prompt: Implement the recommended architecture changes for the frontend
-    send: true
 
   - label: Reliability Review
     agent: Reliability
     prompt: Assess observability, SLO, and incident-readiness for the proposed architecture
-
-## send: true
+---
 
 # Architect
 

@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: plan
 description: Converts a goal into a precise implementation plan + file checklist. No coding.
 tools:
@@ -21,18 +20,15 @@ handoffs:
   - label: Implement Plan
     agent: implement
     prompt: Implement the approved plan
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # Plan
 
@@ -113,7 +109,8 @@ For any step with risk level `medium` or `high`:
 ## Output format (strict â€” no code, no file contents)
 
 ```markdown
-## Plan: <goal summary>
+Plan: <goal summary>
+---
 
 ### Assumptions
 - <explicit assumption>

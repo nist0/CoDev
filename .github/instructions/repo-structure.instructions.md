@@ -2,7 +2,8 @@
 name: "Repository Structure & Generated File Placement"
 description: "Deterministic directory conventions: every file type has a single canonical location; generated files are never placed arbitrarily."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Repository Structure
 

@@ -3,7 +3,7 @@ routing_rules:
 - when:
     capability: routing
   suggest:
-    agent: Bot Engineer
+    agent: Router
     prompts:
     - route
     skills:
@@ -11,7 +11,7 @@ routing_rules:
 - when:
     capability: onboarding
   suggest:
-    agent: Bot Engineer
+    agent: Router
     prompts:
     - quickstart
     skills:
@@ -31,7 +31,7 @@ routing_rules:
     capability: debugging
     domain: devops-cloud
   suggest:
-    agent: CoDev Consumer
+    agent: DevOps/Cloud
     prompts:
     - k8s-triage
     - helm-triage
@@ -184,7 +184,7 @@ routing_rules:
     capability: code-analysis
     domain: devops-cloud
   suggest:
-    agent: CoDev Consumer
+    agent: DevOps/Cloud
     prompts:
     - explain-code
     skills:
@@ -665,7 +665,7 @@ routing_rules:
     capability: automation
     domain: devops-cloud
   suggest:
-    agent: CoDev Consumer
+    agent: DevOps/Cloud
     prompts:
     - automation-script
     skills:
@@ -857,7 +857,7 @@ routing_rules:
 - when:
     capability: route-miss
   suggest:
-    agent: Bot Engineer
+    agent: Router
     prompts:
     - route-miss
     skills:
@@ -1086,7 +1086,7 @@ routing_rules:
     capability: rest-api-engineering
     domain: backend-dotnet
   suggest:
-    agent: Bot Engineer
+    agent: REST API Engineer
     prompts:
     - rest-api-new-service
     - rest-api-add-resource
@@ -1104,7 +1104,7 @@ routing_rules:
     capability: rest-api-engineering
     domain: devops-cloud
   suggest:
-    agent: Bot Engineer
+    agent: REST API Engineer
     prompts:
     - rest-api-review
     - rest-api-add-resource
@@ -1118,7 +1118,7 @@ routing_rules:
     capability: rest-api-engineering
     domain: observability
   suggest:
-    agent: Bot Engineer
+    agent: REST API Engineer
     prompts:
     - rest-api-review
     skills:
@@ -1131,7 +1131,7 @@ routing_rules:
     capability: rest-api-engineering
     domain: github-delivery
   suggest:
-    agent: Bot Engineer
+    agent: REST API Engineer
     prompts:
     - rest-api-review
     skills:
@@ -1144,7 +1144,7 @@ routing_rules:
     capability: rest-api-engineering
     domain: cicd
   suggest:
-    agent: Bot Engineer
+    agent: REST API Engineer
     prompts:
     - rest-api-review
     skills:
@@ -1156,7 +1156,7 @@ routing_rules:
 - when:
     capability: rest-api-engineering
   suggest:
-    agent: Bot Engineer
+    agent: REST API Engineer
     prompts:
     - rest-api-new-service
     - rest-api-add-resource

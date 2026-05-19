@@ -3,7 +3,8 @@ name: project-dispatch
 description: Convert a project plan into delegated specialist tasks with clear ownership and issue-ready definitions.
 agent: "Project Orchestrator"
 
-## argument-hint: "plan=<summary> stack=<text>"
+argument-hint: "plan=<summary> stack=<text>"
+---
 
 Argument handling:
 

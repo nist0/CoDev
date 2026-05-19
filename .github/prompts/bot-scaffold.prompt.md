@@ -3,7 +3,8 @@ name: bot-scaffold
 description: "Scaffold a production-ready bot project for Teams, Telegram, WhatsApp or other platforms in C# or Python. Gathers requirements and emits exact setup steps, project structure, and security baseline."
 agent: Bot Engineer
 
-## argument-hint: "platform=<teams|telegram|whatsapp|discord|slack|multi> language=<csharp|python> [ai=<none|llm-chat|function-calling|semantic-kernel|rag>] [state=<stateless|redis|cosmosdb>] [deploy=<app-service|container-apps|docker|other>]"
+argument-hint: "platform=<teams|telegram|whatsapp|discord|slack|multi> language=<csharp|python> [ai=<none|llm-chat|function-calling|semantic-kernel|rag>] [state=<stateless|redis|cosmosdb>] [deploy=<app-service|container-apps|docker|other>]"
+---
 
 Argument handling:
 

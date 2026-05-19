@@ -4,7 +4,8 @@ description: Blameless postmortem and root cause analysis — 5-Whys, timeline, 
 argument-hint: "[incident-title] [severity]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # RCA Kit (Elite Postmortem)
 

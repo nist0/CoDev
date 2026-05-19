@@ -4,7 +4,8 @@ description: Azure CLI operational playbook — identity safety, context confirm
 argument-hint: "[subscription] [resource-group]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Azure CLI (az) Operational Playbook (Elite)
 

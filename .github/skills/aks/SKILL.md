@@ -4,7 +4,8 @@ description: AKS cluster operations — health checks, node pool management, net
 argument-hint: "[cluster] [resource-group]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # AKS (Azure Kubernetes Service) (Elite)
 

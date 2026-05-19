@@ -4,7 +4,8 @@ description: Bash shell automation — safety defaults, idempotency, input valid
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Bash Shell Automation (Elite)
 

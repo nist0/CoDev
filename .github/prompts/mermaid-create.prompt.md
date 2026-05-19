@@ -3,7 +3,8 @@ name: mermaid-create
 description: "Generate a Mermaid diagram from a natural-language description. Outputs a GitHub-ready fenced code block with prose context."
 agent: mermaid-diagrammer
 
-## argument-hint: "type=<flowchart|sequence|class|er|state|gitGraph|gantt|mindmap|timeline|c4> description=<what to diagram>"
+argument-hint: "type=<flowchart|sequence|class|er|state|gitGraph|gantt|mindmap|timeline|c4> description=<what to diagram>"
+---
 
 Argument handling:
 

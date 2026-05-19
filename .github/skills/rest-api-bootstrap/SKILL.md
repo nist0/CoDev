@@ -4,7 +4,8 @@ description: Bootstrap a REST API project from zero — curated GitHub template 
 argument-hint: "[stack: dotnet|python|bash] [style: minimal|clean-arch|full-stack]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # REST API Bootstrap (Elite)
 

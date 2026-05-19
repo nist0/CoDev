@@ -4,7 +4,8 @@ description: Architecture Decision Records — structured context, options, deci
 argument-hint: "[decision-title] [stakeholders]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # ADR (Architecture Decision Records) (Elite)
 

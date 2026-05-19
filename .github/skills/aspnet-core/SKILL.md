@@ -4,7 +4,8 @@ description: ASP.NET Core REST API conventions — routing, versioning, validati
 argument-hint: "[api-name] [concern]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # ASP.NET Core (REST API) (Elite)
 

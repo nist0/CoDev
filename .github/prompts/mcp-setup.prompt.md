@@ -3,7 +3,8 @@ name: mcp-setup
 description: "Design and install an MCP integration for VS Code or GitHub Copilot with a guided intake, strict topology decisions, and least-privilege verification steps."
 agent: mcp-specialist
 
-## argument-hint: "goal=<what you want to connect> [host=<vscode|github-copilot|both>] [server=<local|remote>] [transport=<stdio|http>] [install=<workspace|user|remote>] [auth=<none|local|api|org-managed>]"
+argument-hint: "goal=<what you want to connect> [host=<vscode|github-copilot|both>] [server=<local|remote>] [transport=<stdio|http>] [install=<workspace|user|remote>] [auth=<none|local|api|org-managed>]"
+---
 
 Argument handling:
 

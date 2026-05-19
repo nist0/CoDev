@@ -4,7 +4,8 @@ description: .NET CLI build/test/publish workflow — reproducible CI commands, 
 argument-hint: "[project] [action]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # dotnet CLI (Build/Test/Publish) (Elite)
 

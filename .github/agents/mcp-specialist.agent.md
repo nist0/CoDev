@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: mcp-specialist
 description: "Specialist agent for designing, installing, analyzing, and debugging MCP integrations for VS Code and GitHub Copilot."
 tools:
@@ -21,13 +20,11 @@ handoffs:
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # MCP Specialist
 

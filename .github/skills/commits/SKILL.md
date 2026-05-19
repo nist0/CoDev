@@ -4,7 +4,8 @@ description: Conventional Commits — type/scope/subject rules, commit size, mer
 argument-hint: "[change description or commit scope]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Commits (Hygiene, Conventional Commits) (Elite)
 

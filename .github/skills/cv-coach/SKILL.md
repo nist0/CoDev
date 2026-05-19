@@ -8,7 +8,8 @@ description: >
 argument-hint: "[cv-file-or-text] [target-role] [target-jd-url-or-text]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # CV Coach (Elite)
 

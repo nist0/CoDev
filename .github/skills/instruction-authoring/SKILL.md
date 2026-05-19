@@ -4,7 +4,8 @@ description: Create scoped instruction files (*.instructions.md) with clear appl
 argument-hint: "[scope] [rules]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # instruction-authoring Skill (Elite)
 

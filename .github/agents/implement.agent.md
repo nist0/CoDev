@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: implement
 description: Implements a plan as small diffs, respecting repo conventions. Writes code/files.
 tools:
@@ -41,58 +40,47 @@ handoffs:
   - label: Backend .NET Design
     agent: Backend .NET
     prompt: Review the active implementation slice, define the backend-safe approach, and hand back concrete file-level changes
-    send: true
 
   - label: Frontend Design
     agent: Frontend
     prompt: Review the active implementation slice, define the frontend-safe approach, and hand back concrete file-level changes
-    send: true
 
   - label: DevOps Review
     agent: DevOps/Cloud
     prompt: Review the active implementation slice for CI, infrastructure, Kubernetes, or cloud delivery changes and hand back concrete file-level changes
-    send: true
 
   - label: Native Review
     agent: Native/Systems
     prompt: Review the active implementation slice for C, C++, or low-level systems changes and hand back concrete file-level changes
-    send: true
 
   - label: Automation Review
     agent: Automation/Scripting
     prompt: Review the active implementation slice for Python, PowerShell, Bash, or repo automation changes and hand back concrete file-level changes
-    send: true
 
   - label: Bot Review
     agent: Bot Engineer
     prompt: Review the active implementation slice for bot-platform changes and hand back concrete file-level changes
-    send: true
 
   - label: Reliability Review
     agent: Reliability
     prompt: Review the active implementation slice for debugging, observability, reliability, or performance risk before code is written
-    send: true
 
   - label: Architecture Review
     agent: Architect
     prompt: Review the active implementation slice for boundary, abstraction, or pattern risks before code is written
-    send: true
 
   - label: Refine Plan
     agent: plan
     prompt: /plan
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # Implement
 

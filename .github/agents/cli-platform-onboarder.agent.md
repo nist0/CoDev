@@ -30,35 +30,30 @@ handoffs:
   - label: Security Review
     agent: Security
     prompt: /threat-model
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Architecture Decision
     agent: Architect
     prompt: Review architecture design decision identified during analysis
-    send: true
 
   - label: Backend .NET Implementation
     agent: Backend .NET
     prompt: Implement the .NET changes per the deduced project context
-    send: true
 
   - label: DevOps/Cloud CI/CD
     agent: DevOps/Cloud
     prompt: Review and update CI/CD pipeline based on deduced project context
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
 ---
 
-## send: true
+send: true
+---
 
 # CLI Platform Onboarder
 

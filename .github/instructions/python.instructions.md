@@ -2,7 +2,8 @@
 name: "Python Defaults"
 description: "Python guidance: readability, safety, robust CLI/script behavior."
 
-## applyTo: "**/*.py"
+applyTo: "**/*.py"
+---
 
 # Python Defaults
 

@@ -3,7 +3,8 @@ name: linters-stack
 description: "Design or improve polyglot linter strategy and CI quality gates across C/C++/C#/Python/Bash/Markdown."
 agent: "Automation/Scripting"
 
-## argument-hint: "stack=<list> scope=<paths> ci=<github-actions|other>"
+argument-hint: "stack=<list> scope=<paths> ci=<github-actions|other>"
+---
 
 Argument handling:
 

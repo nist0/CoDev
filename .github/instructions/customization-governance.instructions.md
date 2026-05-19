@@ -2,7 +2,8 @@
 name: "Customization Governance"
 description: "Mandatory governance for agents/prompts/skills/instructions and routing consistency."
 
-## applyTo: ".github/**/*.{md,yml,yaml}"
+applyTo: ".github/**/*.{md,yml,yaml}"
+---
 
 # Customization Governance
 
@@ -213,7 +214,8 @@ Before finalizing any customization change:
 
 - [ ] `copilot-instructions.md` and `README.md` updated
 
-## Example: smoke-test phrase entry
+Example: smoke-test phrase entry
+---
 
 ```yaml
 # route-smoke-tests.yaml

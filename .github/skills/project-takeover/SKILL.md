@@ -9,7 +9,8 @@ description: >
 argument-hint: "[repos=url1,url2] [kanban=url] [output=.takeover]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Project Takeover (Prise en charge de projet) — Skill
 
@@ -59,7 +60,7 @@ user-invocable: true
 
    ```markdown
 
-# Inventaire des dépôts — <Date>
+## Inventaire des dépôts — <Date>
 
    | Dépôt | URL | Branche par défaut | Langue principale | Dernier commit |
    |---|---|---|---|---|
@@ -262,7 +263,7 @@ technique, module par module.
 
    ```markdown
 
-# Décomposition fonctionnelle — <Projet>
+## Décomposition fonctionnelle — <Projet>
 
 ## Vue d'ensemble
 

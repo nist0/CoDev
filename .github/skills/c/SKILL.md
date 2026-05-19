@@ -4,7 +4,8 @@ description: C language — safety defaults, memory discipline, error handling, 
 argument-hint: "[component or module name]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # C (Safety, Portability, Debugging) (Elite)
 

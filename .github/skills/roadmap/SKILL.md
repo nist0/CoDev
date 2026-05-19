@@ -4,7 +4,8 @@ description: Actionable roadmap — outcome-driven milestones, dependency and ri
 argument-hint: "[product-or-team] [time-horizon]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Roadmap (Vision → Milestones → Execution) (Elite)
 

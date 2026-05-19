@@ -4,7 +4,8 @@ description: RAG (Retrieval-Augmented Generation) pipeline patterns -- chunking 
 argument-hint: "[language] [vector-store] [retrieval-mode]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # RAG Patterns Skill
 

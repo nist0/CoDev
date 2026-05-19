@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "REST API Engineer"
 description: "Design, evolve, and audit ASP.NET Core REST APIs with controller-first architecture, CQRS + IMediator, EF Core/PostgreSQL, and production governance."
 tools:
@@ -18,33 +17,27 @@ handoffs:
   - label: Verify Routing
     agent: Router
     prompt: /route
-    send: true
 
   - label: Backend .NET Implementation
     agent: Backend .NET
     prompt: Implement API changes and tests per the approved plan
-    send: true
 
   - label: Security Review
     agent: Security
     prompt: Review API authz, input validation, and threat surface
-    send: true
 
   - label: Reliability Review
     agent: Reliability
     prompt: Review failure modes, observability, and rollback readiness
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Dispatch
     agent: Delivery Lead
     prompt: /project-dispatch
-
-## send: true
+---
 
 # REST API Engineer
 

@@ -4,7 +4,8 @@ description: Deterministic routing using capability + domain matrix — classifi
 argument-hint: "[user-request]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Canonical Routing (Elite)
 

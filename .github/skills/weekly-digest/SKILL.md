@@ -4,7 +4,8 @@ description: Produce a structured weekly tech watch digest — curated by topic,
 argument-hint: "[topics] [week]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Tech Watch (Weekly Digest) (Elite)
 

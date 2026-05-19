@@ -4,7 +4,8 @@ description: Generate a production-ready ASP.NET Core REST API controller (CRUD)
 argument-hint: "[input-mode: description|openapi|theme] [resource-name-or-spec]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # REST API Controller Generation (Elite)
 

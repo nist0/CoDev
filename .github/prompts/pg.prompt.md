@@ -3,7 +3,8 @@ name: pg
 description: "PostgreSQL quick operations — schema inspection, query optimization, index analysis, lock triage, and connection pool management."
 agent: "Backend .NET"
 
-## argument-hint: "concern=<connect|schema|query|locks|vacuum|pool|user> table=<name>"
+argument-hint: "concern=<connect|schema|query|locks|vacuum|pool|user> table=<name>"
+---
 
 Argument handling:
 

@@ -2,7 +2,8 @@
 name: "GitHub Actions Defaults (YAML)"
 description: "Same as .yml; provided separately for .yaml extension."
 
-## applyTo: ".github/workflows/**/*.yaml"
+applyTo: ".github/workflows/**/*.yaml"
+---
 
 # GitHub Actions Defaults (YAML)
 
@@ -40,7 +41,8 @@ description: "Same as .yml; provided separately for .yaml extension."
 
 - Document how to run workflows locally using `act`.
 
-## Example: minimal secure job
+Example: minimal secure job
+---
 
 ```yaml
 jobs:

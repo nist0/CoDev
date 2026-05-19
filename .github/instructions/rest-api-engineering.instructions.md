@@ -2,7 +2,8 @@
 name: "REST API Engineering"
 description: "Controller-first REST API governance for ASP.NET Core controllers: resource routes, thin controllers, IMediator flow, ProblemDetails, and contract discipline."
 
-## applyTo: "**/*Controller.cs"
+applyTo: "**/*Controller.cs"
+---
 
 # REST API Engineering
 

@@ -4,7 +4,8 @@ description: kubectl operational cheatsheet — context/namespace management, wo
 argument-hint: "[namespace or resource name]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # kubectl Cheatsheet (Operational) (Elite)
 

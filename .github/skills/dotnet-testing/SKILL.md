@@ -4,7 +4,8 @@ description: .NET unit and integration testing — xUnit, WebApplicationFactory,
 argument-hint: "[service] [test-type]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # .NET Testing (Unit + Integration) (Elite)
 

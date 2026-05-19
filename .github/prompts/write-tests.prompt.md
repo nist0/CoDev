@@ -3,7 +3,8 @@ name: write-tests
 description: "Write tests based on a test plan; include how to run locally and in CI."
 agent: "Architect"
 
-## argument-hint: "scope=<file or module> framework=<vitest|jest|xunit|pytest|other>"
+argument-hint: "scope=<file or module> framework=<vitest|jest|xunit|pytest|other>"
+---
 
 Argument handling:
 

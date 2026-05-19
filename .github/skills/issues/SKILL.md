@@ -4,7 +4,8 @@ description: GitHub Issues triage — classification, labels, acceptance criteri
 argument-hint: "[issue title or area]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Issues (Triage, Labels, Quality) (Elite)
 

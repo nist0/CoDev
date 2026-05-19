@@ -4,7 +4,8 @@ description: React architecture — component boundaries, state strategy, data f
 argument-hint: "[component-or-page] [concern]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # React (Architecture, State, Performance) (Elite)
 

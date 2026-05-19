@@ -3,7 +3,8 @@ name: mermaid-embed
 description: "Embed a Mermaid diagram into an existing Markdown file (GitHub README, ADR, wiki, PR description). Handles correct fencing, placement, prose context, and accessibility."
 agent: mermaid-diagrammer
 
-## argument-hint: "file=<path or description of target markdown> diagram=<mermaid snippet or description> section=<heading to embed under>"
+argument-hint: "file=<path or description of target markdown> diagram=<mermaid snippet or description> section=<heading to embed under>"
+---
 
 Argument handling:
 

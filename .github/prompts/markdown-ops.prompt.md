@@ -3,7 +3,8 @@ name: markdown-ops
 description: "Produce, modify, lint, restructure, convert, import, and export Markdown docs with no info loss."
 agent: "Delivery Lead"
 
-## argument-hint: "operation=<produce|modify|lint|restructure|convert|import|export> scope=<path>"
+argument-hint: "operation=<produce|modify|lint|restructure|convert|import|export> scope=<path>"
+---
 
 Argument handling:
 

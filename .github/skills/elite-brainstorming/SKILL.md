@@ -4,7 +4,8 @@ description: High-rigor brainstorming playbook that converts ideas into testable
 argument-hint: "[objective] [constraints]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # elite-brainstorming Skill
 

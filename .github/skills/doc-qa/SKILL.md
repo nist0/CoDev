@@ -4,7 +4,8 @@ description: Lint and validate Markdown docs — broken links, heading hierarchy
 argument-hint: "[docs-path] [fix-mode]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Doc QA (Elite)
 

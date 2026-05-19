@@ -2,7 +2,8 @@
 name: "Docs System & Markdown Standards"
 description: "Documentation Architecture Model (DAM), consistent markdown structure, lint-friendly docs."
 
-## applyTo: "**/*.md"
+applyTo: "**/*.md"
+---
 
 # Docs System
 
@@ -59,7 +60,7 @@ description: "Documentation Architecture Model (DAM), consistent markdown struct
 - `MD013` (line length): keep prose lines ≤120 characters; use soft-wrap in editors, not hard wraps at 80.
 
 - `MD026` (no trailing punctuation in headings): headings must not end with `:`, `.`, `!`, or `?`.
-
+  <!-- markdownlint-disable MD026 -->
   ```md
   <!-- Wrong -->
 
@@ -70,6 +71,7 @@ description: "Documentation Architecture Model (DAM), consistent markdown struct
 ### Register webhook via curl
 
   ```
+  <!-- markdownlint-enable MD026 -->
 
 - `MD031` (fenced code blocks should be surrounded by blank lines): always leave one blank line before and after every fenced block.
 

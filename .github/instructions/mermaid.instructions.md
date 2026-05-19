@@ -2,7 +2,8 @@
 name: "Mermaid Diagrams in Markdown"
 description: "Always-on authoring rules for Mermaid diagrams in Markdown files: fencing, diagram type selection, GitHub rendering constraints, accessibility, and versioning."
 
-## applyTo: "**/*.md"
+applyTo: "**/*.md"
+---
 
 # Mermaid Diagrams in Markdown
 

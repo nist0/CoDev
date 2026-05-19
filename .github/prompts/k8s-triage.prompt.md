@@ -3,7 +3,8 @@ name: k8s-triage
 description: "Kubernetes/AKS triage: fast cluster checks, pod/service/ingress diagnosis, rollback and verification."
 agent: "DevOps/Cloud"
 
-## argument-hint: "cluster=<name> namespace=<ns> workload=<name> symptom=<text>"
+argument-hint: "cluster=<name> namespace=<ns> workload=<name> symptom=<text>"
+---
 
 Argument handling:
 

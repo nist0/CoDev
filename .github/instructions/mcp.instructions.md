@@ -2,7 +2,8 @@
 name: "MCP Configuration Safety"
 description: "Authoring rules for MCP configuration files: least privilege, trust boundaries, transport choice, and verification."
 
-## applyTo: "**/mcp*.json"
+applyTo: "**/mcp*.json"
+---
 
 # MCP Configuration Safety
 

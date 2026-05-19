@@ -4,7 +4,8 @@ description: Lens Kubernetes UI - cluster context confirmation, workload inspect
 argument-hint: "[namespace or workload]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Lens (Kubernetes Cluster Explorer) (Elite)
 

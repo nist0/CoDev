@@ -3,7 +3,8 @@ name: mcp-debug
 description: "Debug MCP startup, discovery, auth, or invocation failures in VS Code or GitHub Copilot with a repro-first troubleshooting flow."
 agent: mcp-specialist
 
-## argument-hint: "symptom=<what is failing> [host=<vscode|github-copilot|both>] [target=<config path or server name>]"
+argument-hint: "symptom=<what is failing> [host=<vscode|github-copilot|both>] [target=<config path or server name>]"
+---
 
 Argument handling:
 

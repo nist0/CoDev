@@ -2,7 +2,8 @@
 name: ".NET Defaults"
 description: "C#/.NET code standards: safety, readability, diagnostics, testing expectations."
 
-## applyTo: "**/*.cs"
+applyTo: "**/*.cs"
+---
 
 # .NET Defaults
 

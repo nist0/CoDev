@@ -4,7 +4,8 @@ description: pgAdmin PostgreSQL UI — schema inspection, query plan analysis, m
 argument-hint: "[schema, table, or query to analyze]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # pgAdmin (PostgreSQL Admin UI) (Elite)
 

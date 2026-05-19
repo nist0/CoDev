@@ -4,7 +4,8 @@ description: "Step-by-step STRIDE threat modeling playbook: enumerate assets, ma
 argument-hint: "[system description] [trust boundaries]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Threat Modeling — SKILL
 
@@ -168,7 +169,7 @@ Produce the threat register table as the final deliverable:
 
 ---
 
-## Quick-reference: STRIDE mnemonic
+Quick-reference: STRIDE mnemonic
 
 > **S**poofing identity → authenticate everything
 > **T**ampering with data → sign and verify

@@ -4,7 +4,8 @@ description: "Mermaid diagrams in Markdown — all diagram types, authoring best
 argument-hint: "[diagram-type] [description or existing snippet]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # mermaid Skill (Elite)
 

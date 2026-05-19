@@ -4,7 +4,8 @@ description: Performance regression triage — measure-first, baseline compariso
 argument-hint: "[endpoint-or-service] [metric-and-threshold]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Performance Regression Triage (Elite)
 

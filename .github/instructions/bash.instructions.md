@@ -2,7 +2,8 @@
 name: "Bash Defaults"
 description: "Bash guidance: safe shell scripting."
 
-## applyTo: "**/*.sh"
+applyTo: "**/*.sh"
+---
 
 # Bash Defaults
 
@@ -34,7 +35,8 @@ description: "Bash guidance: safe shell scripting."
 
 - Use `local` for variables inside functions to avoid scope leaks.
 
-## Example: safe script skeleton
+Example: safe script skeleton
+---
 
 ```bash
 #!/usr/bin/env bash

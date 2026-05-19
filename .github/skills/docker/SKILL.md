@@ -4,7 +4,8 @@ description: Docker production practices from Dockerfile authoring to CI image s
 argument-hint: "[service] [context] [registry]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Docker Skill
 

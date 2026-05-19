@@ -3,7 +3,8 @@ name: release-plan
 description: "Release plan: versioning, changelog, build artifacts, rollout/rollback, verification, comms."
 agent: "Delivery Lead"
 
-## argument-hint: "scope=<features or tickets> target-env=<prod|staging> version=<vX.Y.Z>"
+argument-hint: "scope=<features or tickets> target-env=<prod|staging> version=<vX.Y.Z>"
+---
 
 Argument handling:
 

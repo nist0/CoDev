@@ -2,7 +2,8 @@
 name: "Tech Watch Output"
 description: "Actionable digests: what changed, why it matters, what to try."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Tech Watch Output
 
@@ -64,7 +65,8 @@ Before including an item, confirm at least one is true:
 
 Discard items that are "interesting but not actionable within 90 days".
 
-## Example: well-formed digest entry
+Example: well-formed digest entry
+---
 
 ```text
 ## .NET 10 Preview 2 — 2026-02-18

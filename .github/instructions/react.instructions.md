@@ -2,7 +2,8 @@
 name: "React Defaults"
 description: "React/TSX guidance: component boundaries, hooks discipline, performance basics."
 
-## applyTo: "**/*.tsx"
+applyTo: "**/*.tsx"
+---
 
 # React Defaults
 

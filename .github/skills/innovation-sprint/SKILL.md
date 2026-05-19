@@ -4,7 +4,8 @@ description: Short structured ideation sprint — constrained diverge, cluster, 
 argument-hint: "[problem] [constraints] [success-criteria]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Innovation Sprint (Elite)
 

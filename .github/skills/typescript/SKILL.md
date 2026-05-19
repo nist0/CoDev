@@ -4,7 +4,8 @@ description: TypeScript type safety — boundary typing, discriminated unions, t
 argument-hint: "[module] [concern]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # TypeScript (Types, Boundaries, Safety) (Elite)
 

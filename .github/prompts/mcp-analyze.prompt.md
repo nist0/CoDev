@@ -3,7 +3,8 @@ name: mcp-analyze
 description: "Analyze an existing MCP design or configuration for topology correctness, least privilege, and VS Code or GitHub Copilot fit."
 agent: mcp-specialist
 
-## argument-hint: "target=<mcp.json path, agent file, or design description> [host=<vscode|github-copilot|both>]"
+argument-hint: "target=<mcp.json path, agent file, or design description> [host=<vscode|github-copilot|both>]"
+---
 
 Argument handling:
 

@@ -26,25 +26,22 @@ handoffs:
   - label: Routing Smoke Test
     agent: Router
     prompt: /route
-    send: true
 
   - label: Author Custom Overrides
     agent: promptsmith
     prompt: Author new override files in codev-overrides/
-    send: true
 
   - label: CI/CD Pipeline Update
     agent: DevOps/Cloud
     prompt: Update CI/CD pipeline for new CoDev overrides
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
 ---
 
-## send: true
+send: true
+---
 
 # CoDev Consumer
 

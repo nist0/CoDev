@@ -4,7 +4,8 @@ description: Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL 
 argument-hint: "[hosting-or-dns] [constraint]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Cloud Web Hosting (Azure + Cloudflare) (Elite)
 

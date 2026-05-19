@@ -4,7 +4,8 @@ description: APM trace analysis — latency hotspots, span breakdown, error corr
 argument-hint: "[service] [time-range]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # APM (Application Performance Monitoring) (Elite)
 

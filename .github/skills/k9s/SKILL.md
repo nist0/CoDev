@@ -4,7 +4,8 @@ description: k9s Kubernetes triage UI — fast incident triage, pod/log/event in
 argument-hint: "[namespace or workload name]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # k9s (Kubernetes Triage UI) (Elite)
 

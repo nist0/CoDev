@@ -3,7 +3,8 @@ name: deep-plan
 description: "Elite planning entry point: runs a mandatory brainstorm (≥ 3 scored options), produces a ranked implementation plan, and emits a GitHub issue draft with full sub-task checklist — for any domain."
 agent: plan
 
-## argument-hint: "goal=<what you want to build or fix> [constraints=<time/tech/scope>]"
+argument-hint: "goal=<what you want to build or fix> [constraints=<time/tech/scope>]"
+---
 
 Argument handling:
 

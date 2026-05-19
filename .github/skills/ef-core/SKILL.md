@@ -4,7 +4,8 @@ description: EF Core modeling, migrations, query performance, concurrency, and t
 argument-hint: "[entity] [concern]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # EF Core (Modeling, Migrations, Performance) (Elite)
 

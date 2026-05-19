@@ -4,7 +4,8 @@ description: LLM integration patterns -- provider abstraction, streaming, retrie
 argument-hint: "[provider] [language] [use-case]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # LLM Integration Skill
 

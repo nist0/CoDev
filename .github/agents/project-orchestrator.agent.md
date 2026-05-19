@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "Project Orchestrator"
 description: "Leads end-to-end project delivery: clarify, plan, dispatch, track, and review across specialist agents."
 tools: [agent, vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/executionSubagent, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/terminalSelection, read/terminalLastCommand, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, web/fetch, web/githubRepo, web/githubTextSearch, browser/openBrowserPage, browser/readPage, browser/screenshotPage, browser/navigatePage, browser/clickElement, browser/dragElement, browser/hoverElement, browser/typeInPage, browser/runPlaywrightCode, browser/handleDialog, github.vscode-pull-request-github/issue_fetch, github.vscode-pull-request-github/labels_fetch, github.vscode-pull-request-github/notification_fetch, github.vscode-pull-request-github/doSearch, github.vscode-pull-request-github/activePullRequest, github.vscode-pull-request-github/pullRequestStatusChecks, github.vscode-pull-request-github/openPullRequest, github.vscode-pull-request-github/create_pull_request, github.vscode-pull-request-github/resolveReviewThread, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, ms-python.python/configurePythonEnvironment, todo]
@@ -9,78 +8,63 @@ handoffs:
   - label: Route Ambiguous Scope
     agent: Router
     prompt: /route
-    send: true
 
   - label: Brainstorm Ideas
     agent: Innovator
     prompt: /brainstorm
-    send: true
 
   - label: Architecture Review
     agent: Architect
     prompt: Assess boundaries, tradeoffs, and design risks for this plan
-    send: true
 
   - label: Reliability Review
     agent: Reliability
     prompt: Assess failure modes, observability gaps, and rollback readiness
-    send: true
 
   - label: Security Review
     agent: Security
     prompt: Review threat surface, trust boundaries, and least-privilege controls
-    send: true
 
   - label: Backend .NET Implementation
     agent: Backend .NET
     prompt: Implement dispatched backend tasks with tests and verification steps
-    send: true
 
   - label: Frontend Implementation
     agent: Frontend
     prompt: Implement dispatched frontend tasks with tests and verification steps
-    send: true
 
   - label: DevOps and CI Implementation
     agent: DevOps/Cloud
     prompt: Implement dispatched infra, CI/CD, and runtime operations tasks
-    send: true
 
   - label: Automation Implementation
     agent: Automation/Scripting
     prompt: Implement dispatched scripting and automation tasks
-    send: true
 
   - label: API Governance Deep Dive
     agent: REST API Engineer
     prompt: Audit or implement controller-first API tasks with contract quality checks
-    send: true
 
   - label: MCP Integration Specialist
     agent: mcp-specialist
     prompt: Design, install, or debug MCP integrations for this task
-    send: true
 
   - label: Framework Customization Authoring
     agent: promptsmith
     prompt: Author or refactor prompts, agents, skills, and instructions for this scope
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Release Planning
     agent: Delivery Lead
     prompt: /release-plan
-    send: true
 
   - label: Project Board Sync
     agent: GitHub Ops
     prompt: Sync issues and PRs to Kanban board
-
-## send: true
+---
 
 # Project Orchestrator
 
@@ -239,7 +223,8 @@ Produce one issue body:
 ## Output format
 
 ```markdown
-## Project: <goal summary>
+Project: <goal summary>
+---
 
 ### Clarifying questions / assumptions
 - Q: <question> â†’ A: <answer> | Assumed: <assumption>

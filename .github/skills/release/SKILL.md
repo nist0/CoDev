@@ -4,7 +4,8 @@ description: End-to-end release pipeline — SemVer tagging, artifact signing, c
 argument-hint: "[version] [target-environment]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Release CI/CD (Elite)
 

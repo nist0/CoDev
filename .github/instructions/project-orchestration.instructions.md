@@ -2,7 +2,8 @@
 name: "Project Orchestration Defaults"
 description: "Whole-project delegation defaults: clarify, plan, dispatch, track, and review."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Project Orchestration Defaults
 
@@ -38,7 +39,8 @@ description: "Whole-project delegation defaults: clarify, plan, dispatch, track,
 
 - Keep outputs concise, deterministic, and checklist-oriented.
 
-## Example: phased plan entry
+Example: phased plan entry
+---
 
 ```text
 ### Phase 2 — API layer (owner: engineering.backend-dotnet)

@@ -4,7 +4,8 @@ description: End-to-end delivery discipline — Definition of Done, PR hygiene, 
 argument-hint: "[feature-or-fix] [environment]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Delivery (Execution, Quality Gates, Release Readiness) (Elite)
 

@@ -3,7 +3,8 @@ name: tech-watch-digest
 description: "Tech watch digest: what changed, why it matters, what to try next week."
 agent: "Tech Scout"
 
-## argument-hint: "topics=<comma-separated list> period=<week|month>"
+argument-hint: "topics=<comma-separated list> period=<week|month>"
+---
 
 Argument handling:
 

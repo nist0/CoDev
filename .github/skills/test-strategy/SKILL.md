@@ -4,7 +4,8 @@ description: Test pyramid design — risk mapping, test type selection, data str
 argument-hint: "[service-or-feature] [risk-areas]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Test Strategy (Elite)
 

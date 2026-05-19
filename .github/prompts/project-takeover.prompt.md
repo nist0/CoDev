@@ -3,7 +3,8 @@ name: project-takeover
 description: "Analyse exhaustive d'un ou plusieurs dépôts GitHub on-prem lors d'une prise en charge d'équipe. Produit une documentation complète en français dans .takeover/ (non commité)."
 agent: "Project Takeover"
 
-## argument-hint: "repos=<url1,url2,...> kanban=<project-url> [output=.takeover]"
+argument-hint: "repos=<url1,url2,...> kanban=<project-url> [output=.takeover]"
+---
 
 Argument handling:
 

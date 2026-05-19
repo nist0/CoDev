@@ -4,7 +4,8 @@ description: End-to-end orchestration workflow for idea clarification, deep plan
 argument-hint: "[goal] [constraints]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # project-orchestration Skill (Elite)
 

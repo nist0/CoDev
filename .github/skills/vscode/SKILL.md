@@ -4,7 +4,8 @@ description: VS Code Copilot Dev Framework usage — bootstrap, reload, discover
 argument-hint: "[issue or feature: bootstrap|reload|routing|troubleshoot]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # VS Code (Copilot Dev Framework Usage) (Elite)
 

@@ -4,7 +4,8 @@ description: Helm chart operations — lint, template rendering, diff, safe upgr
 argument-hint: "[release] [chart] [namespace]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Helm (Elite)
 

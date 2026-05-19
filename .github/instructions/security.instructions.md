@@ -2,7 +2,8 @@
 name: "Security & Compliance"
 description: "Secure-by-default coding: secrets hygiene, least-privilege, threat modeling, supply chain."
 
-## applyTo: "**/*"
+applyTo: "**/*"
+---
 
 # Security & Compliance
 

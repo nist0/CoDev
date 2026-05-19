@@ -4,7 +4,8 @@ description: Prompt engineering for the Copilot Dev Framework - intent, constrai
 argument-hint: "[task type: triage|generate|review|plan|refactor|explain]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Prompt Engineering (Copilot Dev Framework) (Elite)
 

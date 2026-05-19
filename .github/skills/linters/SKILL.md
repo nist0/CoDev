@@ -4,7 +4,8 @@ description: Lint and quality gate setup — polyglot linter matrix, CI integrat
 argument-hint: "[stack] [languages]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Linters & Quality Gates (Elite)
 

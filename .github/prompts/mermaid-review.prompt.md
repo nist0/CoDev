@@ -3,7 +3,8 @@ name: mermaid-review
 description: "Review an existing Mermaid diagram snippet for syntax errors, deprecated patterns, GitHub rendering compatibility, and best-practice violations. Returns structured verdict + improved version."
 agent: mermaid-diagrammer
 
-## argument-hint: "snippet=<mermaid code block or file path>"
+argument-hint: "snippet=<mermaid code block or file path>"
+---
 
 Argument handling:
 

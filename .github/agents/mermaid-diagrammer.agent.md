@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: mermaid-diagrammer
 description: "Specialist agent for producing, reviewing, and improving Mermaid diagrams in documentation. Generates correct, GitHub-native Mermaid from descriptions; reviews existing diagrams for syntax, best practices, and rendering compatibility."
 tools:
@@ -19,8 +18,7 @@ handoffs:
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review with updated diagrams
-
-## send: true
+---
 
 # Mermaid Diagrammer
 

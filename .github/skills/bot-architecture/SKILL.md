@@ -3,7 +3,8 @@ name: bot-architecture
 description: Cross-platform bot architecture patterns -- Activity/Turn model, middleware pipeline, state management, secrets hygiene, webhook vs polling, and AI integration. Applies to C# and Python across Teams, Telegram, WhatsApp, and other platforms.
 argument-hint: "[platform] [concern]"
 
-## user-invocable: true
+user-invocable: true
+---
 
 # Bot Architecture (Cross-Platform)
 

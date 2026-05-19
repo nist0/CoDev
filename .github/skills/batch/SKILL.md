@@ -4,7 +4,8 @@ description: Windows batch/CMD scripting — safe patterns, error handling, and 
 argument-hint: "[script-name or automation goal]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Batch / CMD Scripting (Elite)
 

@@ -4,7 +4,8 @@ description: Produce, modify, validate, and convert architecture diagrams with P
 argument-hint: "[format] [source] [target]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # diagram-tooling Skill (Elite)
 

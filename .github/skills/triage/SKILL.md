@@ -4,7 +4,8 @@ description: Repro-first debugging triage — minimal reproduction, ranked hypot
 argument-hint: "[error-or-symptom] [environment]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Debugging Triage (Elite)
 

@@ -2,7 +2,8 @@
 name: "GitHub Actions Defaults"
 description: "Workflow best practices: minimal permissions, reproducibility, clear steps."
 
-## applyTo: ".github/workflows/**/*.yml"
+applyTo: ".github/workflows/**/*.yml"
+---
 
 # GitHub Actions Defaults
 
@@ -40,7 +41,8 @@ description: "Workflow best practices: minimal permissions, reproducibility, cle
 
 - Document how to run workflows locally using `act`.
 
-## Example: minimal secure job
+Example: minimal secure job
+---
 
 ```yaml
 jobs:

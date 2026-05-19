@@ -2,7 +2,8 @@
 name: "AI/ML Engineering"
 description: "Always-on responsible-AI defaults for LLM integration and RAG pipeline code: PII guards, no hardcoded model names, output sanitisation, and content-filter requirements."
 
-## applyTo: "**/*llm*.{py,ts,cs,js},**/*rag*.{py,ts,cs,js},**/*openai*.{py,ts,cs,js},**/*anthropic*.{py,ts,cs,js},**/*langchain*.{py,ts,cs,js},**/*embedding*.{py,ts,cs,js},**/*vector_store*.{py,ts,cs,js},**/*chat_completion*.{py,ts,cs,js}"
+applyTo: "**/*llm*.{py,ts,cs,js},**/*rag*.{py,ts,cs,js},**/*openai*.{py,ts,cs,js},**/*anthropic*.{py,ts,cs,js},**/*langchain*.{py,ts,cs,js},**/*embedding*.{py,ts,cs,js},**/*vector_store*.{py,ts,cs,js},**/*chat_completion*.{py,ts,cs,js}"
+---
 
 # AI/ML Engineering
 

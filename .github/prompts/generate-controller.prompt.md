@@ -3,7 +3,8 @@ name: generate-controller
 description: Generate a production-ready ASP.NET Core CRUD controller from a description, OpenAPI JSON contract, or resource theme.
 agent: Backend .NET
 
-## argument-hint: "input-mode=<description|openapi|theme> [resource=<text>] [contract=<path-or-inline-json>]"
+argument-hint: "input-mode=<description|openapi|theme> [resource=<text>] [contract=<path-or-inline-json>]"
+---
 
 Argument handling:
 

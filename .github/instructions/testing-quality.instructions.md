@@ -2,7 +2,8 @@
 name: "Testing & Quality Gates"
 description: "Test plans, regression tests for bug fixes, and lint/quality gate practices."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Testing & Quality Gates
 
@@ -41,7 +42,8 @@ description: "Test plans, regression tests for bug fixes, and lint/quality gate 
 **CI gate**: `<exact command>` exits 0
 ```
 
-## Example: regression test pattern
+Example: regression test pattern
+---
 
 ```python
 # Before fix: this raised ValueError incorrectly

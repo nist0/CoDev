@@ -3,7 +3,8 @@ name: test-plan
 description: "Create a pragmatic test plan (scenarios → test type → rationale)."
 agent: "Architect"
 
-## argument-hint: "scope=<file or module> stack=<language/framework>"
+argument-hint: "scope=<file or module> stack=<language/framework>"
+---
 
 Argument handling:
 

@@ -4,7 +4,8 @@ description: Helm CLI operational cheatsheet - inspect, render, upgrade, rollbac
 argument-hint: "[release-name] [namespace]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Helm CLI Cheatsheet (Operational) (Elite)
 

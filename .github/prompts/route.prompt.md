@@ -3,7 +3,8 @@ name: route
 description: "Route a request using the canonical matrix (capability + domain) and produce deterministic delegation when delivery tasks are requested."
 agent: "Router"
 
-## argument-hint: "request=<free-text description of the task>"
+argument-hint: "request=<free-text description of the task>"
+---
 
 Argument handling:
 

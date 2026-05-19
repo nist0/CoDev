@@ -2,7 +2,8 @@
 name: "Helm Chart Hygiene"
 description: "Helm chart conventions: renderability, values discipline, safe upgrades, and lint-friendly structure."
 
-## applyTo: "**/Chart.yaml"
+applyTo: "**/Chart.yaml"
+---
 
 # Helm Chart Hygiene
 
@@ -36,7 +37,8 @@ description: "Helm chart conventions: renderability, values discipline, safe upg
 
 - Set resource `requests` and `limits` for every container; never leave them unbounded.
 
-## Example: values structure
+Example: values structure
+---
 
 ```yaml
 # values.yaml

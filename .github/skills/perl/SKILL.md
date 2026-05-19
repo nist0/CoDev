@@ -4,7 +4,8 @@ description: Perl scripting — safety pragmas, error handling, clear structure,
 argument-hint: "[script name or automation goal]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Perl Scripting (Elite)
 

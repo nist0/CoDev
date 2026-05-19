@@ -3,7 +3,8 @@ name: postmortem
 description: "Generate a blameless postmortem draft with timeline, RCA, and action items."
 agent: "Reliability"
 
-## argument-hint: "incident=<title> date=<YYYY-MM-DD> duration=<HHhMMm> severity=<P1-P4>"
+argument-hint: "incident=<title> date=<YYYY-MM-DD> duration=<HHhMMm> severity=<P1-P4>"
+---
 
 Argument handling:
 

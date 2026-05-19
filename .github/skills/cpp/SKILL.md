@@ -4,7 +4,8 @@ description: Modern C++ — RAII, ownership, smart pointers, error handling poli
 argument-hint: "[component or module]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # C++ (Modern Practices, Safety, Performance) (Elite)
 

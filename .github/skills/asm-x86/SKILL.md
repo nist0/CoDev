@@ -4,7 +4,8 @@ description: x86 Assembly (Intel) — calling conventions, stack frames, registe
 argument-hint: "[architecture: x86|x64] [context or function name]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # x86 Assembly (Intel) (Elite)
 

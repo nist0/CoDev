@@ -3,7 +3,8 @@ name: az-ops
 description: "Azure CLI operations — subscription context, resource discovery, AKS, Key Vault, ACR, RBAC, and monitoring queries."
 agent: "DevOps/Cloud"
 
-## argument-hint: "concern=<context|aks|keyvault|acr|rbac|monitor> resource-group=<name>"
+argument-hint: "concern=<context|aks|keyvault|acr|rbac|monitor> resource-group=<name>"
+---
 
 Argument handling:
 

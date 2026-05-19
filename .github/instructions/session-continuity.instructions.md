@@ -2,7 +2,8 @@
 name: "Session Continuity & Theme-Based Knowledge Files"
 description: "Maintain persistent, theme-scoped knowledge files with no redundancy so every new chat session can resume from an exact, up-to-date state."
 
-## applyTo: "**"
+applyTo: "**"
+---
 
 # Session Continuity
 
@@ -201,7 +202,8 @@ At the start of every new session on this repository:
 
 5. Do not re-derive facts that are already recorded — trust the files.
 
-## Example: well-formed theme file entry
+Example: well-formed theme file entry
+---
 
 ```markdown
 ## Build commands

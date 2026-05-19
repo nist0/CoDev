@@ -4,7 +4,8 @@ description: MCP integration for VS Code and GitHub Copilot - design, install, s
 argument-hint: "[local|remote] [stdio|http] [goal]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # mcp-integration Skill (Elite)
 

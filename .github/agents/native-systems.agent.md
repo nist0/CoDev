@@ -1,5 +1,4 @@
-## ﻿---
-
+---
 name: "Native/Systems"
 description: "C/C++ and assembly (x86/AVR/PIC): memory, performance, tooling, and low-level debugging."
 tools:
@@ -27,23 +26,19 @@ handoffs:
   - label: Architecture Decision
     agent: Architect
     prompt: Review design decision or cross-cutting concern identified during analysis
-    send: true
 
   - label: Apply Fix
     agent: implement
     prompt: Apply the minimal diff for the confirmed fix
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-    send: true
 
   - label: Delivery Lead Merge
     agent: Delivery Lead
     prompt: PR ready for merge gate review
-
-## send: true
+---
 
 # Native/Systems
 

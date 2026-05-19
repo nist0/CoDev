@@ -3,7 +3,8 @@ name: diagram-ops
 description: "Produce, modify, validate, and convert architecture diagrams using PlantUML/Mermaid and open-source workflows."
 agent: "Delivery Lead"
 
-## argument-hint: "operation=<create|modify|convert|validate> format=<plantuml|mermaid>"
+argument-hint: "operation=<create|modify|convert|validate> format=<plantuml|mermaid>"
+---
 
 Argument handling:
 

@@ -4,7 +4,8 @@ description: Elite GitHub Actions CI/CD — security hardening, reusable workflo
 argument-hint: "[workflow-name] [trigger-event]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # GitHub Actions (Elite CI/CD)
 

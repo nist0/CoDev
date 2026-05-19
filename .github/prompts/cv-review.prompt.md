@@ -3,7 +3,8 @@ name: cv-review
 description: "Critique and rewrite a CV to modern professional standards: ATS compliance, quantified impact bullets, and optional keyword gap analysis against a job description."
 agent: "CV Coach"
 
-## argument-hint: "target-role=<role> [target-market=FR|EN|INT] [target-jd=<job description text or URL>]"
+argument-hint: "target-role=<role> [target-market=FR|EN|INT] [target-jd=<job description text or URL>]"
+---
 
 Argument handling:
 

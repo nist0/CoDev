@@ -4,7 +4,8 @@ description: Request for Comments — structured design proposal for cross-team 
 argument-hint: "[proposal-title] [scope]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # RFC (Request For Comments) (Elite)
 

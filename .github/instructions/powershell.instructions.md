@@ -2,7 +2,8 @@
 name: "PowerShell Defaults"
 description: "PowerShell guidance: idempotence, error handling, safe automation."
 
-## applyTo: "**/*.ps1"
+applyTo: "**/*.ps1"
+---
 
 # PowerShell Defaults
 
@@ -40,7 +41,8 @@ description: "PowerShell guidance: idempotence, error handling, safe automation.
 
 - Lint with PSScriptAnalyzer in CI.
 
-## Example: safe script skeleton
+Example: safe script skeleton
+---
 
 ```powershell
 #Requires -Version 7

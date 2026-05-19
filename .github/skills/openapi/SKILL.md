@@ -4,7 +4,8 @@ description: OpenAPI/Swagger — operation IDs, response schemas, auth documenta
 argument-hint: "[API name or endpoint group]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # OpenAPI / Swagger (Elite)
 

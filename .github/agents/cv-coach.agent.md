@@ -14,15 +14,14 @@ handoffs:
   - label: Verify Routing
     agent: Router
     prompt: /route
-    send: true
 
   - label: PR Review
     agent: reviewer
     prompt: /pr-review
-
 ---
 
-## send: true
+send: true
+---
 
 # CV Coach
 

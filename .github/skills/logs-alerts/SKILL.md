@@ -4,7 +4,8 @@ description: Log analysis and alerting — symptom identification, time-scoped f
 argument-hint: "[service name or incident description]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Logs & Alerts (Elite)
 

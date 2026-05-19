@@ -11,13 +11,11 @@ handoffs:
   - label: Route Miss Fix
     agent: Router
     prompt: /route-miss
-    send: true
 
   - label: Delivery Scope
     agent: Project Orchestrator
     prompt: /project-dispatch
-
-## send: true
+---
 
 # Router (Canonical Routing)
 

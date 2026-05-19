@@ -3,7 +3,8 @@ name: project-kickoff
 description: "Clarify project intent and produce a deep phased plan with risks and acceptance criteria."
 agent: "Project Orchestrator"
 
-## argument-hint: "goal=<text> constraints=<text> timeline=<text>"
+argument-hint: "goal=<text> constraints=<text> timeline=<text>"
+---
 
 Argument handling:
 

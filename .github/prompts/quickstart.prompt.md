@@ -3,7 +3,8 @@ name: quickstart
 description: "Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized contributor-profile quickstart card."
 agent: "Router"
 
-## argument-hint: "role=<your role> domain=<tech stack> goal=<what you want to do>"
+argument-hint: "role=<your role> domain=<tech stack> goal=<what you want to do>"
+---
 
 Argument handling:
 

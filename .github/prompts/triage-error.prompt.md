@@ -3,7 +3,8 @@ name: triage-error
 description: "Triage an error: repro steps, ranked hypotheses, validation plan, fix options, verification checklist."
 agent: "Reliability"
 
-## argument-hint: "error=<message or stack> env=<dev|staging|prod> service=<name>"
+argument-hint: "error=<message or stack> env=<dev|staging|prod> service=<name>"
+---
 
 Argument handling:
 

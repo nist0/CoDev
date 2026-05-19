@@ -3,7 +3,8 @@ name: session-handoff
 description: "Generate or load a zero-argument session handoff package, either inline, as a workspace file, or by initializing a new chat from an attached handoff file."
 agent: "Project Orchestrator"
 
-## argument-hint: "[action=<capture|setup|init>] [mode=<inline|file>] [source=<handoff-file-path>]"
+argument-hint: "[action=<capture|setup|init>] [mode=<inline|file>] [source=<handoff-file-path>]"
+---
 
 Argument handling:
 

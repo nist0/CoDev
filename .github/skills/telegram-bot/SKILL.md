@@ -3,7 +3,8 @@ name: telegram-bot
 description: Build production-grade Telegram bots in Python using python-telegram-bot v22+ (Bot API 9.5+). Covers async application setup, handler registration, ConversationHandler dialogs, webhook vs polling, persistence, and security.
 argument-hint: "[feature: commands|dialogs|inline|webhook|persistence]"
 
-## user-invocable: true
+user-invocable: true
+---
 
 # Telegram Bot Development (Elite)
 

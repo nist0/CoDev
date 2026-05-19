@@ -3,7 +3,8 @@ name: project-governance
 description: Govern execution with GitHub issues + Kanban and review outcomes as approved or rework required.
 agent: "Project Orchestrator"
 
-## argument-hint: "tasks=<list> board=<name>"
+argument-hint: "tasks=<list> board=<name>"
+---
 
 Argument handling:
 

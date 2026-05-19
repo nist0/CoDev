@@ -3,7 +3,8 @@ name: rest-api-new-service
 description: Design a new controller-based ASP.NET Core REST API with CQRS + IMediator, DTO contracts, EF Core/PostgreSQL boundaries, and production quality gates.
 agent: REST API Engineer
 
-## argument-hint: "apiName=<name> resources=<comma-list> constraints=<text>"
+argument-hint: "apiName=<name> resources=<comma-list> constraints=<text>"
+---
 
 Argument handling:
 

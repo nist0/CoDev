@@ -3,7 +3,8 @@ name: generate-docs-tree
 description: "Propose a docs/ tree aligned with the Documentation Architecture Model."
 agent: "Delivery Lead"
 
-## argument-hint: "scope=<repo or module> existing-docs=<path>"
+argument-hint: "scope=<repo or module> existing-docs=<path>"
+---
 
 Argument handling:
 

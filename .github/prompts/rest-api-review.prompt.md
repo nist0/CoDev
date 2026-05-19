@@ -3,7 +3,8 @@ name: rest-api-review
 description: Audit and improve an existing ASP.NET Core REST API for contract quality, error handling, EF Core/PostgreSQL correctness, security, observability, and tests.
 agent: REST API Engineer
 
-## argument-hint: "scope=<api-area> focus=<comma-list>"
+argument-hint: "scope=<api-area> focus=<comma-list>"
+---
 
 Argument handling:
 

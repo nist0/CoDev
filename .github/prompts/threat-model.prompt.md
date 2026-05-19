@@ -3,7 +3,8 @@ name: threat-model
 description: "Run a structured STRIDE threat model on a described system: enumerate assets, map trust boundaries, identify and score threats, define mitigations and residual risk."
 agent: "Security"
 
-## argument-hint: "system=<description> boundaries=<list> actors=<list>"
+argument-hint: "system=<description> boundaries=<list> actors=<list>"
+---
 
 Argument handling:
 

@@ -4,7 +4,8 @@ description: Full reference for managing CoDev as a Git submodule — init, upda
 argument-hint: "[operation: init|update|teardown|override|troubleshoot]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # CoDev Submodule Management
 

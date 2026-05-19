@@ -4,7 +4,8 @@ description: npm Node tooling — install strategy, standard scripts, lockfile d
 argument-hint: "[project name or script task]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # npm (Node Tooling) (Elite)
 

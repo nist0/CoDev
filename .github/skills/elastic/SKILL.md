@@ -4,7 +4,8 @@ description: Elasticsearch/Kibana/ELK - KQL queries, dashboards, alerting rules,
 argument-hint: "[index pattern or log type]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Elastic / Kibana / ELK (Elite)
 

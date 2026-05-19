@@ -4,7 +4,8 @@ description: Elite PR review — multi-pass analysis, severity classification, i
 argument-hint: "[pr-number] [target-branch]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # PR Review (Elite)
 

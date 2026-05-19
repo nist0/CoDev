@@ -4,7 +4,8 @@ description: Markdown doc operations for production, modification, linting, rest
 argument-hint: "[operation] [scope]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # markdown-docops Skill (Elite)
 

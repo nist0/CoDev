@@ -3,7 +3,8 @@ name: secrets-audit
 description: "Audit a file, PR diff, or codebase description for secrets, tokens, credentials, and private keys. Every finding is Critical — emit rotation guidance immediately."
 agent: "Security"
 
-## argument-hint: "scope=<file path | PR diff | description of codebase area>"
+argument-hint: "scope=<file path | PR diff | description of codebase area>"
+---
 
 Argument handling:
 

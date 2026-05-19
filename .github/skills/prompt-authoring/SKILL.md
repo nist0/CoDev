@@ -4,7 +4,8 @@ description: Create stable, reusable prompt files (.prompt.md) with consistent s
 argument-hint: "[goal] [inputs] [constraints]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # prompt-authoring Skill (Elite)
 

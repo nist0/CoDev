@@ -4,7 +4,8 @@ description: Azure operational basics — identity safety, resource navigation, 
 argument-hint: "[resource-type] [resource-group]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # Azure (Operational Basics) (Elite)
 

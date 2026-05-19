@@ -4,7 +4,8 @@ description: PostgreSQL schema design, query optimization, connection management
 argument-hint: "[table-or-query] [concern]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # PostgreSQL (with EF Core / Npgsql) (Elite)
 

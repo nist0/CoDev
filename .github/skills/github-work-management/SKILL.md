@@ -4,7 +4,8 @@ description: Elite delivery governance — issue lifecycle, Kanban discipline, t
 argument-hint: "[project-name] [milestones]"
 user-invocable: true
 
-## disable-model-invocation: false
+disable-model-invocation: false
+---
 
 # GitHub Work Management (Elite)
 

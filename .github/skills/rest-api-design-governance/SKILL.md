@@ -2,7 +2,8 @@
 name: rest-api-design-governance
 description: Design and govern ASP.NET Core REST APIs with resource-first contracts, controller boundaries, CQRS + IMediator, versioning, and OpenAPI quality.
 
-## user-invocable: true
+user-invocable: true
+---
 
 # REST API Design Governance
 

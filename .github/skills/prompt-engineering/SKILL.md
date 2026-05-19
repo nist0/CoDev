@@ -3,15 +3,17 @@ name: prompt-engineering
 description: Prompt engineering for the Copilot Dev Framework - intent, constraints, context, deterministic output, verification, and framework change protocol.
 argument-hint: "[task type: triage|generate|review|plan|refactor|explain]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Prompt Engineering (Copilot Dev Framework) (Elite)
 
 ## When to use
 
 - You need consistent prompts that produce deterministic, reviewable outputs.
+
 - You want prompts that work well with routing (capability + domain).
+
 - You want to reduce ambiguity and hallucinations.
 
 ## Good Prompt Quality Criteria
@@ -30,6 +32,7 @@ disable-model-invocation: false
 ### 1. Define intent
 
 - "What is the task?" (triage, generate, review, plan, refactor, explain).
+
 - Pick the right interaction mode for the task size/complexity.
 
 ### 2. Provide constraints
@@ -39,6 +42,7 @@ disable-model-invocation: false
 ### 3. Provide context
 
 - Minimal necessary inputs: file paths, errors, requirements, expected behavior.
+
 - Reference concrete files/symbols when possible.
 
 ### 4. Ask for deterministic output
@@ -62,30 +66,44 @@ disable-model-invocation: false
 When adding a capability or AI capability in this framework:
 
 1) Scope first
+
    - Define user outcomes, non-goals, and acceptance criteria.
 2) Prefer stable roles
+
    - Reuse existing agents when possible; add new agents only for truly new roles.
 3) Modular artifacts
+
    - Add leaf `SKILL.md` modules and narrowly scoped prompts.
 4) Deterministic routing
+
    - Update `routing/capabilities.yaml`, `routing/aliases.yaml`, and `routing/matrix.yaml`.
 5) Keep instructions concise
+
    - Put global rules in core instructions; use scoped `applyTo` files for specifics.
 6) Verify and document
+
    - Run validators; update docs and examples for discoverability.
 
 ## Self-check
 
 - [ ] Intent is explicit (task type stated clearly).
+
 - [ ] Constraints include tech stack and output format.
+
 - [ ] Context references concrete files/symbols/errors (not vague descriptions).
+
 - [ ] Output asks for deterministic format (checklist/steps/commands).
+
 - [ ] Verification guidance included.
+
 - [ ] No secrets or broad destructive permissions in prompt.
 
 ## Outputs
 
 - A prompt pattern library (intent -> template).
+
 - A "good prompt" checklist.
+
 - Suggested prompt file structure for `/` commands.
+
 - A reusable checklist for adding capabilities/agents/skills/prompts/instructions.

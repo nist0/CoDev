@@ -62,113 +62,177 @@ Signals are normalised to a 0 to 10 scale before weighting.
 ### 1) continuedev/continue
 
 - What: coding assistant extension with local and hosted model support.
+
 - How: extension architecture, configuration, and plugin support.
+
 - Coverage: strong practical editor workflows.
+
 - CoDev comparison: CoDev can improve interactive user ergonomics while keeping governance strengths.
 
 ### 2) langchain-ai/langchain
 
 - What: broad framework for LLM-powered applications.
+
 - How: composable abstractions and connectors.
+
 - Coverage: wide integration coverage and high community adoption.
+
 - CoDev comparison: CoDev should borrow extensibility patterns while preserving deterministic routing contracts.
 
 ### 3) microsoft/autogen
 
 - What: framework for multi-agent communication and orchestration.
+
 - How: agent messaging and orchestration primitives.
+
 - Coverage: strong in agent collaboration scenarios.
+
 - CoDev comparison: CoDev can adopt selected orchestration patterns for specialist delegation flows.
 
 ### 4) microsoft/promptflow
 
 - What: prompt and workflow lifecycle tooling.
+
 - How: workflow definitions, evaluations, and operational tooling.
+
 - Coverage: prompt workflow evaluation and lifecycle controls.
+
 - CoDev comparison: CoDev can improve benchmark and quality-evaluation integrations.
 
 ### 5) All-Hands-AI/OpenHands
 
 - What: full agentic engineering platform.
+
 - How: runtime loops and autonomous task execution mechanisms.
+
 - Coverage: broad capability exploration.
+
 - CoDev comparison: CoDev should remain process-reliable while selectively adopting runtime ideas.
 
 ### 6) Aider-AI/aider
 
 - What: terminal-first AI pair programming tool.
+
 - How: git-aware iterative editing loop.
+
 - Coverage: practical coding operations and patch workflows.
+
 - CoDev comparison: CoDev can improve script ergonomics and guided commands.
 
 ### 7) crewAIInc/crewAI
 
 - What: role-driven agent collaboration framework.
+
 - How: roles, tasks, orchestration flows.
+
 - Coverage: multi-role planning and execution.
+
 - CoDev comparison: CoDev can improve role templates in prompts and skills.
 
 ### 8) agno-agi/agno
 
 - What: agent engineering framework.
+
 - How: framework abstractions and adapters.
+
 - Coverage: use-case driven agent implementations.
+
 - CoDev comparison: CoDev can improve plugin onboarding and extension examples.
 
 ### 9) github/awesome-copilot
 
 - What: curated Copilot resources.
+
 - How: documentation-first curation.
+
 - Coverage: breadth of references.
+
 - CoDev comparison: CoDev can add better curated quick-start trails for newcomers.
 
 ### 10) microsoft/vscode-copilot-release
 
 - What: release and issue visibility for Copilot.
+
 - How: transparent issue and release workflows.
+
 - Coverage: release communication and tracking.
+
 - CoDev comparison: CoDev can improve release transparency and changelog discoverability.
 
 ## Ranked enhancements for CoDev (30+)
 
 1. Add benchmark script CI smoke job with baseline mode and artifact upload.
+
 2. Add benchmark input schema for manual mode validation.
+
 3. Add benchmark report link in README Developer Tooling section.
+
 4. Add benchmark trend tracking with historical JSON snapshots in reports.
+
 5. Add deterministic normalisation rules for signal scoring in script docs.
+
 6. Add unit tests for manual CSV parsing edge cases.
+
 7. Add unit tests for tie-break ordering determinism.
+
 8. Add repository-level command index in README for all scripts.
+
 9. Add quickstart path for contributors focused on route-only changes.
+
 10. Add quality gate to ensure new scripts include --dry-run when write-capable.
+
 11. Add coverage check for docs references to existing scripts only.
+
 12. Add docs page that maps each validator to failure examples.
+
 13. Add benchmark comparator section to docs/codev-dev-guide.md.
+
 14. Add issue template for benchmark refresh cycles.
+
 15. Add scheduled workflow to regenerate benchmark baseline monthly.
+
 16. Add strict JSON output schema validation test for benchmark report.
+
 17. Add command to skip clone if repository size exceeds threshold.
+
 18. Add scoring plug-in mechanism for repo-specific criteria.
+
 19. Add support for manual repository list text format (owner/repo per line).
+
 20. Add script flag to emit report without clone actions section.
+
 21. Add CI check that top-count must be positive in benchmark script args.
+
 22. Add benchmark docs cross-links to submodule and tooling docs.
+
 23. Add troubleshooting section for gh authentication and rate limits.
+
 24. Add explicit reproducibility note for baseline data refresh process.
+
 25. Add project metadata caching to reduce repeated API calls.
+
 26. Add optional language filter flag for discovery mode.
+
 27. Add minimum stars threshold flag for candidate filtering.
+
 28. Add benchmark command wrapper in codev-dev.py tooling CLI.
+
 29. Add markdown table summarising criterion-level score breakdown per project.
+
 30. Add test fixture generator for synthetic benchmark datasets.
+
 31. Add docs lint rule to require rerun command blocks in benchmark docs.
+
 32. Add governance checklist item for competitive analysis updates per quarter.
 
 ## Immediate next validation steps
 
 1. Run unit tests for benchmark core functions.
+
 2. Run benchmark script in baseline dry-run mode to verify deterministic execution.
+
 3. Run benchmark script with manual input file to verify offline manual mode.
+
 4. Optionally run gh mode with authenticated GitHub CLI and compare results.
 
 ## See also

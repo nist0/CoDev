@@ -7,17 +7,21 @@ description: >
   Markdown or structured plain text.
 argument-hint: "[cv-file-or-text] [target-role] [target-jd-url-or-text]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # CV Coach (Elite)
 
 ## When to use
 
 - Reviewing an existing CV and producing an actionable critique.
+
 - Rewriting a CV to modern standards (ATS, impact-first, quantified).
+
 - Tailoring a CV to a specific job offer (keyword gap analysis).
+
 - Producing a fresh CV from a candidate self-description.
+
 - Coaching a candidate through CV best practices.
 
 ## Pre-requisites
@@ -57,15 +61,21 @@ Extract and organise all content into the following canonical sections:
 For each work experience entry, map bullets to:
 
 - **Action verb** (start of bullet)
+
 - **Task / context** (what was done)
+
 - **Result / impact** (quantified if possible)
 
 Flag sections that are:
 
 - Missing (mandatory: Identity, Work Experience, Skills, Education)
+
 - Thin (fewer than 2 bullet points per experience)
+
 - Unquantified (no numbers, %, timeframes, or scales)
+
 - Outdated (experiences > 10 years unless strategic)
+
 - Redundant or padded
 
 ---
@@ -90,21 +100,33 @@ Score each dimension on a 1-5 scale and produce a critique table:
 **Scoring guide:**
 
 - 5 = Excellent, no change needed
+
 - 4 = Good, minor polish
+
 - 3 = Adequate, improvement recommended
+
 - 2 = Weak, significant rewrite needed
+
 - 1 = Missing or severely deficient
 
 **Modern standards reference (2025):**
 
 - Length: 1 page for <5 yrs exp; 2 pages for 5-15 yrs; max 3 pages for senior/exec.
+
 - ATS: no tables, headers/footers, images, or text boxes for ATS-destined versions.
+
 - Action verbs: strong, varied, active voice — avoid "responsible for", "helped with".
+
 - Quantification: aim for >=60% of experience bullets to contain a number or measurable outcome.
+
 - Summary: 3-4 lines, first-person omitted, role-specific, top-loaded with keywords.
+
 - Skills section: grouped by category (languages, frameworks, tools, soft skills) — not a raw dump.
+
 - Dates: month + year for recent roles; year-only acceptable for roles > 5 yrs old.
+
 - Links: LinkedIn and GitHub must be active and professional (custom slug preferred).
+
 - No photos, no marital status, no date of birth (FR exception: optional but dated practice).
 
 ---
@@ -114,12 +136,19 @@ Score each dimension on a 1-5 scale and produce a critique table:
 Flag these as P0 (must fix before any application):
 
 - [ ] Contact information incomplete or broken (bad email, dead LinkedIn link)
+
 - [ ] Unexplained employment gaps > 6 months
+
 - [ ] Timeline inconsistencies (overlapping dates, missing years)
+
 - [ ] No quantified achievements anywhere
+
 - [ ] Generic / copy-paste summary with no differentiation
+
 - [ ] Skills section lists outdated technologies as primary skills
+
 - [ ] Spelling or serious grammar errors
+
 - [ ] File name format: use `Firstname-Lastname-CV-Role-Year.pdf` (never "Mon CV.docx")
 
 ---
@@ -151,8 +180,11 @@ For each work experience entry, rewrite bullets using the formula:
 **Quantification prompts to ask the user when data is missing:**
 
 - "How many users / requests / transactions did this system handle?"
+
 - "By how much did the change improve performance / cost / time?"
+
 - "What was the team or budget size you managed?"
+
 - "What was the release cadence or sprint velocity before/after?"
 
 ---
@@ -160,7 +192,9 @@ For each work experience entry, rewrite bullets using the formula:
 ### Step 5 — Keyword gap analysis (when JD provided)
 
 1. Extract all hard skills, technologies, and role-specific terms from the target JD.
+
 2. Cross-reference against skills and experience sections of the CV.
+
 3. Produce a gap table:
 
 | Keyword from JD | Present in CV? | Recommended action |
@@ -171,6 +205,7 @@ For each work experience entry, rewrite bullets using the formula:
 | GDPR compliance | No | Add if genuinely applies; do not fabricate |
 
 4. Suggest natural language bridges: phrases that cover the gap without fabrication.
+
 5. Recommend a "tailored summary" specific to this JD.
 
 **Rule**: never add skills or experiences the candidate does not have. Only surface what already exists but was not prominently stated.
@@ -271,12 +306,19 @@ File naming: [Firstname-Lastname-CV-[Role]-[Year].pdf]
 ## Non-negotiables
 
 - **Never fabricate** experience, metrics, skills, or certifications.
+
 - **Never remove** real experience without explaining why and confirming with the user.
+
 - Ask for quantification data before writing "estimated" numbers.
+
 - For FR market: include LinkedIn URL; date of birth and photo are optional but note they are dated practice.
+
 - For EN/international market: omit photo, DOB, marital status; LinkedIn is mandatory.
+
 - Always offer both ATS-safe (no tables/columns) and design-optimised versions.
+
 - Respect the candidate's authentic voice — do not over-formalise a creative profile.
+
 - Content must be in the language of the target market (FR / EN) unless the candidate requests otherwise.
 
 ---
@@ -284,11 +326,19 @@ File naming: [Firstname-Lastname-CV-[Role]-[Year].pdf]
 ## Self-check
 
 - [ ] All 7 steps executed (or explicitly skipped with reason).
+
 - [ ] Critique table produced with scores and findings.
+
 - [ ] P0 blockers identified and addressed.
+
 - [ ] >=60% of experience bullets quantified in the rewritten CV.
+
 - [ ] Action verbs are strong, active, and varied.
+
 - [ ] Keyword gap analysis done if a JD was provided.
+
 - [ ] Coaching summary card produced.
+
 - [ ] No fabricated information.
+
 - [ ] Output is copy/paste-ready Markdown.

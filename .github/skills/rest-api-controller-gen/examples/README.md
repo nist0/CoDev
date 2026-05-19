@@ -1,11 +1,15 @@
 # rest-api-controller-gen — Examples
-Two annotated examples showing the three input modes in action.
----
+
+## Two annotated examples showing the three input modes in action
+
 ## Example 1 — From natural-language description
+
 **Input** (Mode 1 — description):
 > "A BlogPosts resource with Id (Guid), Title (string, required, max 300), Body (string, required), AuthorId (Guid), PublishedAt (DateTimeOffset, nullable). CRUD endpoints required."
 **Generated artifacts** (summary):
+
 ### DTOs
+
 ```csharp
 public sealed record CreateBlogPostRequest(
 string Title,
@@ -22,7 +26,9 @@ DateTimeOffset? PublishedAt,
 DateTimeOffset CreatedAt
 );
 ```
+
 ### Validator
+
 ```text
 public sealed class CreateBlogPostRequestValidator
 : AbstractValidator<CreateBlogPostRequest>
@@ -35,7 +41,9 @@ RuleFor(x => x.AuthorId).NotEmpty();
 }
 }
 ```
+
 ### MediatR commands
+
 ```csharp
 public sealed record CreateBlogPostCommand(
 string Title, string Body, Guid AuthorId, DateTimeOffset? PublishedAt)
@@ -46,7 +54,9 @@ Guid Id, string Title, string Body, Guid AuthorId, DateTimeOffset? PublishedAt)
 : IRequest<BlogPostResponse?>;
 public sealed record DeleteBlogPostCommand(Guid Id) : IRequest<bool>;
 ```
+
 ### Controller (abbreviated)
+
 ```text
 [ApiController]
 [ApiVersion("1.0")]
@@ -79,13 +89,21 @@ return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
 // ... PUT, DELETE follow the same pattern
 }
 ```
+
 **Annotations**:
+
 - `[AllowAnonymous]` on read endpoints, `[Authorize]` on write endpoints.
+
 - `CancellationToken` threaded through every async call.
+
 - `CreatedAtAction` on POST returns `Location` header pointing to `GetById`.
+
 ---
+
 ## Example 2 — From OpenAPI JSON contract
+
 **Input** (Mode 2 — OpenAPI JSON snippet):
+
 ```json
 {
 "openapi": "3.0.1",
@@ -128,40 +146,64 @@ return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
 }
 }
 ```
+
 **Derivation steps**:
+
 1. Resource: `products` → class name `ProductsController`, route `api/v{version:apiVersion}/products`.
+
 2. Schema `CreateProductRequest` → `sealed record CreateProductRequest(string Name, double Price, Guid? CategoryId)`.
+
 3. `required: ["name", "price"]` → FluentValidation `.NotEmpty()` on `Name`, `.GreaterThan(0.01)` on `Price`.
+
 4. `maxLength: 200` → `.MaximumLength(200)` on `Name`.
+
 5. `"format": "uuid"` → `Guid?` on `CategoryId` (nullable — not in `required`).
 **Generated DTOs and validator** (identical structure to Example 1 — see above for full pattern).
 **Integration test checklist** produced automatically:
+
 - `POST /api/v1/products` with `{ "name": "Widget", "price": 9.99 }` → `201`
+
 - `POST /api/v1/products` with `{}` → `400 ValidationProblemDetails`
+
 - `POST /api/v1/products` with `{ "name": "", "price": -1 }` → `400` + validation errors for both fields
+
 - `GET /api/v1/products` → `200` with list
+
 ---
+
 ## Example 3 — From theme only
+
 **Input** (Mode 3 — theme):
 > `Orders`
 **Default shape assumed**:
+
 - `Id` (Guid)
+
 - `Name` (string, required, max 200)
+
 - `CreatedAt` (DateTimeOffset, auto-set)
+
 - `UpdatedAt` (DateTimeOffset?, auto-set on update)
 **Route**: `api/v{version:apiVersion}/orders`
 Proceeds with the same 8-step generation flow. All endpoints generated with standard validation and ProblemDetails error contract.
 **When to add more fields**: After generating from theme, append domain-specific fields to the DTO and validator before shipping. The scaffolded class is a correct, compilable starting point — not a final artefact.
+
 ---
+
 ## Example 4 — Generate Controller with dotnet CLI
+
 ```text
 dotnet-aspnet-codegenerator controller -name OrdersController -m Order -dc AppDbContext --relativeFolderPath Controllers --useDefaultLayout
 ```
+
 ## Example 5 — Add MediatR Handler
+
 ```csharp
 public record CreateOrderCommand(string Name) : IRequest<Order>;
 ```
+
 ## Example 6 — Integration Test Skeleton
+
 ```text
 [Fact]
 public async Task CreateOrder_ReturnsCreated()

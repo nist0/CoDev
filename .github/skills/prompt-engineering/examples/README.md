@@ -1,5 +1,7 @@
 # Prompt Engineering Examples
+
 ## Example 1: Single-skill prompt
+
 ```yaml
 ---
 name: summarize-issue
@@ -12,7 +14,9 @@ Apply the procedure from `.github/skills/summarize-github-issue-pr-notification/
 Output format:
 - Markdown summary with key points.
 ```
+
 ## Example 2: Multi-skill prompt
+
 ```text
 ---
 name: triage-error
@@ -28,7 +32,9 @@ Output format:
 - Hypotheses table
 - Suggested fix steps
 ```
+
 ## Example 3: Tool-enabled prompt
+
 ```yaml
 ---
 name: apply-patch
@@ -43,7 +49,9 @@ Output format:
 - Patch summary
 Note: Ensure the agent has the `apply_patch` tool enabled.
 ```
+
 ## Example 4: Argument handling
+
 ```text
 ---
 name: generate-report
@@ -55,9 +63,13 @@ Goal: Generate a report from ${input:data}.
 Output format:
 - Markdown report with sections: Summary, Details, Recommendations
 ```
+
 ---
 **Tips:**
+
 - Always reference skills in the body, not frontmatter.
+
 - Use `argument-hint` for better UX.
+
 - Add comments to explain why each pattern works.
 _Last reviewed: 2026-05-19_

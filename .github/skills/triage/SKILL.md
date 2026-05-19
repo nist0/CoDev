@@ -3,15 +3,17 @@ name: triage
 description: Repro-first debugging triage — minimal reproduction, ranked hypotheses, validated fixes, and prevention.
 argument-hint: "[error-or-symptom] [environment]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Debugging Triage (Elite)
 
 ## When to use
 
 - You have an exception, stacktrace, crash, regression, timeout, or wrong output.
+
 - You need a reproducible case and ranked hypotheses before fixing.
+
 - You want a structured triage that separates facts from assumptions.
 
 ## Procedure
@@ -39,8 +41,11 @@ Never propose a fix based on an assumption without a validation step.
 ### 3. Build minimal reproduction
 
 1. Take the failing case.
+
 2. Strip every component that is not required to trigger the issue.
+
 3. Confirm the minimal case reproduces deterministically.
+
 4. Document minimal repro steps (copy/paste-ready).
 
 If a minimal repro cannot be built: note why and identify the narrowest reproducing scope.
@@ -48,6 +53,7 @@ If a minimal repro cannot be built: note why and identify the narrowest reproduc
 ### 4. Extract the first symptom
 
 - Read logs chronologically; find the earliest/most causal error, not the last one.
+
 - Note: timestamp, log level, message, correlation ID, stack trace (top frame).
 
 ### 5. Rank hypotheses
@@ -59,6 +65,7 @@ Order by `likelihood × (1 / cost to validate)`:
 | 1 | ... | `<command or log query>` | high | low |
 
 - Validate in order; stop when confirmed.
+
 - For each validation, note: expected result (hypothesis true) vs alternative result (hypothesis false).
 
 ### 6. Choose fix approach
@@ -74,26 +81,41 @@ Always lead with mitigation if users are impacted; remediation goes through PR r
 ### 7. Verify and prevent recurrence
 
 - Confirm fix with the minimal repro (should no longer reproduce).
+
 - Add a regression test that fails before the fix and passes after.
+
 - Add or update an alert/dashboard to detect this failure class earlier.
+
 - Update runbook if this is an operational procedure issue.
 
 ## Self-check
 
 - [ ] Context fully collected before hypothesizing.
+
 - [ ] Facts separated from assumptions.
+
 - [ ] Minimal repro documented (copy/paste-ready).
+
 - [ ] First symptom identified (not last).
+
 - [ ] Hypotheses ranked by likelihood × validation cost.
+
 - [ ] Fix validated against minimal repro.
+
 - [ ] Regression test added.
+
 - [ ] Alert/dashboard updated.
 
 ## Outputs
 
 - Minimal repro steps (copy/paste-ready).
+
 - Facts vs assumptions table.
+
 - Ranked hypotheses + validation steps.
+
 - Fix options (mitigation vs remediation).
+
 - Verification checklist + regression test intent.
+
 - Prevention actions (alert, dashboard, runbook).

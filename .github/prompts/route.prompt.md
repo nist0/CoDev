@@ -2,14 +2,17 @@
 name: route
 description: "Route a request using the canonical matrix (capability + domain) and produce deterministic delegation when delivery tasks are requested."
 agent: "Router"
-argument-hint: "request=<free-text description of the task>"
----
+
+## argument-hint: "request=<free-text description of the task>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Act as the Router and route the user request using the canonical routing model (capability + domain).
@@ -21,28 +24,43 @@ Input:
 Output (always):
 
 - capability + domain
+
 - recommended agent handoff
+
 - recommended prompt(s)
+
 - recommended skill(s)
+
 - rationale (1–3 bullets)
 
 Output (when request includes PR/issues/review/merge):
 
 - delegation plan with explicit ownership:
+
   - issue definition/creation
+
   - implementation + PR creation
+
   - review
+
   - merge decision
+
 - for each delegated task include:
+
   - owner agent
+
   - suggested prompt(s)
+
   - done criteria
+
   - verification command(s)
 
 Rules:
 
 - Prefer capability+domain routing rule first, then capability-only fallback.
+
 - Keep results concise, deterministic, and checklist-oriented.
+
 - If scope is ambiguous, ask focused clarifying questions before delegation.
 
 ## Agent delegation chain

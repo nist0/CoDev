@@ -3,15 +3,17 @@ name: apm
 description: APM trace analysis — latency hotspots, span breakdown, error correlation, and instrumentation improvements.
 argument-hint: "[service] [time-range]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # APM (Application Performance Monitoring) (Elite)
 
 ## When to use
 
 - Analyzing traces and transaction performance.
+
 - Finding latency hotspots and correlating errors.
+
 - Designing or improving instrumentation.
 
 ## Procedure
@@ -32,7 +34,9 @@ APM UI → select service → Transactions
 ```
 
 - Sort by: p95 latency (descending) or error rate (descending).
+
 - Identify: top 3 slowest transactions or highest error rate.
+
 - Note: volume (req/min), p50/p95/p99, error %.
 
 ### 3. Drill into a slow trace
@@ -42,7 +46,9 @@ Transaction → select a slow sample trace → span timeline
 ```
 
 - Identify: **total duration** vs **sum of span durations** (gap = queuing/waiting).
+
 - Find the **top contributing spans** by duration.
+
 - Note: span type (DB, HTTP, queue, internal).
 
 ### 4. Identify top latency contributors
@@ -54,6 +60,7 @@ Transaction → select a slow sample trace → span timeline
 For DB spans:
 
 - Check SQL; run `EXPLAIN ANALYZE`.
+
 - Look for: N+1 patterns (many identical queries), sequential scans, missing indexes.
 
 For HTTP spans:
@@ -73,6 +80,7 @@ Copy trace ID → search in log aggregation (ELK/Loki/Log Analytics)
 ```
 
 - Find first error in the chain (not the last propagated exception).
+
 - Correlate with recent deployments or config changes.
 
 ### 6. Propose instrumentation improvements
@@ -87,15 +95,23 @@ Copy trace ID → search in log aggregation (ELK/Loki/Log Analytics)
 ## Self-check
 
 - [ ] Time range and service identified before analysis.
+
 - [ ] Baseline latency established (before vs after comparison).
+
 - [ ] Top 3 slow transactions identified.
+
 - [ ] Span breakdown examined for slowest trace.
+
 - [ ] Errors correlated with log entries via trace ID.
+
 - [ ] Instrumentation gaps identified.
 
 ## Outputs
 
 - Latency analysis summary (top transactions + percentiles).
+
 - Top span contributors table.
+
 - Error correlation findings.
+
 - Instrumentation improvement checklist.

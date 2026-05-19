@@ -3,8 +3,8 @@ name: bash
 description: Bash shell automation — safety defaults, idempotency, input validation, error handling, and ShellCheck integration.
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Bash Shell Automation (Elite)
 
@@ -23,8 +23,11 @@ IFS=$'\n\t'
 ```
 
 - `set -e`: exit on error.
+
 - `set -u`: error on undefined variables.
+
 - `set -o pipefail`: pipelines fail if any command fails.
+
 - `IFS=$'\n\t'`: safe word-splitting.
 
 ### 2. Validate inputs and environment early
@@ -54,6 +57,7 @@ die() { log "ERROR: $*"; exit 1; }
 ### 5. Idempotency and cleanup
 
 - Scripts must be safe to run multiple times.
+
 - Use `trap` for cleanup:
 
 ```bash
@@ -81,21 +85,31 @@ npx shellcheck@latest script.sh
 Fix all SC warnings before committing. Common patterns:
 
 - SC2086: quote variables.
+
 - SC2046: quote command substitutions.
+
 - SC2148: add shebang.
 
 ## Self-check
 
 - [ ] `set -euo pipefail` at top.
+
 - [ ] Required variables and tools validated early.
+
 - [ ] Usage/help block present.
+
 - [ ] All variables quoted.
+
 - [ ] Script is idempotent.
+
 - [ ] `trap` cleanup on exit.
+
 - [ ] `shellcheck` passes with no errors.
 
 ## Outputs
 
 - Script skeleton with safety defaults.
+
 - Common patterns (retry, lock, cleanup trap).
+
 - ShellCheck integration CI snippet.

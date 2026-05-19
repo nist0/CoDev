@@ -3,14 +3,15 @@ name: helm
 description: Helm chart operations — lint, template rendering, diff, safe upgrade, rollback, and verification.
 argument-hint: "[release] [chart] [namespace]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Helm (Elite)
 
 ## When to use
 
 - Creating, upgrading, or troubleshooting Helm chart releases.
+
 - Debugging template rendering or values failures.
 
 ## Workflow
@@ -25,9 +26,13 @@ disable-model-invocation: false
 ## Self-check
 
 - [ ] `helm lint` passes with no errors.
+
 - [ ] `helm template` output reviewed before upgrade.
+
 - [ ] `helm diff upgrade` reviewed; no unexpected changes.
+
 - [ ] Upgrade uses `--atomic` or rollback plan is documented.
+
 - [ ] Pod readiness and endpoint smoke checks run post-upgrade.
 
 ## Quick reference
@@ -61,6 +66,9 @@ helm uninstall <release> -n <ns>
 ## Outputs
 
 - Triage checklist.
+
 - Template rendering verification steps.
+
 - Upgrade/rollback procedure.
+
 - Common failure modes.

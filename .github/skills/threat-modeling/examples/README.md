@@ -11,9 +11,13 @@ This directory contains worked examples for the `threat-modeling` skill.
 A simple order management service:
 
 - React SPA (browser)
+
 - ASP.NET Core REST API (public, HTTPS)
+
 - PostgreSQL database (private subnet)
+
 - Stripe payment API (external egress)
+
 - JWT-based authentication (RS256, issued by an identity provider)
 
 ---

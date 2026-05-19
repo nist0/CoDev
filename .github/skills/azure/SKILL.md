@@ -3,14 +3,15 @@ name: azure
 description: Azure operational basics — identity safety, resource navigation, secrets management, networking, and change verification.
 argument-hint: "[resource-type] [resource-group]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Azure (Operational Basics) (Elite)
 
 ## When to use
 
 - You need a **complete Azure CLI command reference** across services (Key Vault, ACR, RBAC, Monitoring).
+
 - You work on Azure resources and need safe operational defaults and common pitfalls.
 
 > For Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL Database Free Tier, and Cloudflare DNS workflows, use the [`cloud-web-hosting` skill](.github/skills/cloud-web-hosting/SKILL.md).
@@ -19,23 +20,32 @@ disable-model-invocation: false
 ## Workflow
 
 1) Identity & subscription safety
+
    - Confirm account and subscription (`az account show`, `az account set`).
 2) Resource navigation
+
    - Resource group, region, naming conventions.
 3) AKS core operations (if applicable)
+
    - Get cluster details, credentials, node pools.
 4) Secrets & configuration
+
    - Prefer managed identities/workload identity; avoid hard-coded secrets.
 5) Networking
+
    - Ingress, load balancer, DNS; ensure correct routing.
 6) Verify changes
+
    - Validate in staging; plan rollback in production.
 
 ## Self-check
 
 - [ ] Subscription confirmed before any operation.
+
 - [ ] No secrets or credentials hardcoded; managed identity used.
+
 - [ ] Change validated in staging before production.
+
 - [ ] Rollback plan documented.
 
 ## Quick reference
@@ -124,5 +134,7 @@ Check these first when an operation fails unexpectedly:
 ## Outputs
 
 - Full Azure CLI command reference across services.
+
 - Common Azure pitfalls (wrong subscription/context, permissions, secrets hygiene).
+
 - Verification and rollback guidance.

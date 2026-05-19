@@ -2,24 +2,31 @@
 name: whatsapp-bot
 description: Build WhatsApp bots using the WhatsApp Business Cloud API (Meta). Covers webhook verification, HMAC-SHA256 signature validation, message types (text, template, interactive), Python and C# outbound patterns, and deployment checklist.
 argument-hint: "[language: python|csharp] [feature: webhook|templates|interactive|media]"
-user-invocable: true
----
+
+## user-invocable: true
 
 # WhatsApp Bot Development (Cloud API)
 
 ## When to use
 
 - Sending and receiving WhatsApp messages via the Meta Cloud API.
+
 - Implementing inbound webhook verification and payload routing.
+
 - Sending template messages, interactive button/list messages, or media.
+
 - Integrating WhatsApp into a multi-channel bot strategy.
 
 ## Prerequisites
 
 - Meta for Developers account at `developers.facebook.com`.
+
 - WhatsApp Business App created and connected.
+
 - Verified phone number (sandbox available during development).
+
 - `WHATSAPP_ACCESS_TOKEN` and `WHATSAPP_PHONE_NUMBER_ID` stored in secrets/env.
+
 - `WHATSAPP_VERIFY_TOKEN` and `WHATSAPP_APP_SECRET` for webhook security.
 
 ## Cloud API overview
@@ -282,16 +289,25 @@ async def test_send_text_success():
 ## Self-check
 
 - [ ] `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_APP_SECRET`, `WHATSAPP_VERIFY_TOKEN` all loaded from env/secrets.
+
 - [ ] GET verification endpoint returns `hub.challenge` using constant-time comparison.
+
 - [ ] POST webhook validates `X-Hub-Signature-256` before any payload parsing.
+
 - [ ] Webhook always returns 200 OK; processing dispatched asynchronously.
+
 - [ ] `hmac.compare_digest` / `CryptographicOperations.FixedTimeEquals` used (no timing attack).
+
 - [ ] Template names and components match Meta-approved template exactly.
+
 - [ ] Interactive button replies limited to max 3 buttons.
+
 - [ ] Access token refreshed via Meta token refresh flow (not hardcoded long-lived token).
 
 ## Outputs
 
 - Webhook endpoint with GET verification and POST signature validation.
+
 - Outbound helpers for text, templates, and interactive messages.
+
 - Integration test stubs for outbound calls.

@@ -3,16 +3,19 @@ name: repo-understanding
 description: Produce a navigable codebase summary — module map, entry points, key data flows, dependency overview, and doc structure.
 argument-hint: "[repo-or-feature] [depth]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Repo Understanding (Elite)
 
 ## When to use
 
 - Explaining how a codebase is structured and how to navigate it.
+
 - Generating architecture summaries or module maps for new contributors.
+
 - Before making cross-cutting changes: understand impact surfaces.
+
 - Producing documentation input (ADR context, onboarding guide).
 
 ## Procedure
@@ -50,7 +53,9 @@ Request → Router → Controller → Service → Repository → Database
 ```
 
 - Note where validation happens.
+
 - Note where authentication/authorization is checked.
+
 - Note where side effects occur (emails, webhooks, events).
 
 ### 4. Identify key dependencies
@@ -68,8 +73,11 @@ Note any pinned versions, security advisories, or deprecated packages.
 ### 5. Identify coupling and risk areas
 
 - **High coupling**: modules that many others depend on.
+
 - **Side-effect heavy**: code that calls external systems without clear boundaries.
+
 - **Test coverage gaps**: directories with no test files.
+
 - **Outdated patterns**: code that contradicts current conventions.
 
 ### 6. Produce the summary
@@ -99,17 +107,27 @@ Note any pinned versions, security advisories, or deprecated packages.
 ## Self-check
 
 - [ ] Every top-level directory described.
+
 - [ ] Entry points for all execution types listed.
+
 - [ ] At least 1 key data flow traced end-to-end.
+
 - [ ] Dependencies table includes observability and auth.
+
 - [ ] Risk areas and test gaps identified.
+
 - [ ] Summary is usable by a new contributor with no prior context.
 
 ## Outputs
 
 - Module map (text table or Mermaid).
+
 - Entry points list.
+
 - Key flow descriptions (text diagrams).
+
 - Dependency overview table.
+
 - Risk areas and coupling notes.
+
 - Suggested doc structure.

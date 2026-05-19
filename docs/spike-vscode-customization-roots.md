@@ -18,8 +18,11 @@ The relevant customization file paths are resolved by the Copilot extension rela
 to the workspace root using hardcoded conventions:
 
 - `.github/copilot-instructions.md`
+
 - `.github/agents/*.agent.md` (VS Code 1.99+)
+
 - `.github/prompts/*.prompt.md` (VS Code 1.99+)
+
 - `.github/instructions/*.instructions.md` (VS Code 1.99+)
 
 These paths are not configurable via any `settings.json` key as of this writing.
@@ -35,8 +38,10 @@ for terms: `customization.roots`, `multiple .github`, `submodule copilot`, `asse
 **Findings**:
 
 - No open or closed issue directly proposing a multi-root asset path.
+
 - Related discussion: `vscode-copilot-release` issue #1234 (community request for
   workspace-level instruction overrides) — closed as "investigating".
+
 - The VS Code team's public roadmap (Q1 2026) references "agent customization improvements"
   but no specifics on multi-path support.
 
@@ -74,8 +79,11 @@ on 2026-03-05:
 Rationale:
 
 - No existing VS Code API hook point exists for this feature.
+
 - Empirical test confirms assets are not resolved from non-`.github/` paths.
+
 - No VS Code team engagement within the research window.
+
 - The feature, even if accepted, would have a > 90-day implementation timeline.
 
 Option A (symlink) and Option B (lockfile + merge) are fully implemented in this

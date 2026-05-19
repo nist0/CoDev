@@ -3,8 +3,8 @@ name: threat-modeling
 description: "Step-by-step STRIDE threat modeling playbook: enumerate assets, map trust boundaries, identify and score threats, define mitigations, document residual risk."
 argument-hint: "[system description] [trust boundaries]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Threat Modeling — SKILL
 
@@ -13,9 +13,13 @@ disable-model-invocation: false
 Use this skill when:
 
 - Starting design on a new feature that handles sensitive data, authentication, or external inputs.
+
 - Reviewing a PR that adds a new API endpoint, queue consumer, or external integration.
+
 - Conducting a security review before a release.
+
 - Investigating a security incident to understand the blast radius.
+
 - Running `/threat-model` or `/vuln-triage` prompts.
 
 ---
@@ -56,9 +60,13 @@ Boundary: <name>
 **Common boundaries**:
 
 - Browser → Backend API (public internet)
+
 - API → Database (internal network, credential-based)
+
 - Service → External API (egress, API key or OAuth)
+
 - User role → Admin role (privilege escalation path)
+
 - CI pipeline → Production secrets (secret injection)
 
 ---
@@ -79,7 +87,9 @@ Evaluate all six STRIDE categories for every trust boundary identified in Step 2
 For each applicable threat, record:
 
 - Description of the concrete attack scenario
+
 - Attack vector (network, physical, adjacent, local)
+
 - Required attacker capability (unauthenticated, authenticated user, privileged insider)
 
 ---
@@ -147,18 +157,22 @@ Produce the threat register table as the final deliverable:
 ## 🏆 Elite defaults — apply in every session
 
 - **Assumption mapping**: before scoring, list all assumptions (e.g. "internal network is trusted") and assign confidence (H/M/L). Low-confidence assumptions become spikes.
+
 - **Attack narrative**: for every Critical/High threat, write a one-paragraph attacker narrative ("An unauthenticated user sends a crafted JWT to..."). Narratives reveal gaps that tables miss.
+
 - **Defense-in-depth layering**: for every Critical threat, require ≥2 independent controls. Single-control mitigations are insufficient.
+
 - **Threat model as living document**: store the threat register in the repo (e.g. `docs/security/threat-model.md`); link it from the PR description for every feature that changes a trust boundary.
+
 - **Insider threat layer**: always evaluate at least one threat scenario where the attacker is an authenticated insider with legitimate access. This surfaces missing audit controls and privilege-separation gaps.
 
 ---
 
 ## Quick-reference: STRIDE mnemonic
 
-> **S**poofing identity → authenticate everything  
-> **T**ampering with data → sign and verify  
-> **R**epudiation → audit every action  
-> **I**nformation disclosure → least privilege, encrypt in transit and at rest  
-> **D**enial of service → rate-limit, circuit-break  
+> **S**poofing identity → authenticate everything
+> **T**ampering with data → sign and verify
+> **R**epudiation → audit every action
+> **I**nformation disclosure → least privilege, encrypt in transit and at rest
+> **D**enial of service → rate-limit, circuit-break
 > **E**levation of privilege → authorize every request, not just authenticate

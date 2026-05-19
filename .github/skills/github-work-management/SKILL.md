@@ -3,15 +3,17 @@ name: github-work-management
 description: Elite delivery governance — issue lifecycle, Kanban discipline, traceability, WIP enforcement, and review gates.
 argument-hint: "[project-name] [milestones]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # GitHub Work Management (Elite)
 
 ## When to use
 
 - Work needs issue-level traceability and Kanban visibility.
+
 - A project requires governance with explicit approved/rework-required decisions.
+
 - You need a dependency graph, milestone hierarchy, or WIP limit enforcement.
 
 ## Procedure
@@ -26,7 +28,9 @@ Epic (GitHub issue labeled `type:epic`)
 ```
 
 - Epics are tracking issues; they do not carry implementation — only links to task issues.
+
 - Every task issue must belong to exactly one milestone.
+
 - Milestone due dates are hard limits; move scope, not dates.
 
 ### 2. Issue modeling (mandatory fields)
@@ -97,9 +101,13 @@ Use `gh issue edit <N> --body-file <path>` (single-quoted heredoc) for all updat
 Issue title conventions:
 
 - Feature work: `enh: <title>`
+
 - Bug fix: `fix: <title>`
+
 - Chore / maintenance: `chore: <title>`
+
 - Documentation: `docs: <title>`
+
 - **Never use** `Enhancement: <title>`
 
 ### 3. Label taxonomy
@@ -131,7 +139,9 @@ Column entry criteria:
 WIP limits (enforced):
 
 - **In Progress**: ≤ 2 per person / ≤ 5 per team.
+
 - **In Review**: ≤ 3 per reviewer at a time.
+
 - Exceeding WIP limits: finish before starting; escalate blockers to lead.
 
 ### 5. Dependency graph management
@@ -139,9 +149,13 @@ WIP limits (enforced):
 When opening a new issue, map it against open issues:
 
 1. List all issues it **blocks** (add `Blocks: #X` to body).
+
 2. List all issues it is **blocked by** (add `Blocked by: #X` to body).
+
 3. Add `status:blocked` label to issues that cannot start.
+
 4. Update the blocking issue body with a `Blocks: #Y` reference.
+
 5. On issue close: remove `status:blocked` from unblocked issues; add `status:ready`.
 
 ### 6. Review governance
@@ -149,12 +163,15 @@ When opening a new issue, map it against open issues:
 For each issue reaching "In Review":
 
 1. Reviewer runs the `pr-review` skill (8-pass procedure).
+
 2. Verdict must be explicit:
 
    - **approved** → PR can merge; move issue to Done.
+
    - **rework required** → list exact gap checklist; move back to In Progress; apply `status:rework` label.
 
 3. Re-review is mandatory after rework; do not self-approve after your own rework.
+
 4. `priority:p0` issues require two approvals before merge.
 
 ### 7. Progress rollup format
@@ -199,18 +216,29 @@ gh pr list --state open --json number,title,body \
 ## Self-check
 
 - [ ] No issue without: owner + scope + acceptance criteria + verification steps.
+
 - [ ] All issues belong to a milestone with a due date.
+
 - [ ] Dependencies mapped (blocks / blocked by) and labels applied.
+
 - [ ] WIP limits respected; no queue pileup in In Review.
+
 - [ ] Review verdicts are explicit (approved / rework required with gap list).
+
 - [ ] Done items carry verification evidence before close.
+
 - [ ] Progress rollup published at end of each cycle.
 
 ## Deliverables
 
 - Copy/paste-ready issue template (see `examples/README.md`).
+
 - Kanban column policy.
+
 - Label taxonomy.
+
 - Review verdict checklist.
+
 - Progress rollup format.
+
 - Traceability audit commands.

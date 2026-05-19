@@ -71,13 +71,17 @@ The CLI auto-detects which mode to use.
 
 - **`extend`** (default): your `codev-overrides/copilot-instructions.override.md` is appended
   after the submodule base in the generated `copilot-instructions.md`.
+
 - **`override`**: the submodule base is fully replaced by your override file.
 
 ### Full documentation
 
 - [docs/submodule-guide.md](docs/submodule-guide.md) — getting-started guide (init, extend, override, upgrade, teardown)
+
 - [docs/submodule-cli-contract.md](docs/submodule-cli-contract.md) — CLI contract reference
+
 - [docs/mcp-integration-guide.md](docs/mcp-integration-guide.md) — MCP design, setup, analysis, and debug guide for VS Code and GitHub Copilot
+
 - [schemas/codev.schema.json](schemas/codev.schema.json) — `codev.json` JSON Schema
 
 ---
@@ -85,16 +89,27 @@ The CLI auto-detects which mode to use.
 ## Table of Contents
 
 - [Quick Start — Use CoDev in your project](#quick-start--use-codev-in-your-project)
+
 - [Overview](#overview)
+
 - [Repository Structure](#repository-structure)
+
 - [Getting Started](#getting-started)
+
 - [Usage Examples](#usage-examples)
+
 - [Routing System](#routing-system)
+
 - [Agents](#agents)
+
 - [Instructions](#instructions)
+
 - [Prompts](#prompts)
+
 - [Skills](#skills)
+
 - [Submodule Reference](#submodule-reference)
+
 - [Capability Extension Protocol](#capability-extension-protocol)
 
 ---
@@ -112,8 +127,11 @@ The CLI auto-detects which mode to use.
 **Core principles:**
 
 - If you are new or unsure, start with `/quickstart`; if your task is already clear, use `/route`.
+
 - Prefer copy/paste-ready outputs: commands, file content, checklists.
+
 - Never introduce secrets. Never log sensitive data.
+
 - Make small, reviewable changes with verification steps included.
 
 ---
@@ -156,7 +174,9 @@ If you are new to CoDev or not yet sure which capability matches your task, star
 This first rollout is optimised for the three target newcomer scenarios in issue `#39`:
 
 - fixing a bug
+
 - writing tests
+
 - reviewing a pull request
 
 For other specialised first-run requests, `/route <your request>` remains the universal fallback.
@@ -192,10 +212,15 @@ If you already know the task you want done, use the **`/route`** prompt (aliases
 Copilot will respond with:
 
 - **Capability** identified (e.g., `debugging`)
+
 - **Domain** identified (e.g., `devops-cloud`)
+
 - **Recommended agent** to switch to
+
 - **Recommended prompts** to run
+
 - **Recommended skills** to load
+
 - **Rationale** and next actions
 
 ### Quick-start examples
@@ -235,11 +260,15 @@ Use the shortest safe path below when adding or customizing one CoDev asset with
 1. Create the asset with the matching authoring prompt:
 
 - Agent: `/new-agent agentId=<kebab> mission=<text>`
+
 - Skill: `/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>`
+
 - Prompt: `/prompt-from-theme theme=<goal> intent=<what the prompt should do>`
+
 - Instruction: `/new-instructions file=<name>.instructions.md applyTo=<glob> rules=<text>`
 
 2. Save the generated file in the canonical path under `.github/`.
+
 3. Run the local validators before PR review:
 
 ```text
@@ -252,7 +281,9 @@ Use the shortest safe path below when adding or customizing one CoDev asset with
 Longer references:
 
 - [Minimal agent workflow](.github/skills/agent-authoring/SKILL.md#minimal-extension-workflow)
+
 - [Minimal prompt workflow](.github/skills/prompt-authoring/SKILL.md#minimal-extension-workflow)
+
 - [Interactive preview](docs/codev-dev-guide.md#guided-extension-onboarding)
 
 ### UX feedback path
@@ -262,8 +293,11 @@ After you complete a key contributor flow, use the `UX feedback` issue form if t
 What to expect:
 
 - one short GitHub-native issue form at `.github/ISSUE_TEMPLATE/ux-feedback.yml`
+
 - automatic labels `area:ux` and `type:feedback`
+
 - Project `#2` intake to `Todo` when GitHub project automation is available
+
 - documented manual fallback during triage if project auto-add does not fire reliably
 
 Use this path after flows such as `/quickstart`, guided `codev-dev` commands, and extension onboarding when you can describe the friction in under a minute.
@@ -280,8 +314,11 @@ pre-commit install
 The hooks run all routing validators automatically on each commit:
 
 - `route-smoke-tests` — alias resolution and smoke test suite
+
 - `customization-registry` — agents, prompts, skills, and instructions cross-links
+
 - `routing-coverage` — strict mode, no uncovered capability×domain pairs allowed
+
 - `readme-registry` — skill documentation completeness
 
 CI gates — all run on every `pull_request` and `push` to `main`:
@@ -912,6 +949,7 @@ Generated skill inventory:
 | Skill | Description |
 | --- | --- |
 | `adr` | Architecture Decision Records — structured context, options, decision, consequences, and follow-up tasks. |
+| `agent-analysis` |  |
 | `agent-authoring` | Create stable custom agents (.agent.md) with clear mission, boundaries, and repeatable workflow. |
 | `aks` | AKS cluster operations — health checks, node pool management, networking triage, and safe upgrade procedure. |
 | `apm` | APM trace analysis — latency hotspots, span breakdown, error correlation, and instrumentation improvements. |
@@ -922,6 +960,7 @@ Generated skill inventory:
 | `azure` | Azure operational basics — identity safety, resource navigation, secrets management, networking, and change verification. |
 | `bash` | Bash shell automation — safety defaults, idempotency, input validation, error handling, and ShellCheck integration. |
 | `batch` | Windows batch/CMD scripting — safe patterns, error handling, and migration guidance. Prefer PowerShell for complex logic. |
+| `benchmarking` |  |
 | `bot-architecture` | Cross-platform bot architecture patterns -- Activity/Turn model, middleware pipeline, state management, secrets hygiene, webhook vs polling, and AI integration. Applies to C# and Python across Teams, Telegram, WhatsApp, and other platforms. |
 | `bruno` | Bruno API testing — collection structure, environment strategy, request standardization, response validation, CI integration. |
 | `c` | C language — safety defaults, memory discipline, error handling, sanitizers, and debugging procedure. |
@@ -952,6 +991,7 @@ Generated skill inventory:
 | `github-work-management` | Elite delivery governance — issue lifecycle, Kanban discipline, traceability, WIP enforcement, and review gates. |
 | `helm` | Helm chart operations — lint, template rendering, diff, safe upgrade, rollback, and verification. |
 | `helm-cli` | Helm CLI operational cheatsheet - inspect, render, upgrade, rollback, and diff workflows. |
+| `hooks-management` |  |
 | `html-css` | HTML/CSS — semantic structure, accessibility baseline, responsive design, and maintainability. |
 | `innovation-sprint` | Short structured ideation sprint — constrained diverge, cluster, score, falsifiable shortlist, and spike plans. |
 | `instruction-authoring` | Create scoped instruction files (*.instructions.md) with clear applyTo patterns and non-duplicated rules. |
@@ -988,7 +1028,9 @@ Generated skill inventory:
 | `rag-patterns` | RAG (Retrieval-Augmented Generation) pipeline patterns -- chunking strategies, embedding model selection, vector store operations, dense/sparse/hybrid retrieval, context-window assembly, and hallucination mitigation. |
 | `rca-kit` | Blameless postmortem and root cause analysis — 5-Whys, timeline, action items, and prevention tracking. |
 | `react` | React architecture — component boundaries, state strategy, data fetching, performance, a11y, and testing. |
+| `readme-inventory` |  |
 | `release` | End-to-end release pipeline — SemVer tagging, artifact signing, changelog, smoke test, and rollback. |
+| `repo-inventory` |  |
 | `repo-understanding` | Produce a navigable codebase summary — module map, entry points, key data flows, dependency overview, and doc structure. |
 | `rest-api-bootstrap` | Bootstrap a REST API project from zero — curated GitHub template repos, dotnet/pip/cookiecutter CLI commands, and quality snippet sources for C# (.NET), Python (FastAPI/Flask), and Bash (curl/jq client patterns). |
 | `rest-api-controller-gen` | Generate a production-ready ASP.NET Core REST API controller (CRUD) from a description, OpenAPI JSON contract, or resource theme — with MediatR handlers, FluentValidation, ProblemDetails, OpenAPI annotations, versioning, and an integration-test checklist. |
@@ -996,6 +1038,8 @@ Generated skill inventory:
 | `rest-api-runtime-quality` | Improve runtime quality for ASP.NET Core APIs through validation/error consistency, EF Core/PostgreSQL safety, security baselines, observability, and testing. |
 | `rfc` | Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan. |
 | `roadmap` | Actionable roadmap — outcome-driven milestones, dependency and risk register, success metrics, and review cadence. |
+| `skill-authoring` | Author, structure, and maintain high-quality Copilot skills with onboarding, examples, and tools. |
+| `skill-improving` | Audit, enhance, and refactor Copilot skills to meet elite quality standards. |
 | `supply-chain` | Software supply chain hardening — dependency pinning, SBOM, artifact signing, provenance, and policy enforcement. |
 | `teams-bot` | Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration. |
 | `telegram-bot` | Build production-grade Telegram bots in Python using python-telegram-bot v22+ (Bot API 9.5+). Covers async application setup, handler registration, ConversationHandler dialogs, webhook vs polling, persistence, and security. |
@@ -1003,6 +1047,7 @@ Generated skill inventory:
 | `threat-modeling` | Step-by-step STRIDE threat modeling playbook: enumerate assets, map trust boundaries, identify and score threats, define mitigations, document residual risk. |
 | `triage` | Repro-first debugging triage — minimal reproduction, ranked hypotheses, validated fixes, and prevention. |
 | `typescript` | TypeScript type safety — boundary typing, discriminated unions, type guards, runtime validation, and unsafe pattern elimination. |
+| `validation` |  |
 | `vscode` | VS Code Copilot Dev Framework usage — bootstrap, reload, discoverability, multi-root workspaces, and troubleshooting. |
 | `weekly-digest` | Produce a structured weekly tech watch digest — curated by topic, sourced from primaries, with actionable experiments. |
 | `whatsapp-bot` | Build WhatsApp bots using the WhatsApp Business Cloud API (Meta). Covers webhook verification, HMAC-SHA256 signature validation, message types (text, template, interactive), Python and C# outbound patterns, and deployment checklist. |
@@ -1055,16 +1100,27 @@ Place additional host-specific agents, skills, prompts, or instructions under `c
 When adding a new capability, agent, skill, prompt, or instruction to this framework:
 
 1. **Domain research (reference-gathering gate)** — before authoring, read ≥2 primary sources relevant to the new domain (official docs, existing skills, instruction files). Synthesise a non-contradictory union and cite sources in the PR body.
+
 2. **Define scope and acceptance criteria** — what does it do, when does it trigger, what does it output?
+
 3. **Reuse existing roles** — check if an existing agent can cover the new capability before creating a new one.
+
 4. **Add or update skills/prompts** — create modular leaf units rather than bloating agent/instruction files.
+
 5. **Update routing** — add entries to all relevant routing files:
+
    - `routing/capabilities.yaml` — new capability ID and default agent
+
    - `routing/domains.yaml` — new domain keywords if needed
+
    - `routing/aliases.yaml` — natural-language aliases for the new capability
+
    - `routing/matrix.yaml` — routing rules mapping capability + domain → recommendations
+
 6. **Add/update documentation** — update this README, relevant `docs/` files, and skill documentation so all framework references stay current.
+
 7. **Add issue to Kanban board** — use `gh project item-add 2 --owner nist0 --url <issue-url>` immediately after creating the issue, and keep the board status in sync (Todo → In Progress → Done).
+
 8. **Validate** — test the `/route` prompt with representative phrases to confirm correct routing.
 
 ### Useful prompts for extension

@@ -3,15 +3,17 @@ name: github-actions
 description: Elite GitHub Actions CI/CD — security hardening, reusable workflows, quality gates, and structured debug methodology.
 argument-hint: "[workflow-name] [trigger-event]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # GitHub Actions (Elite CI/CD)
 
 ## When to use
 
 - You need to build, harden, or troubleshoot a GitHub Actions pipeline.
+
 - You want quality gates (lint / tests / docs / security) enforced on PRs.
+
 - You need a reproducible, least-privilege, observable workflow.
 
 ## Procedure
@@ -44,7 +46,9 @@ permissions:
 **Secret hygiene rules:**
 
 - Never `echo` a secret; use `::add-mask::` if a derived value must be logged.
+
 - Rotate secrets on a defined cadence; document rotation owner.
+
 - Use environment secrets for deployment-scoped credentials (not repo-level).
 
 ### 2. Workflow structure
@@ -70,6 +74,7 @@ jobs:
 Rules:
 
 - Never mix PR quality-gate jobs with release/publish jobs in one workflow.
+
 - Use `concurrency` to cancel stale PR runs:
 
   ```yaml
@@ -114,7 +119,9 @@ jobs:
 ```
 
 - Always include a `restore-keys` fallback.
+
 - Cache key must include a lockfile hash; avoid caching on branch name alone.
+
 - Validate that cached artifacts do not carry stale build outputs across incompatible dependency versions.
 
 ### 5. Matrix builds
@@ -128,12 +135,15 @@ strategy:
 ```
 
 - Use `fail-fast: false` when you want full coverage of all matrix entries even if one fails.
+
 - Label jobs with `name: Test (${{ matrix.os }}, ${{ matrix.python-version }})` for readable run views.
 
 ### 6. Self-hosted runner isolation
 
 - Run untrusted PR workflows on ephemeral, isolated runners only.
+
 - Never grant self-hosted runners elevated cloud permissions scoped to production.
+
 - Use labels to route: `runs-on: [self-hosted, linux, isolated]`.
 
 ### 7. Observability
@@ -141,6 +151,7 @@ strategy:
 - Always print tool versions at the start of each job:
 
   ```yaml
+
   - run: node --version; npm --version; python --version
   ```
 
@@ -156,28 +167,45 @@ strategy:
 ### 8. Failure debug procedure (structured)
 
 1. **Reproduce locally first**: `act -j <job-name>` (if available) or reproduce step-by-step in a local container.
+
 2. **Print environment**: add `env` step before the failing step.
+
 3. **Isolate**: comment out steps below the failure point to narrow down.
+
 4. **Check runner logs**: look for "OOM killed", "disk space", network timeouts.
+
 5. **Check secret availability**: a blank `${{ secrets.X }}` means the secret is not set for that environment.
+
 6. **Enable debug logging**: set `ACTIONS_STEP_DEBUG=true` as a repo/environment variable.
+
 7. **Check action version pinning**: a SHA mismatch can cause unexpected behavior after a cache restore.
 
 ## Self-check
 
 - [ ] All third-party actions pinned to full SHA with version comment.
+
 - [ ] `permissions` set at workflow level; overridden (narrowed) per job.
+
 - [ ] No long-lived cloud credentials stored as repo secrets; OIDC used.
+
 - [ ] No `echo` of secret values; masking applied where needed.
+
 - [ ] PR checks complete in ≤ 10 min total; slow jobs on separate workflow.
+
 - [ ] `concurrency` group configured to cancel stale PR runs.
+
 - [ ] Cache keys include lockfile hash; restore-keys fallback present.
+
 - [ ] Tool versions printed at the start of each job.
+
 - [ ] Test results and coverage uploaded as artifacts.
 
 ## Outputs
 
 - Hardened workflow YAML (copy/paste-ready).
+
 - Failure debug checklist.
+
 - Reusable workflow structure recommendation.
+
 - Security audit findings (pinning, permissions, secret hygiene).

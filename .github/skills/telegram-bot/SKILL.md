@@ -2,24 +2,31 @@
 name: telegram-bot
 description: Build production-grade Telegram bots in Python using python-telegram-bot v22+ (Bot API 9.5+). Covers async application setup, handler registration, ConversationHandler dialogs, webhook vs polling, persistence, and security.
 argument-hint: "[feature: commands|dialogs|inline|webhook|persistence]"
-user-invocable: true
----
+
+## user-invocable: true
 
 # Telegram Bot Development (Elite)
 
 ## When to use
 
 - Building a new Telegram bot in Python.
+
 - Implementing multi-turn dialogs (registration, survey, wizard flows).
+
 - Setting up a production webhook instead of polling.
+
 - Adding inline keyboards, callbacks, or inline mode.
+
 - Wiring up persistence for stateful conversations.
 
 ## Prerequisites
 
 - Python 3.10+
+
 - Bot token from @BotFather (`/newbot`)
+
 - `pip install python-telegram-bot[all]`
+
   - Includes webhooks, job queue, persistence, and rate limiting extras.
 
 ## Step 1 -- Application scaffold
@@ -270,18 +277,29 @@ async def test_start_sends_welcome():
 ## Self-check
 
 - [ ] `TELEGRAM_BOT_TOKEN` loaded from env; application raises immediately if missing.
+
 - [ ] `TELEGRAM_WEBHOOK_SECRET` set and validated on every inbound request.
+
 - [ ] `hmac.compare_digest` used for constant-time secret comparison (no timing attack).
+
 - [ ] Webhook always returns 200; processing dispatched to background task.
+
 - [ ] `CallbackQueryHandler` calls `query.answer()` before any reply (removes spinner).
+
 - [ ] `ConversationHandler.END` returned from all terminal states and fallbacks.
+
 - [ ] Production persistence uses Redis or DB; `PicklePersistence` not used in prod.
+
 - [ ] `drop_pending_updates=True` set on webhook registration (prevents replay on restart).
+
 - [ ] `allowed_updates` scoped to only the update types the bot handles.
 
 ## Outputs
 
 - Working Python bot with command handlers and optional multi-turn dialogs.
+
 - Webhook endpoint with signature validation.
+
 - Persistence layer wired to Redis or DB for production use.
+
 - pytest test file for key handlers.

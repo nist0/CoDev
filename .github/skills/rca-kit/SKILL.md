@@ -3,15 +3,17 @@ name: rca-kit
 description: Blameless postmortem and root cause analysis — 5-Whys, timeline, action items, and prevention tracking.
 argument-hint: "[incident-title] [severity]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # RCA Kit (Elite Postmortem)
 
 ## When to use
 
 - Conducting a blameless postmortem after a production incident.
+
 - Producing a structured RCA document with timeline, root cause, and action items.
+
 - Tracking prevention actions across multiple incidents.
 
 ## Procedure
@@ -19,7 +21,9 @@ disable-model-invocation: false
 ### 1. Establish facts before analysis
 
 - Do not start the postmortem with a conclusion.
+
 - Collect raw data: logs, traces, metrics, alerts, on-call notes, deployment records.
+
 - Separate **what happened** (facts) from **why it happened** (analysis).
 
 ### 2. Build the timeline
@@ -34,6 +38,7 @@ Chronological table (UTC timestamps):
 | HH:MM | Service restored | Monitoring |
 
 - Include: detection, escalation, mitigation, resolution, and all significant events.
+
 - Note gaps: what information was missing and when?
 
 ### 3. Root cause analysis (5 Whys)
@@ -54,8 +59,11 @@ Stop at the level where a **systemic fix is actionable**. Avoid stopping at "hum
 Beyond root cause, list factors that made the incident worse or detection slower:
 
 - Missing alert for X.
+
 - Runbook did not cover Y scenario.
+
 - Deployment happened during peak traffic window.
+
 - Log message was ambiguous.
 
 ### 5. Impact assessment
@@ -87,8 +95,11 @@ Beyond root cause, list factors that made the incident worse or detection slower
 ### 8. Review and publish
 
 - Review draft with all responders before publishing (catch factual errors).
+
 - Publish within 48h of incident resolution for P0/P1.
+
 - Share with broader team (link in Slack/email); do not post blame.
+
 - Schedule follow-up review to track action item completion (2–4 weeks).
 
 ## Blameless postmortem template
@@ -134,14 +145,21 @@ Symptom → Why 1 → ... → Root cause
 ## Self-check
 
 - [ ] Timeline is fact-based (no interpretation in the events column).
+
 - [ ] 5-Whys chain reaches a systemic root cause (not "human error").
+
 - [ ] Every corrective action has: owner, due date, type.
+
 - [ ] Every preventative action has: alert / test / runbook / design category.
+
 - [ ] Postmortem reviewed by all responders before publishing.
+
 - [ ] Published within 48h (P0/P1) or 5 days (P2).
 
 ## Outputs
 
 - Postmortem document (copy/paste-ready Markdown).
+
 - Action items table with owners and due dates.
+
 - Prevention tracking follow-up checklist.

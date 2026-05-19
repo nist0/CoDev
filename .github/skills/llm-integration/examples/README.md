@@ -49,8 +49,11 @@ async def chat_stream(body: ChatRequest) -> StreamingResponse:
 **Why each rule exists**:
 
 - Model read from `os.environ` -- never hardcoded.
+
 - `stream=True` returns tokens as they arrive, reducing perceived latency.
+
 - `max_tokens` bounds cost and prevents runaway completions.
+
 - `system` prompt is always present.
 
 ---
@@ -99,8 +102,11 @@ async def suggest_product(category: str) -> ProductSuggestion | None:
 **Why each rule exists**:
 
 - `response_format=ProductSuggestion` instructs the model to use JSON mode and validates the response against the Pydantic model.
+
 - `ValidationError` is caught explicitly -- schema drift is a recoverable error, not a crash.
+
 - A `None` return is the typed error path; callers handle the absence explicitly.
+
 - Log entry uses structured fields (not f-string interpolation) for machine-parseable observability.
 
 ---
@@ -120,6 +126,9 @@ async def suggest_product(category: str) -> ProductSuggestion | None:
 ## Expected routing shape
 
 - Domain: `ai-ml-engineering`
+
 - Capability: `code-analysis`
+
 - Agent: `Architect`
+
 - Skills invoked: `llm-integration`

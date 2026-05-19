@@ -47,10 +47,15 @@ git submodule update --init --recursive
 **What happens:**
 
 - CoDev detects whether OS symlinks are available.
+
   - **Symlink mode** (Linux / macOS / Windows with Developer Mode): creates directory symlinks from `.github/{agents,skills,prompts,instructions}/` to the submodule.
+
   - **Lockfile mode** (Windows without Developer Mode, or WSL on `/mnt/<drive>/...`): copies all assets to `.github/`; writes `codev-lock.json`.
+
 - `copilot-instructions.md` is generated from the submodule base.
+
 - The pre-commit hook is installed to block unauthorized edits to managed files.
+
 - `codev.json` is created at the repo root.
 
 When Bash is running from WSL against a Windows-mounted repo, CoDev deliberately
@@ -178,15 +183,21 @@ Omit `--force` only when running interactively in a terminal that can accept inp
 **What is removed:**
 
 - All symlinks or copied files in `.github/{agents,skills,prompts,instructions}/`
+
 - `codev-lock.json`
+
 - The generated `.github/copilot-instructions.md`
+
 - The pre-commit hook (if it was installed by CoDev)
+
 - CoDev-added lines in `.gitignore`
 
 **What is preserved:**
 
 - `codev.json`
+
 - `codev-overrides/` and all its contents
+
 - Any pre-existing `.git/hooks/pre-commit` content from before CoDev was installed
 
 ---
@@ -221,8 +232,11 @@ jobs:
 The workflow:
 
 1. Validates `codev.json` against the JSON Schema.
+
 2. Checks `codev-lock.json` is present and parseable (lockfile mode).
+
 3. Verifies no managed file has drifted from its recorded SHA256.
+
 4. On PRs: verifies no managed file is touched in the diff.
 
 Runs on `ubuntu-latest`, `windows-latest`, and `macos-latest`.
@@ -267,5 +281,7 @@ Runs on `ubuntu-latest`, `windows-latest`, and `macos-latest`.
 ## Further reading
 
 - [CLI contract reference](submodule-cli-contract.md)
+
 - [`codev.json` JSON Schema](../schemas/codev.schema.json)
+
 - [CoDev architecture map](../README.md)

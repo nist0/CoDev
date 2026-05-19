@@ -13,8 +13,11 @@
 **Expected output:**
 
 - Critique table with scores on 10 dimensions
+
 - List of P0 blockers
+
 - 3-5 concrete rewrites of weak bullets (before/after)
+
 - Coaching summary card
 
 ---
@@ -30,8 +33,11 @@
 **Expected output:**
 
 - Full rewritten CV in Markdown
+
 - Keyword gap table (JD keywords vs CV coverage)
+
 - Tailored summary paragraph
+
 - Coaching summary with keyword coverage percentage
 
 ---
@@ -73,7 +79,11 @@ I'll help you build a CV from scratch. Please answer these questions:
 **Key differences in output:**
 
 - Language: French
+
 - Format: 2 pages acceptable; French professional norms applied
+
 - Photo and date of birth flagged as optional (declining practice)
+
 - Accroche (summary) in French
+
 - "Compétences" section labelled in French

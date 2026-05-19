@@ -2,15 +2,17 @@
 name: pr-review
 description: "Elite PR review: 8-pass analysis, instruction compliance, merge gate, downgrade-risk."
 agent: "Delivery Lead"
-argument-hint: "pr=<number or URL> focus=<security|perf|all>"
----
 
+## argument-hint: "pr=<number or URL> focus=<security|perf|all>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Act as a Delivery Lead and apply the full 8-pass elite PR review procedure from `.github/skills/pr-review/SKILL.md`.
@@ -18,8 +20,11 @@ Act as a Delivery Lead and apply the full 8-pass elite PR review procedure from 
 ## Pre-review setup
 
 1. Load and follow `.github/skills/pr-review/SKILL.md` (all 8 passes).
+
 2. Search the codebase before making any correctness claim.
+
 3. Map changed file types to applicable instruction files (see Pass 3 of the skill).
+
 4. If any CI check is failing or requires action (`action_required`), inspect workflow runs and job logs before finalizing the merge gate.
 
 ## Required output format (produce all; do not skip)
@@ -27,11 +32,17 @@ Act as a Delivery Lead and apply the full 8-pass elite PR review procedure from 
 Use the output format template in `.github/skills/pr-review/SKILL.md` without changing its required headings or verdict tokens. Ensure the final review includes:
 
 - `## PR Review`
+
 - `**Verdict**: approved | rework required`
+
 - `### Findings` table with severity, file, finding, and required fix
+
 - `### Instruction compliance` table
+
 - `### Framework downgrade-risk`
+
 - `### Merge gate`
+
 - `### Merge action`
 
 ## Verification commands to include
@@ -49,7 +60,9 @@ Treat these commands as CoDev-scoped validators: they must operate on tracked an
 ## Constraints
 
 - No finding without a concrete file reference or diff evidence.
+
 - No secrets or credentials in any output.
+
 - Keep output in English.
 
 ## Agent delegation chain

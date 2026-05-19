@@ -3,15 +3,17 @@ name: postgres
 description: PostgreSQL schema design, query optimization, connection management, and PostgreSQL-specific features (JSONB, arrays).
 argument-hint: "[table-or-query] [concern]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # PostgreSQL (with EF Core / Npgsql) (Elite)
 
 ## When to use
 
 - Designing schemas and indexes for PostgreSQL.
+
 - Diagnosing slow queries, lock contention, or connection pool exhaustion.
+
 - Using PostgreSQL-specific features (JSONB, arrays, advisory locks).
 
 ## Workflow
@@ -32,16 +34,23 @@ EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) SELECT ...
 Look for:
 
 - `Seq Scan` on large tables → add index.
+
 - `Nested Loop` with large sets → consider `Hash Join`.
+
 - High `Buffers: shared hit` ratio is good; high `read` is a cache miss.
+
 - `Filter` rows removed → index the filter column.
 
 ## Self-check
 
 - [ ] `EXPLAIN ANALYZE` run before adding indexes.
+
 - [ ] Index justified by a measured query predicate/sort.
+
 - [ ] Destructive schema changes (drop/rename/type change) staged safely.
+
 - [ ] Connection pool sized correctly (`max_connections` — pool × pool_size ≤ limit).
+
 - [ ] JSONB queries use GIN index if querying frequently.
 
 ## Quick reference
@@ -136,6 +145,9 @@ psql -p 6432 -U pgbouncer pgbouncer -c "SHOW STATS;"
 ## Outputs
 
 - Schema and index recommendations.
+
 - Query optimization checklist.
+
 - Connection pool configuration guidance.
+
 - Testing approach (testcontainers for integration).

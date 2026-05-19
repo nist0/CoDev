@@ -3,17 +3,21 @@ name: codev-submodule
 description: Full reference for managing CoDev as a Git submodule — init, update, override authoring, teardown, and troubleshooting.
 argument-hint: "[operation: init|update|teardown|override|troubleshoot]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # CoDev Submodule Management
 
 ## When to use
 
 - Setting up CoDev in a new host repository (`codev init`).
+
 - Syncing after a CoDev version bump (`codev update`).
+
 - Authoring host-specific overrides in `codev-overrides/`.
+
 - Removing CoDev from a repository (`codev teardown --force`).
+
 - Diagnosing bootstrap failures, symlink issues, or lockfile drift.
 
 ---
@@ -58,9 +62,13 @@ bash tools/codev/codev.sh init
 **What happens:**
 
 1. Detects symlink availability (Windows Developer Mode → symlink; otherwise → lockfile).
+
 2. Creates `codev.json` at the repo root (JSON-Schema-validated manifest).
+
 3. Links or copies `.github/{agents,skills,prompts,instructions}/` from the submodule.
+
 4. Generates `copilot-instructions.md` with `<!-- codev:begin -->` / `<!-- codev:end -->` markers.
+
 5. Installs a pre-commit hook that blocks unauthorized edits to managed files.
 
 **Verify:**
@@ -159,6 +167,7 @@ bash tools/codev/codev.sh update
 **What happens:**
 
 - Lockfile mode: re-copies updated files; refreshes `codev-lock.json` SHA entries.
+
 - Symlink mode: symlinks already point to the submodule — only `copilot-instructions.md`
   is regenerated if the base changed.
 
@@ -193,8 +202,11 @@ bash tools/codev/codev.sh teardown --force
 **What happens:**
 
 - Removes all managed files / symlinks under `.github/`.
+
 - Removes `codev-lock.json` and the pre-commit hook entry.
+
 - **Keeps** `codev-overrides/` intact (your host-specific assets are never deleted).
+
 - **Keeps** `tools/codev/` — remove the submodule separately:
 
 ```bash
@@ -240,9 +252,13 @@ git commit -m "chore: remove CoDev submodule"
 After every operation:
 
 - [ ] `validate-route-smoke.py` passed
+
 - [ ] No managed files edited directly (only `codev-overrides/` was touched)
+
 - [ ] `codev-lock.json` committed (lockfile mode) or symlinks verified (symlink mode)
+
 - [ ] Pre-commit hook active (`pre-commit install` ran and hook is in `.pre-commit-config.yaml`)
+
 - [ ] All changes committed and pushed; CI green
 
 ---
@@ -250,6 +266,9 @@ After every operation:
 ## Elite practices
 
 - **Pin the submodule commit** in CI: use `git submodule update --init --recursive` in your pipeline so the exact pinned commit is always used.
+
 - **Automate version bumps**: create a GitHub Actions workflow that opens a PR when the CoDev submodule has a newer commit on `origin/main`.
+
 - **Test overrides in isolation**: validate `codev-overrides/` files with the customization-registry validator before committing.
+
 - **Document your overrides**: maintain a `codev-overrides/README.md` explaining each host-specific asset, why it exists, and who owns it.

@@ -3,15 +3,17 @@ name: planning
 description: Elite GitHub delivery planning — milestones, roadmaps, prioritization, and cadence governance.
 argument-hint: "[project-name] [horizon]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Planning (Elite Delivery)
 
 ## When to use
 
 - You need to set up or review a project's delivery planning model.
+
 - You want consistent triage → prioritization → execution → release mapping.
+
 - You need milestone structure, Kanban policy, or a roadmap horizon.
 
 ## Procedure
@@ -40,7 +42,9 @@ Score each candidate issue:
 Priority labels:
 
 - `priority:p0` — production incident or milestone-blocking. Must start now.
+
 - `priority:p1` — high-impact, next available slot.
+
 - `priority:p2` — standard queue.
 
 ### 3. Milestone structure
@@ -48,9 +52,13 @@ Priority labels:
 Each milestone must have:
 
 - **Goal**: one-sentence statement of what "done" looks like.
+
 - **Due date**: hard limit (move scope, not date).
+
 - **Scope**: list of issue references.
+
 - **Exit criteria**: measurable conditions before closing the milestone.
+
 - **Risk log**: 1–3 risks with owners and mitigations.
 
 ### 4. Execution cadence
@@ -65,8 +73,11 @@ Each milestone must have:
 ### 5. Roadmap governance
 
 - Roadmap is a living document; update at the end of each milestone.
+
 - Each roadmap theme maps to a capability in `routing/capabilities.yaml` (for framework work).
+
 - Defer items explicitly (record reason + target milestone) rather than silently dropping them.
+
 - Communicate roadmap changes to stakeholders before the next milestone start.
 
 ### 6. Delivery metrics
@@ -84,15 +95,23 @@ Track at the end of each milestone:
 ## Self-check
 
 - [ ] Every issue has: owner, priority label, milestone, acceptance criteria.
+
 - [ ] Milestone has: goal, due date, scope, exit criteria, risk log.
+
 - [ ] `priority:p0` items have immediate assignee.
+
 - [ ] Roadmap updated at end of each milestone; deferred items logged with reason.
+
 - [ ] Delivery metrics captured and shared.
 
 ## Outputs
 
 - Milestone structure (goal, scope, exit criteria, risk log).
+
 - Prioritized backlog (scored issues).
+
 - Roadmap horizon map (themes → milestones).
+
 - Delivery cadence checklist.
+
 - Delivery metrics dashboard template.

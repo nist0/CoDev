@@ -3,14 +3,15 @@ name: helm-cli
 description: Helm CLI operational cheatsheet - inspect, render, upgrade, rollback, and diff workflows.
 argument-hint: "[release-name] [namespace]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Helm CLI Cheatsheet (Operational) (Elite)
 
 ## When to use
 
 - You need fast, correct Helm commands (install/upgrade/status/history/rollback).
+
 - You want deterministic chart rendering and debugging.
 
 ## Workflow
@@ -62,12 +63,17 @@ helm diff upgrade <release> <chartDir> -n <ns> -f values.yaml
 ## Self-check
 
 - [ ] `helm lint` passes before upgrade.
+
 - [ ] `helm diff` reviewed before applying to production.
+
 - [ ] `--atomic` used for production upgrades (auto-rollback on failure).
+
 - [ ] `helm history` checked after upgrade to confirm success.
+
 - [ ] Rollback tested in staging before production promotion.
 
 ## Outputs
 
 - A minimal set of commands for triage.
+
 - A repeatable render -> inspect -> upgrade -> verify flow.

@@ -3,15 +3,17 @@ name: test-strategy
 description: Test pyramid design — risk mapping, test type selection, data strategy, CI gate definition, and flakiness prevention.
 argument-hint: "[service-or-feature] [risk-areas]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Test Strategy (Elite)
 
 ## When to use
 
 - You need to define a test pyramid for a new feature or service.
+
 - You want to decide which test types apply (unit/integration/contract/e2e).
+
 - You want a CI gate configuration that balances speed and coverage.
 
 ## Procedure
@@ -21,7 +23,9 @@ disable-model-invocation: false
 Define:
 
 - **What** is being tested (feature, component, integration).
+
 - **Why** (what risk does this test guard against).
+
 - **How** (test type, framework, assertion strategy).
 
 ### 2. Identify risk areas
@@ -68,10 +72,15 @@ Define:
 ### 6. Flakiness prevention rules
 
 - No `Thread.Sleep` / `time.sleep`: use retry with backoff or deterministic waits.
+
 - No time-dependent logic: freeze/mock clocks.
+
 - No shared mutable state between tests: isolate test data.
+
 - Test containers: always start fresh; never reuse between runs.
+
 - E2E tests: use stable selectors (data-testid, aria, not XPath).
+
 - Flag flaky tests immediately (`[Flaky]` / `skip` + issue opened).
 
 ### 7. Regression test rule
@@ -79,24 +88,37 @@ Define:
 For every bug fix:
 
 1. Write a test that **fails** on the current code.
+
 2. Apply the fix.
+
 3. Confirm the test **passes**.
+
 4. Add a comment in the test linking the issue number.
 
 ## Self-check
 
 - [ ] Test plan written before tests (what/why/how).
+
 - [ ] Risk areas identified and prioritized.
+
 - [ ] Test type chosen for each risk area with rationale.
+
 - [ ] Data strategy documented per test type.
+
 - [ ] CI gates defined with triggers and time budgets.
+
 - [ ] Flakiness prevention rules applied.
+
 - [ ] Regression test intent included for every bug fix.
 
 ## Outputs
 
 - Test plan table (scenario → type → rationale).
+
 - Test pyramid diagram (text).
+
 - Data strategy summary per test type.
+
 - CI gate configuration table.
+
 - Flakiness prevention checklist.

@@ -8,8 +8,8 @@ description: >
   & BD, décomposition fonctionnelle complète, et plan d'étude point par point.
 argument-hint: "[repos=url1,url2] [kanban=url] [output=.takeover]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Project Takeover (Prise en charge de projet) — Skill
 
@@ -17,8 +17,11 @@ disable-model-invocation: false
 
 - Vous rejoignez une nouvelle équipe et devez maîtriser rapidement un ou
   plusieurs projets existants.
+
 - Les dépôts sont hébergés sur un GitHub on-premise (GitHub Enterprise Server).
+
 - Vous avez accès à un projet Kanban GitHub de référence.
+
 - La documentation finale doit être en **français** et rester **locale** (jamais
   commitée).
 
@@ -55,7 +58,8 @@ disable-model-invocation: false
 4. Produire `.takeover/00-inventaire.md` :
 
    ```markdown
-   # Inventaire des dépôts — <Date>
+
+# Inventaire des dépôts — <Date>
 
    | Dépôt | URL | Branche par défaut | Langue principale | Dernier commit |
    |---|---|---|---|---|
@@ -63,8 +67,11 @@ disable-model-invocation: false
    ```
 
 5. Pour chaque dépôt, noter :
+
    - Langage(s) dominant(s) (via `git ls-files | grep -E '\.(cs|ts|py|go|java)$' | ...`)
+
    - Présence de `README`, `CHANGELOG`, `docs/`, `.github/workflows/`
+
    - Nombre de contributeurs actifs sur les 90 derniers jours :
      ```bash
      git log --since="90 days ago" --format="%ae" | sort -u | wc -l
@@ -91,11 +98,16 @@ travaux en cours, bloqués, ou en attente.
    ```
 
 3. Produire `.takeover/01-kanban.md` avec :
+
    - État des colonnes (Backlog / Todo / In Progress / In Review / Done)
+
    - Issues par colonne : numéro, titre, assigné, labels
+
    - Tableau des **travaux en cours** (WIP) avec responsable et date de dernière
      activité
+
    - Tableau des **blockers** identifiés (label `blocked` ou sans assigné depuis >7 j)
+
    - Milestones actives et leur avancement
 
 **Livrable** : `.takeover/01-kanban.md`
@@ -114,8 +126,11 @@ packages internes, references croisées).
    ```
 
 2. Détecter les dépendances inter-packages (packages internes NuGet/npm/pip) :
+
    - `.csproj` → `<PackageReference>` pointant vers un feed privé
+
    - `package.json` → dépendances `@<scope>/` ou version `file:`
+
    - `pyproject.toml` / `requirements.txt` → packages sur index privé
 
 3. Construire le graphe en Mermaid :
@@ -127,10 +142,14 @@ packages internes, references croisées).
    ```
 
 4. Produire `.takeover/02-graphe-dependances.md` avec :
+
    - Diagramme Mermaid du graphe complet
+
    - Tableau des sous-modules (dépôt parent → sous-module → commit épinglé →
      version)
+
    - Packages internes partagés et leurs consommateurs
+
    - Cycles de dépendances détectés (⚠️ à signaler explicitement)
 
 **Livrable** : `.takeover/02-graphe-dependances.md`
@@ -151,9 +170,13 @@ que les bases de données utilisées.
    ```
 
 2. Chercher les contrôleurs/routes (heuristiques par langage) :
+
    - .NET : `[ApiController]`, `[Route(`, `app.MapGet(`
+
    - Node/Express : `app.get(`, `router.post(`
+
    - Python/FastAPI : `@app.get(`, `@router.post(`
+
    - Java/Spring : `@RestController`, `@RequestMapping`
 
 3. Pour chaque API exposée, noter : méthode HTTP, path, rôle fonctionnel déduit,
@@ -162,8 +185,11 @@ que les bases de données utilisées.
 #### APIs consommées
 
 1. Chercher les clients HTTP :
+
    - `HttpClient`, `axios`, `requests.get(`, `RestTemplate`, `fetch(`
+
    - Variables d'environnement contenant `URL`, `ENDPOINT`, `HOST`, `API_URL`
+
    - Fichiers de configuration : `appsettings.json`, `.env.example`, `config.yaml`
 
 2. Pour chaque dépendance externe identifiée, noter : URL/base URI, protocole
@@ -172,8 +198,11 @@ que les bases de données utilisées.
 #### Bases de données
 
 1. Identifier les BD via :
+
    - Chaînes de connexion dans `appsettings*.json`, `.env.example`, `docker-compose.yml`
+
    - Migrations : répertoire `Migrations/`, `db/migrations/`, `alembic/versions/`
+
    - ORM/driver : `DbContext`, `Sequelize`, `SQLAlchemy`, `pg`, `mongoose`
 
 2. Pour chaque BD : technologie (PostgreSQL/SQL Server/MongoDB/Redis/…), rôle
@@ -184,10 +213,15 @@ que les bases de données utilisées.
 Produire `.takeover/03-topologie-api-bd.md` avec :
 
 - Diagramme Mermaid `C4Context` (ou équivalent) montrant :
+
   - Le ou les systèmes étudiés
+
   - Les API exposées (flèches entrantes)
+
   - Les API consommées (flèches sortantes)
+
   - Les bases de données
+
 - Tableaux détaillés par catégorie
 
 **Livrable** : `.takeover/03-topologie-api-bd.md`
@@ -200,32 +234,44 @@ Produire `.takeover/03-topologie-api-bd.md` avec :
 technique, module par module.
 
 1. Identifier les modules principaux :
+
    - Projets dans la solution (`.sln`), packages npm, modules Python
+
    - Répertoires `src/`, `lib/`, `packages/`, `apps/`
 
 2. Pour chaque module, extraire :
+
    - **Rôle fonctionnel** : que fait-il ? (déduire du README, des noms de classes,
      des routes, des commentaires)
+
    - **Flux de données principaux** : entrée → traitement → sortie
+
    - **Points d'entrée** : `main`, controller, handler, CLI command
+
    - **Dépendances internes** : quels autres modules il utilise
+
    - **Tests associés** : présence et couverture estimée
 
 3. Pour les domaines métier, chercher les termes du domaine :
+
    - Noms de classes `Order`, `Customer`, `Invoice`, `Product`, `User`…
+
    - Services nommés selon le domaine : `OrderService`, `BillingRepository`…
 
 4. Produire `.takeover/04-decomposition-fonctionnelle.md` :
 
    ```markdown
-   # Décomposition fonctionnelle — <Projet>
 
-   ## Vue d'ensemble
+# Décomposition fonctionnelle — <Projet>
+
+## Vue d'ensemble
+
    <description de la raison d'être du système en 3-5 phrases>
 
-   ## Modules
+## Modules
 
-   ### <NomModule>
+### <NomModule>
+
    **Rôle** : <description>
    **Point d'entrée** : `<fichier>:<fonction>`
    **Flux** : <entrée> → <traitement> → <sortie>
@@ -246,27 +292,38 @@ maîtriser le projet de façon autonome.
 
 1. Évaluer la complexité de chaque module / intégration (Simple / Modérée /
    Complexe) selon :
+
    - Nombre de lignes de code
+
    - Dépendances croisées
+
    - Présence de logique métier non triviale
 
 2. Proposer un **ordre d'étude recommandé** (du plus simple au plus complexe,
    en commençant par les fondations).
 
 3. Pour chaque point d'étude, fournir :
+
    - **Titre** du point
+
    - **Priorité** : Critique / Importante / Secondaire
+
    - **Durée estimée** : en heures
+
    - **Objectif d'apprentissage** : ce que l'on doit être capable de faire après
+
    - **Ressources** : fichiers clés à lire, issues à consulter, personnes à contacter
+
    - **Exercice de validation** : action concrète prouvant la maîtrise
 
 4. Produire `.takeover/05-plan-etude.md` :
 
    ```markdown
-   # Plan d'étude — <Projet> — <Date>
 
-   ## Synthèse
+# Plan d'étude — <Projet> — <Date>
+
+## Synthèse
+
    | Dimension | Complexité | Durée estimée |
    |---|---|---|
    | Architecture globale | Simple | 2h |
@@ -275,9 +332,10 @@ maîtriser le projet de façon autonome.
    | Schéma BD | Simple | 1h |
    | **Total estimé** | | **Xh** |
 
-   ## Points d'étude détaillés
+## Points d'étude détaillés
 
-   ### 1. <Titre>
+### 1. <Titre>
+
    **Priorité** : Critique
    **Durée** : Xh
    **Objectif** : <ce que vous saurez faire>
@@ -303,11 +361,16 @@ maîtriser le projet de façon autonome.
 ## Invariants (non-négociables)
 
 - **Tous les fichiers produits sont en français.**
+
 - **Jamais commiter `.takeover/`** — vérifier `.gitignore` en Phase 1.
+
 - Si une information ne peut pas être déduite de manière fiable, l'indiquer
   explicitement avec `⚠️ Non déterminé — à vérifier manuellement`.
+
 - Les diagrammes Mermaid doivent être valides syntaxiquement.
+
 - Chaque tableau doit avoir une ligne de séparation (`| --- | --- |`).
+
 - Ne pas inventer de dépendances ou de fonctionnalités : se baser uniquement
   sur le code source, les fichiers de configuration, et les issues GitHub.
 

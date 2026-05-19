@@ -2,37 +2,49 @@
 name: new-agent
 description: Create a new custom agent (.agent.md) with stable rules and boundaries.
 agent: promptsmith
-argument-hint: "agentId=<kebab> mission=<text>"
----
 
+## argument-hint: "agentId=<kebab> mission=<text>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Inputs:
 
 - agentId: ${input:agentId:ex azure-architect}
+
 - mission: ${input:mission:1-2 lines}
 
 Requirements:
 
 - Create `.github/agents/${input:agentId}.agent.md`
+
 - Omit `tools` unless the agent explicitly needs tools
+
 - Include: Mission / Non-negotiables / Boundaries / Output format
 
 Minimal happy path:
 
 1. Run `/new-agent agentId=<kebab> mission=<text>`.
+
 2. Save the generated file at `.github/agents/<id>.agent.md`.
+
 3. If the new agent needs routing, update `routing/matrix.yaml` and related routing files in the same change.
+
 4. Validate locally before PR review:
+
    - `python scripts/validate-customization-registry.py`
+
    - `python scripts/validate-readme-registry.py`
+
    - `python scripts/validate-markdown-lint.py`
+
    - `python scripts/validate-route-smoke.py` when routing changed
 
 Minimal example:

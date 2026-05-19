@@ -3,15 +3,17 @@ name: perf-regression
 description: Performance regression triage — measure-first, baseline comparison, ranked hypotheses, mitigation, and alerting.
 argument-hint: "[endpoint-or-service] [metric-and-threshold]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Performance Regression Triage (Elite)
 
 ## When to use
 
 - Latency p95/p99 increased, throughput dropped, CPU/memory spiked.
+
 - You suspect a regression after a deployment or dependency upgrade.
+
 - You need a measure-first plan (no speculative micro-optimizations).
 
 ## Procedure
@@ -31,6 +33,7 @@ Do not start investigation without a confirmed metric delta.
 ### 2. Establish scope
 
 - Is the regression **global** (all endpoints / all users) or **scoped** (one tenant, one region, one endpoint)?
+
 - Scope narrows the hypothesis space dramatically.
 
 | Scope question | Tool |
@@ -74,25 +77,39 @@ Always lead with mitigation if users are impacted; ship remediation through PR r
 ### 6. Verify fix
 
 1. Confirm metrics return to baseline (same percentiles, same load).
+
 2. Run a load test against the fix before promoting to production.
+
 3. Add a performance regression test (baseline assertion in CI).
+
 4. Add or update alert for this metric with threshold.
 
 ## Self-check
 
 - [ ] Regression defined with before/after metric values and %delta.
+
 - [ ] Scope established (global vs scoped).
+
 - [ ] Profiling data collected before hypothesizing.
+
 - [ ] Hypotheses ranked by likelihood × validation cost.
+
 - [ ] Mitigation applied if users were impacted.
+
 - [ ] Fix verified against baseline metrics.
+
 - [ ] Performance regression test added.
+
 - [ ] Alert configured.
 
 ## Outputs
 
 - Regression definition + evidence (metric table).
+
 - Top ranked hypotheses + validation steps.
+
 - Mitigation plan + rollback option.
+
 - Remediation approach.
+
 - Verification checklist + alerting improvements.

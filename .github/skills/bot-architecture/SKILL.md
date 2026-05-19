@@ -2,16 +2,19 @@
 name: bot-architecture
 description: Cross-platform bot architecture patterns -- Activity/Turn model, middleware pipeline, state management, secrets hygiene, webhook vs polling, and AI integration. Applies to C# and Python across Teams, Telegram, WhatsApp, and other platforms.
 argument-hint: "[platform] [concern]"
-user-invocable: true
----
+
+## user-invocable: true
 
 # Bot Architecture (Cross-Platform)
 
 ## When to use
 
 - Designing a new bot regardless of platform.
+
 - Choosing between SDK options for a new project.
+
 - Implementing state management, conversation flow, or middleware.
+
 - Auditing an existing bot for security or reliability gaps.
 
 ## Core concepts
@@ -33,7 +36,9 @@ Platform  -->  Webhook / Polling  -->  Update / Activity
 ```
 
 - An **Activity** (M365 Agents SDK) or **Update** (Telegram) represents one incoming event.
+
 - A **Turn** is one round-trip: inbound activity + all processing + outbound response(s).
+
 - A **Turn Context** provides access to the current activity, send methods, and state.
 
 ### Middleware pipeline
@@ -41,10 +46,15 @@ Platform  -->  Webhook / Polling  -->  Update / Activity
 Register middleware in order; each middleware can short-circuit or pass through:
 
 1. **Authentication / signature validation** -- verify the request came from the platform.
+
 2. **Logging / tracing** -- log activity type, user ID (non-PII), and correlation ID.
+
 3. **Error handling** -- catch unhandled exceptions; always return 200 OK to the platform.
+
 4. **State hydration** -- load user/conversation state before the handler.
+
 5. **Business middleware** -- rate limiting, feature flags, etc.
+
 6. **State persistence** -- save state after the handler (or on explicit save calls).
 
 ### Handler registration
@@ -78,7 +88,9 @@ protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivi
 State storage backends:
 
 - **In-memory**: only for local development; lost on restart.
+
 - **Redis**: fast, TTL-aware; good for volatile state.
+
 - **Azure Cosmos DB**: durable, globally distributed; built-in M365 Agents SDK adapter.
 
 ```python
@@ -209,7 +221,9 @@ Platform  --HTTPS POST-->  /webhook endpoint  -->  bot logic
 ```
 
 - Requires public HTTPS URL.
+
 - More efficient; no polling loop.
+
 - Use ngrok or Azure Dev Tunnels for local development.
 
 ### Long polling (dev/test only)
@@ -219,22 +233,33 @@ Bot  --getUpdates loop-->  Platform API  -->  process updates
 ```
 
 - No public URL required.
+
 - Only one instance can poll at a time.
+
 - Do NOT use in production (latency, reliability issues).
 
 ## Self-check
 
 - [ ] Tokens loaded from env/secrets; application fails fast if missing.
+
 - [ ] Webhook signature validated before processing any payload.
+
 - [ ] HTTP 200 returned immediately; processing is async if needed.
+
 - [ ] State backend chosen and justified (in-memory only for dev).
+
 - [ ] Error handler logs without PII; returns 200 to platform.
+
 - [ ] Multi-turn flows use ConversationHandler / Dialog pattern.
+
 - [ ] Rate limiting considered for outbound API calls.
 
 ## Outputs
 
 - Architecture diagram (platform -> webhook -> middleware -> handler -> state).
+
 - Verified project scaffold with security baseline.
+
 - State management decision documented.
+
 - Webhook deployment checklist.

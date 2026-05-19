@@ -3,15 +3,17 @@ name: doc-architecture-model
 description: Propose or enforce a Documentation Architecture Model (DAM) — purpose-driven doc tree, audience clarity, ownership, and lint compliance.
 argument-hint: "[repo] [doc-types]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Documentation Architecture Model (DAM) (Elite)
 
 ## When to use
 
 - Proposing or enforcing a documentation structure for the repo.
+
 - Reviewing docs for consistency, purpose, and audience clarity.
+
 - Auditing a `docs/` tree for coverage gaps and orphaned documents.
 
 ## Procedure
@@ -77,8 +79,11 @@ npx markdownlint-cli2 "docs/**/*.md"
 Requirements:
 
 - Headings: no skipped levels (`#` then `##`, never jumping to `###`).
+
 - Code blocks: all fenced with language identifier.
+
 - Links: all valid (run link-checker or `mlc`).
+
 - Line length: ≤ 120 chars (soft rule).
 
 ### 6. Produce templates per doc type
@@ -90,15 +95,23 @@ See: `doc-qa` skill for ongoing lint automation.
 ## Self-check
 
 - [ ] Every top-level category has a defined purpose and audience.
+
 - [ ] Every doc maps to exactly one category.
+
 - [ ] Every doc has purpose / audience / owner metadata.
+
 - [ ] `docs/README.md` links to all categories.
+
 - [ ] Orphaned docs flagged.
+
 - [ ] Lint check passes (`markdownlint-cli2`).
 
 ## Outputs
 
 - Proposed `docs/` tree (copy/paste-ready).
+
 - DAM compliance audit table.
+
 - Template per doc type (Architecture, Onboarding, Runbook, Reference, ADR).
+
 - Lint configuration (`markdownlint.json`) recommendation.

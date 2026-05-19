@@ -2,14 +2,17 @@
 name: k8s-triage
 description: "Kubernetes/AKS triage: fast cluster checks, pod/service/ingress diagnosis, rollback and verification."
 agent: "DevOps/Cloud"
-argument-hint: "cluster=<name> namespace=<ns> workload=<name> symptom=<text>"
----
+
+## argument-hint: "cluster=<name> namespace=<ns> workload=<name> symptom=<text>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Apply procedures from `.github/skills/kubernetes/SKILL.md` and `.github/skills/kubectl/SKILL.md`.
@@ -19,20 +22,31 @@ Act as a DevOps/Cloud engineer and triage the Kubernetes/AKS issue.
 Include:
 
 - Context to collect (cluster, namespace, workload, image tag, deployment time)
+
 - Fast checks (kubectl get/describe/logs/events)
+
 - Hypotheses (config vs image vs infra vs dependency)
+
 - Mitigation vs remediation options
+
 - Rollback plan (helm rollback / kubectl rollout undo)
+
 - Verification commands (readiness, probes, basic smoke checks)
+
 - Risk classification (`low|medium|high`) for each mitigation/remediation option
+
 - Stop conditions that indicate escalation is required
 
 Output format:
 
 - Observed facts
+
 - Ranked hypotheses
+
 - Immediate mitigation plan
+
 - Durable remediation plan
+
 - Verification and rollback checklist
 
 ## Agent delegation chain

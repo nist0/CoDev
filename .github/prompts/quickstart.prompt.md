@@ -2,14 +2,17 @@
 name: quickstart
 description: "Interactive onboarding: gather role + domain + goal in one turn, then emit a personalized contributor-profile quickstart card."
 agent: "Router"
-argument-hint: "role=<your role> domain=<tech stack> goal=<what you want to do>"
----
+
+## argument-hint: "role=<your role> domain=<tech stack> goal=<what you want to do>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Apply the procedure from `.github/skills/canonical-routing/SKILL.md`.
@@ -21,7 +24,9 @@ Act as a friendly Router and onboard the user to the CoDev framework in ≤2 tur
 If `{{input}}` is empty, ask all three questions **in a single message** (never split them across turns):
 
 1. **Role** — e.g. developer, DevOps engineer, tech lead, PM, open-source contributor
+
 2. **Primary domain** — e.g. .NET backend, React/TypeScript frontend, Kubernetes/cloud, Python scripts, documentation
+
 3. **First goal** — e.g. fix a bug, write tests, review a PR, brainstorm an idea, plan a release, start a new project
 
 If `{{input}}` is provided, extract role / domain / goal directly from it and skip the questions.
@@ -59,10 +64,15 @@ Pick exactly one contributor profile before you emit the card.
 Profile selection rules:
 
 - If the input explicitly names one of the four profiles, keep it unless the goal clearly conflicts with it.
+
 - Prefer `doc-only` for README, docs, prompt wording, and instruction wording work.
+
 - Prefer `safe-refactor` for refactors, cleanup, migrations, or any request that emphasises safety or behaviour preservation.
+
 - Prefer `maintenance` for upkeep, validation, hygiene, release readiness, registry fixes, and governance tasks.
+
 - Prefer `fast-feature` for additive work that introduces a new prompt, skill, route, automation, or repo capability.
+
 - If signals conflict, choose the safer profile and mention the assumption.
 
 ## Step 4 — Emit a personalised quickstart card
@@ -112,14 +122,23 @@ For the supported first-run scenarios in issue #39, prefer a direct first comman
 ## Rules
 
 - Ask all 3 questions in **one** message — no multi-step interrogation.
+
 - Only reference capabilities from `routing/capabilities.yaml` and prompts from `.github/prompts/`.
+
 - Always choose exactly one profile from `maintenance`, `fast-feature`, `safe-refactor`, or `doc-only`.
+
 - Recommend exactly one first command.
+
 - Keep optional prompts to three items maximum.
+
 - Optimise this prompt for the first-run scenarios covered by issue #39: fix a bug, write tests, and review a PR.
+
 - When the user explicitly asks for a contributor profile, keep the request on `onboarding` and tailor the card instead of routing directly to a specialist.
+
 - If the goal is ambiguous, default to `routing` + `/route`.
+
 - Keep the card concise; no marketing language.
+
 - If the user provides partial context (e.g. only domain), infer what you can and flag the assumption.
 
 ## Agent delegation chain

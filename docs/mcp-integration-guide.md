@@ -9,8 +9,11 @@ This guide explains how CoDev models Model Context Protocol work for VS Code and
 CoDev exposes MCP as a first-class capability:
 
 - capability: `mcp`
+
 - agent: `mcp-specialist`
+
 - prompts: `/mcp-setup`, `/mcp-analyze`, `/mcp-debug`
+
 - skill: `mcp-integration`
 
 The design goal is simple: keep MCP work isolated from generic editor guidance and route requests to one specialist that can create, analyze, and troubleshoot the integration.
@@ -28,7 +31,9 @@ The design goal is simple: keep MCP work isolated from generic editor guidance a
 It then maps the setup to one of three output branches:
 
 - `local-stdio-vscode`
+
 - `remote-http-copilot`
+
 - `both-hosts-split-surface`
 
 ## Topology model
@@ -47,8 +52,11 @@ For each MCP request, make these choices explicit:
 ### Design or install
 
 1. Run `/route set up an MCP server for VS Code and GitHub Copilot`.
+
 2. Follow with `/mcp-setup` and provide the goal, host, server model, transport, install target, and auth mode if known.
+
 3. Apply the smallest safe config.
+
 4. Verify startup, discovery, and one safe request.
 
 Expected intake normalization:
@@ -65,7 +73,9 @@ Expected intake normalization:
 Snippet specialization rule:
 
 - `install=workspace` -> emit `.vscode/mcp.json`
+
 - `install=user` -> emit user-profile `mcp.json`
+
 - `install=remote` -> explain which remote environment owns the configuration and whether the user still needs a local or agent-level surface
 
 Expected output branching:
@@ -81,21 +91,29 @@ For VS Code-first flows, the prompt should now distinguish between workspace and
 ### Analyze existing setup
 
 1. Run `/route analyze my MCP configuration`.
+
 2. Use `/mcp-analyze` with the config path, agent file, or short design description.
+
 3. Apply the minimal recommended changes.
 
 ### Debug failures
 
 1. Run `/route debug mcp connection failure in copilot chat`.
+
 2. Use `/mcp-debug` with the symptom and relevant config.
+
 3. Work through the ranked checks in order.
 
 ## Safety rules
 
 - Never hardcode secrets in MCP config.
+
 - Treat local stdio servers as executable code on the host machine.
+
 - Keep server exposure minimal.
+
 - Use HTTPS for remote servers unless you have an explicit local-development exception.
+
 - On Windows, do not assume local MCP sandboxing exists.
 
 ## Verification checklist
@@ -103,15 +121,23 @@ For VS Code-first flows, the prompt should now distinguish between workspace and
 After any MCP change, confirm:
 
 1. The server starts cleanly.
+
 2. The expected tools, resources, or prompts are visible.
+
 3. One safe sample request works end-to-end.
+
 4. The configuration does not leak secrets or personal-only assumptions.
 
 ## Related assets
 
 - `.github/agents/mcp-specialist.agent.md`
+
 - `.github/prompts/mcp-setup.prompt.md`
+
 - `.github/prompts/mcp-analyze.prompt.md`
+
 - `.github/prompts/mcp-debug.prompt.md`
+
 - `.github/skills/mcp-integration/SKILL.md`
+
 - `.github/instructions/mcp.instructions.md`

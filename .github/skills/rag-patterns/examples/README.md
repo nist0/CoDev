@@ -95,9 +95,13 @@ async def ask(conn: asyncpg.Connection, question: str, top_k: int = 4) -> str:
 **Why each rule exists**:
 
 - Overlapping chunks (`chunk_size - overlap`) prevent context loss at boundaries.
+
 - Batch embedding call amortises API latency across all chunks.
+
 - `ON CONFLICT ... DO UPDATE` enables incremental upserts without full re-index.
+
 - Model names come from environment variables -- never hardcoded.
+
 - System prompt explicitly instructs the model to stay grounded and provides a fallback phrase for out-of-context questions.
 
 ---
@@ -150,8 +154,11 @@ async def hybrid_search_with_rerank(
 **Why hybrid + re-ranking**:
 
 - Dense retrieval misses exact keyword matches (product codes like `SKU-4821`).
+
 - Sparse (BM25 / `ts_rank`) retrieval misses paraphrase-level matches.
+
 - Hybrid scoring fuses both; `0.6 dense + 0.4 sparse` is a reasonable starting weight -- tune on your eval set.
+
 - The cross-encoder re-ranker reads both query and candidate together, giving much higher precision than the bi-encoder similarity used during retrieval.
 
 ---
@@ -171,6 +178,9 @@ async def hybrid_search_with_rerank(
 ## Expected routing shape
 
 - Domain: `ai-ml-engineering`
+
 - Capability: `code-analysis`
+
 - Agent: `Architect`
+
 - Skills invoked: `rag-patterns`, `llm-integration`

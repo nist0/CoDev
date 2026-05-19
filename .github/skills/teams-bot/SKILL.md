@@ -2,17 +2,21 @@
 name: teams-bot
 description: Build production-grade Microsoft Teams bots in C# and Python using the Microsoft 365 Agents SDK and Teams AI Library. Covers Azure Bot Service setup, Adaptive Cards, state management, user auth (SSO), and MCP/A2A integration.
 argument-hint: "[language: csharp|python] [feature: adaptive-cards|sso|ai|mcp]"
-user-invocable: true
----
+
+## user-invocable: true
 
 # Teams Bot Development (Elite)
 
 ## When to use
 
 - Building a new Teams bot in C# or Python.
+
 - Adding AI capabilities (function calling, Copilot-style responses) to a Teams bot.
+
 - Setting up user authentication (SSO via Microsoft Entra) in Teams.
+
 - Integrating Adaptive Cards, task modules, or message extensions.
+
 - Migrating an existing bot from Bot Framework SDK v4 (archived Dec 31 2025).
 
 > IMPORTANT: Bot Framework SDK v4 is ARCHIVED (EOL Dec 31 2025). All new Teams bots must use
@@ -33,8 +37,11 @@ user-invocable: true
 ### a) App Registration
 
 1. Azure Portal or `az ad app create --display-name "MyTeamsBot" --sign-in-audience AzureADMultipleOrgs`.
+
 2. Note the **Application (client) ID** and **Tenant ID**.
+
 3. Under **Certificates & secrets** -> create a client secret (store in Key Vault / env, never in code).
+
 4. Grant API permissions if using Graph: `TeamsActivity.Send`, `Chat.ReadWrite`.
 
 ### b) Azure Bot Service
@@ -213,7 +220,9 @@ async def on_message(ctx: TurnContext, state) -> None:
 ## Step 5 -- User auth (SSO via Entra ID)
 
 1. Configure OAuth connection in Azure Bot Service settings.
+
 2. Add `botActivityHandler.ts` with `TeamsBotSsoPrompt` or use M365 Agents SDK `OAuthPrompt`.
+
 3. In Teams manifest set `validDomains` and `webApplicationInfo`:
 
 ```json
@@ -257,16 +266,25 @@ public async Task OnMessage_EchoesText()
 ## Self-check
 
 - [ ] No credentials hardcoded; all loaded from env/Key Vault.
+
 - [ ] Controller returns 200 on all adapter errors (adapter handles internally).
+
 - [ ] Bot Framework SDK v4 (BotBuilder) NOT referenced; M365 Agents SDK used.
+
 - [ ] Adaptive Cards schema version pinned (1.5 recommended for Teams).
+
 - [ ] SSO token never logged or stored verbatim.
+
 - [ ] CosmosDB (or Redis) used in production; in-memory only in local dev.
+
 - [ ] Teams manifest validated with `teamsapp validate`.
 
 ## Outputs
 
 - Working C# or Python Teams bot project.
+
 - `manifest.json` with bot registration.
+
 - State storage configured for production.
+
 - Unit tests for key message handlers.

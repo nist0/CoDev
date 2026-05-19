@@ -3,15 +3,17 @@ name: fullstack-test-strategy
 description: Full-stack test pyramid — risk mapping, unit/integration/contract/E2E allocation, data strategy, CI gating, and flakiness control.
 argument-hint: "[system-name] [risk-areas]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Full-stack Test Strategy (Elite)
 
 ## When to use
 
 - You need a test pyramid for a full-stack system (frontend + backend + infra).
+
 - You want to align unit/integration/contract/E2E tests with actual risk areas.
+
 - You need CI gate definitions for a multi-layer application.
 
 ## Procedure
@@ -21,7 +23,9 @@ disable-model-invocation: false
 Define for each risk area:
 
 - **What**: what behavior is being tested.
+
 - **Why**: what failure mode does this test prevent.
+
 - **How**: test type, framework, assertion strategy.
 
 ### 2. Identify critical behaviors and risks
@@ -49,15 +53,21 @@ Define for each risk area:
 ### 4. Contract tests (API boundary)
 
 - Use **Pact** or **Schemathesis** / **Spectral** for API contract tests.
+
 - Consumer defines the contract; provider verifies.
+
 - Contract tests run on every PR that touches the API.
+
 - Break the contract → block merge.
 
 ### 5. E2E test discipline
 
 - **Only critical user paths** (login, checkout, key workflows).
+
 - Use `data-testid` selectors; never XPath or position-based.
+
 - Seed test data via API or DB directly; never rely on prior test state.
+
 - E2E tests run on merge to main and on staging; never block a PR alone.
 
 ### 6. Data strategy
@@ -83,23 +93,35 @@ Never use production data. Never share mutable state between tests.
 ### 8. Measure and improve
 
 - Track: test runtime, flakiness rate, coverage by module.
+
 - Alert if E2E suite exceeds 30 min or flakiness rate > 2%.
+
 - Delete or fix any flaky test within 1 sprint (no quarantine purgatory).
 
 ## Self-check
 
 - [ ] Test plan written before tests (what/why/how).
+
 - [ ] All P1 risk areas covered with at least one test type.
+
 - [ ] Contract tests in place for all API boundaries shared between frontend and backend.
+
 - [ ] E2E tests limited to critical paths; using stable selectors.
+
 - [ ] Data strategy defined per test type; no shared mutable state.
+
 - [ ] CI gates defined with triggers and time budgets.
+
 - [ ] Flakiness measurement in place.
 
 ## Outputs
 
 - Test pyramid recommendation per layer.
+
 - Test plan table (scenario → type → why).
+
 - Data strategy summary.
+
 - CI gate configuration table.
+
 - Flakiness prevention checklist.

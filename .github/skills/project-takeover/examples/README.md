@@ -43,7 +43,11 @@
 ## Points clés à vérifier après exécution
 
 - [ ] `.takeover/` est dans `.gitignore` (ne pas commiter)
+
 - [ ] Tous les documents sont en français
+
 - [ ] Aucune information inventée — les `⚠️ Non déterminé` sont présents là où les données manquent
+
 - [ ] Les diagrammes Mermaid se rendent correctement dans un aperçu Markdown
+
 - [ ] Le plan d'étude (Phase 6) contient des exercices de validation concrets

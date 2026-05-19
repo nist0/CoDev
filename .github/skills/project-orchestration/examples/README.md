@@ -7,6 +7,9 @@
 ## Expected outputs
 
 - Clarifying questions
+
 - Phased plan with dependencies
+
 - Dispatch matrix with assigned specialist agents
+
 - Review checklist and verdicts

@@ -3,16 +3,19 @@ name: mermaid
 description: "Mermaid diagrams in Markdown — all diagram types, authoring best practices, GitHub-native rendering, accessibility, and CI validation."
 argument-hint: "[diagram-type] [description or existing snippet]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # mermaid Skill (Elite)
 
 ## When to use
 
 - You need to create or improve a diagram embedded in a Markdown file (GitHub README, ADR, wiki, PR description, etc.).
+
 - You need to review an existing Mermaid snippet for syntax errors or best-practice violations.
+
 - You are deciding between Mermaid and another diagram format (PlantUML, D2, SVG).
+
 - You need to validate that a diagram renders correctly on GitHub.
 
 > For PlantUML-heavy workflows or complex component diagrams, use the `diagram-tooling` skill instead.
@@ -49,19 +52,25 @@ GitHub natively renders Mermaid inside fenced code blocks with the `mermaid` lan
 
 ````markdown
 ```mermaid
+
 flowchart LR
     A[Start] --> B{Decision}
     B -- Yes --> C[Do it]
     B -- No --> D[Skip]
+
 ```
 ````
 
 ### Constraints on GitHub
 
 - Maximum diagram complexity: keep node count ≤ 50 for readable output; very large graphs exceed GitHub's renderer timeout.
+
 - `%%` comments are supported and encouraged for maintainability.
+
 - `click` interaction links work in rendered GitHub pages but not in PR diff views.
+
 - GitHub's Mermaid version lags behind the latest release; avoid cutting-edge beta features in repo docs.
+
 - Emoji in labels (`A[":rocket: Deploy"]`) render on GitHub but break some local tools — prefer plain text or UTF-8.
 
 ### GitLab / other platforms
@@ -81,7 +90,9 @@ flowchart LR
 ### 1. Choose the right direction
 
 - `flowchart LR` (left-right) for sequential pipelines and CI/CD flows.
+
 - `flowchart TD` (top-down) for hierarchies and decision trees.
+
 - `sequenceDiagram` for time-ordered interactions across actors.
 
 ### 2. Keep node IDs stable
@@ -114,7 +125,9 @@ sequenceDiagram
 ### 5. Limit depth and width
 
 - Flowcharts: max 4–5 levels of nesting for readability.
+
 - Sequence diagrams: max 6–8 participants; extract sub-flows to separate diagrams.
+
 - Class diagrams: max 10 classes per diagram; split by bounded context.
 
 ### 6. Use subgraphs for grouping
@@ -159,15 +172,19 @@ Available themes: `default`, `neutral`, `dark`, `forest`, `base`.
 ## Accessibility
 
 - GitHub does not generate alt text for Mermaid diagrams automatically.
+
 - Add a prose description immediately before or after every complex diagram in the Markdown.
+
 - For critical diagrams (architecture, data flow), also provide a text-based summary table.
 
 ````markdown
 The following diagram shows the request lifecycle from client to database:
 
 ```mermaid
+
 flowchart LR
     Client --> API --> Cache --> DB
+
 ```
 
 _Summary: Client sends request → API checks Redis cache → on miss, queries PostgreSQL._
@@ -219,8 +236,11 @@ command -v mmdc && find docs -name '*.md' -exec mmdc -i {} -o /dev/null \;
 ## Versioning Discipline
 
 - Store standalone diagrams as `.mmd` files alongside the docs they describe.
+
 - Never commit only a PNG without the Mermaid source.
+
 - When the diagram source is inline in a Markdown file, that Markdown file is the source of truth.
+
 - Generated exports (SVG, PNG) are derived: exclude from review diffs, regenerate in CI.
 
 ---
@@ -256,11 +276,19 @@ command -v mmdc && find docs -name '*.md' -exec mmdc -i {} -o /dev/null \;
 ## Self-check
 
 - [ ] Diagram type selected is the most appropriate for the content.
+
 - [ ] Fenced block uses ` ```mermaid ` tag (not ` ```mmd `).
+
 - [ ] Node IDs are stable and match repo vocabulary.
+
 - [ ] Diagram depth ≤ 5 levels; node count ≤ 50.
+
 - [ ] `v2` variant used where available (`stateDiagram-v2`, `flowchart` over `graph`).
+
 - [ ] Prose description added before/after complex diagrams (accessibility).
+
 - [ ] Source file committed (`.mmd` for standalone, Markdown file for inline).
+
 - [ ] No deprecated syntax (`graph LR`, `stateDiagram`).
+
 - [ ] GitHub rendering constraints verified (no beta features for critical docs).

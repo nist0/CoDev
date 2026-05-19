@@ -3,15 +3,17 @@ name: aks
 description: AKS cluster operations — health checks, node pool management, networking triage, and safe upgrade procedure.
 argument-hint: "[cluster] [resource-group]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # AKS (Azure Kubernetes Service) (Elite)
 
 ## When to use
 
 - Managing or troubleshooting an AKS cluster.
+
 - Configuring node pools, managed identity, or networking.
+
 - Planning a cluster upgrade or scale operation.
 
 ## Procedure
@@ -44,6 +46,7 @@ kubectl top pods -A --sort-by=cpu | head -20
 Flags:
 
 - CPU throttling → check container `resources.limits.cpu`.
+
 - Memory pressure → check `OOMKilled` in pod events.
 
 ### 4. Inspect control plane logs
@@ -68,7 +71,9 @@ nslookup <service-name>.<ns>.svc.cluster.local
 Common networking failures:
 
 - LB not provisioned → check Azure quota.
+
 - DNS not resolving → check CoreDNS pod health.
+
 - Network policy blocking traffic → `kubectl get networkpolicy -A`.
 
 ### 6. Upgrade or scale safely
@@ -76,7 +81,9 @@ Common networking failures:
 **Before any change**:
 
 - [ ] Record current state (node count, versions, resource limits).
+
 - [ ] Define rollback plan.
+
 - [ ] Notify stakeholders.
 
 ```bash
@@ -89,14 +96,21 @@ az aks upgrade -g <rg> -n <cluster> --kubernetes-version <version> --node-image-
 ## Self-check
 
 - [ ] Subscription confirmed before any operation.
+
 - [ ] `kubectl config current-context` verified before changes.
+
 - [ ] Node health and resource utilization reviewed.
+
 - [ ] Rollback plan defined before upgrade or scale.
+
 - [ ] Post-change: all pods Running, endpoints populated, smoke tests pass.
 
 ## Outputs
 
 - AKS health checklist.
+
 - Common failure patterns and fixes.
+
 - Upgrade/scale procedure with rollback.
+
 - Azure CLI command reference.

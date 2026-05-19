@@ -5,10 +5,15 @@
 Normalized intake:
 
 - Host: `vscode`
+
 - Server model: `local`
+
 - Transport: `stdio`
+
 - Install target: `workspace`
+
 - Auth/trust: `local`
+
 - Primitive bias: `tools`
 
 Use workspace config when the server is part of the project workflow and should be reviewed in git.
@@ -30,7 +35,9 @@ File: `.vscode/mcp.json`
 Validation:
 
 1. Run `MCP: List Servers`.
+
 2. Start `playwright` and approve trust after reviewing the command.
+
 3. Open chat and ask:
 
 ```text
@@ -40,7 +47,9 @@ Go to code.visualstudio.com, decline the cookie banner, and give me a screenshot
 Expected outcome:
 
 - Playwright tools appear in chat.
+
 - VS Code requests approval for tool invocations as needed.
+
 - A screenshot result is returned.
 
 Expected setup branch:
@@ -52,10 +61,15 @@ Expected setup branch:
 Normalized intake:
 
 - Host: `vscode`
+
 - Server model: `local`
+
 - Transport: `stdio`
+
 - Install target: `user`
+
 - Auth/trust: `local`
+
 - Primitive bias: `resources`
 
 Use user-profile config when the server is personal, reused across many repositories, and not meant to be committed with a project.
@@ -77,7 +91,9 @@ File: user-profile `mcp.json`
 Validation:
 
 1. Run `MCP: Open User Configuration` and confirm the server is defined there rather than in `.vscode/mcp.json`.
+
 2. Start `docs-cache` from `MCP: List Servers`.
+
 3. Open two different workspaces and confirm the same MCP server is available in both.
 
 ```text
@@ -87,7 +103,9 @@ Add the docs-cache resource and summarize the latest local documentation index.
 Expected outcome:
 
 - The MCP server is reusable across workspaces in the same VS Code profile.
+
 - No project-local config is required.
+
 - The answer distinguishes user-profile setup from workspace setup.
 
 Expected setup branch:
@@ -99,10 +117,15 @@ Expected setup branch:
 Normalized intake:
 
 - Host: `github-copilot`
+
 - Server model: `remote`
+
 - Transport: `http`
+
 - Install target: `remote`
+
 - Auth/trust: `org-managed`
+
 - Primitive bias: `resources`
 
 Use agent-level config when the remote MCP server should be scoped to a Copilot role rather than exposed globally in VS Code.
@@ -128,7 +151,9 @@ Use the remote docs MCP server for read-only documentation lookup and summarizat
 Validation:
 
 1. Open the `github-docs` custom agent in Copilot.
+
 2. Confirm the remote `docs` MCP server is available only in that role.
+
 3. Run one safe request that reads documentation context.
 
 ```text
@@ -138,7 +163,9 @@ Summarize the deployment prerequisites from the docs resource for our release wo
 Expected outcome:
 
 - The server is reached over HTTP.
+
 - The MCP surface stays scoped to the `github-docs` agent.
+
 - No editor-global MCP exposure is required.
 
 Expected setup branch:
@@ -150,10 +177,15 @@ Expected setup branch:
 Normalized intake:
 
 - Host: `both`
+
 - Server model: `remote`
+
 - Transport: `http`
+
 - Install target: `workspace`
+
 - Auth/trust: `api`
+
 - Primitive bias: `mixed`
 
 Use split surfaces when both VS Code chat and a GitHub Copilot custom agent need the same remote MCP service, but not with identical trust and UX expectations.
@@ -161,6 +193,7 @@ Use split surfaces when both VS Code chat and a GitHub Copilot custom agent need
 Files:
 
 - `.vscode/mcp.json`
+
 - `.github/agents/release-ops.agent.md`
 
 Workspace config:
@@ -197,7 +230,9 @@ Use the release MCP server for release diagnostics, documentation lookup, and co
 Validation:
 
 1. In VS Code chat, confirm `release-docs` appears via workspace MCP config.
+
 2. In the `release-ops` custom agent, confirm the same remote server is scoped to that role.
+
 3. Run one safe request in each surface and compare behavior.
 
 ```text
@@ -207,7 +242,9 @@ Add the release-docs resource and summarize the current release checklist.
 Expected outcome:
 
 - VS Code chat has project-scoped MCP access through `mcp.json`.
+
 - GitHub Copilot has role-scoped MCP access through agent frontmatter.
+
 - The answer explains what is shared and what remains host-specific.
 
 Expected setup branch:
@@ -236,7 +273,9 @@ Arguments: { "mode": "anything", "payload": "string" }
 Why the first design is better:
 
 - read-only context stays read-only
+
 - write capability is isolated to one explicit action
+
 - prompts remain user-invoked rather than silently triggered
 
 ## Example 6 - Troubleshooting flow for a missing tool list
@@ -250,15 +289,23 @@ The server shows as installed, but no tools appear in chat.
 Checklist:
 
 1. Open `MCP: List Servers` and confirm the server is running.
+
 2. Select the server and choose `Show Output`.
+
 3. Check whether the server actually exposes `tools/list`.
+
 4. Restart the server after any config change.
+
 5. Retry with a single safe prompt that clearly requires one MCP tool.
 
 Expected root-cause buckets:
 
 - startup failure
+
 - capability mismatch
+
 - trust not granted
+
 - wrong install target
+
 - auth failure on a remote server

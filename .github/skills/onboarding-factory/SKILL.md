@@ -3,15 +3,17 @@ name: onboarding-factory
 description: Generate a developer onboarding guide — setup, architecture, conventions, and contribution workflow.
 argument-hint: "[repo-name] [team-conventions]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Onboarding Factory (Elite)
 
 ## When to use
 
 - Generating a developer onboarding guide for a repository.
+
 - Documenting setup, architecture, and team conventions for new contributors.
+
 - Reviewing and updating an existing onboarding guide.
 
 ## Procedure
@@ -34,9 +36,13 @@ Collect:
 ### 2. Extract key content
 
 - **Setup steps**: ordered, copy/paste-ready commands.
+
 - **Build/test commands**: exact commands for local dev and CI.
+
 - **Key modules**: top-level directories + 1-sentence description each.
+
 - **Entry points**: `main`, API controllers, event handlers.
+
 - **Team conventions**: branch naming, commit format, PR size limits, review SLA.
 
 ### 3. Draft the onboarding guide
@@ -78,34 +84,49 @@ Structure:
 Produce a text diagram or Mermaid flowchart:
 
 - Top-level modules and their responsibilities.
+
 - Key data flows (request → handler → service → DB).
+
 - External integrations (queues, APIs, identity providers).
 
 ### 5. Add PR workflow
 
 - How to open a PR (branch from main, PR template, label).
+
 - Review expectations (who reviews, SLA, number of approvals).
+
 - Merge strategy (squash, rebase, or merge commit).
+
 - CI gates to pass before merge.
 
 ### 6. Verify accuracy
 
 - Follow the setup steps from scratch in a clean environment (or ask a new joiner to).
+
 - Check that all commands are correct.
+
 - Check that conventions reflect current team practice.
 
 ## Self-check
 
 - [ ] All setup steps copy/paste-ready and verified.
+
 - [ ] Architecture overview covers all top-level modules.
+
 - [ ] Key data flows documented.
+
 - [ ] Team conventions sourced from actual config files (not assumed).
+
 - [ ] PR workflow matches current CI gates.
+
 - [ ] Troubleshooting section covers the top 3 common issues.
 
 ## Outputs
 
 - Onboarding guide (Markdown, copy/paste-ready).
+
 - Setup checklist (numbered, verified).
+
 - Architecture overview (text diagram or Mermaid).
+
 - PR workflow summary.

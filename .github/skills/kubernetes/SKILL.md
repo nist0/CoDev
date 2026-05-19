@@ -3,14 +3,15 @@ name: kubernetes
 description: Kubernetes workload triage — workload spec review, resource limits, probes, RBAC, logs, and rollback.
 argument-hint: "[namespace] [workload]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Kubernetes (K8s) (Elite)
 
 ## When to use
 
 - Deploying, updating, or troubleshooting Kubernetes workloads.
+
 - Defining resource limits, probes, and RBAC.
 
 ## Procedure
@@ -79,15 +80,23 @@ kubectl rollout status deploy/<name> -n <ns>         # verify
 ## Self-check
 
 - [ ] Context confirmed before any command.
+
 - [ ] All workloads have resource requests AND limits.
+
 - [ ] Readiness and liveness probes defined.
+
 - [ ] Pod events reviewed for scheduling/image errors.
+
 - [ ] RBAC checked if access issues.
+
 - [ ] Rollback verified with `rollout status`.
 
 ## Outputs
 
 - Triage checklist.
+
 - Common failure modes + fixes table.
+
 - Rollback procedure.
+
 - Workload spec requirements.

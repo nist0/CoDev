@@ -2,15 +2,17 @@
 name: new-skill
 description: Create a new reusable skill folder (SKILL.md + minimal assets) following repo conventions.
 agent: promptsmith
-argument-hint: "skillId=<kebab> theme=<text> scope=<when-to-use>"
----
 
+## argument-hint: "skillId=<kebab> theme=<text> scope=<when-to-use>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Goal: create a NEW skill skeleton.
@@ -18,25 +20,37 @@ Goal: create a NEW skill skeleton.
 Inputs:
 
 - skillId: ${input:skillId:ex dotnet-ef-core}
+
 - theme: ${input:theme:ex Backend .NET}
+
 - scope: ${input:scope:when to use this skill}
 
 Requirements:
 
 - Create folder: `.github/skills/${input:skillId}/`
+
 - `SKILL.md` frontmatter `name` MUST equal `${input:skillId}`.
+
 - Provide: When to use / Procedure / Self-check
+
 - Create `examples/README.md`
 
 Minimal happy path:
 
 1. Run `/new-skill skillId=<kebab> theme=<text> scope=<when-to-use>`.
+
 2. Save both `.github/skills/<id>/SKILL.md` and `.github/skills/<id>/examples/README.md`.
+
 3. If the skill is routed directly, update the relevant `routing/*.yaml` files in the same change.
+
 4. Validate locally before PR review:
+
    - `python scripts/validate-customization-registry.py`
+
    - `python scripts/validate-readme-registry.py`
+
    - `python scripts/validate-markdown-lint.py`
+
    - `python scripts/validate-route-smoke.py` when routing changed
 
 Minimal example:

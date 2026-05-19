@@ -3,16 +3,19 @@ name: cli-platform-analysis
 description: Full static analysis of a .NET CLI platform project — GH workflow files, Bicep/ARM/Terraform infra, solution structure, CLI surface, test projects, and existing docs — producing docs/project-context.md as the living context document for all subsequent task prompts.
 argument-hint: "[repo-root: .] [output: docs/project-context.md]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # CLI Platform Analysis (Full Static Analysis) (Elite)
 
 ## When to use
 
 - CoDev bootstrap is verified (`validate-route-smoke.py` passed).
+
 - You are starting work on the CLI platform project for the first time.
+
 - `docs/project-context.md` does not yet exist or is stale (older than one sprint).
+
 - A major architectural change, new workflow, or new Bicep resource has been merged.
 
 ## Procedure
@@ -71,6 +74,7 @@ For each `*.bicep`, `*.json` (ARM template), `*.tf`, or `*.tfvars` file found an
 **Goal**: Map the .NET solution — projects, layers, CLI framework, DI patterns, persistence.
 
 1. Read the `.sln` file — list all projects and their paths.
+
 2. For each `.csproj`, classify the layer role:
 
 | Layer | Indicators |
@@ -82,9 +86,13 @@ For each `*.bicep`, `*.json` (ARM template), `*.tf`, or `*.tfvars` file found an
 | Test | Project name ends in `.Tests`, `.IntegrationTests`, `.E2E`, `.Smoke` |
 
 1. Identify CLI framework (`System.CommandLine` / `Spectre.Console` / `CliFx` / custom) from `<PackageReference>` entries.
+
 1. Identify DI registration pattern: `builder.Services.AddXxx()` patterns in `Program.cs` or extension methods.
+
 1. Identify persistence layer: EF Core (`DbContext`), Dapper, raw ADO.NET, or none.
+
 1. Identify any OpenAPI / HTTP client generation: Kiota, NSwag, Refit, HttpClientFactory patterns.
+
 1. Note any `Directory.Build.props` or `Directory.Packages.props` — these control global settings.
 
 **Output section**: `## Solution Structure` in `docs/project-context.md`.
@@ -122,7 +130,9 @@ Note any naming convention inconsistencies (e.g. mixed `verb-noun` and `noun ver
 Additionally note:
 
 - Whether CI runs all test layers or only a subset.
+
 - Whether code coverage is measured and what the current threshold is.
+
 - Whether test data is managed via builders/fixtures or magic strings.
 
 **Output section**: `## Test Infrastructure` in `docs/project-context.md`.
@@ -204,11 +214,17 @@ Next action       : /cli-platform-task task="<your assigned task>"
 ## Self-check
 
 - [ ] All 7 steps completed; no section is empty or contains only placeholder text.
+
 - [ ] CLI Surface table has at least one row per top-level command.
+
 - [ ] Test Infrastructure section explicitly identifies coverage gaps (not just what exists).
+
 - [ ] CI/CD Pipeline section identifies all secrets by name and all deployment targets by environment.
+
 - [ ] Infrastructure section identifies all environments and flags any drift (resources in workflows but not in Bicep).
+
 - [ ] `docs/project-context.md` committed to the repo on the current branch.
+
 - [ ] ≤10-line summary presented for team review.
 
 ## Refresh cadence
@@ -225,7 +241,11 @@ Next action       : /cli-platform-task task="<your assigned task>"
 ## 🏆 Elite Section
 
 - **Workflow secret audit**: While scanning workflows, flag any secret referenced in `${{ secrets.* }}` that is not documented in a secrets inventory (e.g. a `docs/secrets-inventory.md`). Open a GitHub issue for each undocumented secret — undocumented secrets are a rotation and rotation-failure risk.
+
 - **Bicep drift detection**: After Step 2, cross-reference resource types found in Bicep files against `az resource list -g <rg> -o table` (if you have read access). Resources in Azure but not in Bicep are unmanaged — flag each as a drift issue.
+
 - **Test gap → issue**: For each coverage gap identified in Step 5, open a GitHub issue tagged `area:testing` before starting the first task. Tracking gaps publicly prevents them from being forgotten across sprint boundaries.
+
 - **CLI surface naming audit**: If Step 4 reveals mixed naming conventions across commands, open a UX debt issue before adding any new commands. A consistent naming convention is much cheaper to establish before the surface grows.
+
 - **Action pin audit**: If Step 1 reveals unpinned third-party actions (using mutable tags like `@v3` instead of full SHA), open a security issue for each unpinned action — this is a supply-chain risk.

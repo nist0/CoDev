@@ -3,16 +3,19 @@ name: rest-api-bootstrap
 description: Bootstrap a REST API project from zero — curated GitHub template repos, dotnet/pip/cookiecutter CLI commands, and quality snippet sources for C# (.NET), Python (FastAPI/Flask), and Bash (curl/jq client patterns).
 argument-hint: "[stack: dotnet|python|bash] [style: minimal|clean-arch|full-stack]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # REST API Bootstrap (Elite)
 
 ## When to use
 
 - Starting a new REST API project from scratch in C#, Python, or Bash.
+
 - Choosing a quality GitHub template or scaffolding approach for a given stack.
+
 - Looking for authoritative snippet sources and starter patterns.
+
 - Want a ready-to-run first commit in < 5 minutes.
 
 ---
@@ -275,10 +278,15 @@ public override void Configure()
 **Why this wins:**
 
 1. **FastEndpoints** eliminates the #1 pain point of minimal APIs (lambda sprawl) while matching raw ASP.NET Core throughput in benchmarks (TechEmpower Round 22).
+
 2. **`FastEndpoints.Swagger`** sub-package wires Scalar + OpenAPI doc generation automatically — no separate `AddOpenApi()` plumbing needed.
+
 3. **`FastEndpoints.Security`** adds JWT bearer + cookie auth + fine-grained permissions in < 5 lines — no manual `AddAuthentication().AddJwtBearer()` ceremony.
+
 4. **Serilog** is the de-facto standard (.NET ecosystem, 500M+ NuGet downloads); every sink you'll ever need exists.
+
 5. **ErrorOr** keeps domain errors as typed values — `ErrorOr<T>` maps to `SendErrorsAsync()` in FastEndpoints and to `Results.Problem()` in vanilla APIs without any infrastructure code.
+
 6. The whole stack takes < 10 minutes to wire and generates code that Copilot autocompletes accurately and consistently.
 
 **When to drop this and go Clean Architecture instead:** your domain has > 3 bounded contexts, you have > 3 developers, or you need event sourcing / domain events — at that point, the CQRS heavy stack wins on long-term maintainability.
@@ -291,7 +299,9 @@ dotnet new aspire-starter -n MyApp
 ```
 
 - Repo: <https://github.com/dotnet/aspire>
+
 - Samples: <https://github.com/dotnet/aspire-samples>
+
 - Best for: multi-service setups requiring service discovery, health dashboards, and OpenTelemetry out of the box.
 
 ### Tier 3 — Community Clean Architecture templates
@@ -566,14 +576,21 @@ esac
 ## Self-check
 
 - [ ] Chosen template has an active maintainer (commits within 6 months).
+
 - [ ] Template is pinned to a compatible language/framework version.
+
 - [ ] Secrets and credentials are injected via env vars, not hardcoded.
+
 - [ ] OpenAPI/Swagger is available out of the box or added immediately.
+
 - [ ] A health endpoint (`/health` or `/healthz`) is included.
+
 - [ ] Tests pass on a fresh clone (`dotnet test` / `pytest` / `bats`).
 
 ## Outputs
 
 - **Chosen template URL + clone/install command** for the selected stack.
+
 - **First-run commands** to confirm the API is live.
+
 - **Decision rationale** (one sentence: why this template over alternatives).

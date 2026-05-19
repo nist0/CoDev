@@ -2,14 +2,17 @@
 name: triage-error
 description: "Triage an error: repro steps, ranked hypotheses, validation plan, fix options, verification checklist."
 agent: "Reliability"
-argument-hint: "error=<message or stack> env=<dev|staging|prod> service=<name>"
----
+
+## argument-hint: "error=<message or stack> env=<dev|staging|prod> service=<name>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Act as a Reliability engineer and triage the error.
@@ -17,11 +20,17 @@ Act as a Reliability engineer and triage the error.
 Include:
 
 - Minimal reproduction steps (env, versions, input)
+
 - 3–5 ranked hypotheses (likelihood × cost to validate)
+
 - Validation steps per hypothesis
+
 - Fix options (mitigation vs remediation)
+
 - Verification checklist (local + CI)
+
 - Observed facts versus assumptions split
+
 - Escalation criteria if top hypotheses are invalidated
 
 ## Agent delegation chain

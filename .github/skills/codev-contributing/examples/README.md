@@ -54,11 +54,13 @@ teardown, and troubleshooting.
 All validators pass locally:
 
 ```bash
+
 python scripts/validate-route-smoke.py          # 29/29 cases
 python scripts/validate-customization-registry.py  # PASS
 python scripts/validate-readme-registry.py        # PASS
 python scripts/validate-routing-coverage.py       # PASS
 python scripts/validate-markdown-lint.py          # 0 errors
+
 ```
 
 Closes #105
@@ -66,7 +68,9 @@ Closes #105
 ## Example 3: upstream sync after merge (PowerShell)
 
 ```powershell
+
 # After your PR is merged to CoDev main:
+
 Set-Location tools/codev
 git fetch origin main
 git checkout origin/main
@@ -79,4 +83,5 @@ python tools/codev/scripts/validate-route-smoke.py
 git add tools/codev codev-lock.json .github/copilot-instructions.md
 git commit -m "chore: update CoDev submodule (includes fix for #N)"
 git push
+
 ```

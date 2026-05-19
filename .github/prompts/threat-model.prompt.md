@@ -2,15 +2,17 @@
 name: threat-model
 description: "Run a structured STRIDE threat model on a described system: enumerate assets, map trust boundaries, identify and score threats, define mitigations and residual risk."
 agent: "Security"
-argument-hint: "system=<description> boundaries=<list> actors=<list>"
----
 
+## argument-hint: "system=<description> boundaries=<list> actors=<list>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Apply the procedure from `.github/skills/threat-modeling/SKILL.md`.
@@ -22,8 +24,11 @@ Act as the Security agent and run a complete STRIDE threat model for the describ
 Collect from the user (ask if missing):
 
 - **System description**: what the system does, its components, and data it handles
+
 - **Trust boundaries**: where privilege or authentication changes (e.g. browser→API, API→DB, user→admin)
+
 - **External actors**: who/what interacts with the system (users, services, third-party APIs)
+
 - **Data sensitivity**: what categories of data are processed (PII, credentials, financial, public)
 
 ## Procedure
@@ -37,7 +42,9 @@ List all significant assets: data stores, services, queues, secrets vaults, exte
 For each boundary, describe:
 
 - What crosses it (data, credentials, commands)
+
 - Which actors initiate the crossing
+
 - What authentication/authorization controls exist today
 
 ### Step 3 — STRIDE analysis per boundary
@@ -92,7 +99,9 @@ Critical: N | High: N | Medium: N | Low: N
 ## Security constraints (always apply)
 
 - Never output secrets, tokens, or credentials — even as examples.
+
 - Flag any finding that involves credential exposure as `Critical` immediately.
+
 - Follow the threat surface template from `security.instructions.md`.
 
 ## Agent delegation chain

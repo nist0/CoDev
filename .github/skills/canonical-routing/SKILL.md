@@ -3,15 +3,17 @@ name: canonical-routing
 description: Deterministic routing using capability + domain matrix — classification, fallback, and handoff.
 argument-hint: "[user-request]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Canonical Routing (Elite)
 
 ## When to use
 
 - You want to decide which agent, prompt, and skills to use for a request.
+
 - The request crosses multiple domains and needs a principled classification.
+
 - You are building or validating routing rules in `routing/*.yaml`.
 
 ## Procedure
@@ -19,8 +21,11 @@ disable-model-invocation: false
 ### 1. Request decomposition
 
 1. Read the full request.
+
 2. Extract the **primary intent** (the main action the user wants).
+
 3. Extract the **context signals** (technology, repo area, platform, urgency).
+
 4. If the request contains multiple distinct tasks: decompose and route each independently.
 
 ### 2. Capability classification
@@ -76,11 +81,17 @@ Never invent a recommendation outside the matrix without noting it as a fallback
 Always return:
 
 - Selected capability ID.
+
 - Selected domain ID (or `unknown`).
+
 - Recommended agent.
+
 - Recommended prompt(s).
+
 - Recommended skill(s) (full path).
+
 - Rationale: 1–3 bullets.
+
 - Next actions: 1–3 concrete steps.
 
 ### 6. Routing maintenance
@@ -88,8 +99,11 @@ Always return:
 When a request cannot be routed (no matrix rule matches):
 
 1. Flag the gap.
+
 2. Propose a new rule: capability + domain → agent + prompts.
+
 3. Provide a smoke-test phrase for `routing/route-smoke-tests.yaml`.
+
 4. Handoff to PromptSmith to create the rule end-to-end.
 
 ## Smoke test validation
@@ -103,15 +117,23 @@ python scripts/validate-route-smoke.py
 ## Self-check
 
 - [ ] Capability matched to an ID in `routing/capabilities.yaml`.
+
 - [ ] Domain matched to an ID in `routing/domains.yaml` (or `unknown` explicitly stated).
+
 - [ ] Matrix rule exists; if not, gap flagged.
+
 - [ ] Recommended agent exists in `.github/agents/`.
+
 - [ ] Recommended prompt exists in `.github/prompts/`.
+
 - [ ] Smoke tests pass after any routing change.
 
 ## Outputs
 
 - Routing decision (capability + domain + agent + prompts + skills).
+
 - Rationale and next actions.
+
 - Routing gap report (if no matrix rule found).
+
 - New rule proposal (when gap identified).

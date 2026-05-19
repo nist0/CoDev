@@ -3,7 +3,9 @@
 Runnable example files live alongside this README:
 
 - `simple/Dockerfile` -- Python single-stage example (non-root, EXPOSE 8080)
+
 - `multi-stage/Dockerfile` -- Node.js two-stage example (build + runtime, HEALTHCHECK)
+
 - `docker-compose.yml` -- dev compose wiring both examples together
 
 ---
@@ -68,8 +70,11 @@ ENTRYPOINT ["dotnet", "MyApi.dll"]
 **Why each rule exists**:
 
 - Layer order: `csproj` copied first so NuGet restore is cached when only source changes.
+
 - Digest-pinned base image: `@sha256:...` guarantees reproducible builds and prevents upstream surprise updates.
+
 - Non-root user: limits blast radius of any container escape or RCE.
+
 - `.dockerignore`: excludes `.git` history, local secrets, and build artefacts from the build context, reducing context size and preventing accidental secret leakage.
 
 ---
@@ -119,6 +124,9 @@ CMD ["node", "dist/index.js"]
 ## Expected routing shape
 
 - Domain: `devops-cloud`
+
 - Capability: `automation` (for authoring new Dockerfiles) or `code-analysis` (for reviewing existing ones)
+
 - Agent: `DevOps/Cloud`
+
 - Skill invoked: `docker`

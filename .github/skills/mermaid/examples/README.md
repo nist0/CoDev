@@ -123,8 +123,10 @@ Always add a prose description before or after complex diagrams:
 The following diagram shows the OAuth 2.0 authorization code flow used by the web application.
 
 ```mermaid
+
 sequenceDiagram
     ...
+
 ```
 
 _The app exchanges the authorization code for an access token server-side to avoid exposing secrets to the browser._

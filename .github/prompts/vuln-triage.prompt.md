@@ -2,15 +2,17 @@
 name: vuln-triage
 description: "Triage a CVE, dependency vulnerability, or code-level injection risk: classify severity, identify affected surface, recommend fix timeline and version."
 agent: "Security"
-argument-hint: "cve=<CVE-ID or package@version> context=<affected service or codebase>"
----
 
+## argument-hint: "cve=<CVE-ID or package@version> context=<affected service or codebase>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Apply the procedure from `.github/skills/threat-modeling/SKILL.md`.
@@ -22,8 +24,11 @@ Act as the Security agent and triage the described vulnerability.
 Collect from the user (ask if missing):
 
 - **Vulnerability identifier**: CVE ID, package name + version, or a description of the code issue
+
 - **Affected service/component**: which part of the system uses this dependency or code
+
 - **Runtime exposure**: is this dependency reachable from an untrusted input path?
+
 - **Current version in use** (for dependency CVEs)
 
 ## Procedure
@@ -46,7 +51,9 @@ Cross-reference against CVSS score if a CVE ID is provided; adjust based on actu
 Map the vulnerability to the system's trust model:
 
 - Is the vulnerable code on a network-reachable path?
+
 - Does it process untrusted input (HTTP body, file upload, environment variable)?
+
 - Does it run with elevated privileges?
 
 ### Step 3 — Recommend fix
@@ -54,7 +61,9 @@ Map the vulnerability to the system's trust model:
 Priority:
 
 1. **Patch/upgrade**: exact target version that fixes the issue
+
 2. **Workaround**: configuration change, feature disable, input sanitization
+
 3. **Compensating control**: WAF rule, network policy, audit logging
 
 ### Step 4 — Define timeline
@@ -71,7 +80,9 @@ Priority:
 For dependency CVEs, also check:
 
 - Are transitive dependents affected?
+
 - Is the fix in a lockfile-pinned version range?
+
 - Does the fix introduce a breaking change?
 
 ## Output format
@@ -102,7 +113,9 @@ For dependency CVEs, also check:
 ## Security constraints
 
 - Never echo back any secret value found in code snippets provided.
+
 - If a credential is visible in provided context: immediately flag as `Critical` and emit rotation guidance before completing the rest of the triage.
+
 - Follow supply chain guidance from `security.instructions.md`.
 
 ## Agent delegation chain

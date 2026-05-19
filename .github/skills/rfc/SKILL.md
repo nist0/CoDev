@@ -3,14 +3,15 @@ name: rfc
 description: Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan.
 argument-hint: "[proposal-title] [scope]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # RFC (Request For Comments) (Elite)
 
 ## When to use
 
 - You need to propose a change that impacts architecture, APIs, or team workflows.
+
 - You want early feedback before implementation.
 
 ## Workflow
@@ -26,14 +27,21 @@ disable-model-invocation: false
 ## Self-check
 
 - [ ] Problem statement is one paragraph (not a solution dressed as a problem).
+
 - [ ] Non-goals explicitly listed (sets scope boundaries).
+
 - [ ] At least 2 alternatives considered (including "do nothing").
+
 - [ ] Risks section addresses: technical, operational, security, team impact.
+
 - [ ] Rollout plan includes rollback strategy.
+
 - [ ] Open questions listed for reviewers to answer.
 
 ## Outputs
 
 - RFC document outline (copy/paste-ready).
+
 - Decision criteria and tradeoffs list.
+
 - Next steps for validation/prototyping.

@@ -3,8 +3,8 @@ name: powershell
 description: PowerShell automation — error handling, param validation, idempotency, WhatIf support, and PSScriptAnalyzer.
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # PowerShell Automation (Elite)
 
@@ -43,6 +43,7 @@ param(
 ### 3. Idempotency
 
 - Scripts must be safe to run multiple times without side effects.
+
 - Check preconditions before acting:
 
 ```powershell
@@ -81,14 +82,21 @@ Fix all `Error` and `Warning` severity findings before committing.
 ## Self-check
 
 - [ ] `$ErrorActionPreference = 'Stop'` and `Set-StrictMode -Version Latest` set.
+
 - [ ] All inputs in `param()` block with validation attributes.
+
 - [ ] Script is idempotent (safe to run multiple times).
+
 - [ ] Destructive operations gated with `SupportsShouldProcess` / `ShouldProcess`.
+
 - [ ] Output is structured objects (not raw `Write-Host` for data).
+
 - [ ] `PSScriptAnalyzer` passes with no Error or Warning severity.
 
 ## Outputs
 
 - Script skeleton with param block and safety defaults.
+
 - Common patterns (retry, confirm prompt, structured output).
+
 - PSScriptAnalyzer integration CI snippet.

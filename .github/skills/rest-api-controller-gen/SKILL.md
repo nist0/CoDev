@@ -3,15 +3,17 @@ name: rest-api-controller-gen
 description: Generate a production-ready ASP.NET Core REST API controller (CRUD) from a description, OpenAPI JSON contract, or resource theme — with MediatR handlers, FluentValidation, ProblemDetails, OpenAPI annotations, versioning, and an integration-test checklist.
 argument-hint: "[input-mode: description|openapi|theme] [resource-name-or-spec]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # REST API Controller Generation (Elite)
 
 ## When to use
 
 - You need a complete, production-ready ASP.NET Core CRUD controller for a new resource.
+
 - You have one of three inputs: a natural-language description, an OpenAPI JSON contract, or a plain resource name / theme.
+
 - The output must be immediately compilable and follow the team's architecture (MediatR, ProblemDetails, FluentValidation).
 
 ## Input modes
@@ -25,7 +27,9 @@ Example: *"A Products resource with Id (Guid), Name (string, required, max 200),
 Steps:
 
 1. Parse resource name, field names, types, and validation constraints from the description.
+
 2. Derive REST routes (`GET /api/v{version}/products`, `GET /api/v{version}/products/{id}`, `POST`, `PUT`, `DELETE`).
+
 3. Proceed to [Controller generation steps](#controller-generation-steps).
 
 ### Mode 2 — OpenAPI JSON contract
@@ -35,9 +39,13 @@ Provide a path to an OpenAPI JSON file or paste an inline snippet.
 Steps:
 
 1. Identify the primary resource from `paths` and `components/schemas`.
+
 2. Extract operations (GET, POST, PUT, DELETE) and their request/response schemas.
+
 3. Map schema properties to C# types (see table below).
+
 4. Extract validation rules from `minLength`, `maxLength`, `minimum`, `maximum`, `pattern`, `required` fields.
+
 5. Proceed to [Controller generation steps](#controller-generation-steps).
 
 OpenAPI → C# type mapping:
@@ -61,7 +69,9 @@ Provide just the resource name (e.g. `Orders`, `Invoices`, `BlogPosts`).
 Steps:
 
 1. Assume a standard resource shape: `Id` (Guid), `Name` (string, required), `CreatedAt` (DateTimeOffset), `UpdatedAt` (DateTimeOffset, nullable).
+
 2. Derive REST routes as in Mode 1.
+
 3. Proceed to [Controller generation steps](#controller-generation-steps).
 
 ## Controller generation steps
@@ -91,8 +101,11 @@ public sealed record ProductResponse(
 Rules:
 
 - Use `sealed record` for DTOs — immutable, structural equality by default.
+
 - Do not expose domain entities directly; always map through a DTO.
+
 - Use `DateTimeOffset` (not `DateTime`) for timestamps.
+
 - Nullable fields: use `Type?` syntax.
 
 ### Step 2 — FluentValidation validators
@@ -270,7 +283,9 @@ Add per-endpoint authorization attributes based on the resource sensitivity. Def
 Rules:
 
 - Read endpoints (`GET`) are typically `[AllowAnonymous]` or low-privilege.
+
 - Write endpoints (`POST`, `PUT`, `DELETE`) require authenticated + scoped policy.
+
 - Always add `[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]` and `403` where applicable.
 
 ### Step 6 — Versioning
@@ -390,32 +405,53 @@ public sealed class ProductsControllerTests
 **Required test cases**:
 
 - `GET /products` → `200 OK`, response is a list
+
 - `GET /products/{id}` (known) → `200 OK`, correct body
+
 - `GET /products/{id}` (unknown) → `404 Not Found` + `ProblemDetails`
+
 - `POST /products` (valid) → `201 Created`, `Location` header set
+
 - `POST /products` (invalid) → `400 Bad Request` + `ValidationProblemDetails`
+
 - `PUT /products/{id}` (known, valid) → `200 OK`
+
 - `PUT /products/{id}` (unknown) → `404 Not Found`
+
 - `DELETE /products/{id}` (known) → `204 No Content`
+
 - `DELETE /products/{id}` (unknown) → `404 Not Found`
+
 - (if auth) Unauthenticated request to write endpoint → `401 Unauthorized`
 
 ## Self-check
 
 - [ ] DTOs use `sealed record`; no naked entity exposure.
+
 - [ ] `AbstractValidator<TRequest>` created for every write DTO.
+
 - [ ] `ProblemDetails` / `ValidationProblemDetails` on all error paths.
+
 - [ ] All controller actions have `[ProducesResponseType]` for each documented status code.
+
 - [ ] XML doc comments on every action — renders in Swagger UI.
+
 - [ ] `CancellationToken` threaded through all async calls.
+
 - [ ] Versioning route template applied (`api/v{version:apiVersion}/...`).
+
 - [ ] Authorization attribute applied (even if `[AllowAnonymous]` — explicit is safe).
+
 - [ ] Integration test cases cover all 4 CRUD operations and error paths.
 
 ## Advanced patterns
 
 - **Idempotency keys**: for `POST` operations on financial or external-trigger resources, add `Idempotency-Key` header handling via a pipeline behavior.
+
 - **Optimistic concurrency**: add `ETag` / `If-Match` header support for `PUT` when contention risk is high.
+
 - **Pagination**: prefer cursor-based pagination over offset for large datasets; add `X-Total-Count` response header.
+
 - **HATEOAS**: for API-first designs, add `_links` to responses using a `LinkGenerator`-backed utility.
+
 - **Minimal API alternative**: if endpoint count is small (< 5), consider `MapGet` / `MapPost` with `IResult` returns instead of a controller class.

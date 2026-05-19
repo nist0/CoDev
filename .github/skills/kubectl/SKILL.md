@@ -3,14 +3,15 @@ name: kubectl
 description: kubectl operational cheatsheet — context/namespace management, workload triage, logs, events, and rollouts.
 argument-hint: "[namespace or resource name]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # kubectl Cheatsheet (Operational) (Elite)
 
 ## When to use
 
 - You need fast commands for triage and verification.
+
 - You want consistent, copy/paste-friendly kubectl usage.
 
 ## Workflow
@@ -179,14 +180,21 @@ kubectl run dnstest --image=busybox --restart=Never -n <ns> --rm -it -- nslookup
 ## Self-check
 
 - [ ] Context confirmed before any destructive action (`kubectl config current-context`).
+
 - [ ] Previous container logs checked (not just current) for crash loop analysis.
+
 - [ ] Events reviewed in the incident time window.
+
 - [ ] Rollout status confirmed after upgrade (`rollout status`).
+
 - [ ] `kubectl diff` run before `kubectl apply` on any manifest.
+
 - [ ] `kubectl drain` used (not delete) before node maintenance.
+
 - [ ] Secret values decoded only in trusted shell; never logged.
 
 ## Outputs
 
 - A minimal "triage command set".
+
 - Rollout and rollback commands.

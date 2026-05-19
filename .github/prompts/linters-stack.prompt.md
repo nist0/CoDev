@@ -2,35 +2,45 @@
 name: linters-stack
 description: "Design or improve polyglot linter strategy and CI quality gates across C/C++/C#/Python/Bash/Markdown."
 agent: "Automation/Scripting"
-argument-hint: "stack=<list> scope=<paths> ci=<github-actions|other>"
----
 
+## argument-hint: "stack=<list> scope=<paths> ci=<github-actions|other>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Inputs:
 
 - stack: ${input:stack:C/C++, C#, Python, Bash, Markdown}
+
 - scope: ${input:scope:repo paths or modules}
+
 - ci: ${input:ci:github-actions|other}
 
 Requirements:
 
 - Propose linters and formatters per language with rationale.
+
 - Provide local commands and CI job sequencing (fast fail first).
+
 - Include baseline/adoption strategy for legacy repos.
+
 - Include false-positive management and suppression policy.
 
 Output:
 
 - linter matrix (language → tools → command)
+
 - adoption plan (phase 1/2/3)
+
 - CI quality-gate plan
+
 - verification and rollback checklist
 
 ## Agent delegation chain

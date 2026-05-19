@@ -3,14 +3,15 @@ name: python
 description: Python scripting — argparse, error handling, idempotency, type hints, and clean exit codes.
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Python Scripting (Elite)
 
 ## When to use
 
 - Writing Python scripts for automation, data processing, or tooling.
+
 - CLI tools and repo utilities.
 
 ## Procedure
@@ -58,13 +59,17 @@ except FileNotFoundError as exc:
 ```
 
 - Use specific exception types; avoid bare `except:`.
+
 - Always exit with non-zero code on failure.
+
 - Write errors to `stderr`; data to `stdout`.
 
 ### 3. Idempotency
 
 - Check preconditions before writing files or modifying state.
+
 - Use `if path.exists(): ...` before creating.
+
 - Prefer `pathlib.Path` over `os.path`.
 
 ### 4. Type hints
@@ -75,19 +80,27 @@ def process(items: list[str]) -> dict[str, int]:
 ```
 
 - Add type hints to all function signatures.
+
 - Run `mypy` or `ruff check --select ANN` to enforce.
 
 ## Self-check
 
 - [ ] `argparse` (or `click`) used for all inputs; no `sys.argv` parsing.
+
 - [ ] Usage documented in module docstring or `--help`.
+
 - [ ] Errors written to `stderr`; non-zero exit on failure.
+
 - [ ] Script is idempotent (safe to run multiple times).
+
 - [ ] Type hints on all function signatures.
+
 - [ ] `ruff check` passes with no errors.
 
 ## Outputs
 
 - Script skeleton with argparse.
+
 - Error handling patterns.
+
 - Usage examples.

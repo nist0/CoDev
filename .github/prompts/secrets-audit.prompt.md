@@ -2,15 +2,17 @@
 name: secrets-audit
 description: "Audit a file, PR diff, or codebase description for secrets, tokens, credentials, and private keys. Every finding is Critical — emit rotation guidance immediately."
 agent: "Security"
-argument-hint: "scope=<file path | PR diff | description of codebase area>"
----
 
+## argument-hint: "scope=<file path | PR diff | description of codebase area>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Apply the procedure from `.github/skills/threat-modeling/SKILL.md`.
@@ -27,7 +29,9 @@ Do not wait until the end to flag findings — emit rotation guidance for each f
 Collect from the user (ask if missing):
 
 - **Scope**: file path(s), PR diff, or a description of the codebase area to audit
+
 - **Environment context**: which environment (dev / staging / prod) this secret may be active in
+
 - **Secret types to prioritize**: API keys, database credentials, private keys, OAuth tokens, webhook secrets
 
 ## Procedure
@@ -51,7 +55,9 @@ Identify any of the following in the provided content:
 Distinguish secrets from:
 
 - Placeholder examples (`<YOUR_KEY_HERE>`, `REPLACE_ME`, `xxx`)
+
 - Test/mock values in unit tests with clearly fake data (e.g. `"test-token-123"` in a test file)
+
 - Public non-sensitive identifiers (e.g. public OAuth client IDs without secrets)
 
 Document your reasoning for any ambiguous case.
@@ -61,9 +67,13 @@ Document your reasoning for any ambiguous case.
 For each confirmed finding:
 
 1. Report location (file + line if available)
+
 2. Type of secret
+
 3. Severity: always `Critical`
+
 4. **Rotation guidance** — specific steps to rotate this secret type
+
 5. Remediation: how to replace with environment variable or secrets manager reference
 
 ### Step 4 — Root cause classification
@@ -71,7 +81,9 @@ For each confirmed finding:
 After all findings:
 
 - Was this a missing `.gitignore` entry?
+
 - Was this a hardcoded value that should use `os.environ` / `IConfiguration` / Key Vault?
+
 - Was this a test credential that escaped to production code?
 
 ### Step 5 — Prevention recommendations
@@ -79,8 +91,11 @@ After all findings:
 Emit ≥1 concrete prevention control:
 
 - `.gitignore` pattern to add
+
 - Pre-commit hook (e.g. `detect-secrets`, `gitleaks`)
+
 - CI gate rule
+
 - Secrets manager migration path
 
 ## Output format
@@ -111,7 +126,9 @@ on the full commit history as a follow-up.
 ## Security constraints
 
 - **Never echo back a found secret value** in the output — reference it by type and location only.
+
 - Treat any ambiguous long random string (≥20 chars, high entropy) as a probable secret unless proven otherwise.
+
 - Follow secrets hygiene rules from `security.instructions.md`.
 
 ## Agent delegation chain

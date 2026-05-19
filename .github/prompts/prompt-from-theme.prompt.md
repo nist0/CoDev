@@ -2,25 +2,29 @@
 name: prompt-from-theme
 description: Generate a high-quality prompt file for a given theme, using stable structure and inputs/outputs.
 agent: promptsmith
-argument-hint: "theme=<text> intent=<what the prompt should do>"
----
 
+## argument-hint: "theme=<text> intent=<what the prompt should do>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Inputs:
 
 - theme: ${input:theme:ex Azure AKS}
+
 - intent: ${input:intent:ex generate a troubleshooting checklist}
 
 Requirements:
 
 - Create a `.github/prompts/<kebab>.prompt.md`
+
 - Include: Goal / Inputs / Requirements / Output format / Acceptance criteria
 
 Output: plan + file content + checklist.

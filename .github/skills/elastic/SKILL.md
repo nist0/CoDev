@@ -3,15 +3,17 @@ name: elastic
 description: Elasticsearch/Kibana/ELK - KQL queries, dashboards, alerting rules, and log analysis workflow.
 argument-hint: "[index pattern or log type]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # Elastic / Kibana / ELK (Elite)
 
 ## When to use
 
 - Querying logs in Elasticsearch/Kibana.
+
 - Building dashboards or alerting rules in Kibana.
+
 - Using KQL or Lucene for log analysis.
 
 ## KQL Syntax Reference
@@ -30,26 +32,31 @@ disable-model-invocation: false
 ### 1. Connect and orient
 
 - Kibana > Discover or Lens.
+
 - Select the correct index pattern and set time range to the incident window.
 
 ### 2. Apply KQL filters
 
 - Start broad; narrow with `field:value`, `AND`/`OR`, wildcards.
+
 - Pin useful filters for the session.
 
 ### 3. Drill into log entries
 
 - Inspect individual log fields; look for correlation IDs, trace IDs.
+
 - Use the `Fields` panel to identify high-cardinality fields.
 
 ### 4. Build visualization
 
 - Use Lens for aggregation (count, avg, percentile), bucket, and metric charts.
+
 - Save visualizations to a dashboard for the incident or recurring use.
 
 ### 5. Set up alert
 
 - Kibana rule (Observability or Stack) or legacy Watcher.
+
 - Alert on: error rate threshold, anomaly detection, SLO breach.
 
 ## Quick reference
@@ -98,7 +105,7 @@ POST <index>/_flush
 POST _reindex { "source": { "index": "old" }, "dest": { "index": "new" } }
 ```
 
-### Elastic APM — UI quick navigation
+### Elastic APM â€” UI quick navigation
 
 | Goal | Path in Kibana |
 |------|----------------|
@@ -111,7 +118,7 @@ POST _reindex { "source": { "index": "old" }, "dest": { "index": "new" } }
 | APM to Logs bridge | Trace view ? **Investigate ? View surrounding documents** |
 | Active alerting rules | APM ? Services ? <service> ? Alerts |
 
-### Common KQL patterns — production incidents
+### Common KQL patterns â€” production incidents
 
 ```kql
 # --- HTTP errors ---
@@ -139,16 +146,25 @@ kubernetes.pod.name: <pod-prefix>*
 ## Self-check
 
 - [ ] Time range scoped to the incident window (not "last 30 days" by default).
+
 - [ ] Correlation ID or trace ID used to link requests across services.
+
 - [ ] Unassigned shards checked via `_cat/shards` during degraded cluster state.
+
 - [ ] ILM explain used when index growth or rollover looks stuck.
+
 - [ ] Dashboard saved for repeatability.
+
 - [ ] Alert threshold validated against baseline (not guessed).
+
 - [ ] Alert notifications routed to correct channel (Slack, PagerDuty, etc.).
 
 ## Outputs
 
 - KQL query examples.
+
 - Elasticsearch REST API command set for cluster/shard triage.
+
 - Dashboard setup checklist.
+
 - Alert rule template.

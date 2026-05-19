@@ -3,14 +3,15 @@ name: pgadmin
 description: pgAdmin PostgreSQL UI — schema inspection, query plan analysis, migration validation, and safe DB operations.
 argument-hint: "[schema, table, or query to analyze]"
 user-invocable: true
-disable-model-invocation: false
----
+
+## disable-model-invocation: false
 
 # pgAdmin (PostgreSQL Admin UI) (Elite)
 
 ## When to use
 
 - You need to inspect schema, indexes, and query plans.
+
 - You want to validate migrations and troubleshoot DB behavior.
 
 ## Query Performance Checklist
@@ -28,11 +29,13 @@ disable-model-invocation: false
 ### 1. Connection setup
 
 - host/port/db/user; SSL settings as needed.
+
 - Prefer read-only user for analysis (never production admin for reads).
 
 ### 2. Schema inspection
 
 - Tables, columns, constraints, indexes.
+
 - Check for missing indexes on FK columns and frequently-filtered fields.
 
 ### 3. Query analysis
@@ -47,23 +50,31 @@ SELECT ...
 ### 4. Migration validation
 
 - Verify expected schema changes after migration.
+
 - Check: table/column existence, index creation, constraint correctness.
 
 ### 5. Safety
 
 - Avoid direct production mutations via pgAdmin; prefer read-only access.
+
 - Use transactions for any manual data fixes; `ROLLBACK` before `COMMIT`.
 
 ## Self-check
 
 - [ ] Read-only connection used for analysis (not admin/superuser).
+
 - [ ] `EXPLAIN (ANALYZE, BUFFERS)` used (not just `EXPLAIN`).
+
 - [ ] Missing indexes identified and remediation planned.
+
 - [ ] Migration validation confirmed (expected schema changes present).
+
 - [ ] No manual production mutation without a transaction and peer review.
 
 ## Outputs
 
 - DB inspection checklist.
+
 - Query performance investigation steps.
+
 - Migration validation checklist.

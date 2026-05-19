@@ -1,8 +1,8 @@
 ---
 name: "Brainstorming Governance"
 description: "Mandatory brainstorm-first gate for all non-trivial tasks: require elite ideation quality, scored option portfolio, execution handoff, and named specialist reviews."
-applyTo: "**"
----
+
+## applyTo: "**"
 
 # Brainstorming Governance
 
@@ -13,16 +13,23 @@ Brainstorming is **not opt-in**. It is the **required first phase** of any non-t
 **Non-trivial threshold** — this gate applies when ANY of the following is true:
 
 - The task touches more than one file.
+
 - The task introduces a new pattern, abstraction, or architectural concept.
+
 - The task has user-facing or API-contract impact.
+
 - The task has performance, security, or reliability implications.
+
 - The task has an implementation duration > 30 minutes.
 
 **Exempt tasks** (skip the gate only for these):
 
 - Single-file typo or whitespace fix.
+
 - Doc-only rewording with no structural change.
+
 - Plain config toggle with zero logic change.
+
 - Trivially reversible one-liner with no downstream effects.
 
 **Gate enforcement**: Before creating any GitHub issue, opening any branch, or writing any code, produce a structured brainstorm output (≥ 3 scored options). Only then proceed to issue creation.
@@ -42,16 +49,27 @@ This framework separates concerns across three layers — never duplicate policy
 ## Governance invariants
 
 - Require explicit objective, constraints, assumptions, and success metric before ideation begins.
+
 - Produce a balanced option portfolio (safe, adjacent, bold) before selecting finalists.
+
 - For finalists, require falsifiable hypothesis, evidence threshold, and kill criteria.
+
 - Convert output into issue-ready tasks with owner agent, dependencies, acceptance criteria, and verification steps.
+
 - Include GitHub project Kanban mapping for each task.
+
 - Specialist review lines **must** start with `(Agent: <name>)` and include verdict (`approved` or `rework required`).
+
 - For `rework required`, include exact gap and closure evidence — no open-ended rework.
+
 - Produce one brainstorming summary issue draft including:
+
   - all participating agents
+
   - key exchanges and decisions
+
   - shortlisted options and rationale
+
   - resulting tasks and project mapping
 
 ## Verdict contract (canonical tokens)
@@ -75,10 +93,15 @@ Examples:
 Before presenting options, verify:
 
 - [ ] At least one "safe" option (low risk, proven pattern)
+
 - [ ] At least one "adjacent" option (moderate risk, emerging practice)
+
 - [ ] At least one "bold" option (high risk, transformative potential)
+
 - [ ] Each option has a named owner agent
+
 - [ ] Each finalist has a falsifiable hypothesis and measurable success criterion
+
 - [ ] Kill criteria defined: what signal would cause us to abandon this option?
 
 ## Example: option portfolio entry
@@ -97,7 +120,11 @@ Before presenting options, verify:
 ## 🏆 Elite Section — Top 5% Brainstorming Practices
 
 - **Assumption mapping**: Before scoring options, list all assumptions made and assign confidence levels (high/medium/low). Low-confidence assumptions must become spikes before committing.
+
 - **Reversibility bias**: Prefer reversible options over irreversible ones at equal expected value. Document irreversible consequences explicitly in the option entry.
+
 - **Devil’s advocate round**: After producing finalists, require one agent to argue the strongest case *against* each finalist. If no strong counter-argument exists, the option is likely underspecified.
+
 - **Spike-then-decide pattern**: For high-uncertainty options, define a time-boxed spike (1–3 days) that produces a concrete artifact (benchmark, PoC, prototype) before committing to full implementation.
+
 - **Innovation accounting**: Track brainstorming outcomes across sessions. Did shortlisted ideas get implemented? What was the actual outcome vs. the hypothesis? Feed back into future sessions to calibrate confidence.

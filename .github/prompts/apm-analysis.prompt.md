@@ -2,21 +2,25 @@
 name: apm-analysis
 description: "APM analysis: trace/transaction breakdown, latency hotspots, error correlation, next instrumentation steps."
 agent: "Reliability"
-argument-hint: "service=<name> time-range=<window> symptom=<description>"
----
 
+## argument-hint: "service=<name> time-range=<window> symptom=<description>"
 
 Argument handling:
 
 - If arguments are provided, treat them as authoritative.
+
 - If arguments are omitted, infer missing values from the current workspace, active file, and session context.
+
 - If required details still cannot be inferred with high confidence, ask concise clarifying questions before proceeding.
+
 - Do not fail solely because arguments were omitted.
 
 Inputs:
 
 - service: ${input:service:service name or APM app}
+
 - time-range: ${input:time-range:e.g. last 15m / 2024-01-01T10:00}
+
 - symptom: ${input:symptom:latency spike|error rate|missing traces}
 
 Act as a Reliability engineer and analyze the APM data (traces/transactions/spans).
@@ -24,12 +28,19 @@ Act as a Reliability engineer and analyze the APM data (traces/transactions/span
 Output:
 
 - First symptom and most likely causal chain
+
 - Top latency contributors (by span/operation)
+
 - Error correlation (exceptions/status codes <-> trace IDs)
+
 - Next queries to run (transactions, traces, breakdowns)
+
 - Fix options (app/dependency/infra/config) + verification
+
 - Instrumentation improvements (labels, sampling, correlation IDs)
+
 - Facts versus assumptions split
+
 - Escalation criteria if verification fails
 
 ## Agent delegation chain

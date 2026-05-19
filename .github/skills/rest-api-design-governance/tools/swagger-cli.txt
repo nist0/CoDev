@@ -1,0 +1,11 @@
+# Tool: swagger-cli
+
+Use swagger-cli to validate and bundle OpenAPI/Swagger definitions.
+
+## Usage
+
+```sh
+swagger-cli validate openapi.yaml
+```
+
+- Validates OpenAPI contracts for correctness.

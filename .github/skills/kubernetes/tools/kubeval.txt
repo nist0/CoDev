@@ -1,0 +1,11 @@
+# Tool: kubeval
+
+Use kubeval to validate Kubernetes resource manifests for schema correctness.
+
+## Usage
+
+```sh
+kubeval deployment.yaml
+```
+
+- Validates resource definitions before applying.

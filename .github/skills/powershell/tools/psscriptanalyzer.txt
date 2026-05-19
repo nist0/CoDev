@@ -1,0 +1,12 @@
+# Tool: PSScriptAnalyzer
+
+Use PSScriptAnalyzer to lint and validate PowerShell scripts for best practices and code quality.
+
+## Usage
+
+```powershell
+Invoke-ScriptAnalyzer -Path my_script.ps1
+```
+
+- Reports errors, warnings, and style issues.
+- Integrate with CI for automated script validation.

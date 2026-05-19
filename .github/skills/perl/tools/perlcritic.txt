@@ -1,0 +1,12 @@
+# Tool: Perl::Critic
+
+Use Perl::Critic to lint and validate Perl scripts for best practices and code quality.
+
+## Usage
+
+```sh
+perlcritic my_script.pl
+```
+
+- Reports unsafe or non-idiomatic Perl code.
+- Integrate with CI for automated script validation.

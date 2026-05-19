@@ -1,0 +1,12 @@
+# Tool: mermaid-cli
+
+Use mermaid-cli to render and validate Mermaid diagrams from the command line.
+
+## Usage
+
+```sh
+mmdc -i diagram.mmd -o diagram.png
+```
+
+- Validates syntax and renders diagrams to images.
+- Useful for CI and documentation workflows.

@@ -84,7 +84,8 @@ Match context to a domain from `routing/domains.yaml`:
 
 1. Try `capability + domain` rule in `routing/matrix.yaml`.
 2. If no match: fall back to `capability-only` rule.
-3. Return: agent, prompt(s), skill(s).
+3. If no capability can be classified, use `Project Orchestrator` via the `project-orchestration` fallback route.
+4. Return: agent, prompt(s), skill(s).
 
 ### Step 5 — Delivery delegation (when PR/issue/review/merge is in scope)
 

@@ -1,0 +1,12 @@
+# Tool: dotnet CLI
+
+Use the .NET CLI to scaffold, build, and manage ASP.NET Core projects.
+
+## Usage
+
+```sh
+dotnet new webapi -n MyApi
+```
+
+- Scaffold new projects and controllers.
+- Run migrations and tests.

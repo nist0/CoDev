@@ -186,9 +186,9 @@ routing_rules:
       agent: Frontend
       prompts: ["explain-code"]
       skills:
-        - "react"
-        - "typescript"
-        - "js-testing"
+          - "react"
+          - "typescript"
+          - "js-testing"
 
   - when:
       capability: code-analysis
@@ -197,11 +197,11 @@ routing_rules:
       agent: DevOps/Cloud
       prompts: ["explain-code"]
       skills:
-        - "docker"
-        - "helm"
-        - "kubernetes"
-        - "az"
-        - "repo-understanding"
+          - "docker"
+          - "helm"
+          - "kubernetes"
+          - "az"
+          - "repo-understanding"
 
   - when:
       capability: code-analysis
@@ -210,7 +210,7 @@ routing_rules:
       agent: DevOps/Cloud
       prompts: ["explain-code"]
       skills:
-        - "cloud-web-hosting"
+          - "cloud-web-hosting"
 
   - when:
       capability: code-analysis
@@ -219,9 +219,10 @@ routing_rules:
       agent: Native/Systems
       prompts: ["explain-code"]
       skills:
-        - "c"
-        - "cpp"
-        - "repo-understanding"
+          - "c"
+          - "cpp"
+          - "contracts"
+          - "repo-understanding"
 
   - when:
       capability: code-analysis
@@ -230,8 +231,8 @@ routing_rules:
       agent: DevOps/Cloud
       prompts: ["explain-code"]
       skills:
-        - "github-actions"
-        - "repo-understanding"
+          - "github-actions"
+          - "repo-understanding"
 
   - when:
       capability: code-analysis
@@ -240,9 +241,9 @@ routing_rules:
       agent: Automation/Scripting
       prompts: ["explain-code"]
       skills:
-        - "python"
-        - "perl"
-        - "repo-understanding"
+          - "python"
+          - "perl"
+          - "repo-understanding"
 
   - when:
       capability: code-analysis
@@ -251,9 +252,9 @@ routing_rules:
       agent: Automation/Scripting
       prompts: ["explain-code"]
       skills:
-        - "bash"
-        - "powershell"
-        - "repo-understanding"
+          - "bash"
+          - "powershell"
+          - "repo-understanding"
 
   - when:
       capability: code-analysis
@@ -262,9 +263,9 @@ routing_rules:
       agent: Reliability
       prompts: ["explain-code"]
       skills:
-        - "elastic"
-        - "apm"
-        - "repo-understanding"
+          - "elastic"
+          - "apm"
+          - "repo-understanding"
 
   - when:
       capability: code-analysis
@@ -283,8 +284,8 @@ routing_rules:
       agent: Architect
       prompts: ["explain-code"]
       skills:
-        - "repo-understanding"
-        - "adr"
+          - "repo-understanding"
+          - "adr"
 
   - when:
       capability: code-analysis
@@ -293,8 +294,8 @@ routing_rules:
       agent: Architect
       prompts: ["explain-code"]
       skills:
-        - "llm-integration"
-        - "rag-patterns"
+          - "llm-integration"
+          - "rag-patterns"
 
   - when:
       capability: code-analysis
@@ -302,7 +303,7 @@ routing_rules:
       agent: Architect
       prompts: ["explain-code"]
       skills:
-        - "repo-understanding"
+          - "repo-understanding"
 
   # -------------------------
   # Documentation / Onboarding
@@ -368,9 +369,10 @@ routing_rules:
       agent: Native/Systems
       prompts: ["generate-docs-tree", "doc-lint-fix"]
       skills:
-        - "c"
-        - "cpp"
-        - "doc-qa"
+          - "c"
+          - "cpp"
+          - "doc-architecture-model"
+          - "doc-qa"
 
   - when:
       capability: docs-system
@@ -482,10 +484,11 @@ routing_rules:
       agent: Automation/Scripting
       prompts: ["test-plan", "write-tests", "linters-stack"]
       skills:
-        - "test-strategy"
-        - "bash"
-        - "powershell"
-        - "linters"
+          - "test-strategy"
+          - "bash"
+          - "powershell"
+          - "batch"
+          - "linters"
 
   - when:
       capability: testing-quality
@@ -604,9 +607,10 @@ routing_rules:
       agent: Delivery Lead
       prompts: ["pr-review"]
       skills:
-        - "pr-review"
-        - "delivery"
-        - "doc-qa"
+          - "pr-review"
+          - "delivery"
+          - "doc-architecture-model"
+          - "doc-qa"
 
   - when:
       capability: github-delivery

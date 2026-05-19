@@ -1,0 +1,12 @@
+# Tool: flake8
+
+Use flake8 to lint and validate Python scripts for style and code quality.
+
+## Usage
+
+```sh
+python -m flake8 my_script.py
+```
+
+- Reports PEP8 violations and common errors.
+- Integrate with CI for automated script validation.

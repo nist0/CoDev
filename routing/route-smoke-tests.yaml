@@ -1,5 +1,12 @@
 version: 1
 cases:
+  - request: "xyzzy frobnicator"
+    expect:
+      capability: project-orchestration
+      agent: Project Orchestrator
+      prompts: ["project-kickoff", "project-dispatch", "project-governance"]
+      skills: ["project-orchestration", "github-work-management"]
+
   - request: "create a mermaid flowchart for github"
     expect:
       capability: mermaid

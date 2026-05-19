@@ -160,10 +160,24 @@ def route(request: str, routing: dict[str, Any]) -> dict[str, Any]:
     capability, matched_alias = detect_capability(request, routing["aliases"])
     domain, matched_keyword = detect_domain(request, routing["domains"])
     if capability is None:
+        fallback_capability = "project-orchestration"
+        suggest = resolve_route(
+            fallback_capability,
+            domain,
+            routing["rules"],
+            routing["capabilities"],
+        )
         return {
-            "ok": False,
+            "ok": True,
             "request": request,
-            "error": "No capability matched. Try adding aliases or rephrasing.",
+            "capability": fallback_capability,
+            "matched_alias": None,
+            "domain": domain,
+            "matched_keyword": matched_keyword,
+            "agent": suggest.get("agent"),
+            "prompts": suggest.get("prompts") or [],
+            "skills": suggest.get("skills") or [],
+            "fallback": "No capability matched; using Project Orchestrator as the fallback agent.",
         }
     suggest = resolve_route(capability, domain, routing["rules"], routing["capabilities"])
     return {
@@ -200,7 +214,11 @@ def cmd_test_route(phrase: str, routing: dict[str, Any]) -> int:
 
     # Capability
     cap_line = GREEN(result["capability"])
-    alias_hint = DIM(f"  (matched alias: \"{result['matched_alias']}\")")
+    alias_hint = (
+        DIM(f"  (matched alias: \"{result['matched_alias']}\")")
+        if result.get("matched_alias")
+        else DIM("  (fallback)")
+    )
     print(f"  {BOLD('Capability')}   {cap_line} {alias_hint}")
 
     # Domain
@@ -214,6 +232,9 @@ def cmd_test_route(phrase: str, routing: dict[str, Any]) -> int:
     # Agent
     agent = result["agent"] or DIM("none")
     print(f"  {BOLD('Agent')}        {YELLOW(str(agent))}")
+
+    if result.get("fallback"):
+        print(f"  {BOLD('Fallback')}     {result['fallback']}")
 
     # Prompts
     if result["prompts"]:
@@ -278,20 +299,17 @@ def cmd_guide_route(request: str | None, routing: dict[str, Any]) -> int:
     print()
     print(f"  {BOLD('Request')}      {normalized_request}")
 
-    if result["ok"]:
-        _print_next_command(f"/route {normalized_request}")
-        print(f"  {BOLD('Capability')}   {result['capability']}")
-        print(f"  {BOLD('Domain')}       {result['domain'] or 'unknown'}")
-        print(f"  {BOLD('Agent')}        {result['agent'] or 'none'}")
-        if result["prompts"]:
-            print(f"  {BOLD('Prompts')}      {' '.join(f'/{prompt}' for prompt in result['prompts'])}")
-    else:
-        _print_next_command("/quickstart")
-        print(f"  {BOLD('Why')}          {result['error']}")
-        print(f"  {BOLD('Fallback')}     Use /quickstart to narrow role, domain, and goal first.")
+    _print_next_command(f"/route {normalized_request}")
+    print(f"  {BOLD('Capability')}   {result['capability']}")
+    print(f"  {BOLD('Domain')}       {result['domain'] or 'unknown'}")
+    print(f"  {BOLD('Agent')}        {result['agent'] or 'none'}")
+    if result["prompts"]:
+        print(f"  {BOLD('Prompts')}      {' '.join(f'/{prompt}' for prompt in result['prompts'])}")
+    if result.get("fallback"):
+        print(f"  {BOLD('Fallback')}     {result['fallback']}")
 
     print()
-    return 0 if result["ok"] else 1
+    return 0
 
 
 def cmd_guide_extension(kind: str | None) -> int:

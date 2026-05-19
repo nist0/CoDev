@@ -60,6 +60,7 @@ MINIMAL_ROUTING: dict[str, Any] = {
     "capabilities": [
         {"id": "debugging", "default_agent": "Reliability"},
         {"id": "docs", "default_agent": "Delivery Lead"},
+        {"id": "project-orchestration", "default_agent": "Project Orchestrator"},
     ],
     "aliases": {
         "debugging": ["bug", "crash", "exception"],
@@ -81,6 +82,14 @@ MINIMAL_ROUTING: dict[str, Any] = {
         {
             "when": {"capability": "docs"},
             "suggest": {"agent": "Delivery Lead", "prompts": ["generate-docs-tree"], "skills": ["doc-architecture-model"]},
+        },
+        {
+            "when": {"capability": "project-orchestration"},
+            "suggest": {
+                "agent": "Project Orchestrator",
+                "prompts": ["project-kickoff", "project-dispatch", "project-governance"],
+                "skills": ["project-orchestration", "github-work-management"],
+            },
         },
     ],
 }
@@ -224,8 +233,10 @@ class TestRoute:
 
     def test_no_capability_match(self) -> None:
         result = codev_dev.route("hello world", MINIMAL_ROUTING)
-        assert result["ok"] is False
-        assert "error" in result
+        assert result["ok"] is True
+        assert result["capability"] == "project-orchestration"
+        assert result["agent"] == "Project Orchestrator"
+        assert "fallback" in result
         assert result["request"] == "hello world"
 
     def test_result_contains_all_keys(self) -> None:
@@ -422,7 +433,8 @@ class TestIntegrationTestRoute:
 
     def test_unknown_phrase_exits_nonzero(self) -> None:
         result = _run(*CODEV_DEV, "test-route", "xyzzy frobnicator", cwd=str(ROOT))
-        assert result.returncode != 0
+        assert result.returncode == 0
+        assert "Project Orchestrator" in (result.stdout + result.stderr)
 
     def test_list_flag_exits_zero(self) -> None:
         result = _run(*CODEV_DEV, "test-route", "--list", cwd=str(ROOT))
@@ -743,7 +755,8 @@ class TestEdgeCases:
 
     def test_route_empty_phrase(self) -> None:
         result = codev_dev.route("", MINIMAL_ROUTING)
-        assert result["ok"] is False
+        assert result["ok"] is True
+        assert result["agent"] == "Project Orchestrator"
 
     def test_route_phrase_with_newlines(self) -> None:
         result = codev_dev.route("bug\nin\nkubernetes", MINIMAL_ROUTING)

@@ -66,6 +66,7 @@ If context signals don’t match any domain: use `unknown`.
 routing/matrix.yaml
   try: capability + domain  → recommended agent, prompt(s), skill(s)
   fallback: capability only → recommended agent, prompt(s), skill(s)
+  final fallback: project-orchestration → Project Orchestrator
 ```
 
 Never invent a recommendation outside the matrix without noting it as a fallback.

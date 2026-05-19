@@ -1,0 +1,12 @@
+# Tool: shellcheck
+
+Use ShellCheck to lint and validate Bash scripts for safety and best practices.
+
+## Usage
+
+```sh
+shellcheck my_script.sh
+```
+
+- Reports common errors, unsafe patterns, and style issues.
+- Integrate with CI for automated script validation.

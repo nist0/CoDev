@@ -1,0 +1,11 @@
+# Tool: GitHub CLI (gh)
+
+Use the GitHub CLI to manage issues, PRs, and projects from the command line.
+
+## Usage
+
+```sh
+gh issue list
+```
+
+- List, create, and update issues.

@@ -1,0 +1,11 @@
+# Tool: dotnet-aspnet-codegenerator
+
+Use this tool to generate controllers and views for ASP.NET Core projects.
+
+## Usage
+
+```sh
+dotnet-aspnet-codegenerator controller -name OrdersController -m Order -dc AppDbContext
+```
+
+- Generates controllers, views, and more.

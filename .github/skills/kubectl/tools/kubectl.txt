@@ -1,0 +1,12 @@
+# Tool: kubectl
+
+Use kubectl to manage Kubernetes clusters and resources.
+
+## Usage
+
+```sh
+kubectl get pods
+kubectl apply -f deployment.yaml
+```
+
+- Inspect, update, and debug workloads.

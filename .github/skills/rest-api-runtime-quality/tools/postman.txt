@@ -1,0 +1,8 @@
+# Tool: Postman
+
+Use Postman to test and validate REST API endpoints.
+
+## Usage
+
+- Import OpenAPI or Postman collections.
+- Run requests and validate responses.

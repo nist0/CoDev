@@ -1,0 +1,11 @@
+# Tool: k9s
+
+Use k9s for interactive Kubernetes cluster management and triage.
+
+## Usage
+
+```sh
+k9s
+```
+
+- Inspect resources, logs, and events interactively.

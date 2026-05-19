@@ -1,0 +1,12 @@
+# Tool: dotnet ef
+
+Use dotnet ef for Entity Framework Core migrations and database updates.
+
+## Usage
+
+```sh
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+- Manage migrations and database schema.

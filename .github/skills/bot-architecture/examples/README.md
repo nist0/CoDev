@@ -45,3 +45,30 @@ Use polling only for local development:
 # Dev only -- single instance, no public URL needed
 build_app().run_polling()
 ```
+
+## 1. Minimal Bot Skeleton (Python)
+
+```text
+from telegram import Update
+from telegram.ext import Application, CommandHandler
+app = Application.builder().token("TOKEN").build()
+async def start(update: Update, context):
+await update.message.reply_text("Hello!")
+app.add_handler(CommandHandler("start", start))
+app.run_polling()
+```
+
+## 2. Webhook Handler (Node.js)
+
+```js
+app.post('/webhook', (req, res) => {
+// Validate signature, parse event
+res.sendStatus(200);
+});
+```
+
+## 3. Lint Bot Code (Python)
+
+```text
+python tools/bot-lint.py my_bot.py
+```

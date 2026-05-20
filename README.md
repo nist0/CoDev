@@ -985,6 +985,7 @@ Generated skill inventory:
 | `ef-core` | EF Core modeling, migrations, query performance, concurrency, and testing with real Postgres. |
 | `elastic` | Elasticsearch/Kibana/ELK - KQL queries, dashboards, alerting rules, and log analysis workflow. |
 | `elite-brainstorming` | High-rigor brainstorming playbook that converts ideas into testable bets, delegated execution, and named specialist reviews. |
+| `elite-latin1-fixer` | Skill to detect and safely replace non-Latin-1 characters and common mojibake sequences in .github Markdown files. Designed for deterministic, reversible edits with backups and reviewability. |
 | `fullstack-test-strategy` | Full-stack test pyramid — risk mapping, unit/integration/contract/E2E allocation, data strategy, CI gating, and flakiness control. |
 | `git` | Elite Git workflow — branching discipline, conventional commits, safe rebasing, history hygiene, and conflict resolution. |
 | `github-actions` | Elite GitHub Actions CI/CD — security hardening, reusable workflows, quality gates, and structured debug methodology. |

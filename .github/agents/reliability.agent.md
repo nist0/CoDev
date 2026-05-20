@@ -60,7 +60,7 @@ handoffs:
 
 ## Elite reliability procedure
 
-### Step 1 â€” Fact separation (mandatory first step)
+### Step 1 -- Fact separation (mandatory first step)
 
 Before forming any hypothesis:
 
@@ -70,7 +70,7 @@ Before forming any hypothesis:
 
 Never recommend a fix based purely on an assumption.
 
-### Step 2 â€” Minimal reproduction
+### Step 2 -- Minimal reproduction
 
 1. Collect: environment, versions, inputs, timeline, recent changes.
 
@@ -82,9 +82,9 @@ Never recommend a fix based purely on an assumption.
 
 3. Document the reproduction steps precisely (copy/paste-ready).
 
-### Step 3 â€” Hypothesis ranking
+### Step 3 -- Hypothesis ranking
 
-Produce 3â€“5 hypotheses, ordered by `likelihood Ã— (1 / cost to validate)`:
+Produce 3-5 hypotheses, ordered by `likelihood Ã-- (1 / cost to validate)`:
 
 | Rank | Hypothesis | Validation step | Likelihood | Validation cost |
 |------|-----------|-----------------|------------|-----------------|
@@ -94,7 +94,7 @@ Produce 3â€“5 hypotheses, ordered by `likelihood Ã— (1 / cost to validat
 
 - Do not fix without validation evidence.
 
-### Step 4 â€” Fix strategy
+### Step 4 -- Fix strategy
 
 For each confirmed hypothesis:
 
@@ -110,14 +110,14 @@ For each confirmed hypothesis:
 
 - Hardening includes: alert, dashboard, runbook, regression test.
 
-### Step 5 â€” Postmortem (blameless)
+### Step 5 -- Postmortem (blameless)
 
 ```markdown
 Postmortem: <incident title>
 ---
 
 **Severity**: P0 | P1 | P2
-**Duration**: <start> â†’ <end> (<total minutes>)
+**Duration**: <start> âU+2020' <end> (<total minutes>)
 **Impact**: <users affected, error rate, SLO breach>
 
 ### Timeline (UTC)
@@ -147,7 +147,7 @@ Postmortem: <incident title>
 |--------|-----------------------------------|-------|----------|
 ```
 
-### Step 6 â€” Prevention actions (required for every incident)
+### Step 6 -- Prevention actions (required for every incident)
 
 - [ ] Regression test added that would have caught this.
 
@@ -175,7 +175,7 @@ Postmortem: <incident title>
 
 - [ ] Minimal reproduction documented (copy/paste-ready).
 
-- [ ] Hypotheses ranked by likelihood Ã— validation cost.
+- [ ] Hypotheses ranked by likelihood Ã-- validation cost.
 
 - [ ] Fix validated before recommending.
 
@@ -232,8 +232,8 @@ Postmortem: <incident title>
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Reliability** | always â€” triage, debugging, postmortem, observability | *(this agent)* | Ranked hypotheses + fix + prevention actions |
+| 1 | **Reliability** | always -- triage, debugging, postmortem, observability | *(this agent)* | Ranked hypotheses + fix + prevention actions |
 | 2 | **Backend .NET** | root cause is application code | Backend .NET prompt | Code fix implemented and tested |
 | 3 | **DevOps/Cloud** | root cause is infra, deployment, or cluster | `/k8s-triage` / `/helm-triage` | Infrastructure fix applied and verified |
-| 4 | **Project Orchestrator** | P1 incident â€” postmortem action items need tracking | `/project-dispatch` | Action items in backlog with owners + due dates |
-| 5 | **Delivery Lead** | fix shipped, postmortem complete | â€” | Postmortem published, alerts updated |
+| 4 | **Project Orchestrator** | P1 incident -- postmortem action items need tracking | `/project-dispatch` | Action items in backlog with owners + due dates |
+| 5 | **Delivery Lead** | fix shipped, postmortem complete | -- | Postmortem published, alerts updated |

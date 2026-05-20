@@ -1,6 +1,6 @@
 ---
 name: triage
-description: Repro-first debugging triage — minimal reproduction, ranked hypotheses, validated fixes, and prevention.
+description: Repro-first debugging triage -- minimal reproduction, ranked hypotheses, validated fixes, and prevention.
 argument-hint: "[error-or-symptom] [environment]"
 user-invocable: true
 

@@ -1,4 +1,4 @@
-# mermaid skill — Examples
+# mermaid skill -- Examples
 
 ## Example 1: Flowchart (request lifecycle)
 
@@ -104,7 +104,7 @@ gitGraph
 
 ```mermaid
 C4Context
-    title System Context — Order Platform
+    title System Context -- Order Platform
     Person(user, "Customer", "Places and tracks orders")
     System(app, "Order Platform", "Manages product catalog, orders, and payments")
     System_Ext(payment, "Payment Gateway", "Processes card payments (Stripe)")

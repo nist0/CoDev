@@ -52,7 +52,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Project Orchestrator** | always — governance execution | *(this prompt)* | Issues structured, Kanban workflow proposed, review verdicts produced |
+| 1 | **Project Orchestrator** | always -- governance execution | *(this prompt)* | Issues structured, Kanban workflow proposed, review verdicts produced |
 | 2 | **Implementer** | verdict is rework required | Back to domain prompt | Gap closed, evidence provided |
 | 3 | **Reviewer** | rework complete | `/pr-review` | Verdict updated to approved |
 | 4 | **Project Orchestrator** | iteration complete | Repeat this prompt for next iteration | All in-flight tasks resolved, backlog reprioritized |

@@ -26,7 +26,7 @@ Requirements:
 
 - Parse the diagram for: syntax errors, unclosed `subgraph`/`end`, missing arrows, undefined node references.
 
-- Check for deprecated patterns: `graph LR` → should be `flowchart LR`; `stateDiagram` → should be `stateDiagram-v2`.
+- Check for deprecated patterns: `graph LR` -> should be `flowchart LR`; `stateDiagram` -> should be `stateDiagram-v2`.
 
 - Check GitHub rendering constraints: node count, beta features, special characters in labels (`<`, `>`, `&`).
 
@@ -52,6 +52,6 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |---|---|---|---|---|
-| 1 | **mermaid-diagrammer** | always — diagram review | *(this prompt)* | Verdict produced, improved version provided if needed |
+| 1 | **mermaid-diagrammer** | always -- diagram review | *(this prompt)* | Verdict produced, improved version provided if needed |
 | 2 | **mermaid-diagrammer** | verdict = rework required | `/mermaid-create` (re-generate) | Improved diagram passes review |
 | 3 | **Delivery Lead** | reviewed diagram committed | `/pr-review` | PR approved |

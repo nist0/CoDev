@@ -34,20 +34,20 @@ Collect from the user (ask if missing):
 
 ## Procedure
 
-### Step 1 — Classify severity
+### Step 1 -- Classify severity
 
 Use the following scoring guide:
 
 | Severity | Signal |
 |---|---|
-| **Critical** | Remote code execution, credential exposure, auth bypass — reachable from untrusted input |
-| **High** | Data exfiltration, privilege escalation — requires some conditions |
+| **Critical** | Remote code execution, credential exposure, auth bypass -- reachable from untrusted input |
+| **High** | Data exfiltration, privilege escalation -- requires some conditions |
 | **Medium** | Limited impact, requires authenticated access or specific configuration |
 | **Low** | Minimal real-world exploitability, defence-in-depth only |
 
 Cross-reference against CVSS score if a CVE ID is provided; adjust based on actual deployment context.
 
-### Step 2 — Identify affected surface
+### Step 2 -- Identify affected surface
 
 Map the vulnerability to the system's trust model:
 
@@ -57,7 +57,7 @@ Map the vulnerability to the system's trust model:
 
 - Does it run with elevated privileges?
 
-### Step 3 — Recommend fix
+### Step 3 -- Recommend fix
 
 Priority:
 
@@ -67,7 +67,7 @@ Priority:
 
 3. **Compensating control**: WAF rule, network policy, audit logging
 
-### Step 4 — Define timeline
+### Step 4 -- Define timeline
 
 | Severity | Remediation deadline |
 |---|---|
@@ -76,7 +76,7 @@ Priority:
 | Medium | Current quarter backlog |
 | Low | Track; fix in next scheduled upgrade |
 
-### Step 5 — Supply chain check
+### Step 5 -- Supply chain check
 
 For dependency CVEs, also check:
 
@@ -89,7 +89,7 @@ For dependency CVEs, also check:
 ## Output format
 
 ```markdown
-## Vulnerability Triage — <CVE or package>
+## Vulnerability Triage -- <CVE or package>
 
 **Severity**: Critical | High | Medium | Low
 **CVSS score**: <if available>
@@ -105,7 +105,7 @@ For dependency CVEs, also check:
 <transitive dependencies affected, if any>
 
 ### Compensating controls (if immediate fix not possible)
-<specific control — not generic advice>
+<specific control -- not generic advice>
 
 ### Residual risk
 <what remains after the fix>
@@ -123,7 +123,7 @@ For dependency CVEs, also check:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Security** | always — vulnerability triage | *(this prompt)* | Severity classified, affected surface mapped, fix and timeline defined |
+| 1 | **Security** | always -- vulnerability triage | *(this prompt)* | Severity classified, affected surface mapped, fix and timeline defined |
 | 2 | **Backend .NET** | app-level patch needed | `/dotnet-excellence` | Dependency upgraded, dotnet list package --vulnerable shows no Critical/High |
 | 3 | **DevOps/Cloud** | container image or infra patch needed | `/k8s-triage` or `/helm-triage` | Image updated, deployment healthy |
 | 4 | **Reviewer** | patch PR ready | `/pr-review` security focus | No regressions, compensating controls verified |

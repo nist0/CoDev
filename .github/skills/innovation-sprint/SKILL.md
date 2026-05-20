@@ -1,6 +1,6 @@
 ---
 name: innovation-sprint
-description: Short structured ideation sprint — constrained diverge, cluster, score, falsifiable shortlist, and spike plans.
+description: Short structured ideation sprint -- constrained diverge, cluster, score, falsifiable shortlist, and spike plans.
 argument-hint: "[problem] [constraints] [success-criteria]"
 user-invocable: true
 
@@ -45,7 +45,7 @@ Use at least 2 of:
 
 - **Pre-mortem**: 12 months from now, the project failed. Why?
 
-### 3. Generate 8–12 ideas (no filtering)
+### 3. Generate 8-12 ideas (no filtering)
 
 - Time-box this step to 15 minutes.
 
@@ -53,7 +53,7 @@ Use at least 2 of:
 
 - Mix safe, adjacent, and bold options.
 
-- Each idea: 1–2 sentences only.
+- Each idea: 1-2 sentences only.
 
 ### 4. Cluster and select top 3
 
@@ -63,7 +63,7 @@ Use at least 2 of:
 
 | Theme | Expected value (EV) | Feasibility | Confidence | Reversibility |
 |-------|---------------------|-------------|------------|---------------|
-| ... | 1–5 | 1–5 | 1–5 | 1–5 |
+| ... | 1-5 | 1-5 | 1-5 | 1-5 |
 
 Select the top 3 highest-scoring themes.
 
@@ -80,7 +80,7 @@ Rollback: If this fails, we revert to <alternative>.
 Spike plan:
   - Step 1: ...
   - Step 2: ...
-  - Time-box: <1–4 hours>
+  - Time-box: <1-4 hours>
   - Output: <what we will have at the end>
 ```
 
@@ -108,7 +108,7 @@ If all 3 shortlisted options are in the same category: force diversity.
 
 - [ ] At least 2 top-tier reasoning techniques applied.
 
-- [ ] 8–12 ideas generated before filtering.
+- [ ] 8-12 ideas generated before filtering.
 
 - [ ] Top 3 scored on EV, feasibility, confidence, reversibility.
 
@@ -116,7 +116,7 @@ If all 3 shortlisted options are in the same category: force diversity.
 
 - [ ] Portfolio mix includes safe/adjacent/bold.
 
-- [ ] Spike plans are ≤ 4 hours each.
+- [ ] Spike plans are <= 4 hours each.
 
 ## Outputs
 

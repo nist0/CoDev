@@ -24,11 +24,11 @@ Act as a Router performing a blameless routing retrospective.
 
 Parse from `{{input}}`:
 
-- **request** — the original free-text request that produced a wrong or empty route
+- **request** -- the original free-text request that produced a wrong or empty route
 
-- **expected** — what the user expected (capability / agent / prompt)
+- **expected** -- what the user expected (capability / agent / prompt)
 
-- **got** — what the router actually returned (or "nothing" / "wrong agent")
+- **got** -- what the router actually returned (or "nothing" / "wrong agent")
 
 Single source of truth:
 
@@ -62,7 +62,7 @@ Required output sections:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Router** | always — routing retrospective | *(this prompt)* | Root cause layer identified, minimal additive fix proposed, GitHub issue draft produced |
+| 1 | **Router** | always -- routing retrospective | *(this prompt)* | Root cause layer identified, minimal additive fix proposed, GitHub issue draft produced |
 | 2 | **PromptSmith** | fix requires new/updated prompt or skill | `/new-skill`, `/prompt-from-theme`, or direct edit | New asset created and validated |
 | 3 | **Router** | routing YAML updated | Run python scripts/validate-route-smoke.py | New smoke-test case passes, no existing cases broken |
 | 4 | **Delivery Lead** | fix ready | `/pr-review` | PR merged, routing coverage improved |

@@ -40,7 +40,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Reliability** | always — log/APM analysis | *(this prompt)* | Root symptom identified, hypotheses ranked, fix options produced |
+| 1 | **Reliability** | always -- log/APM analysis | *(this prompt)* | Root symptom identified, hypotheses ranked, fix options produced |
 | 2 | **Reliability** | error with stack trace found | `/triage-error` | Ranked hypotheses validated, reproduction steps confirmed |
 | 3 | **Backend .NET** | app-level root cause confirmed | `/dotnet-excellence` | Fix implemented, tests green |
 | 4 | **DevOps/Cloud** | infra root cause confirmed | `/k8s-triage` or `/helm-triage` | Infra fix applied |

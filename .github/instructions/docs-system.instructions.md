@@ -57,7 +57,7 @@ applyTo: "**/*.md"
 
 - `MD009` (no trailing spaces): use a linter-fix command (`markdownlint --fix`) before committing.
 
-- `MD013` (line length): keep prose lines ≤120 characters; use soft-wrap in editors, not hard wraps at 80.
+- `MD013` (line length): keep prose lines <=120 characters; use soft-wrap in editors, not hard wraps at 80.
 
 - `MD026` (no trailing punctuation in headings): headings must not end with `:`, `.`, `!`, or `?`.
   <!-- markdownlint-disable MD026 -->
@@ -97,7 +97,7 @@ applyTo: "**/*.md"
 
 **Applies to**: every task that creates or modifies any `.md` file, regardless of scope or agent.
 
-This gate is **non-negotiable** — it must run before the task is marked done and before a PR is opened or updated.
+This gate is **non-negotiable** -- it must run before the task is marked done and before a PR is opened or updated.
 
 ### Pre-commit automation (install once)
 
@@ -112,7 +112,7 @@ python scripts/install-hooks.py
 
 The hook blocks the commit and prints the fix command if any markdown error is found.
 
-### Step 1 — Local lint (blocking)
+### Step 1 -- Local lint (blocking)
 
 Run the repository validator immediately after writing or editing any markdown:
 
@@ -120,7 +120,7 @@ Run the repository validator immediately after writing or editing any markdown:
 python scripts/validate-markdown-lint.py
 ```
 
-- Exit code must be `0`. Any non-zero exit is a **blocking finding** — fix all violations before proceeding.
+- Exit code must be `0`. Any non-zero exit is a **blocking finding** -- fix all violations before proceeding.
 
 - CoDev markdown validation must inspect tracked and non-ignored repository files only.
 
@@ -128,7 +128,7 @@ python scripts/validate-markdown-lint.py
 
 - Do not replace this with broad workspace globs such as `npx markdownlint-cli2 "**/*.md"`.
 
-### Step 2 — Remote CI confirmation (blocking before done)
+### Step 2 -- Remote CI confirmation (blocking before done)
 
 After pushing, confirm the `markdown-lint` CI check is green on the PR before closing the task:
 
@@ -136,9 +136,9 @@ After pushing, confirm the `markdown-lint` CI check is green on the PR before cl
 gh pr checks <PR-number>
 ```
 
-- The `markdown-lint` job must show ✓. A failing or pending lint check means the task is **not complete**.
+- The `markdown-lint` job must show OK. A failing or pending lint check means the task is **not complete**.
 
-- If the CI check fails on content you did not touch (pre-existing violation), open a separate fix PR first and rebase your branch on it — do not suppress or skip the check.
+- If the CI check fails on content you did not touch (pre-existing violation), open a separate fix PR first and rebase your branch on it -- do not suppress or skip the check.
 
 ### Enforcement
 
@@ -158,9 +158,9 @@ gh pr checks <PR-number>
 
 ---
 
-## 🏆 Elite Section — Top 5% Documentation Practices
+## U+1F3C6 Elite Section -- Top 5% Documentation Practices
 
-- **Docs-as-code pipeline**: Treat docs with the same review rigor as code. PRs that change behavior must update the corresponding doc in the same commit — no "update docs later" tickets.
+- **Docs-as-code pipeline**: Treat docs with the same review rigor as code. PRs that change behavior must update the corresponding doc in the same commit -- no "update docs later" tickets.
 
 - **Audience-driven writing**: Every page starts with an explicit audience statement (e.g. `Audience: platform engineer onboarding`). Content that serves no stated audience gets removed.
 

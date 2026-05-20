@@ -26,11 +26,11 @@ Provides scripts and methods for analysing agent files in the repository. Suppor
 
 ## Tools
 
-- `temp/agent_anchor_lines.py` — extract anchor lines from agent files
+- `temp/agent_anchor_lines.py` -- extract anchor lines from agent files
 
-- `temp/agent_line_audit.py` — audit agent contract structure
+- `temp/agent_line_audit.py` -- audit agent contract structure
 
-- `temp/agent_skill_audit.py` — audit agent skill references
+- `temp/agent_skill_audit.py` -- audit agent skill references
 
 ## Examples
 

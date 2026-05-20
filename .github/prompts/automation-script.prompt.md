@@ -43,6 +43,6 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Automation/Scripting** | always — script authoring | *(this prompt)* | Script produced, safety and idempotency notes included |
+| 1 | **Automation/Scripting** | always -- script authoring | *(this prompt)* | Script produced, safety and idempotency notes included |
 | 2 | **Reviewer** | script touches production systems or CI pipelines | `/pr-review` | No blocking findings, risk accepted |
 | 3 | **Delivery Lead** | script merged into repo | `/release-plan` (if release-gated) | PR merged, CI green |

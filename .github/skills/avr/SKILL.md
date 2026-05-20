@@ -1,6 +1,6 @@
 ---
 name: avr
-description: AVR firmware — MCU identification, ISR safety, peripheral configuration, memory constraints, and debugging.
+description: AVR firmware -- MCU identification, ISR safety, peripheral configuration, memory constraints, and debugging.
 argument-hint: "[MCU model] [peripheral or subsystem]"
 user-invocable: true
 
@@ -22,7 +22,7 @@ disable-model-invocation: false
 | Flash | Read-only at runtime; constants in `PROGMEM` |
 | SRAM | Stack + heap share; fragmentation risk |
 | EEPROM | Limited writes (~100k cycles); use `eeprom_update_*` |
-| Registers | 32 general-purpose (r0–r31); r26–r31 as X/Y/Z pointers |
+| Registers | 32 general-purpose (r0-r31); r26-r31 as X/Y/Z pointers |
 
 ## Workflow
 

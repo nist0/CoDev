@@ -1,6 +1,6 @@
 ---
 name: cli-platform-analysis
-description: Full static analysis of a .NET CLI platform project — GH workflow files, Bicep/ARM/Terraform infra, solution structure, CLI surface, test projects, and existing docs — producing docs/project-context.md as the living context document for all subsequent task prompts.
+description: Full static analysis of a .NET CLI platform project -- GH workflow files, Bicep/ARM/Terraform infra, solution structure, CLI surface, test projects, and existing docs -- producing docs/project-context.md as the living context document for all subsequent task prompts.
 argument-hint: "[repo-root: .] [output: docs/project-context.md]"
 user-invocable: true
 
@@ -25,16 +25,16 @@ Run each step in order. Combine all outputs into a single `docs/project-context.
 
 ---
 
-### Step 1 — GitHub Workflow Analysis
+### Step 1 -- GitHub Workflow Analysis
 
-**Goal**: Deduce the CI/CD pipeline shape, toolchain, quality gates, and deployment targets entirely from static file reading — no running commands.
+**Goal**: Deduce the CI/CD pipeline shape, toolchain, quality gates, and deployment targets entirely from static file reading -- no running commands.
 
 For each file in `.github/workflows/`:
 
 | Field | What to extract |
 |---|---|
 | Filename | The workflow file name |
-| Trigger | `on:` — push branches, PR targets, tag pattern, schedule, manual dispatch |
+| Trigger | `on:` -- push branches, PR targets, tag pattern, schedule, manual dispatch |
 | Jobs | Job names, `needs:` dependencies, runner labels |
 | Build toolchain | `dotnet restore`, `dotnet build`, `dotnet publish`, NuGet pack/push |
 | Test gates | `dotnet test`, coverage upload, test result publishing, threshold enforcement |
@@ -42,16 +42,16 @@ For each file in `.github/workflows/`:
 | Security gates | `dotnet list package --vulnerable`, SAST tools, secret scanning |
 | Artifact strategy | What is built, how it is signed (Cosign, NuGet signature), where published (NuGet.org, GitHub Packages, GitHub Releases) |
 | Deployment steps | `az deployment` (Bicep), AKS deploy, Azure CLI commands, environment names (`environment:`) |
-| Secrets referenced | Names of secrets used in `${{ secrets.* }}` — **names only, never values** |
+| Secrets referenced | Names of secrets used in `${{ secrets.* }}` -- **names only, never values** |
 | Action pin hygiene | Whether third-party actions are pinned to SHA (security posture signal) |
 
 **Output section**: `## CI/CD Pipeline` in `docs/project-context.md`.
 
 ---
 
-### Step 2 — Infrastructure Analysis (Bicep / ARM / Terraform)
+### Step 2 -- Infrastructure Analysis (Bicep / ARM / Terraform)
 
-**Goal**: Deduce the deployment topology — what Azure resources exist, in which environments, and how they relate.
+**Goal**: Deduce the deployment topology -- what Azure resources exist, in which environments, and how they relate.
 
 For each `*.bicep`, `*.json` (ARM template), `*.tf`, or `*.tfvars` file found anywhere in the repo:
 
@@ -70,11 +70,11 @@ For each `*.bicep`, `*.json` (ARM template), `*.tf`, or `*.tfvars` file found an
 
 ---
 
-### Step 3 — Solution Structure Analysis
+### Step 3 -- Solution Structure Analysis
 
-**Goal**: Map the .NET solution — projects, layers, CLI framework, DI patterns, persistence.
+**Goal**: Map the .NET solution -- projects, layers, CLI framework, DI patterns, persistence.
 
-1. Read the `.sln` file — list all projects and their paths.
+1. Read the `.sln` file -- list all projects and their paths.
 
 2. For each `.csproj`, classify the layer role:
 
@@ -94,13 +94,13 @@ For each `*.bicep`, `*.json` (ARM template), `*.tf`, or `*.tfvars` file found an
 
 1. Identify any OpenAPI / HTTP client generation: Kiota, NSwag, Refit, HttpClientFactory patterns.
 
-1. Note any `Directory.Build.props` or `Directory.Packages.props` — these control global settings.
+1. Note any `Directory.Build.props` or `Directory.Packages.props` -- these control global settings.
 
 **Output section**: `## Solution Structure` in `docs/project-context.md`.
 
 ---
 
-### Step 4 — CLI Surface Analysis
+### Step 4 -- CLI Surface Analysis
 
 **Goal**: Catalog every command, its handler, domain action, and side-effects.
 
@@ -111,15 +111,15 @@ For each top-level command and subcommand (read from handler classes, command de
 
 Side-effects include: REST API calls, file writes, service registrations, event publishing, monitoring hooks, subscription creation.
 
-Note any naming convention inconsistencies (e.g. mixed `verb-noun` and `noun verb` patterns) — flag as UX debt.
+Note any naming convention inconsistencies (e.g. mixed `verb-noun` and `noun verb` patterns) -- flag as UX debt.
 
 **Output section**: `## CLI Surface` in `docs/project-context.md`.
 
 ---
 
-### Step 5 — Test Infrastructure Analysis
+### Step 5 -- Test Infrastructure Analysis
 
-**Goal**: Understand what is tested today and what is not — to avoid CI failures when adding new code.
+**Goal**: Understand what is tested today and what is not -- to avoid CI failures when adding new code.
 
 | Layer | Test project(s) | Framework | Coverage areas | Gaps identified |
 |---|---|---|---|---|
@@ -140,7 +140,7 @@ Additionally note:
 
 ---
 
-### Step 6 — Existing Docs Analysis
+### Step 6 -- Existing Docs Analysis
 
 **Goal**: Inventory existing documentation to avoid duplication and identify gaps.
 
@@ -156,12 +156,12 @@ Additionally note:
 
 ---
 
-### Step 7 — Produce `docs/project-context.md`
+### Step 7 -- Produce `docs/project-context.md`
 
 Combine all sections into a single file using this canonical structure:
 
 ```markdown
-# Project Context — <project-name>
+# Project Context -- <project-name>
 
 > Generated: <date> | Branch: <branch> | Refresh cadence: every sprint or after major merges.
 > Re-run `/cli-platform-analyze` if any section is stale.
@@ -197,18 +197,18 @@ Combine all sections into a single file using this canonical structure:
 | Update NuGet publish | Release workflow, `*.csproj` version | Broken package consumers | smoke test install |
 ```
 
-After committing `docs/project-context.md`, present a ≤10-line summary:
+After committing `docs/project-context.md`, present a <=10-line summary:
 
 ```text
-CI/CD toolchain   : <dotnet publish → NuGet push | binary → GitHub Releases | ...>
+CI/CD toolchain   : <dotnet publish -> NuGet push | binary -> GitHub Releases | ...>
 Deploy target     : <Azure App Service | AKS | none detected>
 CLI framework     : <System.CommandLine | Spectre.Console | ...>
-Solution layers   : <Entry → Application → Domain → Infrastructure>
+Solution layers   : <Entry -> Application -> Domain -> Infrastructure>
 Persistence       : <EF Core + PostgreSQL | none | ...>
 Environments      : <dev / staging / prod | only prod detected | ...>
 Test coverage     : <good (unit + integration + E2E) | partial | minimal>
 Monitoring        : <Application Insights | custom | none detected>
-Top risk area     : <identified from Steps 1–6>
+Top risk area     : <identified from Steps 1-6>
 Next action       : /cli-platform-task task="<your assigned task>"
 ```
 
@@ -226,7 +226,7 @@ Next action       : /cli-platform-task task="<your assigned task>"
 
 - [ ] `docs/project-context.md` committed to the repo on the current branch.
 
-- [ ] ≤10-line summary presented for team review.
+- [ ] <=10-line summary presented for team review.
 
 ## Refresh cadence
 
@@ -239,14 +239,14 @@ Next action       : /cli-platform-task task="<your assigned task>"
 | New docs added | Step 6 only |
 | Sprint start (routine) | Diff `docs/project-context.md` vs repo state; update changed sections only |
 
-## 🏆 Elite Section
+## U+1F3C6 Elite Section
 
-- **Workflow secret audit**: While scanning workflows, flag any secret referenced in `${{ secrets.* }}` that is not documented in a secrets inventory (e.g. a `docs/secrets-inventory.md`). Open a GitHub issue for each undocumented secret — undocumented secrets are a rotation and rotation-failure risk.
+- **Workflow secret audit**: While scanning workflows, flag any secret referenced in `${{ secrets.* }}` that is not documented in a secrets inventory (e.g. a `docs/secrets-inventory.md`). Open a GitHub issue for each undocumented secret -- undocumented secrets are a rotation and rotation-failure risk.
 
-- **Bicep drift detection**: After Step 2, cross-reference resource types found in Bicep files against `az resource list -g <rg> -o table` (if you have read access). Resources in Azure but not in Bicep are unmanaged — flag each as a drift issue.
+- **Bicep drift detection**: After Step 2, cross-reference resource types found in Bicep files against `az resource list -g <rg> -o table` (if you have read access). Resources in Azure but not in Bicep are unmanaged -- flag each as a drift issue.
 
-- **Test gap → issue**: For each coverage gap identified in Step 5, open a GitHub issue tagged `area:testing` before starting the first task. Tracking gaps publicly prevents them from being forgotten across sprint boundaries.
+- **Test gap -> issue**: For each coverage gap identified in Step 5, open a GitHub issue tagged `area:testing` before starting the first task. Tracking gaps publicly prevents them from being forgotten across sprint boundaries.
 
 - **CLI surface naming audit**: If Step 4 reveals mixed naming conventions across commands, open a UX debt issue before adding any new commands. A consistent naming convention is much cheaper to establish before the surface grows.
 
-- **Action pin audit**: If Step 1 reveals unpinned third-party actions (using mutable tags like `@v3` instead of full SHA), open a security issue for each unpinned action — this is a supply-chain risk.
+- **Action pin audit**: If Step 1 reveals unpinned third-party actions (using mutable tags like `@v3` instead of full SHA), open a security issue for each unpinned action -- this is a supply-chain risk.

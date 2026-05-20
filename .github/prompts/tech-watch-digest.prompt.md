@@ -18,9 +18,9 @@ Argument handling:
 
 If `{{input}}` is empty, ask the user for the following in a **single message** before producing the digest:
 
-1. **Topics** — comma-separated list of technologies, frameworks, or areas to cover (e.g. ".NET 10, GitHub Actions, Kubernetes")
+1. **Topics** -- comma-separated list of technologies, frameworks, or areas to cover (e.g. ".NET 10, GitHub Actions, Kubernetes")
 
-2. **Period** — time window for the digest (`week` or `month`)
+2. **Period** -- time window for the digest (`week` or `month`)
 
 Do not produce the digest until the user has provided both topics and period.
 
@@ -34,7 +34,7 @@ Format:
 
 - Why it matters
 
-- What to try next week (1–3 experiments)
+- What to try next week (1-3 experiments)
 
 - Primary sources preferred
 
@@ -46,7 +46,7 @@ Format:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Tech Scout** | always — digest production | *(this prompt)* | Digest produced: what changed, why it matters, experiments to try |
+| 1 | **Tech Scout** | always -- digest production | *(this prompt)* | Digest produced: what changed, why it matters, experiments to try |
 | 2 | **Project Orchestrator** | Action: Spike or Action: Adopt items found | `/project-dispatch` | GitHub issues opened for each actionable item within 48 hours |
 | 3 | **Innovator** | bold/transformative technology identified | `/brainstorm` | Option portfolio with EV scores and kill criteria produced |
 | 4 | **Security** | CVE advisory or Action: Migrate (security) | `/vuln-triage` | Vulnerability triaged, remediation timeline set |

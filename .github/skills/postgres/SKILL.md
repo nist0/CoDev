@@ -34,13 +34,13 @@ EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) SELECT ...
 
 Look for:
 
-- `Seq Scan` on large tables → add index.
+- `Seq Scan` on large tables -> add index.
 
-- `Nested Loop` with large sets → consider `Hash Join`.
+- `Nested Loop` with large sets -> consider `Hash Join`.
 
 - High `Buffers: shared hit` ratio is good; high `read` is a cache miss.
 
-- `Filter` rows removed → index the filter column.
+- `Filter` rows removed -> index the filter column.
 
 ## Self-check
 
@@ -50,7 +50,7 @@ Look for:
 
 - [ ] Destructive schema changes (drop/rename/type change) staged safely.
 
-- [ ] Connection pool sized correctly (`max_connections` — pool × pool_size ≤ limit).
+- [ ] Connection pool sized correctly (`max_connections` -- pool × pool_size <= limit).
 
 - [ ] JSONB queries use GIN index if querying frequently.
 

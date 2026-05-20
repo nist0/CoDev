@@ -1,6 +1,6 @@
 ---
 name: cpp
-description: Modern C++ — RAII, ownership, smart pointers, error handling policy, performance measurement-first, and tooling.
+description: Modern C++ -- RAII, ownership, smart pointers, error handling policy, performance measurement-first, and tooling.
 argument-hint: "[component or module]"
 user-invocable: true
 

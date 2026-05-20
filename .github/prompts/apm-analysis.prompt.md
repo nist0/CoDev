@@ -48,7 +48,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Reliability** | always — analysis phase | *(this prompt)* | Causal chain identified, facts vs. assumptions documented |
+| 1 | **Reliability** | always -- analysis phase | *(this prompt)* | Causal chain identified, facts vs. assumptions documented |
 | 2 | **Backend .NET** | app-level root cause confirmed | `/dotnet-excellence` | Fix implemented, `dotnet build -warnaserror` + tests green |
 | 3 | **DevOps/Cloud** | infra or dependency root cause confirmed | `/k8s-triage` or `/helm-triage` | Infra fix applied, service healthy |
 | 4 | **Automation/Scripting** | monitoring or instrumentation gaps found | `/automation-script` | Alerting/instrumentation improvements deployed |

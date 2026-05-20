@@ -1,6 +1,6 @@
 ---
 name: helm
-description: Helm chart operations — lint, template rendering, diff, safe upgrade, rollback, and verification.
+description: Helm chart operations -- lint, template rendering, diff, safe upgrade, rollback, and verification.
 argument-hint: "[release] [chart] [namespace]"
 user-invocable: true
 

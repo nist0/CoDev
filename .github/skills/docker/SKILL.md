@@ -11,7 +11,7 @@ disable-model-invocation: false
 
 ## 1) Dockerfile authoring
 
-- Use multi-stage builds (`builder` → `runtime`) so compilers and package managers never ship in runtime layers.
+- Use multi-stage builds (`builder` -> `runtime`) so compilers and package managers never ship in runtime layers.
 
 - Order layers for cache reuse: copy dependency manifests first, restore/install, then copy source and build.
 
@@ -31,7 +31,7 @@ disable-model-invocation: false
 
 ## 3) Docker Compose (local development only)
 
-> Boundary: This section covers local development and integration-test usage only. Do not use Docker Compose for production orchestration — use Kubernetes/Helm instead.
+> Boundary: This section covers local development and integration-test usage only. Do not use Docker Compose for production orchestration -- use Kubernetes/Helm instead.
 
 - Declare explicit `depends_on` with health checks for startup ordering rather than sleep loops.
 

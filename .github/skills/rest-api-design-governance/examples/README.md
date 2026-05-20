@@ -28,7 +28,7 @@ Expected output:
 
 - Compatibility notes for existing clients.
 
-## REST API Design Governance Skill — Examples
+## REST API Design Governance Skill -- Examples
 
 ## 1. OpenAPI Validation
 

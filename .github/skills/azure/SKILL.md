@@ -1,6 +1,6 @@
 ---
 name: azure
-description: Azure operational basics — identity safety, resource navigation, secrets management, networking, and change verification.
+description: Azure operational basics -- identity safety, resource navigation, secrets management, networking, and change verification.
 argument-hint: "[resource-type] [resource-group]"
 user-invocable: true
 
@@ -118,14 +118,14 @@ az monitor log-analytics query \
   --analytics-query "<KQL>" -o table
 ```
 
-## Troubleshooting — failure buckets
+## Troubleshooting -- failure buckets
 
 Check these first when an operation fails unexpectedly:
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| Wrong resource returned / not found | Wrong subscription or resource group | Repeat identity check — `az account show` |
-| 403 Forbidden | RBAC / permissions | Check role assignments — see *Quick reference / RBAC* |
+| Wrong resource returned / not found | Wrong subscription or resource group | Repeat identity check -- `az account show` |
+| 403 Forbidden | RBAC / permissions | Check role assignments -- see *Quick reference / RBAC* |
 | Network timeout / connection refused | Network policy, LB config, or DNS | Inspect ingress / NSG / DNS resolution |
 | AKS instability after recent change | Cluster upgrade regression | Check node pool status, review upgrade changelog |
 | `kubectl` targeting wrong cluster | Stale kubeconfig context | Re-run `az aks get-credentials` + verify `kubectl config current-context` |

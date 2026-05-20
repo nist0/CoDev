@@ -1,4 +1,4 @@
-# Kubernetes Skill — Examples
+# Kubernetes Skill -- Examples
 
 ## 1. Validate Resource with kubeval
 

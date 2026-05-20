@@ -1,6 +1,6 @@
 ---
 name: codev-init
-description: Guided CoDev submodule initialization — step-by-step with mode detection, validation, and commit.
+description: Guided CoDev submodule initialization -- step-by-step with mode detection, validation, and commit.
 agent: CoDev Consumer
 
 argument-hint: "[strategy: extend|override] [submodule-path: tools/codev]"
@@ -16,7 +16,7 @@ Argument handling:
 
 - Do not fail solely because arguments were omitted.
 
-# CoDev Init — Guided Bootstrap
+# CoDev Init -- Guided Bootstrap
 
 Walk me through initializing CoDev as a Git submodule in this repository.
 
@@ -32,11 +32,11 @@ For each step, show:
 
 1. The **exact command** to run (bash + PowerShell variants where they differ).
 
-2. **What happens** — what files are created/modified.
+2. **What happens** -- what files are created/modified.
 
-3. **Verify** — exact command and expected output to confirm success.
+3. **Verify** -- exact command and expected output to confirm success.
 
-4. **Rollback** — how to undo if it fails.
+4. **Rollback** -- how to undo if it fails.
 
 ## Steps to cover
 
@@ -44,7 +44,7 @@ For each step, show:
 
 2. Run `codev init` with the chosen strategy.
 
-3. Detect and confirm bootstrap mode (symlink vs. lockfile) — explain implications of each.
+3. Detect and confirm bootstrap mode (symlink vs. lockfile) -- explain implications of each.
 
 4. Run `validate-route-smoke.py` and confirm expected output.
 
@@ -68,6 +68,6 @@ For each step, show:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CoDev Consumer** | always — submodule bootstrap | *(this prompt)* | CoDev submodule added, codev init run, bootstrap artefacts committed |
+| 1 | **CoDev Consumer** | always -- submodule bootstrap | *(this prompt)* | CoDev submodule added, codev init run, bootstrap artefacts committed |
 | 2 | **Router** | bootstrap complete | `/route <domain phrase>` | Smoke test passes, capability+domain correctly resolved |
 | 3 | **Delivery Lead** | ready to push | `/pr-review` | PR merged, CI green, no managed files overwritten |

@@ -50,7 +50,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Project Orchestrator** | always — project kickoff | *(this prompt)* | Clarifying questions answered, phased plan produced with AC and risks |
+| 1 | **Project Orchestrator** | always -- project kickoff | *(this prompt)* | Clarifying questions answered, phased plan produced with AC and risks |
 | 2 | **Innovator** | request is a brainstorming initiative | `/brainstorm` | Option portfolio produced, shortlist with kill criteria defined |
 | 3 | **Project Orchestrator** | plan approved | `/project-dispatch` | Tasks decomposed, owners assigned, GitHub issues opened |
 | 4 | **Project Orchestrator** | tasks dispatched | `/project-governance` | Kanban board configured, WIP limits set |

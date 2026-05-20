@@ -1,6 +1,6 @@
 ---
 name: cli-platform-analyze
-description: "Full static analysis of a .NET CLI platform project — reads GH workflow files, Bicep/infra, solution structure, CLI surface, test projects, and existing docs — produces docs/project-context.md as the living context document. Phase 2 of the CLI platform onboarding workflow."
+description: "Full static analysis of a .NET CLI platform project -- reads GH workflow files, Bicep/infra, solution structure, CLI surface, test projects, and existing docs -- produces docs/project-context.md as the living context document. Phase 2 of the CLI platform onboarding workflow."
 agent: "CLI Platform Onboarder"
 
 argument-hint: "repo-root=<path, default: .>"
@@ -22,7 +22,7 @@ Inputs:
 
 - repo-root: ${input:repo-root:.}
 
-**Prerequisite**: Phase 1 (Bootstrap) must be verified — `validate-route-smoke.py` must have passed.
+**Prerequisite**: Phase 1 (Bootstrap) must be verified -- `validate-route-smoke.py` must have passed.
 
 Single source of truth:
 
@@ -58,6 +58,6 @@ Required outputs:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CLI Platform Onboarder** | always — Phase 2 Analysis | *(this prompt)* | All 7 analysis steps complete, docs/project-context.md committed, ≤10-line summary presented |
+| 1 | **CLI Platform Onboarder** | always -- Phase 2 Analysis | *(this prompt)* | All 7 analysis steps complete, docs/project-context.md committed, <=10-line summary presented |
 | 2 | **CLI Platform Onboarder** | analysis complete | `/cli-platform-task task=<assigned task>` | Task routed and executed (Phase 3) |
-| 3 | **Security** | ⚠️ gaps found (undocumented secrets, unpinned actions) | `/secrets-audit` or `/threat-model` | Gap issues opened, risk mitigated |
+| 3 | **Security** | U+26A0U+FE0F gaps found (undocumented secrets, unpinned actions) | `/secrets-audit` or `/threat-model` | Gap issues opened, risk mitigated |

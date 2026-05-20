@@ -40,6 +40,6 @@ Include:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Architect** | always — test authoring | *(this prompt)* | Tests written, regression intent mapped, flakiness prevention notes included |
+| 1 | **Architect** | always -- test authoring | *(this prompt)* | Tests written, regression intent mapped, flakiness prevention notes included |
 | 2 | **Reviewer** | tests cover critical business logic or security paths | `/pr-review` | Assertions are precise, no test rot, coverage gate will pass |
 | 3 | **Delivery Lead** | tests ready to merge | `/pr-review` | PR merged, CI test suite exits 0 |

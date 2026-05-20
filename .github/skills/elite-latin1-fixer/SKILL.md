@@ -7,7 +7,7 @@ description: "Skill to detect and safely replace non-Latin-1 characters and comm
 # Elite Latin-1 Fixer
 
 Purpose
-- Detect files under `.github/` that contain characters outside ISO-8859-1 (Latin-1) or common mojibake sequences (e.g. `Ã©`, `â€”`, `Â§`, `â‰¥`).
+- Detect files under `.github/` that contain characters outside ISO-8859-1 (Latin-1) or common mojibake sequences (e.g. `é`, `--`, `§`, `âU+2030¥`).
 - Provide deterministic replacement to Latin-1-safe characters or ASCII sequences (e.g. `é`, `--`, `>=`).
 - Create `.bak` backups for each modified file, produce a JSON log and diffs for review, and support rollback.
 

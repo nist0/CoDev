@@ -1,4 +1,4 @@
-# Batch Skill — Examples
+# Batch Skill -- Examples
 
 ## 1. Safe Batch Script Skeleton
 

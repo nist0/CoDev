@@ -36,13 +36,13 @@ Single source of truth:
 
 If `{{input}}` is empty and context inference is insufficient, ask the user for all four inputs **in a single message** before starting the workshop:
 
-1. **Topic / objective** — what decision or challenge to brainstorm (e.g. "how to reduce deploy time", "new feature ideas for X")
+1. **Topic / objective** -- what decision or challenge to brainstorm (e.g. "how to reduce deploy time", "new feature ideas for X")
 
-2. **Constraints** — budget, timeline, team size, tech, policy, or any hard limits
+2. **Constraints** -- budget, timeline, team size, tech, policy, or any hard limits
 
-3. **Success metric** — how will you know the chosen option worked? (measurable signal)
+3. **Success metric** -- how will you know the chosen option worked? (measurable signal)
 
-4. **Assumptions** — any known beliefs or constraints the user is starting with, and what would invalidate them
+4. **Assumptions** -- any known beliefs or constraints the user is starting with, and what would invalidate them
 
 Proceed to the workshop when you have high-confidence values from either input, session context, or user clarifications.
 
@@ -62,7 +62,7 @@ Execution contract:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Innovator** | always — ideation workshop | *(this prompt)* | 3-option portfolio produced with EV scores, kill criteria, and spike plans |
+| 1 | **Innovator** | always -- ideation workshop | *(this prompt)* | 3-option portfolio produced with EV scores, kill criteria, and spike plans |
 | 2 | **Project Orchestrator** | shortlist approved, ready for execution | `/project-dispatch` | Tasks decomposed with owners, AC, and GitHub issue-ready definitions |
 | 3 | **Project Orchestrator** | tasks dispatched | `/project-governance` | Kanban board configured, review verdict table produced |
 | 4 | **Innovator** | spike results available | Re-run `/brainstorm` with spike findings | Hypothesis confirmed or option killed based on evidence |

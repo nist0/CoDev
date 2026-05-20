@@ -1,4 +1,4 @@
-# codev-contributing — Examples
+# codev-contributing -- Examples
 
 ## Example 1: well-formed bug report issue body
 
@@ -39,8 +39,8 @@ teardown, and troubleshooting.
 
 - `.github/skills/codev-submodule/SKILL.md` (new)
 - `.github/skills/codev-submodule/examples/README.md` (new)
-- `README.md` — Skills table updated (new row under "Development Environment")
-- `.github/copilot-instructions.md` — capabilities list updated
+- `README.md` -- Skills table updated (new row under "Development Environment")
+- `.github/copilot-instructions.md` -- capabilities list updated
 
 ## Routing smoke-test phrases
 

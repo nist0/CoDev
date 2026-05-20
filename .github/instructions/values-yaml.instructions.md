@@ -11,7 +11,7 @@ applyTo: "**/values*.{yml,yaml}"
 
 - Keep value names consistent with their corresponding template references (`{{ .Values.image.tag }}`).
 
-- Group related values under a common key (`image`, `service`, `autoscaling`) — no more than two nesting levels.
+- Group related values under a common key (`image`, `service`, `autoscaling`) -- no more than two nesting levels.
 
 - Use `camelCase` for value keys; avoid underscores and hyphens in value names.
 
@@ -57,7 +57,7 @@ resources:
 
 ---
 
-## 🏆 Elite Section — Top 5% Values File Practices
+## U+1F3C6 Elite Section -- Top 5% Values File Practices
 
 - **`values.schema.json` as contract**: Maintain a JSON Schema alongside `values.yaml`. This provides IDE autocompletion, validates inputs at `helm install` time, and documents types/constraints formally.
 

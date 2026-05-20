@@ -1,6 +1,6 @@
 ---
 name: powershell
-description: PowerShell automation — error handling, param validation, idempotency, WhatIf support, and PSScriptAnalyzer.
+description: PowerShell automation -- error handling, param validation, idempotency, WhatIf support, and PSScriptAnalyzer.
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
 

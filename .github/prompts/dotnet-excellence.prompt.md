@@ -44,7 +44,7 @@ Output:
 
 - concrete examples
 
-- references map (topic → Microsoft link)
+- references map (topic -> Microsoft link)
 
 - verification and rollback checklist
 
@@ -54,7 +54,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Backend .NET** | always — .NET improvement | *(this prompt)* | Prioritized improvement plan produced with before/after examples |
+| 1 | **Backend .NET** | always -- .NET improvement | *(this prompt)* | Prioritized improvement plan produced with before/after examples |
 | 2 | **Architect** | architecture-level recommendation triggered | `/explain-code` | Code review confirms no structural regression |
 | 3 | **Architect** | test coverage gaps identified | `/test-plan` then `/write-tests` | New tests passing in CI |
 | 4 | **Reviewer** | changes touch business-critical paths | `/pr-review` | No blocker findings |

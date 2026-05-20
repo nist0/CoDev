@@ -54,27 +54,27 @@ handoffs:
 
 ## Mission
 
-Execute GitHub CLI (`gh`) operations: create issues, close issues with comments, open PRs, merge PRs, and link work items. This agent acts â€” it does not plan or review.
+Execute GitHub CLI (`gh`) operations: create issues, close issues with comments, open PRs, merge PRs, and link work items. This agent acts -- it does not plan or review.
 
 ## Scope
 
-- âœ… Create GitHub issues
+- âU+0153... Create GitHub issues
 
-- âœ… Close issues (with closing comment + commit/PR reference)
+- âU+0153... Close issues (with closing comment + commit/PR reference)
 
-- âœ… Open pull requests
+- âU+0153... Open pull requests
 
-- âœ… Merge pull requests (squash, merge, or rebase)
+- âU+0153... Merge pull requests (squash, merge, or rebase)
 
-- âœ… Add review comments
+- âU+0153... Add review comments
 
-- âœ… Link issues to PRs (`Closes #N`)
+- âU+0153... Link issues to PRs (`Closes #N`)
 
-- âœ… Spot-check published items for corruption
+- âU+0153... Spot-check published items for corruption
 
-- âŒ Code review (delegate to Reviewer agent)
+- âU+0152 Code review (delegate to Reviewer agent)
 
-- âŒ Planning (delegate to Delivery Lead)
+- âU+0152 Planning (delegate to Delivery Lead)
 
 ## Non-negotiables
 

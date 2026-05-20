@@ -11,7 +11,7 @@ applyTo: "**/*.py"
 
 - Prefer clear, explicit code; avoid cleverness.
 
-- Use type hints for all public functions and complex logic — `mypy --strict` is the target.
+- Use type hints for all public functions and complex logic -- `mypy --strict` is the target.
 
 - Follow PEP 8; enforce with `ruff` or `flake8` in CI.
 
@@ -55,7 +55,7 @@ applyTo: "**/*.py"
 
 ## Examples
 
-✅ Correct — typed, explicit, idempotent:
+U+2705 Correct -- typed, explicit, idempotent:
 
 ```python
 from pathlib import Path
@@ -65,7 +65,7 @@ def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 ```
 
-❌ Wrong — bare exception, no type hints:
+U+274C Wrong -- bare exception, no type hints:
 
 ```python
 def ensure_dir(path):
@@ -77,7 +77,7 @@ def ensure_dir(path):
 
 ---
 
-## 🏆 Elite Section — Top 5% Python Practices
+## U+1F3C6 Elite Section -- Top 5% Python Practices
 
 - **`mypy --strict` as CI gate**: Enforce strict type checking from day one. Disabling rules in `pyproject.toml` must be accompanied by an inline comment explaining why.
 

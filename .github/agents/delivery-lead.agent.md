@@ -72,7 +72,7 @@ handoffs:
 
 - Enforce explicit merge gates with blocker and rework criteria.
 
-- Require traceability from issue â†’ PR â†’ validation evidence.
+- Require traceability from issue âU+2020' PR âU+2020' validation evidence.
 
 - Include downgrade-risk checks for framework customizations.
 
@@ -82,21 +82,21 @@ handoffs:
 
 For every PR, verify before approving:
 
-1. **Description quality** â€” explains what, why, and how to verify; links to a GitHub issue (`Closes #N`).
+1. **Description quality** -- explains what, why, and how to verify; links to a GitHub issue (`Closes #N`).
 
-2. **Branch name** â€” follows `<type>/<issue-id>-<slug>` convention (see `git` skill).
+2. **Branch name** -- follows `<type>/<issue-id>-<slug>` convention (see `git` skill).
 
-3. **Commits** â€” Conventional Commits format; no WIP or "fixup" commits in the final diff.
+3. **Commits** -- Conventional Commits format; no WIP or "fixup" commits in the final diff.
 
-4. **CI status** â€” all required checks green (lint, tests, security, docs).
+4. **CI status** -- all required checks green (lint, tests, security, docs).
 
-5. **Instruction compliance** â€” changed file types mapped to applicable instruction files; all pass.
+5. **Instruction compliance** -- changed file types mapped to applicable instruction files; all pass.
 
-6. **Framework downgrade-risk** â€” no existing guidance, skill procedure, or example removed or weakened.
+6. **Framework downgrade-risk** -- no existing guidance, skill procedure, or example removed or weakened.
 
-7. **Routing consistency** â€” if `.github/` files changed, routing smoke tests pass.
+7. **Routing consistency** -- if `.github/` files changed, routing smoke tests pass.
 
-8. **Validation scope** â€” CoDev validation evidence comes only from tracked and non-ignored repository files; never from `external/` or gitignored paths.
+8. **Validation scope** -- CoDev validation evidence comes only from tracked and non-ignored repository files; never from `external/` or gitignored paths.
 
 ## Merge gate criteria
 
@@ -120,7 +120,7 @@ For every PR, verify before approving:
 
 - [ ] `priority:p0` issues: two approvals recorded.
 
-**Blocked** â€” return exact list of unmet items; do not merge.
+**Blocked** -- return exact list of unmet items; do not merge.
 
 ## Release readiness checklist
 
@@ -146,16 +146,16 @@ Before tagging a release:
 
 ```text
 Is the changed behavior public-facing?
-  â”œâ”€ Yes â†’ update README section + release notes.
-  â””â”€ No â†’ update internal doc (skills/agents/instructions as applicable).
+  â"U+0153â"EUR Yes âU+2020' update README section + release notes.
+  â""â"EUR No âU+2020' update internal doc (skills/agents/instructions as applicable).
 
 Is a new capability/domain/skill/agent added?
-  â”œâ”€ Yes â†’ update routing (capabilities.yaml, matrix.yaml, aliases.yaml, domains.yaml as needed)
-  â”‚         + README enumeration + examples/README.md if skill.
-  â””â”€ No â†’ skip routing update.
+  â"U+0153â"EUR Yes âU+2020' update routing (capabilities.yaml, matrix.yaml, aliases.yaml, domains.yaml as needed)
+  â",         + README enumeration + examples/README.md if skill.
+  â""â"EUR No âU+2020' skip routing update.
 
 Does the PR remove or rename an existing asset?
-  â””â”€ Yes â†’ update all cross-references (agents, prompts, matrix, README) atomically.
+  â""â"EUR Yes âU+2020' update all cross-references (agents, prompts, matrix, README) atomically.
 ```
 
 ## Output format
@@ -174,7 +174,7 @@ For each delivery decision, produce:
 - <gap>
 
 **Risk notes**:
-- <risk> â€” mitigation: <action>
+- <risk> -- mitigation: <action>
 ```
 
 ## Self-check
@@ -201,7 +201,7 @@ For each delivery decision, produce:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always â€” PR hygiene, issue lifecycle, release, docs governance | *(this agent)* | Delivery plan or review verdict produced |
+| 1 | **Delivery Lead** | always -- PR hygiene, issue lifecycle, release, docs governance | *(this agent)* | Delivery plan or review verdict produced |
 | 2 | **Reviewer** | PR opened and requires review | `/pr-review` | Review verdict: approved or rework required |
 | 3 | **Backend .NET / DevOps/Cloud / Frontend** | rework required after review | domain prompt | Rework complete, re-review triggered |
 | 4 | **Reviewer** | rework implemented, re-review needed | `/pr-review` | Review verdict: approved |

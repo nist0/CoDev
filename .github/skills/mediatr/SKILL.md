@@ -1,6 +1,6 @@
 ---
 name: mediatr
-description: MediatR CQRS patterns — commands, queries, handlers, pipeline behaviors, and handler testing.
+description: MediatR CQRS patterns -- commands, queries, handlers, pipeline behaviors, and handler testing.
 argument-hint: "[feature or bounded context]"
 user-invocable: true
 

@@ -1,6 +1,6 @@
 ---
 name: issues
-description: GitHub Issues triage — classification, labels, acceptance criteria, and planning integration.
+description: GitHub Issues triage -- classification, labels, acceptance criteria, and planning integration.
 argument-hint: "[issue title or area]"
 user-invocable: true
 

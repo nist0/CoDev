@@ -1,6 +1,6 @@
 ---
 name: git
-description: Elite Git workflow — branching discipline, conventional commits, safe rebasing, history hygiene, and conflict resolution.
+description: Elite Git workflow -- branching discipline, conventional commits, safe rebasing, history hygiene, and conflict resolution.
 argument-hint: "[branch-name] [issue-number]"
 user-invocable: true
 
@@ -42,7 +42,7 @@ Rules:
 
 ### 2. Commit hygiene (Conventional Commits)
 
-Format: `<type>(<scope>): <imperative summary>` — max 72 chars subject line.
+Format: `<type>(<scope>): <imperative summary>` -- max 72 chars subject line.
 
 ```text
 feat(routing): add capability fallback rule to matrix
@@ -96,7 +96,7 @@ Recommended `.git/hooks/pre-push` actions (or use `pre-commit` / `husky`):
 
 ### 5. Conflict resolution (step-by-step)
 
-1. Start: `git status` — identify conflicting files.
+1. Start: `git status` -- identify conflicting files.
 
 2. For each conflict: open file, find `<<<<<<<`/`=======`/`>>>>>>>` markers.
 
@@ -119,13 +119,13 @@ git checkout main
 git pull --rebase
 git checkout -b hotfix/<issue-id>-<slug>
 # apply minimal fix, test locally
-git commit -S -m "fix(<scope>): <summary> — Closes #<id>"
+git commit -S -m "fix(<scope>): <summary> -- Closes #<id>"
 # open PR targeting main with [HOTFIX] label
 # after merge, tag: git tag -s v<x>.<y>.<z+1> -m "hotfix: <summary>"
 git push origin --tags
 ```
 
-### 7. History hygiene — audit commands
+### 7. History hygiene -- audit commands
 
 ```bash
 # Review last N commits

@@ -11,7 +11,7 @@ applyTo: "**/*.md"
 
 All Mermaid diagrams MUST use the ` ```mermaid ` fenced code block syntax. Never use ` ```mmd `, ` ```diagram `, or any other tag.
 
-✅ Correct:
+U+2705 Correct:
 
 ````markdown
 ```mermaid
@@ -22,7 +22,7 @@ flowchart LR
 ```
 ````
 
-❌ Wrong:
+U+274C Wrong:
 
 ````markdown
 ```mmd
@@ -33,7 +33,7 @@ graph LR
 ```
 ````
 
-## Deprecated syntax — never use
+## Deprecated syntax -- never use
 
 | Deprecated | Replacement |
 |---|---|
@@ -43,7 +43,7 @@ graph LR
 
 ## GitHub rendering constraints
 
-- Keep node count ≤ 50 per diagram; split larger diagrams.
+- Keep node count <= 50 per diagram; split larger diagrams.
 
 - Do not use beta diagram types (`xychart-beta` etc.) in primary documentation that must render reliably.
 
@@ -53,7 +53,7 @@ graph LR
 
 ## Accessibility requirement
 
-Every Mermaid diagram with > 5 nodes MUST be accompanied by a prose description — either immediately before or immediately after the code block — that summarises what the diagram conveys.
+Every Mermaid diagram with > 5 nodes MUST be accompanied by a prose description -- either immediately before or immediately after the code block -- that summarises what the diagram conveys.
 
 ````markdown
 The following diagram illustrates the order lifecycle from placement to delivery.
@@ -69,7 +69,7 @@ stateDiagram-v2
 
 ```
 
-_Summary: Orders progress from Pending → Confirmed → Shipped → Delivered._
+_Summary: Orders progress from Pending -> Confirmed -> Shipped -> Delivered._
 ````
 
 ## Diagram versioning
@@ -80,7 +80,7 @@ _Summary: Orders progress from Pending → Confirmed → Shipped → Delivered._
 
 - For inline diagrams (within a `.md` file), that `.md` file is the source of truth.
 
-- Generated PNG/SVG exports are derived artifacts — do not include them in PR review diffs.
+- Generated PNG/SVG exports are derived artifacts -- do not include them in PR review diffs.
 
 ## Diagram type guidance
 
@@ -104,7 +104,7 @@ _Summary: Orders progress from Pending → Confirmed → Shipped → Delivered._
 
 - Max 8 participants for sequence diagrams.
 
-- Max 10 classes per class diagram — split by bounded context.
+- Max 10 classes per class diagram -- split by bounded context.
 
 ## CI validation
 

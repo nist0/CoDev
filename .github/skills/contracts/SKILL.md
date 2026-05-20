@@ -1,6 +1,6 @@
 ---
 name: contracts
-description: Full-stack API contracts — ownership, versioning, schema generation, validation, and consumer-driven contract tests.
+description: Full-stack API contracts -- ownership, versioning, schema generation, validation, and consumer-driven contract tests.
 argument-hint: "[API name or bounded context]"
 user-invocable: true
 

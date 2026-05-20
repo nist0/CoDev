@@ -1,4 +1,4 @@
-# kubectl Skill — Examples
+# kubectl Skill -- Examples
 
 ## 1. List Pods
 

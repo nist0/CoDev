@@ -60,7 +60,7 @@ handoffs:
 
 ## Elite native procedure
 
-### Step 1 â€” Context collection (mandatory before any analysis)
+### Step 1 -- Context collection (mandatory before any analysis)
 
 For every request, collect:
 
@@ -73,7 +73,7 @@ For every request, collect:
 | Symptom | Segfault, UB, wrong output, hang, assert |
 | Recent changes | Last git commit that changed behavior |
 
-### Step 2 â€” Separate observations from assumptions
+### Step 2 -- Separate observations from assumptions
 
 Before ranking hypotheses:
 
@@ -83,7 +83,7 @@ Before ranking hypotheses:
 
 Never recommend a fix based on an assumption without a validation step.
 
-### Step 3 â€” Memory safety triage
+### Step 3 -- Memory safety triage
 
 For crashes and corruptions:
 
@@ -101,12 +101,12 @@ valgrind --leak-check=full --track-origins=yes ./<binary>
 gdb <binary> <core> -ex bt
 ```
 
-Ranked hypotheses (provide top 3, ordered by likelihood Ã— validation cost):
+Ranked hypotheses (provide top 3, ordered by likelihood Ã-- validation cost):
 
 | Rank | Hypothesis | Validation step | Cost |
 |------|-----------|-----------------|------|
 
-### Step 4 â€” Performance triage
+### Step 4 -- Performance triage
 
 Measure first; never optimize without a profiler baseline:
 
@@ -131,7 +131,7 @@ For each proposed optimization:
 
 - [ ] UB sanitizer re-run after change (optimizations can expose latent UB).
 
-### Step 5 â€” Firmware-specific constraints (AVR/PIC)
+### Step 5 -- Firmware-specific constraints (AVR/PIC)
 
 - Stack size is fixed; verify stack depth with worst-case call tree.
 
@@ -143,7 +143,7 @@ For each proposed optimization:
 
 - Flash/SRAM budget: check `.map` file after every build.
 
-### Step 6 â€” Fix safety rules
+### Step 6 -- Fix safety rules
 
 - Prefer the smallest, most local fix; avoid touching unrelated code.
 
@@ -217,8 +217,8 @@ For each proposed optimization:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Native/Systems** | always â€” C/C++/ASM/firmware debugging and analysis | *(this agent)* | Ranked hypotheses + fix recommendation produced |
+| 1 | **Native/Systems** | always -- C/C++/ASM/firmware debugging and analysis | *(this agent)* | Ranked hypotheses + fix recommendation produced |
 | 2 | **Architect** | design decision or cross-cutting concern identified | `/architect` | Architecture decision documented |
 | 3 | **Implement** | fix ready to apply | `/implement` | Minimal diff applied, sanitizers pass |
 | 4 | **Reviewer** | implementation done | `/pr-review` | Review verdict: approved or rework required |
-| 5 | **Delivery Lead** | review approved, PR ready | â€” | PR merged, issue closed |
+| 5 | **Delivery Lead** | review approved, PR ready | -- | PR merged, issue closed |

@@ -1,6 +1,6 @@
 ---
 name: cli-platform-bootstrap
-description: Add CoDev as a git submodule to a .NET CLI platform repo, run codev init with the extend strategy, author the codev-overrides/ stub, verify, and commit — ready for full project analysis.
+description: Add CoDev as a git submodule to a .NET CLI platform repo, run codev init with the extend strategy, author the codev-overrides/ stub, verify, and commit -- ready for full project analysis.
 argument-hint: "[repo-root] [submodule-path: tools/codev]"
 user-invocable: true
 
@@ -30,7 +30,7 @@ disable-model-invocation: false
 
 ## Procedure
 
-### Step 1 — Clone the target repo (if not already done)
+### Step 1 -- Clone the target repo (if not already done)
 
 ```powershell
 # PowerShell
@@ -47,7 +47,7 @@ git checkout -b feat/bootstrap-codev
 
 **Verify**: `git status` shows a clean working tree on the feature branch.
 
-### Step 2 — Add CoDev as a git submodule
+### Step 2 -- Add CoDev as a git submodule
 
 ```powershell
 git submodule add https://github.com/nist0/CoDev.git tools/codev
@@ -66,7 +66,7 @@ git rm -f tools/codev
 Remove-Item -Recurse -Force .git/modules/tools/codev
 ```
 
-### Step 3 — Run `codev init` with the extend strategy
+### Step 3 -- Run `codev init` with the extend strategy
 
 ```powershell
 # PowerShell
@@ -100,7 +100,7 @@ Expected output: `Route smoke validation passed: 27 case(s).`
 
 **Rollback**: `git checkout -- .github/` restores any managed files to their pre-init state.
 
-### Step 4 — Author the codev-overrides/ stub
+### Step 4 -- Author the codev-overrides/ stub
 
 Create the stub folder structure for project-specific assets:
 
@@ -117,14 +117,14 @@ Create the mandatory `codev-overrides/README.md`:
 # CoDev Overrides
 
 Project-specific CoDev extensions for <project-name>.
-All files here extend CoDev managed assets — never edit managed files directly.
+All files here extend CoDev managed assets -- never edit managed files directly.
 
 | File | Purpose | Owner | Last reviewed |
 |---|---|---|---|
 | (add a row for each override authored) | | | |
 ```
 
-### Step 5 — Run the customisation registry validator
+### Step 5 -- Run the customisation registry validator
 
 ```powershell
 python tools/codev/scripts/validate-customization-registry.py
@@ -132,7 +132,7 @@ python tools/codev/scripts/validate-customization-registry.py
 
 Expected: no errors. Fix any reported issues before proceeding.
 
-### Step 6 — Commit all bootstrap artefacts
+### Step 6 -- Commit all bootstrap artefacts
 
 ```powershell
 git add .gitmodules tools/codev codev.json codev-lock.json .github/ codev-overrides/ .pre-commit-config.yaml
@@ -140,11 +140,11 @@ git commit -m "chore: bootstrap CoDev submodule (extend strategy)"
 git push origin feat/bootstrap-codev
 ```
 
-### Step 7 — Confirm CI passes
+### Step 7 -- Confirm CI passes
 
 Check that the CI workflow triggered by the push is green. If the host repo runs markdown-lint or similar validators, confirm they pass against the new `.github/` content.
 
-### Step 8 — Transition to analysis
+### Step 8 -- Transition to analysis
 
 Once all self-check items below are ticked, immediately invoke:
 
@@ -166,7 +166,7 @@ Once all self-check items below are ticked, immediately invoke:
 
 - [ ] `codev-overrides/README.md` committed with correct structure.
 
-- [ ] Existing `.github/` assets preserved — no managed files overwritten or removed.
+- [ ] Existing `.github/` assets preserved -- no managed files overwritten or removed.
 
 - [ ] Working on a feature branch; no direct push to `main`.
 
@@ -183,12 +183,12 @@ Remove-Item codev.json, codev-lock.json, .pre-commit-config.yaml -ErrorAction Si
 git commit -m "chore: remove CoDev submodule"
 ```
 
-## 🏆 Elite Section
+## U+1F3C6 Elite Section
 
 - **Lockfile vs symlink discipline**: On Windows without Developer Mode, CoDev uses a lockfile (`codev-lock.json`). This means after every `git submodule update` (CoDev version bump), you must run `codev update` to refresh the lockfile. Document this cadence in `codev-overrides/README.md`.
 
-- **Extend vs override boundary**: The `extend` strategy leaves the host repo's existing `.github/` assets untouched. If the host already has agents or skills with names that conflict with CoDev's defaults, CoDev will suffix them — inspect the `codev init` output carefully and document any name collisions in `codev-overrides/README.md`.
+- **Extend vs override boundary**: The `extend` strategy leaves the host repo's existing `.github/` assets untouched. If the host already has agents or skills with names that conflict with CoDev's defaults, CoDev will suffix them -- inspect the `codev init` output carefully and document any name collisions in `codev-overrides/README.md`.
 
-- **Pre-commit as a safety net**: The pre-commit hook blocks accidental edits to CoDev-managed files. If a teammate bypasses it with `--no-verify`, the CI validator (`validate-customization-registry.py`) is the second line of defence — add it as a CI step.
+- **Pre-commit as a safety net**: The pre-commit hook blocks accidental edits to CoDev-managed files. If a teammate bypasses it with `--no-verify`, the CI validator (`validate-customization-registry.py`) is the second line of defence -- add it as a CI step.
 
 - **Temporary vs permanent submodule**: If CoDev is added temporarily (for onboarding only), document the removal plan in a GitHub issue before merging the bootstrap PR. Avoids the submodule becoming permanent by neglect.

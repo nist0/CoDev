@@ -1,10 +1,10 @@
-# rest-api-controller-gen — Examples
+# rest-api-controller-gen -- Examples
 
 ## Two annotated examples showing the three input modes in action
 
-## Example 1 — From natural-language description
+## Example 1 -- From natural-language description
 
-**Input** (Mode 1 — description):
+**Input** (Mode 1 -- description):
 > "A BlogPosts resource with Id (Guid), Title (string, required, max 300), Body (string, required), AuthorId (Guid), PublishedAt (DateTimeOffset, nullable). CRUD endpoints required."
 **Generated artifacts** (summary):
 
@@ -100,9 +100,9 @@ return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
 
 ---
 
-## Example 2 — From OpenAPI JSON contract
+## Example 2 -- From OpenAPI JSON contract
 
-**Input** (Mode 2 — OpenAPI JSON snippet):
+**Input** (Mode 2 -- OpenAPI JSON snippet):
 
 ```json
 {
@@ -149,31 +149,31 @@ return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
 
 **Derivation steps**:
 
-1. Resource: `products` → class name `ProductsController`, route `api/v{version:apiVersion}/products`.
+1. Resource: `products` -> class name `ProductsController`, route `api/v{version:apiVersion}/products`.
 
-2. Schema `CreateProductRequest` → `sealed record CreateProductRequest(string Name, double Price, Guid? CategoryId)`.
+2. Schema `CreateProductRequest` -> `sealed record CreateProductRequest(string Name, double Price, Guid? CategoryId)`.
 
-3. `required: ["name", "price"]` → FluentValidation `.NotEmpty()` on `Name`, `.GreaterThan(0.01)` on `Price`.
+3. `required: ["name", "price"]` -> FluentValidation `.NotEmpty()` on `Name`, `.GreaterThan(0.01)` on `Price`.
 
-4. `maxLength: 200` → `.MaximumLength(200)` on `Name`.
+4. `maxLength: 200` -> `.MaximumLength(200)` on `Name`.
 
-5. `"format": "uuid"` → `Guid?` on `CategoryId` (nullable — not in `required`).
-**Generated DTOs and validator** (identical structure to Example 1 — see above for full pattern).
+5. `"format": "uuid"` -> `Guid?` on `CategoryId` (nullable -- not in `required`).
+**Generated DTOs and validator** (identical structure to Example 1 -- see above for full pattern).
 **Integration test checklist** produced automatically:
 
-- `POST /api/v1/products` with `{ "name": "Widget", "price": 9.99 }` → `201`
+- `POST /api/v1/products` with `{ "name": "Widget", "price": 9.99 }` -> `201`
 
-- `POST /api/v1/products` with `{}` → `400 ValidationProblemDetails`
+- `POST /api/v1/products` with `{}` -> `400 ValidationProblemDetails`
 
-- `POST /api/v1/products` with `{ "name": "", "price": -1 }` → `400` + validation errors for both fields
+- `POST /api/v1/products` with `{ "name": "", "price": -1 }` -> `400` + validation errors for both fields
 
-- `GET /api/v1/products` → `200` with list
+- `GET /api/v1/products` -> `200` with list
 
 ---
 
-## Example 3 — From theme only
+## Example 3 -- From theme only
 
-**Input** (Mode 3 — theme):
+**Input** (Mode 3 -- theme):
 > `Orders`
 **Default shape assumed**:
 
@@ -186,23 +186,23 @@ return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
 - `UpdatedAt` (DateTimeOffset?, auto-set on update)
 **Route**: `api/v{version:apiVersion}/orders`
 Proceeds with the same 8-step generation flow. All endpoints generated with standard validation and ProblemDetails error contract.
-**When to add more fields**: After generating from theme, append domain-specific fields to the DTO and validator before shipping. The scaffolded class is a correct, compilable starting point — not a final artefact.
+**When to add more fields**: After generating from theme, append domain-specific fields to the DTO and validator before shipping. The scaffolded class is a correct, compilable starting point -- not a final artefact.
 
 ---
 
-## Example 4 — Generate Controller with dotnet CLI
+## Example 4 -- Generate Controller with dotnet CLI
 
 ```text
 dotnet-aspnet-codegenerator controller -name OrdersController -m Order -dc AppDbContext --relativeFolderPath Controllers --useDefaultLayout
 ```
 
-## Example 5 — Add MediatR Handler
+## Example 5 -- Add MediatR Handler
 
 ```csharp
 public record CreateOrderCommand(string Name) : IRequest<Order>;
 ```
 
-## Example 6 — Integration Test Skeleton
+## Example 6 -- Integration Test Skeleton
 
 ```text
 [Fact]

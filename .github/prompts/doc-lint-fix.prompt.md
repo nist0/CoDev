@@ -36,7 +36,7 @@ Constraints:
 
 - Do not remove existing information, procedures, or examples
 
-- If content is reorganized, preserve traceability (source section → target section)
+- If content is reorganized, preserve traceability (source section -> target section)
 
 - When validating CoDev docs, use tracked and non-ignored repository files only; never inspect `external/` or gitignored paths
 
@@ -52,6 +52,6 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — lint and rewrite | *(this prompt)* | Lint-fixed Markdown produced, no info lost |
+| 1 | **Delivery Lead** | always -- lint and rewrite | *(this prompt)* | Lint-fixed Markdown produced, no info lost |
 | 2 | **Reviewer** | significant restructuring occurred | `/pr-review` | Content integrity confirmed, heading hierarchy valid |
 | 3 | **Delivery Lead** | changes ready to merge | `/pr-review` | PR approved, markdownlint passes in CI |

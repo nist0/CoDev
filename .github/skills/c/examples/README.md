@@ -1,4 +1,4 @@
-# C Skill — Examples
+# C Skill -- Examples
 
 ## 1. Safe Memory Allocation
 

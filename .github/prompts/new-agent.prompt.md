@@ -58,7 +58,7 @@ Output: plan + file content + checklist.
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **PromptSmith** | always — agent creation | *(this prompt)* | .github/agents/<id>.agent.md created with mission, boundaries, output format |
+| 1 | **PromptSmith** | always -- agent creation | *(this prompt)* | .github/agents/<id>.agent.md created with mission, boundaries, output format |
 | 2 | **Router** | agent needs routing matrix entry | update `routing/matrix.yaml` | New agent reachable via `/route` for intended capability+domain |
 | 3 | **Reviewer** | agent ready | `/pr-review` | No boundary violations, `validate-customization-registry.py` passes |
 | 4 | **Delivery Lead** | PR ready | `/pr-review` | PR merged, CI green, README updated |

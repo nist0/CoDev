@@ -52,7 +52,7 @@ Output format:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **DevOps/Cloud** | always — Helm triage | *(this prompt)* | Failure mode ranked, go/no-go criteria established |
+| 1 | **DevOps/Cloud** | always -- Helm triage | *(this prompt)* | Failure mode ranked, go/no-go criteria established |
 | 2 | **DevOps/Cloud** | fix identified | Apply fix inline or via `/automation-script` | Release/rollback applied, pods healthy |
 | 3 | **Reliability** | P1 or P2 incident | `/postmortem` | Blameless postmortem drafted, action items created |
 | 4 | **Delivery Lead** | fix committed | `/pr-review` | PR approved, CI green |

@@ -13,7 +13,7 @@ applyTo: "**/*.ts"
 
 - Avoid implicit `any`; use `unknown` when the type is genuinely unknown, then narrow explicitly.
 
-- Enable `strict: true` in `tsconfig.json` — never disable it project-wide.
+- Enable `strict: true` in `tsconfig.json` -- never disable it project-wide.
 
 - Use `satisfies` operator to validate object shapes without widening the inferred type.
 
@@ -39,11 +39,11 @@ applyTo: "**/*.ts"
 
 - Prefer named exports over default exports for discoverability and refactoring.
 
-- Avoid barrel files (`index.ts` re-exports everything) in large packages — they hurt tree-shaking.
+- Avoid barrel files (`index.ts` re-exports everything) in large packages -- they hurt tree-shaking.
 
 ## Examples
 
-✅ Correct — explicit types, safe async:
+U+2705 Correct -- explicit types, safe async:
 
 ```typescript
 async function fetchUser(id: string): Promise<User> {
@@ -53,7 +53,7 @@ async function fetchUser(id: string): Promise<User> {
 }
 ```
 
-❌ Wrong — implicit any, swallowed error:
+U+274C Wrong -- implicit any, swallowed error:
 
 ```typescript
 async function fetchUser(id) {
@@ -64,11 +64,11 @@ async function fetchUser(id) {
 
 ---
 
-## 🏆 Elite Section — Top 5% TypeScript Practices
+## U+1F3C6 Elite Section -- Top 5% TypeScript Practices
 
 - **Branded types for domain primitives**: Use `type UserId = string & { readonly _brand: 'UserId' }` to prevent mixing primitive IDs at compile time.
 
-- **`zod` for runtime validation**: Parse external data (API responses, env vars, form input) with `zod` schemas. Derive TypeScript types from schemas — single source of truth.
+- **`zod` for runtime validation**: Parse external data (API responses, env vars, form input) with `zod` schemas. Derive TypeScript types from schemas -- single source of truth.
 
 - **`ts-reset` for safer stdlib**: Apply `ts-reset` to fix surprising stdlib typings (e.g. `JSON.parse` returns `unknown`, `Array.filter(Boolean)` narrows correctly).
 

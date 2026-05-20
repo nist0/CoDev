@@ -1,4 +1,4 @@
-# Perl Skill — Examples
+# Perl Skill -- Examples
 
 ## 1. Safe Script Skeleton
 

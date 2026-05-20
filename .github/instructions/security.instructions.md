@@ -9,9 +9,9 @@ applyTo: "**/*"
 
 ## Secrets hygiene
 
-- Never add secrets, tokens, API keys, or private keys — even as placeholder examples.
+- Never add secrets, tokens, API keys, or private keys -- even as placeholder examples.
 
-- Use environment variables or secrets managers (e.g. Azure Key Vault, GitHub Secrets) — never hardcode.
+- Use environment variables or secrets managers (e.g. Azure Key Vault, GitHub Secrets) -- never hardcode.
 
 - Rotate any credential accidentally committed immediately; treat the commit as compromised.
 
@@ -29,7 +29,7 @@ applyTo: "**/*"
 
 - Default to deny; explicitly allow only what is required.
 
-- Isolate secrets per environment (dev ≠ staging ≠ prod).
+- Isolate secrets per environment (dev != staging != prod).
 
 ## Dependency & supply chain
 
@@ -50,26 +50,26 @@ Residual risk: [what remains and why it is accepted]
 
 ## Examples
 
-✅ Correct — secret via environment:
+U+2705 Correct -- secret via environment:
 
 ```python
 import os
 api_key = os.environ["MY_SERVICE_API_KEY"]
 ```
 
-❌ Wrong — hardcoded secret:
+U+274C Wrong -- hardcoded secret:
 
 ```python
 api_key = "sk-abc123"  # NEVER do this
 ```
 
-✅ Correct — parameterized SQL:
+U+2705 Correct -- parameterized SQL:
 
 ```csharp
 var user = await db.Users.FirstOrDefaultAsync(u => u.Id == userId, ct);
 ```
 
-❌ Wrong — string interpolation in SQL:
+U+274C Wrong -- string interpolation in SQL:
 
 ```csharp
 var sql = $"SELECT * FROM Users WHERE Id = '{userId}'"; // SQL injection
@@ -77,16 +77,16 @@ var sql = $"SELECT * FROM Users WHERE Id = '{userId}'"; // SQL injection
 
 ---
 
-## 🏆 Elite Section — Top 5% Security Practices
+## U+1F3C6 Elite Section -- Top 5% Security Practices
 
 - **Threat model every feature**: For any new data flow, draw a minimal data-flow diagram and identify trust boundaries. Document at least one abuse case per boundary.
 
-- **Secrets rotation by design**: Services must tolerate secret rotation without restart — use `IOptionsMonitor<T>` / dynamic reload patterns.
+- **Secrets rotation by design**: Services must tolerate secret rotation without restart -- use `IOptionsMonitor<T>` / dynamic reload patterns.
 
-- **Zero-trust internal traffic**: Even internal service-to-service calls must be authenticated (mTLS, OIDC tokens) — never assume internal = trusted.
+- **Zero-trust internal traffic**: Even internal service-to-service calls must be authenticated (mTLS, OIDC tokens) -- never assume internal = trusted.
 
 - **Audit trail for sensitive operations**: Write, delete, and permission-change operations must produce structured audit log entries with actor, timestamp, resource, and result.
 
-- **SAST in CI, not just PR**: Run static analysis (e.g. CodeQL, Semgrep) on every push to default branch — not only on PRs.
+- **SAST in CI, not just PR**: Run static analysis (e.g. CodeQL, Semgrep) on every push to default branch -- not only on PRs.
 
 - **Dependency hash pinning for CI actions**: Pin GitHub Actions by SHA, not tag: `actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683`.

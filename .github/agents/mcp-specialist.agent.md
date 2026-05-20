@@ -90,17 +90,17 @@ Design, analyze, and debug Model Context Protocol integrations without drifting 
 
 ## Skills used
 
-- `mcp-integration` â€” primary MCP design, install, and troubleshooting guidance
+- `mcp-integration` -- primary MCP design, install, and troubleshooting guidance
 
-- `vscode` â€” supporting editor-specific context when MCP behavior depends on workspace vs user setup
+- `vscode` -- supporting editor-specific context when MCP behavior depends on workspace vs user setup
 
 ## Prompts used
 
-- `/mcp-setup` â€” create and install an MCP integration
+- `/mcp-setup` -- create and install an MCP integration
 
-- `/mcp-analyze` â€” review an existing MCP setup
+- `/mcp-analyze` -- review an existing MCP setup
 
-- `/mcp-debug` â€” troubleshoot MCP failures
+- `/mcp-debug` -- troubleshoot MCP failures
 
 ## Output format
 

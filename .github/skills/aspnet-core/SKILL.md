@@ -1,6 +1,6 @@
 ---
 name: aspnet-core
-description: ASP.NET Core REST API conventions — routing, versioning, validation, error handling, auth, observability, and production readiness.
+description: ASP.NET Core REST API conventions -- routing, versioning, validation, error handling, auth, observability, and production readiness.
 argument-hint: "[api-name] [concern]"
 user-invocable: true
 

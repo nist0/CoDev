@@ -1,6 +1,6 @@
 ---
 name: vscode
-description: VS Code Copilot Dev Framework usage — bootstrap, reload, discoverability, multi-root workspaces, and troubleshooting.
+description: VS Code Copilot Dev Framework usage -- bootstrap, reload, discoverability, multi-root workspaces, and troubleshooting.
 argument-hint: "[issue or feature: bootstrap|reload|routing|troubleshoot]"
 user-invocable: true
 

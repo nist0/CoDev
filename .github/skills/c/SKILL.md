@@ -1,6 +1,6 @@
 ---
 name: c
-description: C language — safety defaults, memory discipline, error handling, sanitizers, and debugging procedure.
+description: C language -- safety defaults, memory discipline, error handling, sanitizers, and debugging procedure.
 argument-hint: "[component or module name]"
 user-invocable: true
 

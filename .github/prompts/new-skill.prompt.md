@@ -69,7 +69,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **PromptSmith** | always — skill creation | *(this prompt)* | SKILL.md + examples/README.md created with procedure and self-check |
+| 1 | **PromptSmith** | always -- skill creation | *(this prompt)* | SKILL.md + examples/README.md created with procedure and self-check |
 | 2 | **Router** | skill referenced from matrix | update `routing/matrix.yaml` | Skill reachable via routing, smoke test passes |
 | 3 | **Reviewer** | skill ready for review | `/pr-review` | No duplication, examples are concrete and runnable |
 | 4 | **Delivery Lead** | PR ready | `/pr-review` | PR merged, `validate-customization-registry.py` and `validate-readme-registry.py` pass |

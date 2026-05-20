@@ -1,6 +1,6 @@
 ---
 name: doc-architecture-model
-description: Propose or enforce a Documentation Architecture Model (DAM) — purpose-driven doc tree, audience clarity, ownership, and lint compliance.
+description: Propose or enforce a Documentation Architecture Model (DAM) -- purpose-driven doc tree, audience clarity, ownership, and lint compliance.
 argument-hint: "[repo] [doc-types]"
 user-invocable: true
 
@@ -85,7 +85,7 @@ Requirements:
 
 - Links: all valid (run link-checker or `mlc`).
 
-- Line length: ≤ 120 chars (soft rule).
+- Line length: <= 120 chars (soft rule).
 
 ### 6. Produce templates per doc type
 

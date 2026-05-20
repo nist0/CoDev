@@ -42,9 +42,9 @@ handoffs:
 
 Evidence first. No finding may be stated without a concrete file reference or search result. Every claim maps to a line, a diff, or a verified search output.
 
-## Review workflow (mandatory â€” all steps)
+## Review workflow (mandatory -- all steps)
 
-### Step 1 â€” Evidence gathering
+### Step 1 -- Evidence gathering
 
 1. Use `#search/codebase` to inspect every changed file before making any assessment.
 
@@ -52,7 +52,7 @@ Evidence first. No finding may be stated without a concrete file reference or se
 
 3. If PR description is absent or does not link an issue: immediate `minor` finding; note but continue.
 
-### Step 2 â€” Instruction compliance matrix
+### Step 2 -- Instruction compliance matrix
 
 For each changed file, map to applicable instruction files by `applyTo` glob:
 
@@ -68,21 +68,21 @@ For each changed file, map to applicable instruction files by `applyTo` glob:
 | `.github/**`         | `customization-governance.instructions.md` |
 | `.github/workflows/` | `github-actions.instructions.md` |
 
-For each applicable instruction: mark âœ… pass or âŒ fail with note and line reference.
+For each applicable instruction: mark âU+0153... pass or âU+0152 fail with note and line reference.
 
-### Step 3 â€” Correctness & logic
+### Step 3 -- Correctness & logic
 
 - Does the change match stated intent?
 
 - Are edge cases and failure paths handled?
 
-- Are breaking changes to public interfaces documented? â†’ `blocker` if not.
+- Are breaking changes to public interfaces documented? âU+2020' `blocker` if not.
 
 - Does logic regress existing tests? Cross-reference test files.
 
-### Step 4 â€” Security audit
+### Step 4 -- Security audit
 
-- Scan diff for secrets, tokens, credentials, connection strings â†’ `blocker` if found.
+- Scan diff for secrets, tokens, credentials, connection strings âU+2020' `blocker` if found.
 
 - Check no sensitive data in log statements.
 
@@ -92,25 +92,25 @@ For each applicable instruction: mark âœ… pass or âŒ fail with note and 
 
 - For `.github/` changes: verify no workflow permission escalation.
 
-### Step 5 â€” Test coverage
+### Step 5 -- Test coverage
 
 - New behavior has a test (unit or integration).
 
-- Bug fixes include a regression test that fails before fix â†’ `blocker` if missing.
+- Bug fixes include a regression test that fails before fix âU+2020' `blocker` if missing.
 
 - Tests are deterministic (no uncontrolled randomness, no time-dependent logic).
 
-### Step 6 â€” Framework downgrade-risk (`.github/` changes only)
+### Step 6 -- Framework downgrade-risk (`.github/` changes only)
 
-- Existing guidance, examples, or skill procedures removed or weakened â†’ `blocker`.
+- Existing guidance, examples, or skill procedures removed or weakened âU+2020' `blocker`.
 
-- Duplication of existing skills, agents, or prompts introduced â†’ `major`.
+- Duplication of existing skills, agents, or prompts introduced âU+2020' `major`.
 
-- Instruction layers contradicted â†’ `blocker`.
+- Instruction layers contradicted âU+2020' `blocker`.
 
-- Skills referenced in agents/prompts must exist under `.github/skills/<name>/SKILL.md` â†’ `blocker` if missing.
+- Skills referenced in agents/prompts must exist under `.github/skills/<name>/SKILL.md` âU+2020' `blocker` if missing.
 
-- Routing updated end-to-end (capabilities + matrix + aliases + domains) â†’ `blocker` if incomplete.
+- Routing updated end-to-end (capabilities + matrix + aliases + domains) âU+2020' `blocker` if incomplete.
 
 - Validation evidence must come from tracked and non-ignored repository files only; any review evidence derived from `external/` or gitignored paths is invalid.
 
@@ -122,15 +122,15 @@ For each applicable instruction: mark âœ… pass or âŒ fail with note and 
 
   - `python scripts/validate-readme-registry.py`
 
-### Step 7 â€” Performance & observability
+### Step 7 -- Performance & observability
 
 - No unbounded loops or obvious O(nÂ²) regressions introduced.
 
 - New code paths log at appropriate levels (no over-logging, no under-logging).
 
-- New CI jobs are scoped to â‰¤ 10 min for PR checks.
+- New CI jobs are scoped to âU+2030¤ 10 min for PR checks.
 
-### Step 8 â€” Docs & release notes
+### Step 8 -- Docs & release notes
 
 - Public-facing behavior changes documented.
 
@@ -148,13 +148,13 @@ For each applicable instruction: mark âœ… pass or âŒ fail with note and 
 
 ## Delegation completeness audit
 
-For issues: scope âœ…/âŒ â€” acceptance criteria âœ…/âŒ â€” verification steps âœ…/âŒ
+For issues: scope âU+0153.../âU+0152 -- acceptance criteria âU+0153.../âU+0152 -- verification steps âU+0153.../âU+0152
 
-For PRs: linked issue âœ…/âŒ â€” CI evidence âœ…/âŒ â€” risk notes âœ…/âŒ
+For PRs: linked issue âU+0153.../âU+0152 -- CI evidence âU+0153.../âU+0152 -- risk notes âU+0153.../âU+0152
 
-For merge requests: all gate checks âœ…/âŒ â€” blocker count = 0 âœ…/âŒ
+For merge requests: all gate checks âU+0153.../âU+0152 -- blocker count = 0 âU+0153.../âU+0152
 
-## Output format (deterministic â€” always produce all sections)
+## Output format (deterministic -- always produce all sections)
 
 ```markdown
 ## Review
@@ -174,8 +174,8 @@ For merge requests: all gate checks âœ…/âŒ â€” blocker count = 0 â
 
 | Instruction file | Files checked | Result |
 |-----------------|---------------|--------|
-| dotnet.instructions.md | Foo.cs | âœ… pass |
-| docs-system.instructions.md | guide.md | âŒ MD022 heading missing blank line at L14 |
+| dotnet.instructions.md | Foo.cs | âU+0153... pass |
+| docs-system.instructions.md | guide.md | âU+0152 MD022 heading missing blank line at L14 |
 
 ### Security audit
 approved | findings: <list>
@@ -184,8 +184,8 @@ approved | findings: <list>
 none | <description if flagged>
 
 ### Delegation audit
-- Issue: scope âœ… â€” AC âœ… â€” verification steps âœ…
-- PR: linked issue âœ… â€” CI evidence âœ… â€” risk notes âŒ (missing)
+- Issue: scope âU+0153... -- AC âU+0153... -- verification steps âU+0153...
+- PR: linked issue âU+0153... -- CI evidence âU+0153... -- risk notes âU+0152 (missing)
 
 ### Merge gate
 blocked: <list of blockers> | ready
@@ -194,7 +194,7 @@ blocked: <list of blockers> | ready
 do not merge | merge now (strategy: squash)
 
 ### Verification
-- Local: `python scripts/validate-route-smoke.py` â†’ expect exit 0
+- Local: `python scripts/validate-route-smoke.py` âU+2020' expect exit 0
 - CI: `<job name>` must be green
 ```
 
@@ -218,7 +218,7 @@ do not merge | merge now (strategy: squash)
 
 - [ ] Instruction compliance verified for all modified `.github/` assets.
 
-- [ ] Framework downgrade-risk assessed â€” no existing guidance or examples removed without justification.
+- [ ] Framework downgrade-risk assessed -- no existing guidance or examples removed without justification.
 
 - [ ] Routing smoke tests referenced if `.github/` files are in scope.
 
@@ -230,8 +230,8 @@ do not merge | merge now (strategy: squash)
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Reviewer** | always â€” PR or issue review | *(this agent)* | Review verdict: approved or rework required |
+| 1 | **Reviewer** | always -- PR or issue review | *(this agent)* | Review verdict: approved or rework required |
 | 2 | **Security** | blocker finding with security implication | `/threat-model` / `/secrets-audit` | Security finding addressed, residual risk documented |
-| 3 | **Backend .NET / DevOps/Cloud / Frontend / Native** | rework required â€” domain specialist needed | domain prompt | Rework complete, re-review triggered |
+| 3 | **Backend .NET / DevOps/Cloud / Frontend / Native** | rework required -- domain specialist needed | domain prompt | Rework complete, re-review triggered |
 | 4 | **Reviewer** | rework implemented, mandatory re-review | *(this agent)* | Review verdict: approved |
-| 5 | **Delivery Lead** | review approved, no blockers | â€” | PR merged, issue closed |
+| 5 | **Delivery Lead** | review approved, no blockers | -- | PR merged, issue closed |

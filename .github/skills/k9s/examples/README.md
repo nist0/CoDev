@@ -1,4 +1,4 @@
-# k9s Skill — Examples
+# k9s Skill -- Examples
 
 ## 1. Start k9s
 

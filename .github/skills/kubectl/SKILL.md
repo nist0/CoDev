@@ -1,6 +1,6 @@
 ---
 name: kubectl
-description: kubectl operational cheatsheet — context/namespace management, workload triage, logs, events, and rollouts.
+description: kubectl operational cheatsheet -- context/namespace management, workload triage, logs, events, and rollouts.
 argument-hint: "[namespace or resource name]"
 user-invocable: true
 

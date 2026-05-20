@@ -1,6 +1,6 @@
 ---
 name: adr
-description: Architecture Decision Records — structured context, options, decision, consequences, and follow-up tasks.
+description: Architecture Decision Records -- structured context, options, decision, consequences, and follow-up tasks.
 argument-hint: "[decision-title] [stakeholders]"
 user-invocable: true
 

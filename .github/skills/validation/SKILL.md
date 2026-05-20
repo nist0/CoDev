@@ -32,19 +32,19 @@ Provides methods and scripts for validating CoDev routing, registry, and documen
 
 ## Tools
 
-- `scripts/validate-autofix.py` — routing validation with auto-fix
+- `scripts/validate-autofix.py` -- routing validation with auto-fix
 
-- `scripts/validate-customization-registry.py` — registry validation
+- `scripts/validate-customization-registry.py` -- registry validation
 
-- `scripts/validate-markdown-lint.py` — markdown linting
+- `scripts/validate-markdown-lint.py` -- markdown linting
 
-- `scripts/validate-readme-registry.py` — README registry validation
+- `scripts/validate-readme-registry.py` -- README registry validation
 
-- `scripts/validate-route-smoke.py` — route smoke tests
+- `scripts/validate-route-smoke.py` -- route smoke tests
 
-- `scripts/validate-routing-coverage.py` — routing coverage analysis
+- `scripts/validate-routing-coverage.py` -- routing coverage analysis
 
-- `scripts/validate-watch.py` — watch mode for all validators
+- `scripts/validate-watch.py` -- watch mode for all validators
 
 ## Examples
 

@@ -1,4 +1,4 @@
-# github-work-management — Examples
+# github-work-management -- Examples
 
 ## Copy/paste issue template
 
@@ -29,7 +29,7 @@
 
 ## Acceptance criteria
 
-- [ ] <verifiable criterion — observable outcome, not implementation detail>
+- [ ] <verifiable criterion -- observable outcome, not implementation detail>
 - [ ] <verifiable criterion>
 
 ## Verification steps
@@ -56,7 +56,7 @@ approved | rework required
 <!-- if rework required, list exact gaps: -->
 ```
 
-## Example — feature issue
+## Example -- feature issue
 
 ```markdown
 ## Context
@@ -110,7 +110,7 @@ Innovator agent
 approved
 ```
 
-## Example — bug fix issue
+## Example -- bug fix issue
 
 ```markdown
 ## Context
@@ -166,7 +166,7 @@ priority:p0     priority:p1     priority:p2
 status:ready    status:blocked  status:in-review  status:rework
 ```
 
-## Kanban setup — GitHub CLI
+## Kanban setup -- GitHub CLI
 
 ```bash
 # Create project
@@ -181,20 +181,20 @@ gh project field-create <project-number> --owner @me \
 ## Progress rollup format
 
 ```markdown
-## Sprint <N> — Progress Rollup (<YYYY-MM-DD>)
+## Sprint <N> -- Progress Rollup (<YYYY-MM-DD>)
 
-**Done**: <count> — #X title, #Y title
-**In Progress**: <count> — #Z title (ETA: <date>)
-**Blocked**: <count> — #W title (blocked by: #V, owner: @<person>)
-**Scope added**: <count> — #A title
-**Scope removed / deferred**: <count> — #B title (reason: <one-liner>)
+**Done**: <count> -- #X title, #Y title
+**In Progress**: <count> -- #Z title (ETA: <date>)
+**Blocked**: <count> -- #W title (blocked by: #V, owner: @<person>)
+**Scope added**: <count> -- #A title
+**Scope removed / deferred**: <count> -- #B title (reason: <one-liner>)
 
 ### Risks
 
-- <risk> — mitigation: <action>, owner: @<person>
+- <risk> -- mitigation: <action>, owner: @<person>
 
 ### Next cycle priorities
 
-1. #<issue> — <title>
-2. #<issue> — <title>
+1. #<issue> -- <title>
+2. #<issue> -- <title>
 ```

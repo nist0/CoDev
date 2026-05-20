@@ -71,25 +71,25 @@ send: true
 
 ## Elite procedure
 
-### Step 1 — Codebase-first evidence gathering
+### Step 1 -- Codebase-first evidence gathering
 
 1. Search the codebase before making any recommendation (`#search/codebase`).
 
 2. Identify existing patterns (base classes, middleware, conventions, pipeline behaviors).
 
-3. Locate existing tests — new code must follow the same test strategy.
+3. Locate existing tests -- new code must follow the same test strategy.
 
 4. Check `dotnet.instructions.md` compliance for all files to be changed.
 
-### Step 2 — Design with explicit boundaries
+### Step 2 -- Design with explicit boundaries
 
 Enforce the clean architecture direction:
 
 ```text
 Controllers / gRPC / Workers
-  → Application (Commands/Queries via MediatR)
-    → Domain (entities, value objects, domain events)
-      → Infrastructure (EF Core, HTTP clients, messaging)
+  -> Application (Commands/Queries via MediatR)
+    -> Domain (entities, value objects, domain events)
+      -> Infrastructure (EF Core, HTTP clients, messaging)
 ```
 
 - No domain logic in controllers or infrastructure.
@@ -98,7 +98,7 @@ Controllers / gRPC / Workers
 
 - Pipeline behaviors for cross-cutting concerns (validation, logging, auth, retry).
 
-### Step 3 — Data-layer safety
+### Step 3 -- Data-layer safety
 
 For any migration or schema change:
 
@@ -106,10 +106,10 @@ For any migration or schema change:
 |-------|-----------------|
 | Migration is backward-compatible | Old app version must run against new schema |
 | Index added on large table | Use `CONCURRENTLY` in PostgreSQL; plan for lock time |
-| Column removed | Multi-step: deprecate → stop using → remove migration |
+| Column removed | Multi-step: deprecate -> stop using -> remove migration |
 | Transaction scope | Verify unit-of-work boundaries; avoid distributed transactions |
 
-### Step 4 — API contract discipline
+### Step 4 -- API contract discipline
 
 - Version APIs via URL (`/v1/`) or header; never break existing contracts without deprecation period.
 
@@ -119,7 +119,7 @@ For any migration or schema change:
 
 - Idempotency: idempotency keys for POST mutations when client retries are expected.
 
-### Step 5 — Observability
+### Step 5 -- Observability
 
 - Structured logging: `ILogger<T>` with `{CorrelationId}`, `{UserId}`, `{RequestPath}` in scope.
 
@@ -129,7 +129,7 @@ For any migration or schema change:
 
 - Health checks: `IHealthCheck` per dependency (DB, external APIs).
 
-### Step 6 — Testing requirements
+### Step 6 -- Testing requirements
 
 - Unit tests: pure domain/application logic, no I/O.
 
@@ -211,8 +211,8 @@ dotnet ef migrations add ...
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Backend .NET** | always — C#/ASP.NET Core/EF Core implementation | *(this agent)* | Implementation steps + risk level produced |
+| 1 | **Backend .NET** | always -- C#/ASP.NET Core/EF Core implementation | *(this agent)* | Implementation steps + risk level produced |
 | 2 | **Plan** | task requires multi-file changes or complex design | `/plan` | Implementation plan with steps + risks |
 | 3 | **Implement** | plan approved, code changes ready to write | `/implement` | Files changed, self-check passed |
 | 4 | **Reviewer** | implementation done | `/pr-review` | Review verdict: approved or rework required |
-| 5 | **Delivery Lead** | review approved, PR ready to merge | — | PR merged, issue closed |
+| 5 | **Delivery Lead** | review approved, PR ready to merge | -- | PR merged, issue closed |

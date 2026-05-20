@@ -1,6 +1,6 @@
 ---
 name: supply-chain
-description: Software supply chain hardening — dependency pinning, SBOM, artifact signing, provenance, and policy enforcement.
+description: Software supply chain hardening -- dependency pinning, SBOM, artifact signing, provenance, and policy enforcement.
 argument-hint: "[repository] [risk-level]"
 user-invocable: true
 

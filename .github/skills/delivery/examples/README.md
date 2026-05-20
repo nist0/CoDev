@@ -1,4 +1,4 @@
-# Delivery Skill — Examples
+# Delivery Skill -- Examples
 
 ## 1. PR Hygiene Checklist
 

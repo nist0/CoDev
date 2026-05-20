@@ -1,6 +1,6 @@
 ---
 name: npm
-description: npm Node tooling — install strategy, standard scripts, lockfile discipline, CI gating, and troubleshooting.
+description: npm Node tooling -- install strategy, standard scripts, lockfile discipline, CI gating, and troubleshooting.
 argument-hint: "[project name or script task]"
 user-invocable: true
 

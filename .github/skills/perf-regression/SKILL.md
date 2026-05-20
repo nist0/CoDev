@@ -1,6 +1,6 @@
 ---
 name: perf-regression
-description: Performance regression triage — measure-first, baseline comparison, ranked hypotheses, mitigation, and alerting.
+description: Performance regression triage -- measure-first, baseline comparison, ranked hypotheses, mitigation, and alerting.
 argument-hint: "[endpoint-or-service] [metric-and-threshold]"
 user-invocable: true
 

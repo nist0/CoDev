@@ -1,13 +1,13 @@
 ---
 name: roadmap
-description: Actionable roadmap — outcome-driven milestones, dependency and risk register, success metrics, and review cadence.
+description: Actionable roadmap -- outcome-driven milestones, dependency and risk register, success metrics, and review cadence.
 argument-hint: "[product-or-team] [time-horizon]"
 user-invocable: true
 
 disable-model-invocation: false
 ---
 
-# Roadmap (Vision → Milestones → Execution) (Elite)
+# Roadmap (Vision -> Milestones -> Execution) (Elite)
 
 ## When to use
 

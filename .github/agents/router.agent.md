@@ -39,7 +39,7 @@ handoffs:
 
 ## Elite routing procedure
 
-### Step 1 — Request analysis
+### Step 1 -- Request analysis
 
 1. Read the full request carefully.
 
@@ -51,7 +51,7 @@ handoffs:
 
 5. If the request mixes a first-run signal (`i'm new`, `where do I start`, `getting started`, `what prompt should I use`) with a concrete task, classify it as `onboarding` first and recommend `/quickstart`. Let `/quickstart` choose the most useful task-specific first command.
 
-### Step 2 — Capability classification
+### Step 2 -- Capability classification
 
 Match the intent to a capability from `routing/capabilities.yaml`:
 
@@ -71,7 +71,7 @@ Match the intent to a capability from `routing/capabilities.yaml`:
 | Tech watch, digest, news | `tech-watch` |
 | Project kickoff, orchestration | `project-orchestration` |
 
-### Step 3 — Domain classification
+### Step 3 -- Domain classification
 
 Match context to a domain from `routing/domains.yaml`:
 
@@ -87,9 +87,9 @@ Match context to a domain from `routing/domains.yaml`:
 | Logs, traces, APM, Elastic, alerting | `observability` |
 | Issues, PRs, GitHub Projects | `github-delivery` |
 | Docs, Markdown, onboarding | `docs-system` |
-| (none of the above) | `unknown` — route on capability only |
+| (none of the above) | `unknown` -- route on capability only |
 
-### Step 4 — Matrix lookup
+### Step 4 -- Matrix lookup
 
 1. Try `capability + domain` rule in `routing/matrix.yaml`.
 
@@ -99,7 +99,7 @@ Match context to a domain from `routing/domains.yaml`:
 
 4. Return: agent, prompt(s), skill(s).
 
-### Step 5 — Delivery delegation (when PR/issue/review/merge is in scope)
+### Step 5 -- Delivery delegation (when PR/issue/review/merge is in scope)
 
 Produce a full delegation plan:
 
@@ -108,7 +108,7 @@ Produce a full delegation plan:
 | Issue definition | Project Orchestrator | `/project-dispatch` | Dispatch plan and issue-ready tasks produced | Dispatch output includes owner, done criteria, and verification per task |
 | Implementation | Implement / domain agent | domain prompt | PR opened, CI green | PR linked to issue |
 | Review | Reviewer | `/pr-review` | No blockers, gate = ready | Review verdict: approved |
-| Merge | Delivery Lead | — | All gate checks pass | PR merged, branch deleted |
+| Merge | Delivery Lead | -- | All gate checks pass | PR merged, branch deleted |
 
 ## Non-negotiables
 
@@ -153,7 +153,7 @@ Produce a full delegation plan:
 
 - [ ] Capability identified from `routing/capabilities.yaml` (not free-form text).
 
-- [ ] Domain identified from `routing/domains.yaml` or marked `unknown` — never guessed.
+- [ ] Domain identified from `routing/domains.yaml` or marked `unknown` -- never guessed.
 
 - [ ] `capability + domain` rule tried first; capability-only fallback applied only if no domain rule exists.
 
@@ -161,13 +161,13 @@ Produce a full delegation plan:
 
 - [ ] If delivery tasks (PR/issue/review/merge) are in scope: delegation plan produced with explicit ownership per task.
 
-- [ ] If request is ambiguous: one focused clarifying question asked — not multiple questions.
+- [ ] If request is ambiguous: one focused clarifying question asked -- not multiple questions.
 
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Router** | always — classify capability + domain, produce handoff | *(this agent)* | Routing result: agent + prompts + skills |
-| 2 | **Specialist agent** | routing result produced — handoff to recommended agent | recommended prompt | Specialist agent task complete |
+| 1 | **Router** | always -- classify capability + domain, produce handoff | *(this agent)* | Routing result: agent + prompts + skills |
+| 2 | **Specialist agent** | routing result produced -- handoff to recommended agent | recommended prompt | Specialist agent task complete |
 | 3 | **Project Orchestrator** | delivery scope (PR / issue / release) detected in request | `/project-dispatch` | Dispatch plan and issue-ready tasks produced |
-| 4 | **Router** | route-miss detected — routing was wrong or incomplete | `/route-miss` | Fix issue opened, routing updated, smoke tests pass |
+| 4 | **Router** | route-miss detected -- routing was wrong or incomplete | `/route-miss` | Fix issue opened, routing updated, smoke tests pass |

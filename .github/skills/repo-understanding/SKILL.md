@@ -1,6 +1,6 @@
 ---
 name: repo-understanding
-description: Produce a navigable codebase summary — module map, entry points, key data flows, dependency overview, and doc structure.
+description: Produce a navigable codebase summary -- module map, entry points, key data flows, dependency overview, and doc structure.
 argument-hint: "[repo-or-feature] [depth]"
 user-invocable: true
 
@@ -48,8 +48,8 @@ Locate the starting points of execution:
 For each major user-facing flow:
 
 ```text
-Request → Router → Controller → Service → Repository → Database
-                    ↓
+Request -> Router -> Controller -> Service -> Repository -> Database
+                    U+2193
                   External API / Queue / Cache
 ```
 

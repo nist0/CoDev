@@ -11,7 +11,7 @@ applyTo: "**/*.tsx"
 
 - Keep components small and single-purpose; isolate data fetching from presentation.
 
-- Prefer composition over prop drilling — use context or component slots for cross-cutting concerns.
+- Prefer composition over prop drilling -- use context or component slots for cross-cutting concerns.
 
 - Co-locate component, styles, and tests in the same directory (`Button/Button.tsx`, `Button.test.tsx`).
 
@@ -39,20 +39,20 @@ applyTo: "**/*.tsx"
 
 - Use `@testing-library/react`; test user behavior, not implementation details.
 
-- Avoid `act()` wrappers in tests — prefer `userEvent` which handles this automatically.
+- Avoid `act()` wrappers in tests -- prefer `userEvent` which handles this automatically.
 
 ## Examples
 
-✅ Correct — container/presentational split:
+U+2705 Correct -- container/presentational split:
 
 ```tsx
-// UserListContainer.tsx — fetches data
+// UserListContainer.tsx -- fetches data
 export function UserListContainer() {
   const { data, isLoading } = useUsers();
   return <UserList users={data} isLoading={isLoading} />;
 }
 
-// UserList.tsx — pure presentation
+// UserList.tsx -- pure presentation
 export function UserList({ users, isLoading }: UserListProps) {
   if (isLoading) return <Spinner />;
   return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;
@@ -61,7 +61,7 @@ export function UserList({ users, isLoading }: UserListProps) {
 
 ---
 
-## 🏆 Elite Section — Top 5% React Practices
+## U+1F3C6 Elite Section -- Top 5% React Practices
 
 - **Server components first (Next.js 14+)**: Default to React Server Components for data-fetching pages; opt into `'use client'` only when interactivity requires it. This eliminates hydration cost for static content.
 

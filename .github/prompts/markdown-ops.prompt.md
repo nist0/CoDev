@@ -46,6 +46,6 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — Markdown operation | *(this prompt)* | Operation complete, no info lost, lint-friendly output produced |
+| 1 | **Delivery Lead** | always -- Markdown operation | *(this prompt)* | Operation complete, no info lost, lint-friendly output produced |
 | 2 | **Reviewer** | structural changes or content migration | `/pr-review` | Content integrity confirmed, link integrity checked |
 | 3 | **Delivery Lead** | changes ready | `/pr-review` | PR merged, markdownlint CI gate green |

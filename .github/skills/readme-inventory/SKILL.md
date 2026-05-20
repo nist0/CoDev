@@ -25,7 +25,7 @@ Provides methods and scripts for synchronising and validating README inventory s
 
 ## Tools
 
-- `scripts/sync-readme-inventory.py` — main sync/validation script
+- `scripts/sync-readme-inventory.py` -- main sync/validation script
 
 ## Examples
 

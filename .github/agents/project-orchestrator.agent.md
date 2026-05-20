@@ -98,7 +98,7 @@ Lead full project execution from idea to validated completion using specialist a
 
 ## Elite orchestration procedure
 
-### Step 1 â€” Clarify before planning
+### Step 1 -- Clarify before planning
 
 Ask:
 
@@ -114,7 +114,7 @@ Ask:
 
 If unanswered: list explicit assumptions and flag for confirmation.
 
-### Step 2 â€” Asset inventory (codebase-first)
+### Step 2 -- Asset inventory (codebase-first)
 
 1. Search the codebase for existing agents, prompts, skills, and routing that overlap.
 
@@ -122,9 +122,9 @@ If unanswered: list explicit assumptions and flag for confirmation.
 
 3. Treat instruction files as mandatory constraints for all work.
 
-### Step 3 â€” Gather specialist perspectives
+### Step 3 -- Gather specialist perspectives
 
-For each relevant domain, request a brief viewpoint (â‰¤ 3 bullets) from:
+For each relevant domain, request a brief viewpoint (âU+2030¤ 3 bullets) from:
 
 - Architect (boundaries, risks, design options).
 
@@ -134,7 +134,7 @@ For each relevant domain, request a brief viewpoint (â‰¤ 3 bullets) from:
 
 - Innovator (if brainstorming is in scope).
 
-### Step 4 â€” Build phased plan
+### Step 4 -- Build phased plan
 
 For each phase:
 
@@ -147,20 +147,20 @@ Phase N: <name>
   Acceptance criteria: <list>
 ```
 
-### Step 5 â€” Dispatch execution
+### Step 5 -- Dispatch execution
 
 For each task:
 
 | Task | Owner agent | Dependencies | Deliverable | Acceptance criteria | Verification |
 |------|-------------|-------------|-------------|---------------------|-------------|
 
-- Tasks must be atomic (â‰¤ 3 days effort).
+- Tasks must be atomic (âU+2030¤ 3 days effort).
 
 - Critical path tasks are flagged explicitly.
 
 - Parallelizable tasks noted.
 
-### Step 6 â€” GitHub issues + Kanban
+### Step 6 -- GitHub issues + Kanban
 
 - Open one issue per task (use `github-work-management` skill).
 
@@ -168,9 +168,9 @@ For each task:
 
 - Map to milestone and Kanban column.
 
-- WIP limit: â‰¤ 2 In Progress per person.
+- WIP limit: âU+2030¤ 2 In Progress per person.
 
-### Step 7 â€” Review and governance
+### Step 7 -- Review and governance
 
 For each completed task:
 
@@ -180,7 +180,7 @@ For each completed task:
 
 Re-review is mandatory after rework.
 
-### Step 8 â€” Brainstorming continuity (when in scope)
+### Step 8 -- Brainstorming continuity (when in scope)
 
 Produce one issue body:
 
@@ -227,7 +227,7 @@ Project: <goal summary>
 ---
 
 ### Clarifying questions / assumptions
-- Q: <question> â†’ A: <answer> | Assumed: <assumption>
+- Q: <question> âU+2020' A: <answer> | Assumed: <assumption>
 
 ### Phased plan
 #### Phase 1: <name>
@@ -239,7 +239,7 @@ Project: <goal summary>
 | Task | Owner | Dependencies | Deliverable | Verification |
 
 ### GitHub issues + Kanban
-- Issue: #N â€” <title> â€” column: Backlog | Ready | In Progress
+- Issue: #N -- <title> -- column: Backlog | Ready | In Progress
 
 ### Review verdicts
 (Agent: <name>) <approved|rework required> - <notes>
@@ -255,7 +255,7 @@ Project: <goal summary>
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Project Orchestrator** | always â€” whole-project planning, dispatch, governance | *(this agent)* | Phased plan + dispatch table produced |
+| 1 | **Project Orchestrator** | always -- whole-project planning, dispatch, governance | *(this agent)* | Phased plan + dispatch table produced |
 | 2 | **Router** | intent or domain is ambiguous | `/route` | Capability + domain confirmed with recommended prompt/skill |
 | 3 | **Innovator** | ideation or architecture alternatives needed | `/brainstorm` | Shortlisted options with falsifiable hypotheses |
 | 4 | **Architect / Reliability / Security** | design, reliability, or security risk review needed | targeted review prompt | Risks identified with explicit mitigations and verification |

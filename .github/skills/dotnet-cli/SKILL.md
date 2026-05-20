@@ -1,6 +1,6 @@
 ---
 name: dotnet-cli
-description: .NET CLI build/test/publish workflow — reproducible CI commands, diagnostics, and artifact strategy.
+description: .NET CLI build/test/publish workflow -- reproducible CI commands, diagnostics, and artifact strategy.
 argument-hint: "[project] [action]"
 user-invocable: true
 

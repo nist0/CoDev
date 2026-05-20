@@ -53,11 +53,11 @@ Before writing any content, gather authoritative references for the domain or th
 
 1. **Identify the domain**: name it explicitly (e.g. "Kubernetes operations", "ASP.NET Core APIs", "GitHub Actions CI/CD").
 
-2. **Gather ≥2 primary sources**: official documentation, language specs, RFC/standards, canonical style guides. Prioritise primary over aggregated/secondary sources.
+2. **Gather >=2 primary sources**: official documentation, language specs, RFC/standards, canonical style guides. Prioritise primary over aggregated/secondary sources.
 
 3. **Read related CoDev assets**: scan existing agents, skills, and instructions that touch the same domain to avoid contradiction and duplication.
 
-4. **Synthesise best practices**: extract the non-contradictory union. Where sources conflict, document the choice — *"Source A recommends X; Source B recommends Y — using X because `<rationale>`."*
+4. **Synthesise best practices**: extract the non-contradictory union. Where sources conflict, document the choice -- *"Source A recommends X; Source B recommends Y -- using X because `<rationale>`."*
 
 5. **Cite sources**: inline-link primary references in the agent's `## Procedure` or `## Non-negotiables` sections where domain-specific rules are stated.
 
@@ -71,11 +71,11 @@ Before writing any content, gather authoritative references for the domain or th
 
 3. If overlap exists: extend the existing agent; do not create a duplicate.
 
-4. Check `routing/matrix.yaml` — does the role map to an existing agent ID?
+4. Check `routing/matrix.yaml` -- does the role map to an existing agent ID?
 
 ### 2. Define the agent contract
 
-**Official attribute reference** — [VS Code custom-agents docs](https://code.visualstudio.com/docs/copilot/customization/custom-agents) (verified 2026-03-04):
+**Official attribute reference** -- [VS Code custom-agents docs](https://code.visualstudio.com/docs/copilot/customization/custom-agents) (verified 2026-03-04):
 
 | Attribute | Required | Allowed values / notes |
 | --- | --- | --- |
@@ -91,12 +91,12 @@ Before writing any content, gather authoritative references for the domain or th
 | `mcp-servers` | No | List of MCP server config |
 | `handoffs` | No | List of handoff objects (`label`, `agent`, `prompt`, `send`, `model`) |
 
-**Interaction constraint** — when both `agents` and `tools` are specified in the
+**Interaction constraint** -- when both `agents` and `tools` are specified in the
 frontmatter, the `agent` tool **must** be included in the `tools` list. Without it
 VS Code cannot invoke the listed subagents. If only `agents` is set (no `tools`),
 the constraint does not apply because the default tool set already includes `agent`.
 
-**Deprecated attributes** — do not use:
+**Deprecated attributes** -- do not use:
 
 | Attribute | Status | Replacement |
 | --- | --- | --- |
@@ -117,7 +117,7 @@ description: "<one sentence: what this agent does, when it is chosen>"
 
 ### 3. Write the mission statement
 
-1–2 sentences max:
+1-2 sentences max:
 
 - **Role**: what kind of expert is this agent?
 
@@ -129,11 +129,11 @@ description: "<one sentence: what this agent does, when it is chosen>"
 
 For each step:
 
-- Number it explicitly (`### 1.`, `### 2.`, …).
+- Number it explicitly (`### 1.`, `### 2.`, ...).
 
 - Add: exact action, tool or file to use, output of this step.
 
-- Prefer: read → analyze → plan → implement → verify pattern.
+- Prefer: read -> analyze -> plan -> implement -> verify pattern.
 
 All agents must include:
 
@@ -184,7 +184,7 @@ At minimum 5 items checking:
 
 ### 8. Register in routing
 
-- Add agent ID to `routing/matrix.yaml` (capability + domain → agent).
+- Add agent ID to `routing/matrix.yaml` (capability + domain -> agent).
 
 - If the agent covers a new capability: update `routing/capabilities.yaml`.
 
@@ -200,15 +200,15 @@ At minimum 5 items checking:
 
 - [ ] Frontmatter complete with `name`, `description`, and `tools` omitted unless explicitly required.
 
-- [ ] Mission in 1–2 sentences (role + scope + non-scope).
+- [ ] Mission in 1-2 sentences (role + scope + non-scope).
 
-- [ ] Procedure is numbered with read → analyze → verify pattern.
+- [ ] Procedure is numbered with read -> analyze -> verify pattern.
 
 - [ ] Non-negotiables section includes security and instruction compliance.
 
 - [ ] Output format template provided.
 
-- [ ] Self-check section with ≥ 5 items included.
+- [ ] Self-check section with >= 5 items included.
 
 - [ ] If `agents` and `tools` are both set, `agent` tool is in the `tools` list.
 

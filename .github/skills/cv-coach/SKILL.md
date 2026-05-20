@@ -36,7 +36,7 @@ Collect from the user before starting:
 | Target industry / company type | Recommended | e.g. startup, enterprise, public sector |
 | Seniority level | Recommended | Junior / Mid / Senior / Lead / Exec |
 | Target job description (JD) | Optional | Required for keyword gap analysis (Step 5) |
-| Geographic market | Optional | FR / EN / international — affects format norms |
+| Geographic market | Optional | FR / EN / international -- affects format norms |
 
 If any required input is missing, ask in a single message (never split questions over multiple turns).
 
@@ -44,7 +44,7 @@ If any required input is missing, ask in a single message (never split questions
 
 ## Procedure
 
-### Step 1 — Parse and structure the raw CV
+### Step 1 -- Parse and structure the raw CV
 
 Extract and organise all content into the following canonical sections:
 
@@ -81,7 +81,7 @@ Flag sections that are:
 
 ---
 
-### Step 2 — Diagnose quality against modern standards
+### Step 2 -- Diagnose quality against modern standards
 
 Score each dimension on a 1-5 scale and produce a critique table:
 
@@ -116,13 +116,13 @@ Score each dimension on a 1-5 scale and produce a critique table:
 
 - ATS: no tables, headers/footers, images, or text boxes for ATS-destined versions.
 
-- Action verbs: strong, varied, active voice — avoid "responsible for", "helped with".
+- Action verbs: strong, varied, active voice -- avoid "responsible for", "helped with".
 
 - Quantification: aim for >=60% of experience bullets to contain a number or measurable outcome.
 
 - Summary: 3-4 lines, first-person omitted, role-specific, top-loaded with keywords.
 
-- Skills section: grouped by category (languages, frameworks, tools, soft skills) — not a raw dump.
+- Skills section: grouped by category (languages, frameworks, tools, soft skills) -- not a raw dump.
 
 - Dates: month + year for recent roles; year-only acceptable for roles > 5 yrs old.
 
@@ -132,7 +132,7 @@ Score each dimension on a 1-5 scale and produce a critique table:
 
 ---
 
-### Step 3 — Identify critical blockers
+### Step 3 -- Identify critical blockers
 
 Flag these as P0 (must fix before any application):
 
@@ -154,7 +154,7 @@ Flag these as P0 (must fix before any application):
 
 ---
 
-### Step 4 — Rewrite (impact-first, quantified)
+### Step 4 -- Rewrite (impact-first, quantified)
 
 For each work experience entry, rewrite bullets using the formula:
 
@@ -169,7 +169,7 @@ For each work experience entry, rewrite bullets using the formula:
 | Led, Orchestrated, Spearheaded, Drove, Championed | Built, Implemented, Developed, Deployed, Automated | Reduced, Improved, Increased, Accelerated, Optimised | Designed, Architected, Modelled, Analysed, Evaluated |
 | Mentored, Coached, Managed | Migrated, Integrated, Shipped, Delivered | Eliminated, Simplified, Standardised | Researched, Benchmarked, Audited |
 
-**Examples — before / after:**
+**Examples -- before / after:**
 
 | Before (weak) | After (strong) |
 |---|---|
@@ -190,7 +190,7 @@ For each work experience entry, rewrite bullets using the formula:
 
 ---
 
-### Step 5 — Keyword gap analysis (when JD provided)
+### Step 5 -- Keyword gap analysis (when JD provided)
 
 1. Extract all hard skills, technologies, and role-specific terms from the target JD.
 
@@ -213,7 +213,7 @@ For each work experience entry, rewrite bullets using the formula:
 
 ---
 
-### Step 6 — Produce the rewritten CV
+### Step 6 -- Produce the rewritten CV
 
 Output the rewritten CV in Markdown with this structure:
 
@@ -258,7 +258,7 @@ Output the rewritten CV in Markdown with this structure:
 ---
 
 ## Certifications
-- [Certification Name] — [Issuer] — [Year]
+- [Certification Name] -- [Issuer] -- [Year]
 
 ---
 
@@ -275,14 +275,14 @@ Output the rewritten CV in Markdown with this structure:
 
 ---
 
-### Step 7 — Produce the coaching summary
+### Step 7 -- Produce the coaching summary
 
 Deliver a concise handoff card:
 
 ```text
-## CV coaching summary — [Candidate Name]
+## CV coaching summary -- [Candidate Name]
 Target role: [Role]
-Overall score: [X/50] — [Excellent / Good / Needs work / Critical issues]
+Overall score: [X/50] -- [Excellent / Good / Needs work / Critical issues]
 
 P0 blockers (fix before applying):
 - [List any P0 issues]
@@ -318,7 +318,7 @@ File naming: [Firstname-Lastname-CV-[Role]-[Year].pdf]
 
 - Always offer both ATS-safe (no tables/columns) and design-optimised versions.
 
-- Respect the candidate's authentic voice — do not over-formalise a creative profile.
+- Respect the candidate's authentic voice -- do not over-formalise a creative profile.
 
 - Content must be in the language of the target market (FR / EN) unless the candidate requests otherwise.
 

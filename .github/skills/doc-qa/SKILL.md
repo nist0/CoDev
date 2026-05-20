@@ -1,6 +1,6 @@
 ---
 name: doc-qa
-description: Lint and validate Markdown docs — broken links, heading hierarchy, code block fences, and actionable fix list.
+description: Lint and validate Markdown docs -- broken links, heading hierarchy, code block fences, and actionable fix list.
 argument-hint: "[docs-path] [fix-mode]"
 user-invocable: true
 
@@ -42,7 +42,7 @@ Common rules to enforce:
 | Blank lines around headings | MD022 | Blank line before/after heading |
 | Code block fences | MD040 | Language identifier on all fenced blocks |
 | No bare URLs | MD034 | URLs wrapped in `<>` or as links |
-| Line length | MD013 | ≤ 120 chars (configure or disable for tables) |
+| Line length | MD013 | <= 120 chars (configure or disable for tables) |
 
 ### 2. Check for broken links
 
@@ -87,7 +87,7 @@ Check every file:
 
 1. Document starts with exactly one `#` (H1).
 
-2. Headings go `#` → `##` → `###` without skipping levels.
+2. Headings go `#` -> `##` -> `###` without skipping levels.
 
 3. No duplicate H1 in a single file.
 
@@ -121,13 +121,13 @@ For each issue found:
 | docs/foo.md | 42 | MD040 | Warning | Add `bash` to fenced block |
 Priority:
 
-1. Broken links (HIGH — affects readers).
+1. Broken links (HIGH -- affects readers).
 
-2. Missing code block language (MEDIUM — syntax highlighting broken).
+2. Missing code block language (MEDIUM -- syntax highlighting broken).
 
-3. Skipped headings (MEDIUM — navigation broken).
+3. Skipped headings (MEDIUM -- navigation broken).
 
-4. Style lint failures (LOW — cosmetic).
+4. Style lint failures (LOW -- cosmetic).
 
 ### 6. CI integration
 

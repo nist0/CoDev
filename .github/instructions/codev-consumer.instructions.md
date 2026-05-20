@@ -1,11 +1,11 @@
 ---
-name: "CoDev Consumer — Override Authoring"
+name: "CoDev Consumer -- Override Authoring"
 description: "Rules for authoring assets in codev-overrides/: naming, non-duplication, safety, and validation."
 
 applyTo: "codev-overrides/**"
 ---
 
-# CoDev Consumer — Override Authoring Rules
+# CoDev Consumer -- Override Authoring Rules
 
 ## Purpose
 
@@ -16,12 +16,12 @@ repository. These rules ensure overrides are safe, non-duplicating, and maintain
 
 ```text
 codev-overrides/
-├── copilot-instructions.override.md   # Extends/overrides copilot-instructions.md
-├── agents/                            # Host-specific agents (.agent.md)
-├── skills/<theme>/                    # Host-specific skills (SKILL.md + examples/)
-├── prompts/                           # Host-specific prompts (.prompt.md)
-├── instructions/                      # Host-specific instructions (.instructions.md)
-└── README.md                          # REQUIRED: documents every override and its rationale
+U+251CU+2500U+2500 copilot-instructions.override.md   # Extends/overrides copilot-instructions.md
+U+251CU+2500U+2500 agents/                            # Host-specific agents (.agent.md)
+U+251CU+2500U+2500 skills/<theme>/                    # Host-specific skills (SKILL.md + examples/)
+U+251CU+2500U+2500 prompts/                           # Host-specific prompts (.prompt.md)
+U+251CU+2500U+2500 instructions/                      # Host-specific instructions (.instructions.md)
+U+2514U+2500U+2500 README.md                          # REQUIRED: documents every override and its rationale
 ```
 
 ## Mandatory rules
@@ -30,7 +30,7 @@ codev-overrides/
 
 - **Always maintain** `codev-overrides/README.md` documenting every override file: purpose, owner, and last-reviewed date.
 
-- **No secrets** in any override file — use environment variables or secrets managers.
+- **No secrets** in any override file -- use environment variables or secrets managers.
 
 - **Additive only**: overrides may add new behavior but must not silently remove or weaken CoDev's core guidance.
 
@@ -67,7 +67,7 @@ codev-overrides/
 
 - Include `argument-hint` for any user inputs.
 
-- Produce a concrete, actionable output — not vague guidance.
+- Produce a concrete, actionable output -- not vague guidance.
 
 ### Instructions
 
@@ -90,7 +90,7 @@ Example: `codev-overrides/README.md` template
 ---
 
 ```markdown
-# CoDev Overrides — This Repository
+# CoDev Overrides -- This Repository
 
 ## Active overrides
 
@@ -101,7 +101,7 @@ Example: `codev-overrides/README.md` template
 
 ## Override strategy
 
-Strategy: `extend` — CoDev base is preserved; override content is appended.
+Strategy: `extend` -- CoDev base is preserved; override content is appended.
 
 ## Proposing upstream changes
 

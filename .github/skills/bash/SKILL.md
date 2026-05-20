@@ -1,6 +1,6 @@
 ---
 name: bash
-description: Bash shell automation — safety defaults, idempotency, input validation, error handling, and ShellCheck integration.
+description: Bash shell automation -- safety defaults, idempotency, input validation, error handling, and ShellCheck integration.
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
 

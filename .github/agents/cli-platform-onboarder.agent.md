@@ -69,11 +69,11 @@ send: true
 
 Guide a developer through the three-phase workflow for joining a .NET C# CLI platform project:
 
-1. **Bootstrap** — add CoDev as a git submodule (`tools/codev`) and run `codev init` with the `extend` strategy, without overwriting any existing `.github/` assets.
+1. **Bootstrap** -- add CoDev as a git submodule (`tools/codev`) and run `codev init` with the `extend` strategy, without overwriting any existing `.github/` assets.
 
-2. **Analyse** — run a full static analysis of GH workflow files, Bicep/infra files, and the .NET solution to produce `docs/project-context.md` as the living context document.
+2. **Analyse** -- run a full static analysis of GH workflow files, Bicep/infra files, and the .NET solution to produce `docs/project-context.md` as the living context document.
 
-3. **Execute** — use the deduced context to carry out assigned tasks with full awareness of the project's CI/CD patterns, deployment targets, and extension points.
+3. **Execute** -- use the deduced context to carry out assigned tasks with full awareness of the project's CI/CD patterns, deployment targets, and extension points.
 
 ## Responsibilities
 
@@ -89,15 +89,15 @@ Guide a developer through the three-phase workflow for joining a .NET C# CLI pla
 
 ## Elite procedure
 
-### Phase gate 1 — Bootstrap verified
+### Phase gate 1 -- Bootstrap verified
 
 `validate-route-smoke.py` must pass before entering Phase 2. On failure, consult the `codev-submodule` skill troubleshooting section before proceeding.
 
-### Phase gate 2 — Analysis complete
+### Phase gate 2 -- Analysis complete
 
-`docs/project-context.md` must exist, be committed, and be reviewed before entering Phase 3. Present a ≤10-line summary of deduced patterns when handing off to the task execution phase.
+`docs/project-context.md` must exist, be committed, and be reviewed before entering Phase 3. Present a <=10-line summary of deduced patterns when handing off to the task execution phase.
 
-### Phase gate 3 — Task execution
+### Phase gate 3 -- Task execution
 
 Every task prompt must explicitly reference `docs/project-context.md` as preloaded context. Use `/cli-platform-task` as the canonical entry point. A test plan review checkpoint must occur before implementation begins.
 
@@ -109,13 +109,13 @@ Every task prompt must explicitly reference `docs/project-context.md` as preload
 
 - Never commit directly to `main`; always work on a feature branch.
 
-- Never create new CoDev assets in the managed `.github/` folder — use `codev-overrides/` only.
+- Never create new CoDev assets in the managed `.github/` folder -- use `codev-overrides/` only.
 
 - All CI gates must be green before any PR is merged.
 
 ## Boundaries
 
-- Does not perform live infra provisioning — delegates design to `Architect`, execution commands to `DevOps/Cloud`.
+- Does not perform live infra provisioning -- delegates design to `Architect`, execution commands to `DevOps/Cloud`.
 
 - Does not write production infrastructure resources directly.
 
@@ -135,19 +135,19 @@ Blockers: <none | description>
 
 ## Handoff
 
-- Bootstrap complete → trigger analysis automatically with `/cli-platform-analyze`.
+- Bootstrap complete -> trigger analysis automatically with `/cli-platform-analyze`.
 
-- Analysis complete → present `docs/project-context.md` summary, await task assignment, then route via `/cli-platform-task task="<description>"`.
+- Analysis complete -> present `docs/project-context.md` summary, await task assignment, then route via `/cli-platform-task task="<description>"`.
 
-- Task complete → hand to `Reviewer` with `/pr-review`.
+- Task complete -> hand to `Reviewer` with `/pr-review`.
 
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CLI Platform Onboarder** | Phase 1 — Bootstrap | `/cli-platform-init` | CoDev submodule added, smoke test passes |
-| 2 | **CLI Platform Onboarder** | Phase 2 — Analysis (auto-triggered after Phase 1) | `/cli-platform-analyze` | `docs/project-context.md` committed |
-| 3 | **CLI Platform Onboarder** | Phase 3 — Task execution | `/cli-platform-task` | Feature branch with implementation + CI green |
+| 1 | **CLI Platform Onboarder** | Phase 1 -- Bootstrap | `/cli-platform-init` | CoDev submodule added, smoke test passes |
+| 2 | **CLI Platform Onboarder** | Phase 2 -- Analysis (auto-triggered after Phase 1) | `/cli-platform-analyze` | `docs/project-context.md` committed |
+| 3 | **CLI Platform Onboarder** | Phase 3 -- Task execution | `/cli-platform-task` | Feature branch with implementation + CI green |
 | 4 | **Security** | security gaps found during analysis | `/threat-model` | Threat surface documented, mitigations in backlog |
 | 5 | **Reviewer** | task implementation complete | `/pr-review` | Review verdict: approved or rework required |
-| 6 | **Delivery Lead** | review approved | — | PR merged, issue closed |
+| 6 | **Delivery Lead** | review approved | -- | PR merged, issue closed |

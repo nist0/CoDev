@@ -50,7 +50,7 @@ Include:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — release planning | *(this prompt)* | Release plan produced: scope, versioning, changelog, rollout, rollback, go/no-go criteria |
+| 1 | **Delivery Lead** | always -- release planning | *(this prompt)* | Release plan produced: scope, versioning, changelog, rollout, rollback, go/no-go criteria |
 | 2 | **DevOps/Cloud** | deployment steps involve Kubernetes or Helm | `/helm-triage` or `/k8s-triage` (pre-check) | Deployment readiness confirmed, rollback tested |
 | 3 | **Automation/Scripting** | release pipeline automation needed | `/automation-script` | CI/CD pipeline steps scripted and verified |
 | 4 | **Reviewer** | release plan sign-off | `/pr-review` | Verdict approved, all go/no-go criteria met |

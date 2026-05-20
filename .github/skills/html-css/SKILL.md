@@ -1,6 +1,6 @@
 ---
 name: html-css
-description: HTML/CSS — semantic structure, accessibility baseline, responsive design, and maintainability.
+description: HTML/CSS -- semantic structure, accessibility baseline, responsive design, and maintainability.
 argument-hint: "[component or page name]"
 user-invocable: true
 
@@ -72,17 +72,17 @@ disable-model-invocation: false
 
 - [ ] a11y audit run (axe-core or Lighthouse) with no critical violations.
 
-## 🏆 Elite Section — Top 5% HTML/CSS Practices
+## U+1F3C6 Elite Section -- Top 5% HTML/CSS Practices
 
-- **Design tokens as CSS custom properties**: Structure your styling around a token system (`--color-primary`, `--spacing-4`, `--radius-md`). Tokens are the single source of truth — never hardcode raw values in components.
+- **Design tokens as CSS custom properties**: Structure your styling around a token system (`--color-primary`, `--spacing-4`, `--radius-md`). Tokens are the single source of truth -- never hardcode raw values in components.
 
 - **Container queries over media queries**: Use `@container` for component-scoped responsiveness rather than global breakpoints. Components that respond to their container are more composable and reusable.
 
 - **`:focus-visible` over `:focus`**: Use `:focus-visible` to show focus rings only for keyboard navigation, not for mouse clicks. Avoids ugly outlines for mouse users while preserving accessibility for keyboard users.
 
-- **`prefers-reduced-motion` always**: Wrap all CSS animations and transitions in `@media (prefers-reduced-motion: no-preference)`. Never animate unconditionally — users with vestibular disorders depend on this.
+- **`prefers-reduced-motion` always**: Wrap all CSS animations and transitions in `@media (prefers-reduced-motion: no-preference)`. Never animate unconditionally -- users with vestibular disorders depend on this.
 
-- **Lighthouse CI gate**: Run Lighthouse in CI (via `lighthouse-ci`) on every PR that touches layout or styling. Gate on Performance ≥ 80, Accessibility = 100, Best Practices ≥ 90.
+- **Lighthouse CI gate**: Run Lighthouse in CI (via `lighthouse-ci`) on every PR that touches layout or styling. Gate on Performance >= 80, Accessibility = 100, Best Practices >= 90.
 
 - **Utility-first discipline (Tailwind)**: If using Tailwind, restrict `@apply` to shared component classes only. Prefer inline utilities in templates; avoid recreating a custom CSS layer that defeats tree-shaking.
 

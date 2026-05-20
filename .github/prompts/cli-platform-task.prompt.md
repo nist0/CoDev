@@ -1,6 +1,6 @@
 ---
 name: cli-platform-task
-description: "Execute an assigned task on the .NET CLI platform project using docs/project-context.md as preloaded context — routes, gathers task context, plans tests, implements, and ships. Phase 3 of the CLI platform onboarding workflow."
+description: "Execute an assigned task on the .NET CLI platform project using docs/project-context.md as preloaded context -- routes, gathers task context, plans tests, implements, and ships. Phase 3 of the CLI platform onboarding workflow."
 agent: "CLI Platform Onboarder"
 
 argument-hint: "task=<description of assigned task>"
@@ -26,7 +26,7 @@ Inputs:
 
 - Phase 1 (Bootstrap) verified.
 
-- Phase 2 (Analysis) complete — `docs/project-context.md` exists and is committed.
+- Phase 2 (Analysis) complete -- `docs/project-context.md` exists and is committed.
 
 **Preload `docs/project-context.md` now** before any analysis below.
 
@@ -68,7 +68,7 @@ Required outputs:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CLI Platform Onboarder** | always — task routing | `/route <task>` | Capability + domain + agent confirmed |
+| 1 | **CLI Platform Onboarder** | always -- task routing | `/route <task>` | Capability + domain + agent confirmed |
 | 2 | **Architect** | test plan required | `/test-plan` | Test plan table reviewed and approved |
 | 3 | **Backend .NET** | implementation phase | *(inline in Step 4)* | Code implemented, dotnet build -warnaserror + dotnet test green |
 | 4 | **Delivery Lead** | implementation complete | `/pr-review` | All CI gates green, PR approved |

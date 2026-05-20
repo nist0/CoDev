@@ -70,7 +70,7 @@ Treat these commands as CoDev-scoped validators: they must operate on tracked an
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — PR review initiation | *(this prompt)* | 8-pass review complete, merge gate decision produced |
+| 1 | **Delivery Lead** | always -- PR review initiation | *(this prompt)* | 8-pass review complete, merge gate decision produced |
 | 2 | **Reviewer** | formal verdict needed | *(inline verdict)* | (Agent: Reviewer) approved or rework required with exact gap |
 | 3 | **Implementer** | verdict is rework required | Back to domain prompt (e.g. `/dotnet-excellence`) | All blocking findings resolved |
 | 4 | **Delivery Lead** | all checks green, verdict approved | *(merge)* | PR merged, branch deleted |

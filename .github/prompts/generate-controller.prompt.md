@@ -52,21 +52,21 @@ A default resource shape is assumed (`Id`, `Name`, `CreatedAt`, `UpdatedAt`). Ad
 
 ## Output (always generated)
 
-1. **DTOs** — `sealed record` request and response types.
+1. **DTOs** -- `sealed record` request and response types.
 
-2. **FluentValidation validator** — one `AbstractValidator<TRequest>` per write DTO.
+2. **FluentValidation validator** -- one `AbstractValidator<TRequest>` per write DTO.
 
-3. **MediatR commands and queries** — one per CRUD operation.
+3. **MediatR commands and queries** -- one per CRUD operation.
 
-4. **Handler stubs** — one handler per command/query with DI constructor and mapping method.
+4. **Handler stubs** -- one handler per command/query with DI constructor and mapping method.
 
-5. **Controller class** — `[ApiController]`, versioned route, `[ProducesResponseType]` on each action, `CancellationToken` threaded through, `ProblemDetails` error contract.
+5. **Controller class** -- `[ApiController]`, versioned route, `[ProducesResponseType]` on each action, `CancellationToken` threaded through, `ProblemDetails` error contract.
 
-6. **Authorization hooks** — `[Authorize]` / `[AllowAnonymous]` stubs per action.
+6. **Authorization hooks** -- `[Authorize]` / `[AllowAnonymous]` stubs per action.
 
-7. **OpenAPI annotations** — XML doc comments (`<summary>`, `<response>`) + `[Produces("application/json")]`.
+7. **OpenAPI annotations** -- XML doc comments (`<summary>`, `<response>`) + `[Produces("application/json")]`.
 
-8. **Integration-test checklist** — `WebApplicationFactory<Program>` test class with all CRUD + error-path test method stubs.
+8. **Integration-test checklist** -- `WebApplicationFactory<Program>` test class with all CRUD + error-path test method stubs.
 
 ## Rationale
 
@@ -74,11 +74,11 @@ A default resource shape is assumed (`Id`, `Name`, `CreatedAt`, `UpdatedAt`). Ad
 
 - All generated code follows the conventions from the `aspnet-core` and `mediatr` skills: `ProblemDetails`, `FluentValidation`, `ISender`, no naked entity exposure.
 
-- Three input modes enable generation from any entry point: whiteboard → code, contract-first, or rapid prototyping.
+- Three input modes enable generation from any entry point: whiteboard -> code, contract-first, or rapid prototyping.
 
 ## Self-check (verify before shipping)
 
-- [ ] DTOs use `sealed record` — no mutable class exposed.
+- [ ] DTOs use `sealed record` -- no mutable class exposed.
 
 - [ ] Validator covers all `required` and constraint rules from input.
 
@@ -88,7 +88,7 @@ A default resource shape is assumed (`Id`, `Name`, `CreatedAt`, `UpdatedAt`). Ad
 
 - [ ] XML doc comment on every controller action.
 
-- [ ] `CreatedAtAction` used on `POST` — `Location` header is set.
+- [ ] `CreatedAtAction` used on `POST` -- `Location` header is set.
 
 - [ ] Authorization attribute present on every action (explicit, never implicit).
 

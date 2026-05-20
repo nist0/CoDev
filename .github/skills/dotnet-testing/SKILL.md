@@ -1,6 +1,6 @@
 ---
 name: dotnet-testing
-description: .NET unit and integration testing — xUnit, WebApplicationFactory, testcontainers, FluentAssertions, and CI gating.
+description: .NET unit and integration testing -- xUnit, WebApplicationFactory, testcontainers, FluentAssertions, and CI gating.
 argument-hint: "[service] [test-type]"
 user-invocable: true
 
@@ -37,7 +37,7 @@ disable-model-invocation: false
 
 ## Self-check
 
-- [ ] Test pyramid explicit: unit (logic) → integration (API/DB) → minimal E2E smoke.
+- [ ] Test pyramid explicit: unit (logic) -> integration (API/DB) -> minimal E2E smoke.
 
 - [ ] Bug fixes include a regression test that fails before and passes after.
 
@@ -49,17 +49,17 @@ disable-model-invocation: false
 
 ## Test coverage matrix
 
-- Application service behavior → unit tests.
+- Application service behavior -> unit tests.
 
-- HTTP contract/status/error mapping → API integration tests.
+- HTTP contract/status/error mapping -> API integration tests.
 
-- EF provider-specific behavior → Postgres testcontainers tests.
+- EF provider-specific behavior -> Postgres testcontainers tests.
 
-- Serialization/auth/versioning compatibility → integration contract tests.
+- Serialization/auth/versioning compatibility -> integration contract tests.
 
 ## Outputs
 
-- Test plan table (scenario → test type).
+- Test plan table (scenario -> test type).
 
 - Recommended tooling (xUnit/NUnit, FluentAssertions, testcontainers).
 

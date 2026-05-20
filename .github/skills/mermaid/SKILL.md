@@ -1,6 +1,6 @@
 ---
 name: mermaid
-description: "Mermaid diagrams in Markdown — all diagram types, authoring best practices, GitHub-native rendering, accessibility, and CI validation."
+description: "Mermaid diagrams in Markdown -- all diagram types, authoring best practices, GitHub-native rendering, accessibility, and CI validation."
 argument-hint: "[diagram-type] [description or existing snippet]"
 user-invocable: true
 
@@ -64,7 +64,7 @@ flowchart LR
 
 ### Constraints on GitHub
 
-- Maximum diagram complexity: keep node count ≤ 50 for readable output; very large graphs exceed GitHub's renderer timeout.
+- Maximum diagram complexity: keep node count <= 50 for readable output; very large graphs exceed GitHub's renderer timeout.
 
 - `%%` comments are supported and encouraged for maintainability.
 
@@ -72,7 +72,7 @@ flowchart LR
 
 - GitHub's Mermaid version lags behind the latest release; avoid cutting-edge beta features in repo docs.
 
-- Emoji in labels (`A[":rocket: Deploy"]`) render on GitHub but break some local tools — prefer plain text or UTF-8.
+- Emoji in labels (`A[":rocket: Deploy"]`) render on GitHub but break some local tools -- prefer plain text or UTF-8.
 
 ### GitLab / other platforms
 
@@ -125,9 +125,9 @@ sequenceDiagram
 
 ### 5. Limit depth and width
 
-- Flowcharts: max 4–5 levels of nesting for readability.
+- Flowcharts: max 4-5 levels of nesting for readability.
 
-- Sequence diagrams: max 6–8 participants; extract sub-flows to separate diagrams.
+- Sequence diagrams: max 6-8 participants; extract sub-flows to separate diagrams.
 
 - Class diagrams: max 10 classes per diagram; split by bounded context.
 
@@ -188,7 +188,7 @@ flowchart LR
 
 ```
 
-_Summary: Client sends request → API checks Redis cache → on miss, queries PostgreSQL._
+_Summary: Client sends request -> API checks Redis cache -> on miss, queries PostgreSQL._
 ````
 
 ---
@@ -197,21 +197,21 @@ _Summary: Client sends request → API checks Redis cache → on miss, queries P
 
 To validate Mermaid syntax in CI without a browser:
 
-### Option A — `@mermaid-js/mermaid-cli` (mmdc)
+### Option A -- `@mermaid-js/mermaid-cli` (mmdc)
 
 ```bash
 npm install -g @mermaid-js/mermaid-cli
 mmdc -i diagram.mmd -o /dev/null --quiet
 ```
 
-### Option B — `mermaid-py` (Python)
+### Option B -- `mermaid-py` (Python)
 
 ```bash
 pip install mermaid-py
 python -c "import mermaid; mermaid.Mermaid('flowchart LR\n A --> B')"
 ```
 
-### Option C — Extract and validate in CI (Shell)
+### Option C -- Extract and validate in CI (Shell)
 
 ```bash
 #!/usr/bin/env bash
@@ -260,7 +260,7 @@ command -v mmdc && find docs -name '*.md' -exec mmdc -i {} -o /dev/null \;
 
 ---
 
-## Decision Guide — Mermaid vs. Other Formats
+## Decision Guide -- Mermaid vs. Other Formats
 
 | Criterion | Mermaid | PlantUML | D2 |
 |---|---|---|---|
@@ -282,7 +282,7 @@ command -v mmdc && find docs -name '*.md' -exec mmdc -i {} -o /dev/null \;
 
 - [ ] Node IDs are stable and match repo vocabulary.
 
-- [ ] Diagram depth ≤ 5 levels; node count ≤ 50.
+- [ ] Diagram depth <= 5 levels; node count <= 50.
 
 - [ ] `v2` variant used where available (`stateDiagram-v2`, `flowchart` over `graph`).
 

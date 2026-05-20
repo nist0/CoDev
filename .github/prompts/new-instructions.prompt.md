@@ -38,6 +38,6 @@ Output: plan + file content + checklist.
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **PromptSmith** | always — instruction file creation | *(this prompt)* | .github/instructions/<file> created with correct `applyTo` and concise rules |
+| 1 | **PromptSmith** | always -- instruction file creation | *(this prompt)* | .github/instructions/<file> created with correct `applyTo` and concise rules |
 | 2 | **Reviewer** | rules touch security, routing, or testing standards | `/pr-review` | No contradictions with existing instruction layers |
 | 3 | **Delivery Lead** | instruction file ready | `/pr-review` | PR merged, `validate-customization-registry.py` passes |

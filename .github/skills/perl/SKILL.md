@@ -1,6 +1,6 @@
 ---
 name: perl
-description: Perl scripting — safety pragmas, error handling, clear structure, and documentation.
+description: Perl scripting -- safety pragmas, error handling, clear structure, and documentation.
 argument-hint: "[script name or automation goal]"
 user-invocable: true
 
@@ -32,7 +32,7 @@ sub main {
 
 ### 1. Always use strict and warnings
 
-- `use strict; use warnings;` — mandatory, no exceptions.
+- `use strict; use warnings;` -- mandatory, no exceptions.
 
 - Add `use Carp qw(croak confess)` for better error reporting.
 

@@ -11,7 +11,7 @@ applyTo: "**"
 
 Knowledge and decisions produced during a session **must** be externalised into permanent,
 theme-scoped files before the session ends.
-A new session must be able to reach full context by reading only these files — no inference,
+A new session must be able to reach full context by reading only these files -- no inference,
 no re-discovery, no repeated analysis.
 
 ### Why theme-scoped files matter
@@ -45,9 +45,9 @@ This continuity model has three mandatory layers that work together:
 
 | Scope | Path pattern | Managed by | Survives session? |
 | --- | --- | --- | --- |
-| Repository facts | `/memories/repo/<theme>.md` | memory tool (`create` / `str_replace`) | Yes — scoped to this repo |
-| User preferences | `/memories/<theme>.md` | memory tool | Yes — cross-workspace |
-| Session working notes | `/memories/session/<topic>.md` | memory tool | No — cleared after session |
+| Repository facts | `/memories/repo/<theme>.md` | memory tool (`create` / `str_replace`) | Yes -- scoped to this repo |
+| User preferences | `/memories/<theme>.md` | memory tool | Yes -- cross-workspace |
+| Session working notes | `/memories/session/<topic>.md` | memory tool | No -- cleared after session |
 
 ## Naming themes
 
@@ -59,25 +59,25 @@ This continuity model has three mandatory layers that work together:
 
 ## Mandatory maintenance rules (non-negotiable)
 
-1. **Update on every change** — whenever a fact, decision, command, or convention changes,
+1. **Update on every change** -- whenever a fact, decision, command, or convention changes,
    update the relevant theme file in the same operation. Never defer.
 
-2. **No redundancy** — a fact appears in exactly one theme file.
+2. **No redundancy** -- a fact appears in exactly one theme file.
    If information is relevant to two themes, store it in the more specific one and cross-reference.
 
-3. **Append, do not overwrite** — use `str_replace` to add or update individual entries;
+3. **Append, do not overwrite** -- use `str_replace` to add or update individual entries;
    never replace the whole file unless performing a deliberate restructure.
 
-4. **Prune stale entries** — when a fact becomes outdated (e.g. a command changes),
+4. **Prune stale entries** -- when a fact becomes outdated (e.g. a command changes),
    replace the old entry; do not leave both old and new side by side.
 
-5. **Maintain a live session note** — every non-trivial task must keep an actively updated `/memories/session/<topic>.md` note with current objective, in-flight decisions, blockers, verification status, and exact next step.
+5. **Maintain a live session note** -- every non-trivial task must keep an actively updated `/memories/session/<topic>.md` note with current objective, in-flight decisions, blockers, verification status, and exact next step.
 
-6. **No chat-only reasoning** — if reasoning produced a durable outcome (decision, discarded option, verified command, convention, or next-step dependency), write it to `/memories/repo/` or `/memories/session/`; do not leave it only in chat history.
+6. **No chat-only reasoning** -- if reasoning produced a durable outcome (decision, discarded option, verified command, convention, or next-step dependency), write it to `/memories/repo/` or `/memories/session/`; do not leave it only in chat history.
 
-7. **Visible handoff is mandatory** — every non-trivial session must create or refresh a corresponding `docs/session-handoffs/<date>_<slug>.md` file, not only memory-tool notes, so there is always a user-visible continuity artefact in the workspace.
+7. **Visible handoff is mandatory** -- every non-trivial session must create or refresh a corresponding `docs/session-handoffs/<date>_<slug>.md` file, not only memory-tool notes, so there is always a user-visible continuity artefact in the workspace.
 
-8. **Session close** — at the natural end of a session, before `task_complete`, or whenever context limits are near,
+8. **Session close** -- at the natural end of a session, before `task_complete`, or whenever context limits are near,
    review `/memories/session/`, flush any durable facts to the appropriate repo or user file, and refresh the resumable handoff record.
 
 ## Mandatory session workflow
@@ -118,11 +118,11 @@ This continuity model has three mandatory layers that work together:
 
 ## Content guidelines
 
-- Use concise bullet points or short code blocks — not prose paragraphs.
+- Use concise bullet points or short code blocks -- not prose paragraphs.
 
 - Every entry must be actionable: a reader must be able to act on it without further context.
 
-- Include exact commands, paths, and option flags — not vague descriptions.
+- Include exact commands, paths, and option flags -- not vague descriptions.
 
 - Tag decisions with a date in ISO format (`YYYY-MM-DD`) so staleness is self-evident.
 
@@ -200,7 +200,7 @@ At the start of every new session on this repository:
 
 4. If an active `/memories/session/` note exists for the task, resume from it before doing new analysis.
 
-5. Do not re-derive facts that are already recorded — trust the files.
+5. Do not re-derive facts that are already recorded -- trust the files.
 
 Example: well-formed theme file entry
 ---
@@ -216,15 +216,15 @@ Example: well-formed theme file entry
 
 - [ ] Every new fact or decision is written to the correct theme file (or explicitly deemed transient/one-off).
 
-- [ ] No information exists only in the chat — durable insights are in `/memories/repo/` files.
+- [ ] No information exists only in the chat -- durable insights are in `/memories/repo/` files.
 
 - [ ] No duplicate entries introduced across theme files.
 
-- [ ] Stale entries replaced (old fact removed, new fact added — never both side by side).
+- [ ] Stale entries replaced (old fact removed, new fact added -- never both side by side).
 
 - [ ] Active session note in `/memories/session/` is up to date with latest decisions, validation, and next step.
 
-- [ ] Session working files in `/memories/session/` reviewed — facts flushed to `/memories/repo/`, scratch work deleted.
+- [ ] Session working files in `/memories/session/` reviewed -- facts flushed to `/memories/repo/`, scratch work deleted.
 
 - [ ] Relevant `docs/session-handoffs/` file exists and is updated for this non-trivial session.
 

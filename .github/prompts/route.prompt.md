@@ -32,7 +32,7 @@ Output (always):
 
 - recommended skill(s)
 
-- rationale (1–3 bullets)
+- rationale (1-3 bullets)
 
 Output (when request includes PR/issues/review/merge):
 
@@ -68,7 +68,7 @@ Rules:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Router** | always — route classification | *(this prompt)* | Capability + domain identified, recommended agent + prompt + skill produced |
+| 1 | **Router** | always -- route classification | *(this prompt)* | Capability + domain identified, recommended agent + prompt + skill produced |
 | 2 | **Recommended specialist agent** | routing complete | /<recommended-prompt> <args> | Task executed by the right agent for the capability+domain |
 | 3 | **Project Orchestrator** | delivery tasks in scope (PR/issue/review/merge) | /project-dispatch | Delegation plan produced with owner, done criteria, and verification per task |
 | 4 | **Router** | route was wrong or empty | /route-miss | Root cause diagnosed, additive fix proposed, routing improved |

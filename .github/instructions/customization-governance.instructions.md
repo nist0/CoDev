@@ -13,11 +13,11 @@ When creating a new skill, agent, instruction, or theme pack on a domain or them
 
 1. **Identify the domain**: name it explicitly (e.g. "Kubernetes RBAC", "React hooks", "ASP.NET Core minimal APIs").
 
-2. **Gather ≥2 primary sources**: official docs, language specs, RFC/standards, canonical style guides. Prioritise primary over secondary/aggregated sources.
+2. **Gather >=2 primary sources**: official docs, language specs, RFC/standards, canonical style guides. Prioritise primary over secondary/aggregated sources.
 
 3. **Read related CoDev assets**: scan all existing skills, agents, and instructions that touch the same domain to avoid contradictions and duplication.
 
-4. **Synthesise non-contradictory best practices**: where sources conflict, explicitly document the choice — *"Source A recommends X; Source B recommends Y — using X because `<rationale>`."*
+4. **Synthesise non-contradictory best practices**: where sources conflict, explicitly document the choice -- *"Source A recommends X; Source B recommends Y -- using X because `<rationale>`."*
 
 5. **Cite sources in the asset**: add a `## Sources` section at the bottom of `SKILL.md`; for agents and instructions, inline-link the primary reference in the relevant rule.
 
@@ -35,7 +35,7 @@ This rule is enforced by the `## Domain research` step in each authoring skill (
 
 - Default new agents to no `tools:` declaration unless tools are explicitly required; add only what is needed.
 
-## Frontmatter attribute allowlists (MANDATORY — enforced by CI)
+## Frontmatter attribute allowlists (MANDATORY -- enforced by CI)
 
 > **Source**: VS Code Copilot official docs (last verified 2026-03-04)
 >
@@ -47,7 +47,7 @@ This rule is enforced by the `## Domain research` step in each authoring skill (
 **Every frontmatter attribute used in any framework file MUST appear on the allowlist below.
 Unknown or deprecated attributes are treated as blocking violations (same severity as a failing CI gate).**
 
-### `.prompt.md` — allowed frontmatter
+### `.prompt.md` -- allowed frontmatter
 
 | Attribute | Notes |
 | --- | --- |
@@ -56,17 +56,17 @@ Unknown or deprecated attributes are treated as blocking violations (same severi
 | `argument-hint` | Hint text shown in chat input |
 | `agent` | `ask`, `agent`, `plan`, or a custom agent name |
 | `model` | Model name string or array |
-| `tools` | List of tool/tool-set names — omit entirely to inherit agent tools |
+| `tools` | List of tool/tool-set names -- omit entirely to inherit agent tools |
 
 Forbidden in `.prompt.md`:
 
-- `mode` — **DEPRECATED** → use `agent: ask` or `agent: agent`
+- `mode` -- **DEPRECATED** -> use `agent: ask` or `agent: agent`
 
-- `skills` — not a valid attribute → reference skills in the prompt body
+- `skills` -- not a valid attribute -> reference skills in the prompt body
 
-- `tools: []` — zeroes out all tools; omit the key entirely to inherit
+- `tools: []` -- zeroes out all tools; omit the key entirely to inherit
 
-### `.agent.md` — allowed frontmatter
+### `.agent.md` -- allowed frontmatter
 
 | Attribute | Notes |
 | --- | --- |
@@ -84,9 +84,9 @@ Forbidden in `.prompt.md`:
 
 Forbidden in `.agent.md`:
 
-- `infer` — **DEPRECATED** → use `user-invocable` and `disable-model-invocation`
+- `infer` -- **DEPRECATED** -> use `user-invocable` and `disable-model-invocation`
 
-### `SKILL.md` — allowed frontmatter
+### `SKILL.md` -- allowed frontmatter
 
 | Attribute | Required | Notes |
 | --- | --- | --- |
@@ -98,9 +98,9 @@ Forbidden in `.agent.md`:
 
 Forbidden in `SKILL.md`:
 
-- `user-invokable` — **DEPRECATED** → use `user-invocable`
+- `user-invokable` -- **DEPRECATED** -> use `user-invocable`
 
-### `.instructions.md` — allowed frontmatter
+### `.instructions.md` -- allowed frontmatter
 
 | Attribute | Notes |
 | --- | --- |
@@ -164,13 +164,13 @@ No other attributes are valid for `.instructions.md` files.
 
   - update `docs/` files when a procedure or developer workflow changes:
 
-    - `docs/codev-dev-guide.md` — CLI walkthroughs, validator results, alias discovery examples
+    - `docs/codev-dev-guide.md` -- CLI walkthroughs, validator results, alias discovery examples
 
-    - `docs/developer-tooling.md` — script reference, error-class tables
+    - `docs/developer-tooling.md` -- script reference, error-class tables
 
-    - `docs/submodule-guide.md` — consumer getting-started steps
+    - `docs/submodule-guide.md` -- consumer getting-started steps
 
-    - `docs/submodule-cli-contract.md` — CLI flag/exit-code contract
+    - `docs/submodule-cli-contract.md` -- CLI flag/exit-code contract
 
   - document verification steps (local + CI) for the new/updated behavior
 
@@ -186,17 +186,17 @@ No other attributes are valid for `.instructions.md` files.
 
 Before finalizing any customization change:
 
-- [ ] **Issue body well-formed** — written via `--body-file`, no raw backslashes, all tables have separator rows, code blocks properly fenced (see `00-core.instructions.md` § *GitHub issue / PR body formatting*).
+- [ ] **Issue body well-formed** -- written via `--body-file`, no raw backslashes, all tables have separator rows, code blocks properly fenced (see `00-core.instructions.md` § *GitHub issue / PR body formatting*).
 
 - [ ] **Issue created** for every task and sub-task (issues-first rule from `00-core.instructions.md`)
 
-- [ ] **Branch used** — work is on a feature branch, not pushed directly to `main`
+- [ ] **Branch used** -- work is on a feature branch, not pushed directly to `main`
 
-- [ ] **PR opened** — a PR is open and references the closing issue(s) (`Closes #N`)
+- [ ] **PR opened** -- a PR is open and references the closing issue(s) (`Closes #N`)
 
-- [ ] **All GitHub checks pass** — every CI status check is green before merge; failing checks block merge
+- [ ] **All GitHub checks pass** -- every CI status check is green before merge; failing checks block merge
 
-- [ ] **Project board updated** — issue added to project board #2 (`gh project item-add`) and status moved to **Done** before or at close
+- [ ] **Project board updated** -- issue added to project board #2 (`gh project item-add`) and status moved to **Done** before or at close
 
 - [ ] Scope and acceptance criteria defined
 
@@ -227,7 +227,7 @@ Example: smoke-test phrase entry
 
 ---
 
-## 🏆 Elite Section — Top 5% Customization Practices
+## U+1F3C6 Elite Section -- Top 5% Customization Practices
 
 - **Instruction coverage map**: Maintain a table in `README.md` mapping every `applyTo` glob to its instruction file and the last review date. Stale instructions (>90 days without review) must be audited.
 

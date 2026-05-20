@@ -74,7 +74,7 @@ authentication, and AI integration.
 
 - Enforce security invariants: no hardcoded tokens, webhook secret verification, least-privilege scopes.
 
-## SDK Landscape (state-of-the-art — 2025+)
+## SDK Landscape (state-of-the-art -- 2025+)
 
 | Platform | Recommended SDK | Language |
 | --- | --- | --- |

@@ -54,7 +54,7 @@ disable-model-invocation: false
 
 - Review destructive operations explicitly (drop/rename/type-change).
 
-- Prefer staged migrations for large tables (expand → backfill → contract).
+- Prefer staged migrations for large tables (expand -> backfill -> contract).
 
 - Keep rollback strategy documented for every production migration.
 

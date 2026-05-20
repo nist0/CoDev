@@ -1,6 +1,6 @@
 ---
 name: codev-update
-description: Guided CoDev submodule update — sync after git submodule update, re-run bootstrap, validate, and commit.
+description: Guided CoDev submodule update -- sync after git submodule update, re-run bootstrap, validate, and commit.
 agent: CoDev Consumer
 
 argument-hint: "[target-ref: main|<commit-sha>]"
@@ -16,7 +16,7 @@ Argument handling:
 
 - Do not fail solely because arguments were omitted.
 
-# CoDev Update — Guided Sync
+# CoDev Update -- Guided Sync
 
 Walk me through updating the CoDev submodule to the latest version (or a specific ref).
 
@@ -30,11 +30,11 @@ For each step, show:
 
 1. The **exact command** to run (bash + PowerShell variants).
 
-2. **What changes** — which files are updated.
+2. **What changes** -- which files are updated.
 
-3. **Verify** — exact command and expected output.
+3. **Verify** -- exact command and expected output.
 
-4. **Rollback** — how to revert to the previous pinned commit.
+4. **Rollback** -- how to revert to the previous pinned commit.
 
 ## Steps to cover
 
@@ -46,7 +46,7 @@ For each step, show:
 
 4. Check for breaking changes in the CoDev changelog (link to release notes).
 
-5. Run `validate-route-smoke.py` — if it fails, diagnose before committing.
+5. Run `validate-route-smoke.py` -- if it fails, diagnose before committing.
 
 6. Commit the updated submodule pointer + changed bootstrap artefacts.
 
@@ -76,6 +76,6 @@ If `validate-route-smoke.py` fails after update:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CoDev Consumer** | always — submodule update | *(this prompt)* | Submodule updated to target ref, codev update run, artefacts synced |
+| 1 | **CoDev Consumer** | always -- submodule update | *(this prompt)* | Submodule updated to target ref, codev update run, artefacts synced |
 | 2 | **Router** | `validate-route-smoke.py` fails after update | `/route-miss` | Root cause diagnosed, fix applied or submodule pinned to safe commit |
 | 3 | **Delivery Lead** | update validated | `/pr-review` | PR merged, submodule pointer committed, CI green |

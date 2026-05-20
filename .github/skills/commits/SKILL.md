@@ -1,6 +1,6 @@
 ---
 name: commits
-description: Conventional Commits — type/scope/subject rules, commit size, merge strategy, and message quality checklist.
+description: Conventional Commits -- type/scope/subject rules, commit size, merge strategy, and message quality checklist.
 argument-hint: "[change description or commit scope]"
 user-invocable: true
 
@@ -38,7 +38,7 @@ disable-model-invocation: false
 [footer]
 ```
 
-- **Subject**: imperative mood, lowercase, ≤72 chars, no period.
+- **Subject**: imperative mood, lowercase, <=72 chars, no period.
 
 - **Body**: explain *what* and *why*, not *how*.
 
@@ -48,7 +48,7 @@ disable-model-invocation: false
 
 | Strategy | When to use |
 |----------|-------------|
-| Squash | Feature branch → clean history, single intent |
+| Squash | Feature branch -> clean history, single intent |
 | Rebase | Linear history preferred, commits are atomic |
 | Merge commit | Long-lived branches, preserve context |
 
@@ -74,7 +74,7 @@ disable-model-invocation: false
 
 ### 4. Write and review
 
-- Subject: imperative, ≤72 chars, no period.
+- Subject: imperative, <=72 chars, no period.
 
 - Body: explain motivation; link to issue or RFC.
 
@@ -88,7 +88,7 @@ disable-model-invocation: false
 
 - [ ] Type is from the standard list (see table).
 
-- [ ] Subject is imperative mood, ≤72 chars, no trailing period.
+- [ ] Subject is imperative mood, <=72 chars, no trailing period.
 
 - [ ] Commit represents a single logical change.
 

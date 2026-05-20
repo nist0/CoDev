@@ -1,6 +1,6 @@
 ---
 name: codev-contributing
-description: How to propose changes to CoDev from a consumer repository — fork, fix, PR, upstream sync, and review protocol.
+description: How to propose changes to CoDev from a consumer repository -- fork, fix, PR, upstream sync, and review protocol.
 argument-hint: "[type: bug|enhancement|new-skill|new-agent]"
 user-invocable: true
 
@@ -25,7 +25,7 @@ disable-model-invocation: false
 
 Before opening a PR to CoDev, ask:
 
-| Question | Yes → | No → |
+| Question | Yes -> | No -> |
 | --- | --- | --- |
 | Is this specific to my host repo? | Use `codev-overrides/` | Consider upstreaming |
 | Would other consumers benefit? | Upstream it | Keep it local |
@@ -36,7 +36,7 @@ Before opening a PR to CoDev, ask:
 
 ## 2. Contribution workflow
 
-### Step 1 — Open an issue on the CoDev repo
+### Step 1 -- Open an issue on the CoDev repo
 
 Before any code:
 
@@ -59,7 +59,7 @@ Issue body must include:
 
 > Follow the CoDev mandatory dev workflow: issue first, then branch, then PR.
 
-### Step 2 — Fork and branch
+### Step 2 -- Fork and branch
 
 ```bash
 # Fork the repo (one-time)
@@ -75,7 +75,7 @@ git checkout -b <type>/<slug>   # e.g. fix/skill-lockfile-path, feat/new-db-skil
 git push fork <type>/<slug>
 ```
 
-### Step 3 — Implement the change
+### Step 3 -- Implement the change
 
 Follow CoDev authoring conventions:
 
@@ -101,7 +101,7 @@ python scripts/validate-markdown-lint.py
 
 All must pass (exit 0).
 
-### Step 4 — Open a PR to CoDev
+### Step 4 -- Open a PR to CoDev
 
 ```bash
 cd tools/codev
@@ -126,15 +126,15 @@ PR body must include:
 - `Closes #N` reference
 
 > Use `--body-file` with a single-quoted heredoc (PowerShell) or heredoc (bash).
-> Never use `--body "..."` for multi-line content — escaping corrupts backtick spans.
+> Never use `--body "..."` for multi-line content -- escaping corrupts backtick spans.
 
-### Step 5 — Address review feedback
+### Step 5 -- Address review feedback
 
 CoDev uses a structured review verdict:
 
 ```text
-(Agent: Reviewer) approved — rationale
-(Agent: Reviewer) rework required — <exact gap> | closure evidence: <what to show>
+(Agent: Reviewer) approved -- rationale
+(Agent: Reviewer) rework required -- <exact gap> | closure evidence: <what to show>
 ```
 
 For `rework required`:
@@ -143,11 +143,11 @@ For `rework required`:
 
 2. Make the minimal change that satisfies the evidence.
 
-3. Push to your branch — the PR updates automatically.
+3. Push to your branch -- the PR updates automatically.
 
-4. Comment: `@reviewer — addressed in <commit SHA>`.
+4. Comment: `@reviewer -- addressed in <commit SHA>`.
 
-### Step 6 — Upstream sync after merge
+### Step 6 -- Upstream sync after merge
 
 Once your PR is merged into CoDev `main`:
 
@@ -188,13 +188,13 @@ git push
 
 ## 4. Communication norms
 
-- Open an issue **before** any significant change — do not surprise maintainers with a large PR.
+- Open an issue **before** any significant change -- do not surprise maintainers with a large PR.
 
 - Use English for all GitHub-published content (issues, PRs, reviews, comments).
 
 - Be specific: include exact commands, expected outputs, and reproduction steps.
 
-- One concern per PR — do not bundle unrelated changes.
+- One concern per PR -- do not bundle unrelated changes.
 
 ---
 
@@ -218,10 +218,10 @@ git push
 
 - **Pre-mortem before PR**: list the 3 most likely review objections and address them in the PR description before opening.
 
-- **Minimal diff**: prefer surgical changes over rewrites — smaller diffs are reviewed faster and more thoroughly.
+- **Minimal diff**: prefer surgical changes over rewrites -- smaller diffs are reviewed faster and more thoroughly.
 
 - **Include a "not tested" section**: explicitly state what is out of scope in your PR to signal awareness.
 
-- **Watch the CI run**: don't open a PR and disappear — monitor the first CI run and fix issues within 30 minutes.
+- **Watch the CI run**: don't open a PR and disappear -- monitor the first CI run and fix issues within 30 minutes.
 
 - **Version your agent contracts**: if you change an agent's output format, bump `version:` in the frontmatter and update all callers.

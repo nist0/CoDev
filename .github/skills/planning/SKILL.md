@@ -1,6 +1,6 @@
 ---
 name: planning
-description: Elite GitHub delivery planning — milestones, roadmaps, prioritization, and cadence governance.
+description: Elite GitHub delivery planning -- milestones, roadmaps, prioritization, and cadence governance.
 argument-hint: "[project-name] [horizon]"
 user-invocable: true
 
@@ -13,7 +13,7 @@ disable-model-invocation: false
 
 - You need to set up or review a project's delivery planning model.
 
-- You want consistent triage → prioritization → execution → release mapping.
+- You want consistent triage -> prioritization -> execution -> release mapping.
 
 - You need milestone structure, Kanban policy, or a roadmap horizon.
 
@@ -23,10 +23,10 @@ disable-model-invocation: false
 
 | Artifact | Scope | Horizon |
 |----------|-------|---------|
-| Roadmap | Strategic themes | 3–12 months |
-| Milestone | Release or sprint | 1–6 weeks |
+| Roadmap | Strategic themes | 3-12 months |
+| Milestone | Release or sprint | 1-6 weeks |
 | GitHub Project | Workflow tracking | ongoing |
-| Issue | Atomic task | 1–3 days |
+| Issue | Atomic task | 1-3 days |
 | Sub-task (checkbox) | Step within a task | < 1 day |
 
 ### 2. Prioritization model
@@ -36,17 +36,17 @@ Score each candidate issue:
 | Dimension | Weight | Signal |
 |-----------|--------|--------|
 | User/business impact | 40% | Revenue, retention, SLO, complaints |
-| Effort | 20% | T-shirt size: S (< 1d) / M (1–3d) / L (> 3d) |
+| Effort | 20% | T-shirt size: S (< 1d) / M (1-3d) / L (> 3d) |
 | Dependencies / blockers | 20% | Issues or people that must complete first |
 | Risk if deferred | 20% | Security, tech debt accumulation, contractual |
 
 Priority labels:
 
-- `priority:p0` — production incident or milestone-blocking. Must start now.
+- `priority:p0` -- production incident or milestone-blocking. Must start now.
 
-- `priority:p1` — high-impact, next available slot.
+- `priority:p1` -- high-impact, next available slot.
 
-- `priority:p2` — standard queue.
+- `priority:p2` -- standard queue.
 
 ### 3. Milestone structure
 
@@ -60,7 +60,7 @@ Each milestone must have:
 
 - **Exit criteria**: measurable conditions before closing the milestone.
 
-- **Risk log**: 1–3 risks with owners and mitigations.
+- **Risk log**: 1-3 risks with owners and mitigations.
 
 ### 4. Execution cadence
 
@@ -87,7 +87,7 @@ Track at the end of each milestone:
 
 | Metric | How to measure |
 |--------|----------------|
-| Cycle time | Issue opened → PR merged (median days) |
+| Cycle time | Issue opened -> PR merged (median days) |
 | Throughput | Issues closed per week |
 | Blocked ratio | Issues in `status:blocked` / total open |
 | Scope added | Issues added after milestone start |
@@ -111,7 +111,7 @@ Track at the end of each milestone:
 
 - Prioritized backlog (scored issues).
 
-- Roadmap horizon map (themes → milestones).
+- Roadmap horizon map (themes -> milestones).
 
 - Delivery cadence checklist.
 

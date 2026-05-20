@@ -1,6 +1,6 @@
 ---
 name: az-ops
-description: "Azure CLI operations — subscription context, resource discovery, AKS, Key Vault, ACR, RBAC, and monitoring queries."
+description: "Azure CLI operations -- subscription context, resource discovery, AKS, Key Vault, ACR, RBAC, and monitoring queries."
 agent: "DevOps/Cloud"
 
 argument-hint: "concern=<context|aks|keyvault|acr|rbac|monitor> resource-group=<name>"
@@ -28,7 +28,7 @@ Inputs:
 
 ## Workflow
 
-1. **Always confirm subscription first** — run `az account show -o table` and state the result before any mutating command.
+1. **Always confirm subscription first** -- run `az account show -o table` and state the result before any mutating command.
 
 2. Use the Quick reference section of the `azure` skill for copy-paste commands.
 
@@ -36,7 +36,7 @@ Inputs:
 
 4. For RBAC: use the least-privilege role; prefer built-in roles over `Owner`/`Contributor`.
 
-5. For Key Vault: read-only unless change is explicitly requested — treat values as sensitive.
+5. For Key Vault: read-only unless change is explicitly requested -- treat values as sensitive.
 
 ## Output
 
@@ -52,7 +52,7 @@ Inputs:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **DevOps/Cloud** | always — Azure CLI operations | *(this prompt)* | Commands provided, subscription confirmed, risk classified |
+| 1 | **DevOps/Cloud** | always -- Azure CLI operations | *(this prompt)* | Commands provided, subscription confirmed, risk classified |
 | 2 | **DevOps/Cloud** | AKS workload issue detected | `/k8s-triage` | Cluster issue diagnosed and mitigated |
 | 3 | **Security** | RBAC or Key Vault concern | `/threat-model` or `/secrets-audit` | Threat modeled, least-privilege confirmed |
 | 4 | **Delivery Lead** | infrastructure change requires PR | `/pr-review` | Change reviewed, CI green, merged |

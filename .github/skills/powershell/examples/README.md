@@ -1,4 +1,4 @@
-# PowerShell Skill — Examples
+# PowerShell Skill -- Examples
 
 ## 1. Safe Script Skeleton
 

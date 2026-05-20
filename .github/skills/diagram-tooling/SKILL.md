@@ -17,7 +17,7 @@ disable-model-invocation: false
 
 - You need reproducible diagram updates in PR workflows.
 
-> **Mermaid-first on GitHub**: if the diagram will live in a GitHub Markdown file (README, ADR, wiki), prefer Mermaid — it renders natively without any plugin. For comprehensive Mermaid guidance (all diagram types, best practices, CI validation), see the dedicated [`mermaid` skill](.github/skills/mermaid/SKILL.md) and use `/mermaid-create`, `/mermaid-review`, or `/mermaid-embed` prompts.
+> **Mermaid-first on GitHub**: if the diagram will live in a GitHub Markdown file (README, ADR, wiki), prefer Mermaid -- it renders natively without any plugin. For comprehensive Mermaid guidance (all diagram types, best practices, CI validation), see the dedicated [`mermaid` skill](.github/skills/mermaid/SKILL.md) and use `/mermaid-create`, `/mermaid-review`, or `/mermaid-embed` prompts.
 
 ## Source Format Reference
 

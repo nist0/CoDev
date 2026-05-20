@@ -19,11 +19,11 @@ applyTo: "**"
 
 - Structure outputs as: **Plan -> Changed files -> Rationale -> Self-check** for any non-trivial task.
 
-- **NEVER use non-ASCII or special Unicode characters** (arrows, box-drawing characters, emoji, etc.) in any output — including terminal commands, verification steps, checklists, code comments, and prose. Use plain ASCII equivalents only (e.g. `->` not `→`, `-` not `•`, `(check)` not `✓`).
+- **NEVER use non-ASCII or special Unicode characters** (arrows, box-drawing characters, emoji, etc.) in any output -- including terminal commands, verification steps, checklists, code comments, and prose. Use plain ASCII equivalents only (e.g. `->` not `->`, `-` not `-`, `(check)` not `OK`).
 
 ## GitHub issue / PR body formatting (mandatory)
 
-Every GitHub issue, PR description, and comment body **must** comply with these rules — no exceptions:
+Every GitHub issue, PR description, and comment body **must** comply with these rules -- no exceptions:
 
 ### Content rules
 
@@ -33,31 +33,31 @@ Every GitHub issue, PR description, and comment body **must** comply with these 
 
 - Code blocks **must** open and close with triple backticks on their own lines. Never embed inline code spans for multi-line shell commands.
 
-- Do **not** wrap section titles or values in backslashes (e.g. `\frontend\` is wrong — use plain `frontend`).
+- Do **not** wrap section titles or values in backslashes (e.g. `\frontend\` is wrong -- use plain `frontend`).
 
 - Do **not** use literal `\n` sequences; use real line breaks.
 
 ### Authoring rules (CLI)
 
-> **⛔ BLOCKING — read before every `gh` command that publishes content:**
+> **U+26D4 BLOCKING -- read before every `gh` command that publishes content:**
 > Never pass a multi-line body inline with `--body "..."` in PowerShell.
 > PowerShell treats backtick (`` ` ``) as its escape character inside double-quoted
 > strings, so every inline code span (e.g. `` `value` ``) is silently corrupted
 > (the backtick is consumed and adjacent characters may be eaten too).
 > **Always write the body to a file and pass it with `--body-file <path>`.**
 
-- **Always use `--body-file <path>`** when creating or editing issues/PRs via `gh` CLI with multi-line bodies. Never use `--body "..."` for multi-line content — PowerShell and shell escaping will corrupt backslashes and eat leading characters.
+- **Always use `--body-file <path>`** when creating or editing issues/PRs via `gh` CLI with multi-line bodies. Never use `--body "..."` for multi-line content -- PowerShell and shell escaping will corrupt backslashes and eat leading characters.
 
 - Write the body to a temporary `.md` file using a **single-quoted** PowerShell heredoc (`@'...'@`) so no escaping occurs, then pass it via `--body-file`.
 
-- After publication, **always** spot-check with `gh pr view <N>` or `gh issue view <N>` before considering the task done. If any cell or word starts with `\`, or any backtick code span is missing, the body was corrupted — close and re-create.
+- After publication, **always** spot-check with `gh pr view <N>` or `gh issue view <N>` before considering the task done. If any cell or word starts with `\`, or any backtick code span is missing, the body was corrupted -- close and re-create.
 
 - Delete the temp file immediately after the `gh` command.
 
 ### Example: correct CLI pattern
 
 ```powershell
-# Single-quoted heredoc — backticks and backslashes are never interpreted
+# Single-quoted heredoc -- backticks and backslashes are never interpreted
 $body = @'
 ## Summary
 Adds 7 new routing rules.
@@ -73,13 +73,13 @@ $body | Set-Content -Path "$env:TEMP\body.md" -Encoding UTF8
 gh issue create --title "feat: add routing rules" --body-file "$env:TEMP\body.md"
 Remove-Item "$env:TEMP\body.md"
 
-# Mandatory spot-check — look for stray backslashes or missing backtick spans
+# Mandatory spot-check -- look for stray backslashes or missing backtick spans
 gh issue view <N>
 ```
 
 ### Self-check before publishing
 
-- [ ] No raw backslashes before words (e.g. `\frontend` → `frontend`).
+- [ ] No raw backslashes before words (e.g. `\frontend` -> `frontend`).
 
 - [ ] All tables have a separator row.
 
@@ -87,11 +87,11 @@ gh issue view <N>
 
 - [ ] Body written to a file using a **single-quoted** heredoc (`@'...'@`) and passed via `--body-file`.
 
-- [ ] Spot-checked with `gh pr view <N>` or `gh issue view <N>` after creation — no stray `\` chars, no missing backtick spans.
+- [ ] Spot-checked with `gh pr view <N>` or `gh issue view <N>` after creation -- no stray `\` chars, no missing backtick spans.
 
 ## Todo list synchronization (mandatory)
 
-The todo list **must** be kept synchronized at all times — no exceptions:
+The todo list **must** be kept synchronized at all times -- no exceptions:
 
 - **Before starting any task**: mark it `in-progress`. Never start work on an unmarked item.
 
@@ -101,7 +101,7 @@ The todo list **must** be kept synchronized at all times — no exceptions:
 
 - **Session hygiene**: at the start of a new session, initialize the list from the current state before doing anything else.
 
-- **Never defer**: updating the todo list is not optional and not "cleanup" — it is part of the task itself.
+- **Never defer**: updating the todo list is not optional and not "cleanup" -- it is part of the task itself.
 
 > **Enforcement**: failing to synchronize the todo list is treated as a process violation, equivalent to skipping a CI gate.
 
@@ -111,15 +111,15 @@ The todo list **must** be kept synchronized at all times — no exceptions:
 
 - Keep instructions additive: do not contradict other instruction layers.
 
-- For complex multi-file tasks: explore first, produce a short plan (≤10 bullets), then implement.
+- For complex multi-file tasks: explore first, produce a short plan (<=10 bullets), then implement.
 
 - Choose the right interaction pattern for the task:
 
-  - quick edits/completions → focused edits
+  - quick edits/completions -> focused edits
 
-  - questions/research → chat/ask
+  - questions/research -> chat/ask
 
-  - multi-file implementation → agent workflow with planner/implementer/reviewer split
+  - multi-file implementation -> agent workflow with planner/implementer/reviewer split
 
 - State acceptance criteria before coding: tests, expected outputs, or concrete checks.
 
@@ -129,9 +129,9 @@ The todo list **must** be kept synchronized at all times — no exceptions:
 
 ## Mandatory development workflow (non-negotiable)
 
-Every piece of work — no matter how small — **must** follow this sequence:
+Every piece of work -- no matter how small -- **must** follow this sequence:
 
-0. **Brainstorm first** (mandatory for non-trivial tasks): before creating any issue, opening any branch, or writing any code, produce a structured brainstorm with ≥ 3 scored options (safe / adjacent / bold).
+0. **Brainstorm first** (mandatory for non-trivial tasks): before creating any issue, opening any branch, or writing any code, produce a structured brainstorm with >= 3 scored options (safe / adjacent / bold).
 
    - **Non-trivial** = touches more than one file, introduces a new pattern, has user-facing impact, performance/security implications, or takes longer than 30 minutes.
 
@@ -156,7 +156,7 @@ Every piece of work — no matter how small — **must** follow this sequence:
 
 ## Files to modify
 
-   - `path/to/file.ext` — what change and why
+   - `path/to/file.ext` -- what change and why
 
 ## Sub-tasks
 
@@ -190,14 +190,14 @@ Every piece of work — no matter how small — **must** follow this sequence:
 
    - **Project board** (mandatory): immediately after creating the issue, add it to the CoDev project Kanban board (project #2) and keep its status column in sync throughout the lifecycle:
 
-     - *Created* → **Todo**: `gh project item-add 2 --owner nist0 --url <issue-url>`
+     - *Created* -> **Todo**: `gh project item-add 2 --owner nist0 --url <issue-url>`
 
-     - *Branch created / work started* → **In Progress**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 47fc9ee4`
+     - *Branch created / work started* -> **In Progress**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 47fc9ee4`
 
-     - *PR merged / issue closed* → **Done**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 98236657`
+     - *PR merged / issue closed* -> **Done**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 98236657`
 
 2. **Plan in the issue**: document the approach, scope, and risks in the issue body before branching.
-   If the approach changes mid-implementation, update the issue immediately — do not wait until merge.
+   If the approach changes mid-implementation, update the issue immediately -- do not wait until merge.
 
 3. **Work on a branch**: create a feature branch from the default branch (`main`).
    Branch naming convention: `feat/<slug>`, `fix/<slug>`, `chore/<slug>`.
@@ -259,14 +259,14 @@ Example: well-formed task response
 - tests/Services/UserServiceTests.cs (2 new tests)
 - docs/openapi.yaml (new endpoint schema)
 
-**Rationale** — Follows IOptions<T> pattern; errors use ProblemDetails contract.
+**Rationale** -- Follows IOptions<T> pattern; errors use ProblemDetails contract.
 
-**Self-check** — Run `dotnet test` and `dotnet build -warnaserror`; zero new warnings.
+**Self-check** -- Run `dotnet test` and `dotnet build -warnaserror`; zero new warnings.
 ```
 
 ---
 
-## 🏆 Elite Section — Top 5% Practitioner Habits
+## U+1F3C6 Elite Section -- Top 5% Practitioner Habits
 
 > These habits separate senior engineers who ship reliably from those who ship often.
 
@@ -276,8 +276,8 @@ Example: well-formed task response
 
 - **Zero-assumption handoffs**: When handing a task to another agent or human, include exact repro commands, not just descriptions.
 
-- **Signal over noise in verification**: Verification steps must be deterministic (exact commands, expected exit codes, expected log lines) — not "should look fine".
+- **Signal over noise in verification**: Verification steps must be deterministic (exact commands, expected exit codes, expected log lines) -- not "should look fine".
 
-- **Layered review**: After coding, apply at minimum: (1) correctness, (2) security, (3) observability, (4) backward compatibility — in that order.
+- **Layered review**: After coding, apply at minimum: (1) correctness, (2) security, (3) observability, (4) backward compatibility -- in that order.
 
 - **Instruction hygiene**: After each session that surfaces a recurring gap, update the relevant instruction file immediately. Never defer codification.

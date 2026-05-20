@@ -1,4 +1,4 @@
-# EF Core Skill — Examples
+# EF Core Skill -- Examples
 
 ## 1. Add Migration
 

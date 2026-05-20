@@ -1,6 +1,6 @@
 ---
 name: e2e
-description: End-to-End testing — critical flow selection, stable environments, flakiness prevention, and CI gating strategy.
+description: End-to-End testing -- critical flow selection, stable environments, flakiness prevention, and CI gating strategy.
 argument-hint: "[application or user flow]"
 user-invocable: true
 
@@ -70,17 +70,17 @@ disable-model-invocation: false
 
 - [ ] CI suite split: fast (PR) vs full (nightly/release).
 
-## 🏆 Elite Section — Top 5% E2E Testing Practices
+## U+1F3C6 Elite Section -- Top 5% E2E Testing Practices
 
 - **Playwright trace viewer on failure**: Always configure `trace: 'on-first-retry'` in CI. Traces enable instant post-mortem debugging without needing to reproduce the failure locally.
 
 - **Authenticated state via `storageState`**: Capture authentication tokens once with `browser.storageState()` and reuse across tests. Re-authenticating in every test multiplies suite time and flakiness.
 
-- **Page Object Model (POM)**: Encapsulate all selectors and interaction logic in Page Objects. Never repeat a selector in multiple test files — one change breaks one place.
+- **Page Object Model (POM)**: Encapsulate all selectors and interaction logic in Page Objects. Never repeat a selector in multiple test files -- one change breaks one place.
 
 - **Test tagging for CI granularity**: Tag tests with `@smoke`, `@regression`, `@nightly`. Run only `@smoke` on PR (< 3 min); full `@regression` suite on main; `@nightly` on a schedule. Use `--grep` or Playwright `tags` to filter.
 
-- **API seeding, never UI setup**: Seed test data via direct API calls or DB scripts before tests. Never click through setup screens — UI-driven setup is the #1 cause of E2E flakiness.
+- **API seeding, never UI setup**: Seed test data via direct API calls or DB scripts before tests. Never click through setup screens -- UI-driven setup is the #1 cause of E2E flakiness.
 
 - **Parallel sharding in CI**: Use Playwright's built-in sharding (`--shard=1/4`) to distribute tests across CI workers. Target < 5 min wall-clock time for the `@smoke` suite on PRs.
 

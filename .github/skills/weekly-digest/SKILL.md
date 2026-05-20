@@ -1,6 +1,6 @@
 ---
 name: weekly-digest
-description: Produce a structured weekly tech watch digest — curated by topic, sourced from primaries, with actionable experiments.
+description: Produce a structured weekly tech watch digest -- curated by topic, sourced from primaries, with actionable experiments.
 argument-hint: "[topics] [week]"
 user-invocable: true
 
@@ -61,25 +61,25 @@ For items that affect current stack:
 ### 5. Draft the digest
 
 ```markdown
-# Weekly Tech Watch — Week <N> (<YYYY-MM-DD>)
+# Weekly Tech Watch -- Week <N> (<YYYY-MM-DD>)
 
-## 🚨 Breaking / Security
+## U+1F6A8 Breaking / Security
 - <item>: <fact>. Impact: <interpretation>. Source: <link>.
 
-## ⚡ Noteworthy
+## U+26A1 Noteworthy
 - <item>: <fact>. Why it matters: <interpretation>.
 
-## 👀 On the radar
+## U+1F440 On the radar
 - <item>: <brief fact>.
 
-## 🧪 Experiments this week
+## U+1F9EA Experiments this week
 1. Hypothesis: ...
    Setup: ...
    Signal: ...
    Time-box: ...
 ```
 
-### 6. Propose 1–3 experiments
+### 6. Propose 1-3 experiments
 
 For each experiment:
 
@@ -89,7 +89,7 @@ For each experiment:
 
 - **Signal**: what result confirms or refutes the hypothesis?
 
-- **Time-box**: max time to invest (1–4 hours).
+- **Time-box**: max time to invest (1-4 hours).
 
 Prioritize experiments where confirmation has immediate team value.
 
@@ -109,6 +109,6 @@ Prioritize experiments where confirmation has immediate team value.
 
 - Weekly digest (Markdown, copy/paste-ready).
 
-- Experiments list (1–3) with hypothesis and time-box.
+- Experiments list (1-3) with hypothesis and time-box.
 
 - Source list (primary preferred, labeled by tier).

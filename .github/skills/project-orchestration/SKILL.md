@@ -47,7 +47,7 @@ disable-model-invocation: false
 
   - Innovator (if brainstorming is in scope).
 
-- Each perspective: ≤ 3 bullets. Every line starts with `(Agent: <name>)`.
+- Each perspective: <= 3 bullets. Every line starts with `(Agent: <name>)`.
 
 ### 4. Build a deep phased plan
 
@@ -64,7 +64,7 @@ Phase N: <name>
 
 ### 5. Dispatch execution
 
-Split plan into atomic tasks (≤ 3 days effort each):
+Split plan into atomic tasks (<= 3 days effort each):
 
 | Task | Owner agent | Dependencies | Deliverable | Acceptance criteria | Verification |
 |------|-------------|-------------|-------------|---------------------|-------------|
@@ -79,7 +79,7 @@ Split plan into atomic tasks (≤ 3 days effort each):
 
 - Apply labels, milestone, Kanban column.
 
-- Enforce WIP limits: ≤ 2 In Progress per person.
+- Enforce WIP limits: <= 2 In Progress per person.
 
 ### 7. Govern completion
 
@@ -87,8 +87,8 @@ For each completed task:
 
 ```text
 (Agent: <name>) approved | rework required
-  — reason / gap
-  — closure evidence required: <what must be shown>
+  -- reason / gap
+  -- closure evidence required: <what must be shown>
 ```
 
 - Re-review is mandatory after rework.
@@ -129,7 +129,7 @@ Produce one issue-ready summary:
 
 - Phased project plan.
 
-- Dispatch matrix (task → agent → deliverable).
+- Dispatch matrix (task -> agent -> deliverable).
 
 - GitHub issue set + Kanban setup.
 

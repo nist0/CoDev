@@ -26,7 +26,7 @@ Inputs:
 
 Requirements:
 
-- Before writing skill/agent content, gather ≥2 authoritative primary references for the theme domain and synthesise a non-contradictory union of best practices (reference-gathering gate — see `customization-governance.instructions.md`).
+- Before writing skill/agent content, gather >=2 authoritative primary references for the theme domain and synthesise a non-contradictory union of best practices (reference-gathering gate -- see `customization-governance.instructions.md`).
 
 - Create:
 
@@ -56,7 +56,7 @@ Output: plan + tree + contents + checklist.
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **PromptSmith** | always — theme pack creation | *(this prompt)* | Agent + skills + prompts + instruction all created, routing YAMLs updated |
+| 1 | **PromptSmith** | always -- theme pack creation | *(this prompt)* | Agent + skills + prompts + instruction all created, routing YAMLs updated |
 | 2 | **Router** | routing integration verification | `/route <theme-relevant phrase>` | Smoke test confirms correct capability+domain+agent returned |
 | 3 | **Reviewer** | theme pack ready | `/pr-review` | No duplication, all 4 routing YAMLs consistent, `validate-route-smoke.py` passes |
 | 4 | **Delivery Lead** | PR ready | `/pr-review` | PR merged, CI green, README updated |

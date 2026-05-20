@@ -47,7 +47,7 @@ disable-model-invocation: false
 
 - When converting formats, preserve metadata and section intent.
 
-- Keep a mapping log from source → target.
+- Keep a mapping log from source -> target.
 
 ### 5. Publish-ready verification
 
@@ -61,7 +61,7 @@ disable-model-invocation: false
 
 - [ ] DAM structure respected (onboarding / architecture / runbook / reference).
 
-- [ ] Conversion traceability preserved (source → target mapping logged).
+- [ ] Conversion traceability preserved (source -> target mapping logged).
 
 - [ ] Lint passes (`markdownlint-cli2`) and no broken links.
 

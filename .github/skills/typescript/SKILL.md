@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: TypeScript type safety — boundary typing, discriminated unions, type guards, runtime validation, and unsafe pattern elimination.
+description: TypeScript type safety -- boundary typing, discriminated unions, type guards, runtime validation, and unsafe pattern elimination.
 argument-hint: "[module] [concern]"
 user-invocable: true
 
@@ -39,13 +39,13 @@ disable-model-invocation: false
 
 | Pattern | Safe? | Preferred alternative |
 |---------|-------|-----------------------|
-| `any` | ❌ | `unknown` + type guard |
-| `as unknown as T` | ❌ | Proper type assertion with guard |
-| Implicit `any` parameter | ❌ | Explicit type annotation |
-| `!` non-null assertion | ⚠️ | Optional chaining + nullish coalescing |
-| `object` type | ⚠️ | Explicit interface or `Record<K, V>` |
-| Discriminated union | ✅ | Preferred for variant modeling |
-| `unknown` + `instanceof` guard | ✅ | Preferred for external data |
+| `any` | U+274C | `unknown` + type guard |
+| `as unknown as T` | U+274C | Proper type assertion with guard |
+| Implicit `any` parameter | U+274C | Explicit type annotation |
+| `!` non-null assertion | U+26A0U+FE0F | Optional chaining + nullish coalescing |
+| `object` type | U+26A0U+FE0F | Explicit interface or `Record<K, V>` |
+| Discriminated union | U+2705 | Preferred for variant modeling |
+| `unknown` + `instanceof` guard | U+2705 | Preferred for external data |
 
 ## Runtime validation
 
@@ -72,11 +72,11 @@ type User = z.infer<typeof UserSchema>;
 
 - [ ] Discriminated unions used for variant modeling.
 
-## 🏆 Elite Section — Top 5% TypeScript Practices
+## U+1F3C6 Elite Section -- Top 5% TypeScript Practices
 
 - **Branded types for domain primitives**: Use `type UserId = string & { readonly _brand: 'UserId' }` to prevent mixing IDs of different entity types at compile time.
 
-- **`zod` for runtime validation**: Parse all external data (API responses, env vars, form input) with `zod` schemas and derive TypeScript types from them — single source of truth.
+- **`zod` for runtime validation**: Parse all external data (API responses, env vars, form input) with `zod` schemas and derive TypeScript types from them -- single source of truth.
 
 - **`ts-reset` for safer stdlib**: Apply `ts-reset` to fix surprising stdlib typings (e.g. `JSON.parse` returns `unknown`, `Array.filter(Boolean)` narrows correctly).
 

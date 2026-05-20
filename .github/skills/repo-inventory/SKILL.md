@@ -24,7 +24,7 @@ Provides methods and scripts for listing, indexing, and querying repository file
 
 ## Tools
 
-- `scripts/repo-file-index.py` — main inventory script
+- `scripts/repo-file-index.py` -- main inventory script
 
 ## Examples
 

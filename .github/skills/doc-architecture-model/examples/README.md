@@ -1,4 +1,4 @@
-# Doc Architecture Model Skill — Examples
+# Doc Architecture Model Skill -- Examples
 
 ## 1. Minimal DAM Structure
 

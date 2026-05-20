@@ -1,6 +1,6 @@
 ---
 name: codev-contribute
-description: Guided upstream contribution to CoDev — issue, fork, branch, fix, PR, review, and post-merge sync.
+description: Guided upstream contribution to CoDev -- issue, fork, branch, fix, PR, review, and post-merge sync.
 agent: CoDev Consumer
 
 argument-hint: "[type: bug|enhancement|new-skill|new-agent] [issue-title: <short description>]"
@@ -16,7 +16,7 @@ Argument handling:
 
 - Do not fail solely because arguments were omitted.
 
-# CoDev Contribute — Guided Upstream PR
+# CoDev Contribute -- Guided Upstream PR
 
 Walk me through contributing a change back to the CoDev repository.
 
@@ -62,13 +62,13 @@ For each step, show exact commands (bash + PowerShell) + expected outputs.
 
    - README: tables updated if new assets added
 
-5. **Validate locally** — all 5 validators must pass (show exact commands + expected exit codes).
+5. **Validate locally** -- all 5 validators must pass (show exact commands + expected exit codes).
 
 6. **Open PR** to `nist0/CoDev` via `--body-file` with smoke-test phrases, verification commands, `Closes #N`.
 
-7. **Address review** — respond to `(Agent: Reviewer) rework required` with exact gap closure.
+7. **Address review** -- respond to `(Agent: Reviewer) rework required` with exact gap closure.
 
-8. **Post-merge sync** — update the submodule pointer in the host repo + run `codev update` + verify + commit.
+8. **Post-merge sync** -- update the submodule pointer in the host repo + run `codev update` + verify + commit.
 
 ## Self-check at the end
 
@@ -88,7 +88,7 @@ For each step, show exact commands (bash + PowerShell) + expected outputs.
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CoDev Consumer** | always — upstream contribution | *(this prompt)* | Issue opened, fork created, branch branched, change implemented |
+| 1 | **CoDev Consumer** | always -- upstream contribution | *(this prompt)* | Issue opened, fork created, branch branched, change implemented |
 | 2 | **Router** | routing or matrix changes made | `/route <smoke-test phrase>` | All 5 validators pass, smoke-test phrases updated |
 | 3 | **Reviewer** | PR opened on nist0/CoDev | `/pr-review` | (Agent: Reviewer) approved verdict recorded |
 | 4 | **CoDev Consumer** | PR merged upstream | Post-merge sync steps | Submodule pointer updated, `validate-route-smoke.py` passes, CI green |

@@ -1,6 +1,6 @@
 ---
 name: linters
-description: Lint and quality gate setup — polyglot linter matrix, CI integration, pre-commit hooks, and adoption strategy.
+description: Lint and quality gate setup -- polyglot linter matrix, CI integration, pre-commit hooks, and adoption strategy.
 argument-hint: "[stack] [languages]"
 user-invocable: true
 
@@ -31,8 +31,8 @@ disable-model-invocation: false
 | Python | `ruff` (lint + optional format) + `mypy` | `ruff format` |
 | TypeScript/JS | ESLint + `typescript-eslint` | Prettier |
 | Bash | `shellcheck` | `shfmt` |
-| YAML | `yamllint` | — |
-| Markdown | `markdownlint-cli2` | — |
+| YAML | `yamllint` | -- |
+| Markdown | `markdownlint-cli2` | -- |
 
 ## Adoption strategy
 

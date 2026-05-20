@@ -66,7 +66,7 @@ handoffs:
 
 ## Elite operations procedure
 
-### Step 1 â€” Context collection (before any action)
+### Step 1 -- Context collection (before any action)
 
 Always gather before proposing changes:
 
@@ -79,7 +79,7 @@ Always gather before proposing changes:
 | Image tag | `kubectl get deploy <name> -o jsonpath='{.spec.template.spec.containers[0].image}'` |
 | Recent changes | Git log / deployment timestamp |
 
-### Step 2 â€” Change classification
+### Step 2 -- Change classification
 
 For every proposed action, classify:
 
@@ -89,15 +89,15 @@ For every proposed action, classify:
 | `remediation` | Removes root cause (code fix, config fix, schema fix) | Team review + PR |
 | `hardening` | Prevents future occurrence (alert, runbook, policy) | Standard PR |
 
-Risk level: `low` (no user impact) Â· `medium` (degraded) Â· `high` (outage potential).
+Risk level: `low` (no user impact) Â- `medium` (degraded) Â- `high` (outage potential).
 
-### Step 3 â€” Pre-change checklist
+### Step 3 -- Pre-change checklist
 
 Before any `remote-write` operation:
 
-### Step 4 â€” Execution (incremental, observable)
+### Step 4 -- Execution (incremental, observable)
 
-### Step 5 â€” Post-change verification
+### Step 5 -- Post-change verification
 
 ```bash
 # Pod health
@@ -113,7 +113,7 @@ kubectl get ep <service> -n <ns>
 curl -sf https://<endpoint>/health
 ```
 
-### Step 6 â€” Rollback procedure
+### Step 6 -- Rollback procedure
 
 ```bash
 # Helm rollback
@@ -128,7 +128,7 @@ kubectl rollout status deploy/<name> -n <ns>
 
 Define rollback trigger: the measurable signal (error rate, latency p99, pod crash-loop) that initiates rollback.
 
-### Step 7 â€” Supply chain hardening (for CI/CD changes)
+### Step 7 -- Supply chain hardening (for CI/CD changes)
 
 ## Elite operations defaults
 
@@ -152,7 +152,7 @@ Define rollback trigger: the measurable signal (error rate, latency p99, pod cra
 
 ### Proposed actions
 
-1. <step> â€” `<command>`
+1. <step> -- `<command>`
 
 ### Rollback procedure
 
@@ -179,8 +179,8 @@ Define rollback trigger: the measurable signal (error rate, latency p99, pod cra
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **DevOps/Cloud** | always â€” AKS, Helm, CI/CD, Azure, infra operations | *(this agent)* | Change classified, rollback procedure produced |
+| 1 | **DevOps/Cloud** | always -- AKS, Helm, CI/CD, Azure, infra operations | *(this agent)* | Change classified, rollback procedure produced |
 | 2 | **Reliability** | P1 incident or production impact detected | `/postmortem` | Postmortem with RCA and action items |
 | 3 | **Security** | security hardening or supply chain changes in scope | `/threat-model` | Threat surface assessed, mitigations documented |
 | 4 | **Automation/Scripting** | runbook automation or script authoring needed | Automation prompt | Script produced with idempotency + blast-radius |
-| 5 | **Delivery Lead** | change approved, PR or release ready | â€” | PR merged or release shipped |
+| 5 | **Delivery Lead** | change approved, PR or release ready | -- | PR merged or release shipped |

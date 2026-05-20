@@ -245,11 +245,11 @@ Example:
 
 - `cloud-web-hosting` - reusable skill for Azure Static Web Apps, Azure Container Apps Consumption, Azure SQL Database Free Tier, and Cloudflare DNS workflows
 
-- `/quickstart` — onboard a new user: gather role + domain + goal, select a contributor profile, and emit a first-command card
+- `/quickstart` -- onboard a new user: gather role + domain + goal, select a contributor profile, and emit a first-command card
 
 - `/session-handoff` - package the current chat into a copy-paste or file-based continuation handoff, or initialize a new session from a saved handoff file
 
-- `/route-miss` — feedback loop: diagnose a bad route and emit a ready-to-open fix issue
+- `/route-miss` -- feedback loop: diagnose a bad route and emit a ready-to-open fix issue
 Routing boundary for brainstorming-heavy work:
 
 - Start with `Innovator` + `/brainstorm` for idea generation, portfolio scoring, and spikes.
@@ -274,20 +274,20 @@ Routing boundary for brainstorming-heavy work:
 
 - For any new GitHub publication (issues, PR descriptions, comments, reviews), use English.
 
-## 11a) GitHub CLI body authoring — BLOCKING rule
+## 11a) GitHub CLI body authoring -- BLOCKING rule
 
 >
-> ⛔ **Never use `--body "..."` for any multi-line `gh` command in PowerShell.**
+> U+26D4 **Never use `--body "..."` for any multi-line `gh` command in PowerShell.**
 >
 > PowerShell's backtick (`` ` ``) is its escape character inside double-quoted strings.
 >
-> Every inline code span (e.g. `` `value` ``) is silently mangled — the backtick is
+> Every inline code span (e.g. `` `value` ``) is silently mangled -- the backtick is
 >
-> consumed and adjacent letters may be eaten (e.g. `` `backend-dotnet` `` → `ackend-dotnet`).
+> consumed and adjacent letters may be eaten (e.g. `` `backend-dotnet` `` -> `ackend-dotnet`).
 **Mandatory pattern for every `gh issue create`, `gh pr create`, `gh pr edit`, `gh issue comment`:**
 
 ```text
-## 1. Single-quoted heredoc — nothing is ever escaped or interpreted
+## 1. Single-quoted heredoc -- nothing is ever escaped or interpreted
 $body = @'
 ## Your markdown here
 Tables, `backtick spans`, and \backslashes all survive intact.
@@ -298,19 +298,19 @@ $body | Set-Content -Path "$env:TEMP\body.md" -Encoding UTF8
 gh issue create --title "..." --body-file "$env:TEMP\body.md"
 ## 4. Clean up
 Remove-Item "$env:TEMP\body.md"
-## 5. MANDATORY spot-check — look for stray \ or missing backtick spans
+## 5. MANDATORY spot-check -- look for stray \ or missing backtick spans
 gh issue view <N>   # or: gh pr view <N>
 ```
 
 If the spot-check reveals corruption: close the issue/PR immediately and re-create using this pattern.
 
-## 11b) Mandatory dev workflow (enforced — no exceptions)
+## 11b) Mandatory dev workflow (enforced -- no exceptions)
 
 Every change, regardless of size, **must** follow this sequence:
 
-0. **Brainstorm first** (mandatory for non-trivial tasks) — before any issue, branch, or code.
+0. **Brainstorm first** (mandatory for non-trivial tasks) -- before any issue, branch, or code.
    Non-trivial = touches >1 file, new pattern, user-facing impact, or >30 min effort.
-   Run the Innovator agent or `/brainstorm`. Produce ≥ 3 scored options (safe/adjacent/bold).
+   Run the Innovator agent or `/brainstorm`. Produce >= 3 scored options (safe/adjacent/bold).
    The chosen finalist's rationale becomes `## Technical approach` in the issue.
    Exempt: single-file typo, doc-only reword, plain config toggle.
 
@@ -322,44 +322,44 @@ Every change, regardless of size, **must** follow this sequence:
 - **Project board** (mandatory): immediately after creating the issue, add it to the CoDev project Kanban board (project #2) and keep its status column in sync throughout the lifecycle:
 
 ```text
- - *Created* → **Todo**: `gh project item-add 2 --owner nist0 --url <issue-url>`
- - *Branch created / work started* → **In Progress**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 47fc9ee4`
- - *PR merged / issue closed* → **Done**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 98236657`
+ - *Created* -> **Todo**: `gh project item-add 2 --owner nist0 --url <issue-url>`
+ - *Branch created / work started* -> **In Progress**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 47fc9ee4`
+ - *PR merged / issue closed* -> **Done**: `gh project item-edit --id <item-id> --field-id PVTSSF_lAHOAOYJIs4BQzk2zg-0dUk --project-id PVT_kwHOAOYJIs4BQzk2 --single-select-option-id 98236657`
 ```
 
-2. **The issue is a living document** — amend `Technical approach`, `Files to modify`, and `Progress log`
+2. **The issue is a living document** -- amend `Technical approach`, `Files to modify`, and `Progress log`
    whenever scope, approach, or blockers change. Use `gh issue edit <N> --body-file <path>` for updates.
 
-3. **Work on a branch** — `feat/<slug>`, `fix/<slug>`, `chore/<slug>`. **Never commit directly to `main`.**
+3. **Work on a branch** -- `feat/<slug>`, `fix/<slug>`, `chore/<slug>`. **Never commit directly to `main`.**
 
-4. **Open a PR** — reference the closing issue(s) with `Closes #N`.
+4. **Open a PR** -- reference the closing issue(s) with `Closes #N`.
 
-5. **Review before merge** — explicit verdict: `approved` or `rework required`.
+5. **Review before merge** -- explicit verdict: `approved` or `rework required`.
 
-6. **All GitHub checks must be green** — no PR merges with any failing check (lint, tests, CI gates, markdown lint, validators). Fix the root cause; do not skip or suppress checks.
+6. **All GitHub checks must be green** -- no PR merges with any failing check (lint, tests, CI gates, markdown lint, validators). Fix the root cause; do not skip or suppress checks.
 
-7. **Verify AC before closing** — before an issue is closed (manually or via PR merge), confirm every acceptance-criteria checkbox in the issue body is ticked. Update unchecked boxes with `gh issue edit <N> --body-file <path>`. Never leave unchecked boxes on a closed issue.
+7. **Verify AC before closing** -- before an issue is closed (manually or via PR merge), confirm every acceptance-criteria checkbox in the issue body is ticked. Update unchecked boxes with `gh issue edit <N> --body-file <path>`. Never leave unchecked boxes on a closed issue.
 
 > Violations (direct push to `main`, merge with failing checks) are blocking findings in any review.
 >
 
 ## 12) Quick extension checklist (copy/paste)
 
-- [ ] Brainstorm completed (≥ 3 scored options) before any issue or code — skipped only for exempt tasks
+- [ ] Brainstorm completed (>= 3 scored options) before any issue or code -- skipped only for exempt tasks
 
-- [ ] GitHub issue(s) created with all required sections (Summary, Technical approach, Files to modify, Sub-tasks, AC, Verification steps, Progress log) — body written via `--body-file` (single-quoted heredoc), spot-checked with `gh issue view`
+- [ ] GitHub issue(s) created with all required sections (Summary, Technical approach, Files to modify, Sub-tasks, AC, Verification steps, Progress log) -- body written via `--body-file` (single-quoted heredoc), spot-checked with `gh issue view`
 
-- [ ] Issue added to project board #2 (`gh project item-add 2 --owner nist0 --url <issue-url>`) and status kept in sync (Todo → In Progress → Done)
+- [ ] Issue added to project board #2 (`gh project item-add 2 --owner nist0 --url <issue-url>`) and status kept in sync (Todo -> In Progress -> Done)
 
 - [ ] Issue updated (living document) whenever scope, approach, or blockers changed during implementation
 
 - [ ] Working on a feature branch (not `main`)
 
-- [ ] PR open, references closing issue(s) — body written via `--body-file`, spot-checked with `gh pr view`
+- [ ] PR open, references closing issue(s) -- body written via `--body-file`, spot-checked with `gh pr view`
 
 - [ ] All GitHub checks passing (zero failures)
 
-- [ ] All AC checkboxes ticked in every issue being closed — updated via `gh issue edit` if needed
+- [ ] All AC checkboxes ticked in every issue being closed -- updated via `gh issue edit` if needed
 
 - [ ] Scope and acceptance criteria defined
 

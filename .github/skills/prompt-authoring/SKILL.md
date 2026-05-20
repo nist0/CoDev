@@ -53,11 +53,11 @@ Before writing any content, gather authoritative references for the domain or th
 
 1. **Identify the domain**: name it explicitly (e.g. "release management", "REST API design", "AVR firmware").
 
-2. **Gather ≥2 primary sources**: official documentation, language specs, RFC/standards, canonical style guides. Prioritise primary over aggregated/secondary sources.
+2. **Gather >=2 primary sources**: official documentation, language specs, RFC/standards, canonical style guides. Prioritise primary over aggregated/secondary sources.
 
 3. **Read related CoDev assets**: scan existing skills, agents, and instructions that touch the same domain to avoid contradiction and duplication.
 
-4. **Synthesise best practices**: extract the non-contradictory union. Where sources conflict, document the choice — *"Source A recommends X; Source B recommends Y — using X because `<rationale>`."*
+4. **Synthesise best practices**: extract the non-contradictory union. Where sources conflict, document the choice -- *"Source A recommends X; Source B recommends Y -- using X because `<rationale>`."*
 
 5. **Cite sources**: add a `## Sources` section at the end of the skill this prompt drives, or inline-link references in the prompt body when domain-specific rules are stated.
 
@@ -71,7 +71,7 @@ Before writing any content, gather authoritative references for the domain or th
 
   - Use **kebab-case**: `my-feature.prompt.md`.
 
-  - The file stem becomes the slash command: `my-feature.prompt.md` → `/my-feature`.
+  - The file stem becomes the slash command: `my-feature.prompt.md` -> `/my-feature`.
 
   - The `name:` frontmatter field can override the display name, but the file stem still determines the slash trigger.
 
@@ -97,7 +97,7 @@ Before writing any content, gather authoritative references for the domain or th
 
 ### 3. Define the prompt frontmatter
 
-**Official attribute reference** — [VS Code prompt-files docs](https://code.visualstudio.com/docs/copilot/customization/prompt-files) (verified 2026-03-04):
+**Official attribute reference** -- [VS Code prompt-files docs](https://code.visualstudio.com/docs/copilot/customization/prompt-files) (verified 2026-03-04):
 
 | Attribute | Required | Allowed values / notes |
 | --- | --- | --- |
@@ -106,7 +106,7 @@ Before writing any content, gather authoritative references for the domain or th
 | `argument-hint` | No | Hint shown in chat input |
 | `agent` | No | `ask`, `agent`, `plan`, or a custom agent name |
 | `model` | No | Model name string or array |
-| `tools` | No | List of tool/tool-set names — **omit entirely to inherit agent tools** |
+| `tools` | No | List of tool/tool-set names -- **omit entirely to inherit agent tools** |
 
 **`agent` attribute decision rule:**
 
@@ -117,9 +117,9 @@ Before writing any content, gather authoritative references for the domain or th
 | Specialist workflow with a dedicated agent (e.g. PromptSmith, Reviewer) | custom agent name from `.github/agents/` |
 | No `agent:` set | Inherits the currently active chat mode |
 
-Rule of thumb: if the prompt body says "run", "create", "edit a file", or "execute" → use `agent`. If it says "explain", "analyze", "review" without changing state → use `ask`.
+Rule of thumb: if the prompt body says "run", "create", "edit a file", or "execute" -> use `agent`. If it says "explain", "analyze", "review" without changing state -> use `ask`.
 
-**Prohibited / deprecated attributes** — do not use:
+**Prohibited / deprecated attributes** -- do not use:
 
 | Attribute | Status | Replacement |
 | --- | --- | --- |
@@ -189,9 +189,9 @@ Every prompt that triggers multi-step work MUST include a delegation chain table
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **<specialist>** | always — <task> | *(this prompt)* | <artifact produced> |
+| 1 | **<specialist>** | always -- <task> | *(this prompt)* | <artifact produced> |
 | 2 | **Reviewer** | output ready | `/pr-review` | No blockers, `validate-customization-registry.py` passes |
-| 3 | **Delivery Lead** | PR ready | — | PR merged, branch deleted |
+| 3 | **Delivery Lead** | PR ready | -- | PR merged, branch deleted |
 ```
 
 Omit the table only for simple Q&A-style prompts that produce no artifacts and require no follow-on actions.
@@ -242,11 +242,11 @@ Omit the table only for simple Q&A-style prompts that produce no artifacts and r
 
 - [ ] Frontmatter complete: `description` present; `agent:` chosen per decision rule (Step 3).
 
-- [ ] `mode:` is **not** used (deprecated — use `agent: ask` or `agent: agent` instead).
+- [ ] `mode:` is **not** used (deprecated -- use `agent: ask` or `agent: agent` instead).
 
-- [ ] `tools: []` is **not** used (anti-pattern — omit to inherit agent tools).
+- [ ] `tools: []` is **not** used (anti-pattern -- omit to inherit agent tools).
 
-- [ ] Inputs use `${input:...}` syntax; ≤ 3 required inputs (Step 4).
+- [ ] Inputs use `${input:...}` syntax; <= 3 required inputs (Step 4).
 
 - [ ] Output format section clearly defines what the LLM should produce (Step 5).
 
@@ -276,11 +276,11 @@ Omit the table only for simple Q&A-style prompts that produce no artifacts and r
 
 ---
 
-## 🏆 Elite Section — Top 5% Prompt-Authoring Practices
+## U+1F3C6 Elite Section -- Top 5% Prompt-Authoring Practices
 
 - **Description as the first line of defense**: the `description:` field is what users see in the `/` picker. It should encode *when* to invoke the prompt, not just what it does. Good: `"Use after a bug report to produce a repro-first triage plan."` Bad: `"Triage bugs."`
 
-- **Input economy (≤ 3 rule)**: every required `${input:...}` adds friction. If you need more than 3, the prompt is doing too much — split it. Optional context (files, issue numbers) should be mentioned in prose, not as mandatory inputs.
+- **Input economy (<= 3 rule)**: every required `${input:...}` adds friction. If you need more than 3, the prompt is doing too much -- split it. Optional context (files, issue numbers) should be mentioned in prose, not as mandatory inputs.
 
 - **Determinism cues**: open-ended prompts produce inconsistent outputs. Anchor the LLM with exact output structures: section headings, table column names, severity labels (`blocker` / `major` / `minor`), and explicit exit conditions.
 
@@ -288,4 +288,4 @@ Omit the table only for simple Q&A-style prompts that produce no artifacts and r
 
 - **Idempotent re-invocation**: a well-authored prompt can be run twice on the same input and produce the same structure. If re-running would produce contradictory output, the output format is under-specified.
 
-- **Version the intent, not the implementation**: when a prompt body needs to change significantly, update it in place and log the rationale in a comment block or the linked issue — do not create a v2 file.
+- **Version the intent, not the implementation**: when a prompt body needs to change significantly, update it in place and log the rationale in a comment block or the linked issue -- do not create a v2 file.

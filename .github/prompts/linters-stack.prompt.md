@@ -36,7 +36,7 @@ Requirements:
 
 Output:
 
-- linter matrix (language → tools → command)
+- linter matrix (language -> tools -> command)
 
 - adoption plan (phase 1/2/3)
 
@@ -48,7 +48,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Automation/Scripting** | always — linter strategy | *(this prompt)* | Linter matrix, CI quality-gate plan, and adoption plan produced |
+| 1 | **Automation/Scripting** | always -- linter strategy | *(this prompt)* | Linter matrix, CI quality-gate plan, and adoption plan produced |
 | 2 | **Automation/Scripting** | CI job authoring needed | `/automation-script` | Linter jobs added to CI workflow |
 | 3 | **Reviewer** | linter config ready | `/pr-review` | No false positives in baseline, suppression policy reviewed |
 | 4 | **Delivery Lead** | changes ready | `/pr-review` | PR merged, all CI gates green |

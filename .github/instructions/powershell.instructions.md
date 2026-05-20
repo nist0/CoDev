@@ -68,7 +68,7 @@ Write-Host "Deploying $Version to $Environment"
 
 ---
 
-## 🏆 Elite Section — Top 5% PowerShell Practices
+## U+1F3C6 Elite Section -- Top 5% PowerShell Practices
 
 - **PSScriptAnalyzer as CI hard gate**: Run `Invoke-ScriptAnalyzer -Severity Error,Warning` on all `.ps1` files. Suppress rules inline with `[Diagnostics.CodeAnalysis.SuppressMessageAttribute]` and a rationale comment.
 

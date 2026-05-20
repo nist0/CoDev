@@ -38,7 +38,7 @@ Requirements:
 
 - Add a one-sentence summary after the diagram for accessibility.
 
-- Do not embed duplicate diagrams — check if an equivalent diagram already exists in the section.
+- Do not embed duplicate diagrams -- check if an equivalent diagram already exists in the section.
 
 - Do not modify any content outside the target section.
 
@@ -46,7 +46,7 @@ Output:
 
 1. **Target location**: file path + heading anchor
 
-2. **Prose context** (before diagram): 1–3 sentence description
+2. **Prose context** (before diagram): 1-3 sentence description
 
 3. **Mermaid code block** (fenced, ready to paste)
 
@@ -60,7 +60,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |---|---|---|---|---|
-| 1 | **mermaid-diagrammer** | always — diagram embedding | *(this prompt)* | Embedding snippet produced |
+| 1 | **mermaid-diagrammer** | always -- diagram embedding | *(this prompt)* | Embedding snippet produced |
 | 2 | **mermaid-diagrammer** | diagram not provided / needs generation | `/mermaid-create` | New diagram generated and reviewed |
 | 3 | **mermaid-diagrammer** | existing snippet provided | `/mermaid-review` | Snippet approved before embedding |
 | 4 | **Delivery Lead** | file updated | `/pr-review` | PR approved, diagram renders correctly |

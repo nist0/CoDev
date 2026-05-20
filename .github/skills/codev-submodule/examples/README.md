@@ -1,4 +1,4 @@
-# codev-submodule — Examples
+# codev-submodule -- Examples
 
 ## Example 1: minimal `codev.json`
 
@@ -37,7 +37,7 @@
 ## Example 3: host-specific `copilot-instructions.override.md`
 
 ```markdown
-# My Project — CoDev Overrides
+# My Project -- CoDev Overrides
 
 ## Project-specific conventions
 
@@ -47,7 +47,7 @@
 
 ## Extra agents active in this repo
 
-- `my-domain.agent.md` — domain expert for order management.
+- `my-domain.agent.md` -- domain expert for order management.
 ```
 
 ## Example 4: full init and verify sequence (PowerShell)

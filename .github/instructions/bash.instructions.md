@@ -57,7 +57,7 @@ echo "Deploying version ${VERSION} to ${ENV}"
 
 ---
 
-## 🏆 Elite Section — Top 5% Bash Practices
+## U+1F3C6 Elite Section -- Top 5% Bash Practices
 
 - **ShellCheck in CI as hard gate**: Run `shellcheck -S error *.sh` on every PR. Never merge scripts with ShellCheck errors; warnings must be suppressed with a comment explaining the rationale.
 
@@ -67,6 +67,6 @@ echo "Deploying version ${VERSION} to ${ENV}"
 
 - **Named pipes over temp files**: For streaming data between processes, prefer `<(cmd)` process substitution or named pipes to avoid disk I/O and temp file cleanup.
 
-- **Structured output for automation**: When a script is consumed by other scripts, emit newline-delimited JSON (`jq -cn`) instead of human-readable text — machine-readable by default, human-readable on demand with `| jq .`.
+- **Structured output for automation**: When a script is consumed by other scripts, emit newline-delimited JSON (`jq -cn`) instead of human-readable text -- machine-readable by default, human-readable on demand with `| jq .`.
 
 - **Version-pin external tools**: When a script downloads or relies on external binaries, pin the version and verify the SHA-256 checksum before executing.

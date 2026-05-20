@@ -1,6 +1,6 @@
 ---
 name: aks
-description: AKS cluster operations — health checks, node pool management, networking triage, and safe upgrade procedure.
+description: AKS cluster operations -- health checks, node pool management, networking triage, and safe upgrade procedure.
 argument-hint: "[cluster] [resource-group]"
 user-invocable: true
 
@@ -46,9 +46,9 @@ kubectl top pods -A --sort-by=cpu | head -20
 
 Flags:
 
-- CPU throttling → check container `resources.limits.cpu`.
+- CPU throttling -> check container `resources.limits.cpu`.
 
-- Memory pressure → check `OOMKilled` in pod events.
+- Memory pressure -> check `OOMKilled` in pod events.
 
 ### 4. Inspect control plane logs
 
@@ -71,11 +71,11 @@ nslookup <service-name>.<ns>.svc.cluster.local
 
 Common networking failures:
 
-- LB not provisioned → check Azure quota.
+- LB not provisioned -> check Azure quota.
 
-- DNS not resolving → check CoreDNS pod health.
+- DNS not resolving -> check CoreDNS pod health.
 
-- Network policy blocking traffic → `kubectl get networkpolicy -A`.
+- Network policy blocking traffic -> `kubectl get networkpolicy -A`.
 
 ### 6. Upgrade or scale safely
 

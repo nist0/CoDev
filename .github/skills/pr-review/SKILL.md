@@ -1,6 +1,6 @@
 ---
 name: pr-review
-description: Elite PR review — multi-pass analysis, severity classification, instruction compliance, merge gate decision.
+description: Elite PR review -- multi-pass analysis, severity classification, instruction compliance, merge gate decision.
 argument-hint: "[pr-number] [target-branch]"
 user-invocable: true
 
@@ -19,7 +19,7 @@ disable-model-invocation: false
 
 ## Procedure
 
-### Pass 1 — Orientation (understand before judging)
+### Pass 1 -- Orientation (understand before judging)
 
 1. Read the PR description: does it clearly explain what, why, and how to verify?
 
@@ -29,7 +29,7 @@ disable-model-invocation: false
 
 4. Skim file list: identify changed domains (infra, tests, docs, framework config, runtime code).
 
-### Pass 2 — Correctness & logic
+### Pass 2 -- Correctness & logic
 
 For each changed file:
 
@@ -43,7 +43,7 @@ For each changed file:
 
 5. Does logic regress any existing behavior? Cross-reference with test suite.
 
-### Pass 3 — Instruction compliance
+### Pass 3 -- Instruction compliance
 
 Map `applyTo` globs from `.github/instructions/*.instructions.md` to changed files:
 
@@ -59,9 +59,9 @@ Map `applyTo` globs from `.github/instructions/*.instructions.md` to changed fil
 | `.github/**`  | `customization-governance.instructions.md` |
 | `workflows/`  | `github-actions.instructions.md`         |
 
-For each applicable instruction: pass ✅ or fail ❌ with exact note.
+For each applicable instruction: pass U+2705 or fail U+274C with exact note.
 
-### Pass 4 — Security & data handling
+### Pass 4 -- Security & data handling
 
 - No secrets, tokens, or credentials in diff (any file type).
 
@@ -73,7 +73,7 @@ For each applicable instruction: pass ✅ or fail ❌ with exact note.
 
 - For `.github/` changes: verify no escalation of workflow permissions.
 
-### Pass 5 — Tests
+### Pass 5 -- Tests
 
 - Is there a test for the new or changed behavior?
 
@@ -83,19 +83,19 @@ For each applicable instruction: pass ✅ or fail ❌ with exact note.
 
 - Is coverage maintained or improved?
 
-### Pass 6 — Framework downgrade-risk check (for `.github/` changes only)
+### Pass 6 -- Framework downgrade-risk check (for `.github/` changes only)
 
-- Does this change remove or weaken any existing guidance, example, or skill procedure? → `blocker`
+- Does this change remove or weaken any existing guidance, example, or skill procedure? -> `blocker`
 
-- Does this introduce duplication of an existing skill/agent/prompt? → `major`
+- Does this introduce duplication of an existing skill/agent/prompt? -> `major`
 
-- Does this contradict an existing instruction layer? → `blocker`
+- Does this contradict an existing instruction layer? -> `blocker`
 
-- Are routing files updated end-to-end (capabilities + matrix + aliases + domains when needed)? → `blocker` if incomplete.
+- Are routing files updated end-to-end (capabilities + matrix + aliases + domains when needed)? -> `blocker` if incomplete.
 
 - Review evidence and validator output must be scoped to tracked and non-ignored repository files only; ignore `external/` and all gitignored paths.
 
-### Pass 7 — Performance & observability
+### Pass 7 -- Performance & observability
 
 - Do new code paths have sufficient logging/tracing at appropriate levels?
 
@@ -103,7 +103,7 @@ For each applicable instruction: pass ✅ or fail ❌ with exact note.
 
 - Are expensive operations cached or deferred where appropriate?
 
-### Pass 8 — Documentation & release notes
+### Pass 8 -- Documentation & release notes
 
 - Are public API/behavior changes documented in the appropriate docs file?
 
@@ -159,7 +159,7 @@ For each applicable instruction: pass ✅ or fail ❌ with exact note.
 
 | Instruction file | Files checked | Result |
 |-----------------|---------------|--------|
-| dotnet.instructions.md | Foo.cs | ✅ pass |
+| dotnet.instructions.md | Foo.cs | U+2705 pass |
 
 ### Framework downgrade-risk
 none | <description if flagged>

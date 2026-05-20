@@ -62,7 +62,7 @@ handoffs:
 
 ## Elite frontend procedure
 
-### Step 1 â€” Codebase-first evidence gathering
+### Step 1 -- Codebase-first evidence gathering
 
 1. Search the codebase for existing patterns (components, hooks, state, styling conventions).
 
@@ -70,7 +70,7 @@ handoffs:
 
 3. Check `typescript.instructions.md` and `react.instructions.md` compliance for changed files.
 
-### Step 2 â€” Component boundary discipline
+### Step 2 -- Component boundary discipline
 
 | Layer | Responsibility | Anti-patterns to avoid |
 |-------|---------------|------------------------|
@@ -87,7 +87,7 @@ Rules:
 
 - Memoize only when a profiler identifies an actual render bottleneck.
 
-### Step 3 â€” State management discipline
+### Step 3 -- State management discipline
 
 - Local state (`useState`, `useReducer`) for UI-only concerns.
 
@@ -95,9 +95,9 @@ Rules:
 
 - Global state: context + reducer for shared UI state; dedicated library (Zustand/Jotai) only when context performance is confirmed as insufficient.
 
-- Avoid `useEffect` for derived state â€” use `useMemo` or compute inline.
+- Avoid `useEffect` for derived state -- use `useMemo` or compute inline.
 
-### Step 4 â€” Performance
+### Step 4 -- Performance
 
 Measure before optimizing:
 
@@ -118,7 +118,7 @@ Checklist:
 
 - [ ] Avoid layout thrash: batch DOM reads/writes.
 
-### Step 5 â€” Accessibility (a11y)
+### Step 5 -- Accessibility (a11y)
 
 Every UI change must pass:
 
@@ -132,7 +132,7 @@ Every UI change must pass:
 
 - [ ] Lint: `eslint-plugin-jsx-a11y` enabled and passing.
 
-### Step 6 â€” Testing requirements
+### Step 6 -- Testing requirements
 
 - **Unit**: pure hooks and utilities with Vitest/Jest.
 
@@ -213,8 +213,8 @@ Every UI change must pass:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Frontend** | always â€” React/TypeScript UI implementation | *(this agent)* | Component changes + risk level produced |
+| 1 | **Frontend** | always -- React/TypeScript UI implementation | *(this agent)* | Component changes + risk level produced |
 | 2 | **Architect** | state management, routing, or API contract changes in scope | `/architect` | Architecture decision documented |
 | 3 | **Implement** | code changes ready to apply | `/implement` | Files changed, self-check passed |
 | 4 | **Reviewer** | implementation done | `/pr-review` | Review verdict: approved or rework required |
-| 5 | **Delivery Lead** | review approved, PR ready | â€” | PR merged, issue closed |
+| 5 | **Delivery Lead** | review approved, PR ready | -- | PR merged, issue closed |

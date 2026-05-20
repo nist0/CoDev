@@ -19,7 +19,7 @@ applyTo: "**"
 
 - Produce phased plans with dependencies, risks, and acceptance criteria per phase.
 
-- Keep plans to ≤10 bullets; link to detailed specs for each phase.
+- Keep plans to <=10 bullets; link to detailed specs for each phase.
 
 - Identify the critical path and flag tasks that block parallelism.
 
@@ -43,7 +43,7 @@ Example: phased plan entry
 ---
 
 ```text
-### Phase 2 — API layer (owner: engineering.backend-dotnet)
+### Phase 2 -- API layer (owner: engineering.backend-dotnet)
 **Scope**: Implement `/api/orders` CRUD endpoints with OpenAPI docs.
 **Dependencies**: Phase 1 (DB schema) complete.
 **Acceptance criteria**:
@@ -51,12 +51,12 @@ Example: phased plan entry
   - OpenAPI spec regenerated; no breaking changes vs. v1 contract.
   - Integration tests pass in CI.
 **Verification**: `dotnet test --filter Category=Integration` exits 0.
-**Risk**: EF migration on existing data — requires dry-run on staging before prod.
+**Risk**: EF migration on existing data -- requires dry-run on staging before prod.
 ```
 
 ---
 
-## 🏆 Elite Section — Top 5% Orchestration Practices
+## U+1F3C6 Elite Section -- Top 5% Orchestration Practices
 
 - **RACI matrix per phase**: For each phase, document Responsible, Accountable, Consulted, and Informed roles. Ambiguity in ownership is the #1 cause of delivery slippage.
 

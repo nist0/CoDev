@@ -28,13 +28,13 @@ Include:
 
 - No-removal preservation notes for existing documentation content
 
-- Anti-duplication mapping (existing docs → target canonical location)
+- Anti-duplication mapping (existing docs -> target canonical location)
 
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — docs tree proposal | *(this prompt)* | Tree structure proposed, migration plan and anti-duplication map produced |
+| 1 | **Delivery Lead** | always -- docs tree proposal | *(this prompt)* | Tree structure proposed, migration plan and anti-duplication map produced |
 | 2 | **Delivery Lead** | content migration needed | `/markdown-ops` | Content moved, no info loss, links intact |
 | 3 | **Reviewer** | new docs structure merged | `/pr-review` | Structure approved, no dead links |
 | 4 | **Delivery Lead** | approved | `/pr-review` | PR merged, docs/ structure committed |

@@ -1,11 +1,11 @@
 ---
-name: "CLI Platform — Working Standards"
+name: "CLI Platform -- Working Standards"
 description: "Mandatory working standards for the .NET CLI platform project: three-phase workflow enforcement, context discipline, extension conventions, and infra/CI authoring rules."
 
 applyTo: "**"
 ---
 
-# CLI Platform — Working Standards
+# CLI Platform -- Working Standards
 
 ## Three-phase workflow (mandatory, non-negotiable)
 
@@ -25,7 +25,7 @@ Skipping any phase or executing them out of order is a process violation.
 
 - If `docs/project-context.md` is older than one sprint (or any section is stale), re-run `/cli-platform-analyze` before starting a new task.
 
-- Never make assumptions about CI/CD patterns, Bicep resources, or CLI command conventions — always derive from `docs/project-context.md`.
+- Never make assumptions about CI/CD patterns, Bicep resources, or CLI command conventions -- always derive from `docs/project-context.md`.
 
 - When `docs/project-context.md` is updated, commit the update in the same PR as the change that caused it.
 
@@ -33,9 +33,9 @@ Skipping any phase or executing them out of order is a process violation.
 
 - The test plan (`/test-plan`) output must be reviewed before implementation begins.
 
-- This is the mandatory `⏸ REVIEW CHECKPOINT` in `/cli-platform-task`.
+- This is the mandatory `U+23F8 REVIEW CHECKPOINT` in `/cli-platform-task`.
 
-- Regression tests must fail before the fix and pass after — this is not optional and is verified during PR review.
+- Regression tests must fail before the fix and pass after -- this is not optional and is verified during PR review.
 
 - All CI gates must be green before a PR is opened.
 
@@ -51,7 +51,7 @@ Skipping any phase or executing them out of order is a process violation.
 
 ## codev-overrides/ discipline
 
-- All project-specific CoDev assets (agents, skills, prompts, instructions) live in `codev-overrides/` — never edit CoDev-managed files under `.github/` directly.
+- All project-specific CoDev assets (agents, skills, prompts, instructions) live in `codev-overrides/` -- never edit CoDev-managed files under `.github/` directly.
 
 - Every file added to `codev-overrides/` must have a corresponding row in `codev-overrides/README.md` (purpose, owner, last-reviewed date).
 
@@ -61,11 +61,11 @@ Skipping any phase or executing them out of order is a process violation.
 
 ## GitHub workflow authoring rules
 
-- All third-party actions must be pinned to a full SHA — never a mutable tag (e.g. `@v3`).
+- All third-party actions must be pinned to a full SHA -- never a mutable tag (e.g. `@v3`).
 
 - `GITHUB_TOKEN` permissions must be declared at the job level, scoped to the minimum required.
 
-- Use OIDC for cloud authentication — no long-lived credentials stored as secrets.
+- Use OIDC for cloud authentication -- no long-lived credentials stored as secrets.
 
 - New workflow files must pass `validate-customization-registry.py` before merging.
 
@@ -73,11 +73,11 @@ Skipping any phase or executing them out of order is a process violation.
 
 - All Bicep changes must pass `bicep build --lint` before commit.
 
-- Parameter files must exist for all environments (dev, staging, prod) — no partial configs.
+- Parameter files must exist for all environments (dev, staging, prod) -- no partial configs.
 
 - Any new Azure resource must include a diagnostic setting pointing to the Log Analytics workspace.
 
-- Role assignments must use the principle of least privilege — no `Owner` or `Contributor` for workloads; prefer purpose-specific built-in roles.
+- Role assignments must use the principle of least privilege -- no `Owner` or `Contributor` for workloads; prefer purpose-specific built-in roles.
 
 ## Branch and PR hygiene
 

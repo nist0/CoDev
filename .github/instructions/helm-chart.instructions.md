@@ -62,7 +62,7 @@ ha:
 
 ---
 
-## 🏆 Elite Section — Top 5% Helm Practices
+## U+1F3C6 Elite Section -- Top 5% Helm Practices
 
 - **`helm-docs` for auto-generated docs**: Use `norwoodj/helm-docs` to generate `README.md` from values comments automatically. Enforce freshness in CI with `helm-docs --dry-run --diff`.
 

@@ -9,21 +9,21 @@ applyTo: "**"
 
 ## Debugging workflow
 
-Always follow this sequence — never skip to fix before reproducing:
+Always follow this sequence -- never skip to fix before reproducing:
 
-1. **Reproduce** — get a minimal, deterministic repro (exact command, inputs, env).
+1. **Reproduce** -- get a minimal, deterministic repro (exact command, inputs, env).
 
-2. **Observe** — collect logs, traces, and metrics from the failing state.
+2. **Observe** -- collect logs, traces, and metrics from the failing state.
 
-3. **Hypothesize** — list 2–4 ranked hypotheses with rationale.
+3. **Hypothesize** -- list 2-4 ranked hypotheses with rationale.
 
-4. **Validate** — test the top hypothesis; discard if it doesn't explain all symptoms.
+4. **Validate** -- test the top hypothesis; discard if it doesn't explain all symptoms.
 
-5. **Fix** — make the smallest change that addresses root cause.
+5. **Fix** -- make the smallest change that addresses root cause.
 
-6. **Verify** — confirm fix with the original repro; run regression suite.
+6. **Verify** -- confirm fix with the original repro; run regression suite.
 
-7. **Prevent regression** — add a test or alert so this failure class is detected automatically.
+7. **Prevent regression** -- add a test or alert so this failure class is detected automatically.
 
 ## Performance
 
@@ -68,16 +68,16 @@ Example: minimal repro template
 
 ---
 
-## 🏆 Elite Section — Top 5% Reliability Practices
+## U+1F3C6 Elite Section -- Top 5% Reliability Practices
 
 - **SLO-driven development**: Define SLO (e.g. 99.9% availability, p99 < 300 ms) before shipping a feature. Every alert threshold derives from the error budget.
 
-- **Chaos engineering cadence**: Run controlled fault-injection experiments (e.g. Chaos Monkey, `toxiproxy`) on a scheduled basis — not only after incidents.
+- **Chaos engineering cadence**: Run controlled fault-injection experiments (e.g. Chaos Monkey, `toxiproxy`) on a scheduled basis -- not only after incidents.
 
 - **Instrumented rollbacks**: Every deployment must have a documented, tested rollback procedure that is faster than the incident SLA.
 
-- **Correlation-ID end-to-end**: Trace IDs must flow from client request through every downstream call and appear in every log line — no orphaned log entries.
+- **Correlation-ID end-to-end**: Trace IDs must flow from client request through every downstream call and appear in every log line -- no orphaned log entries.
 
-- **Canary + feature flags**: Release new behavior behind flags; route 1–5% of traffic before full rollout. Never do big-bang deploys for stateful changes.
+- **Canary + feature flags**: Release new behavior behind flags; route 1-5% of traffic before full rollout. Never do big-bang deploys for stateful changes.
 
 - **Game days**: Conduct quarterly game days where the team deliberately breaks systems to validate runbooks, alerts, and on-call readiness.

@@ -27,7 +27,7 @@ disable-model-invocation: false
 
 - State what is explicitly **out of scope** to prevent scope creep.
 
-### 2. Generate option portfolio (8–12 ideas)
+### 2. Generate option portfolio (8-12 ideas)
 
 - Produce ideas across distinct archetypes (no two ideas with the same mechanism):
 
@@ -35,7 +35,7 @@ disable-model-invocation: false
 
 - One-liner per idea: no elaboration at this stage.
 
-- No filtering yet — volume first.
+- No filtering yet -- volume first.
 
 ### 3. Apply top-tier reasoning before scoring
 
@@ -55,7 +55,7 @@ For each candidate:
 
 Score each idea:
 
-| Dimension | Score 0–10 |
+| Dimension | Score 0-10 |
 |-----------|----------|
 | EV (user/business value) | |
 | Feasibility (time/cost/dependency realism) | |
@@ -66,11 +66,11 @@ Keep top 3; discard weak options with explicit one-line reason.
 
 ### 5. Build a portfolio mix
 
-- 1 **safe bet**: high confidence, lower EV — can ship now.
+- 1 **safe bet**: high confidence, lower EV -- can ship now.
 
-- 1 **adjacent bet**: medium confidence, medium EV — spike in 1 week.
+- 1 **adjacent bet**: medium confidence, medium EV -- spike in 1 week.
 
-- 1 **bold bet**: lower confidence, high EV — spike in 1–2h to validate.
+- 1 **bold bet**: lower confidence, high EV -- spike in 1-2h to validate.
 
 ### 6. Make each shortlisted option falsifiable
 
@@ -84,7 +84,7 @@ For each option:
 
 - **Rollback posture**: how to reverse if it fails.
 
-- **1–2h spike plan**: steps, expected output, decision the spike enables.
+- **1-2h spike plan**: steps, expected output, decision the spike enables.
 
 ### 7. Convert to delivery artifacts
 
@@ -98,7 +98,7 @@ For each option:
 
 - Verdict: `approved` or `rework required`.
 
-- `rework required` → exact gap + closure evidence required.
+- `rework required` -> exact gap + closure evidence required.
 
 ### 9. Publish brainstorming continuity ticket
 
@@ -116,7 +116,7 @@ Produce one issue body:
 
 - [ ] Objective, constraints, success metric, and assumptions stated.
 
-- [ ] 8–12 ideas generated across distinct archetypes.
+- [ ] 8-12 ideas generated across distinct archetypes.
 
 - [ ] Top-tier reasoning (inversion, reference-class, second-order, pre-mortem) applied.
 

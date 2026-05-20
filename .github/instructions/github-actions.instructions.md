@@ -37,7 +37,7 @@ applyTo: ".github/workflows/**/*.yml"
 
 - Extract repeated step sequences into reusable workflows (`workflow_call`) or composite actions.
 
-- For complex logic, move it into a script in the repo — not inline `run` YAML.
+- For complex logic, move it into a script in the repo -- not inline `run` YAML.
 
 - Document how to run workflows locally using `act`.
 
@@ -60,7 +60,7 @@ jobs:
 
 ---
 
-## 🏆 Elite Section — Top 5% GitHub Actions Practices
+## U+1F3C6 Elite Section -- Top 5% GitHub Actions Practices
 
 - **`zizmor` for workflow security audit**: Run `zizmor` (or `actionlint`) in CI to detect workflow injection vulnerabilities, overly-permissive tokens, and insecure `pull_request_target` patterns.
 

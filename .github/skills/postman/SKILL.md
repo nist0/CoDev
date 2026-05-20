@@ -1,6 +1,6 @@
 ---
 name: postman
-description: Postman API collections — domain organization, environment strategy, test assertions, and CI integration.
+description: Postman API collections -- domain organization, environment strategy, test assertions, and CI integration.
 argument-hint: "[API name or domain]"
 user-invocable: true
 

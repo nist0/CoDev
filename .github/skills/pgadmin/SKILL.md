@@ -1,6 +1,6 @@
 ---
 name: pgadmin
-description: pgAdmin PostgreSQL UI — schema inspection, query plan analysis, migration validation, and safe DB operations.
+description: pgAdmin PostgreSQL UI -- schema inspection, query plan analysis, migration validation, and safe DB operations.
 argument-hint: "[schema, table, or query to analyze]"
 user-invocable: true
 

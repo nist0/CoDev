@@ -1,6 +1,6 @@
 ---
 name: python
-description: Python scripting — argparse, error handling, idempotency, type hints, and clean exit codes.
+description: Python scripting -- argparse, error handling, idempotency, type hints, and clean exit codes.
 argument-hint: "[script-purpose] [inputs]"
 user-invocable: true
 

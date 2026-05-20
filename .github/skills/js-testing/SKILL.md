@@ -1,6 +1,6 @@
 ---
 name: js-testing
-description: JavaScript/TypeScript testing — tooling selection, unit/component/E2E patterns, CI integration, and flakiness prevention.
+description: JavaScript/TypeScript testing -- tooling selection, unit/component/E2E patterns, CI integration, and flakiness prevention.
 argument-hint: "[component or module to test]"
 user-invocable: true
 
@@ -72,9 +72,9 @@ disable-model-invocation: false
 
 - [ ] CI gate defined: fast on PR, full on main/release.
 
-## 🏆 Elite Section — Top 5% JS/TS Testing Practices
+## U+1F3C6 Elite Section -- Top 5% JS/TS Testing Practices
 
-- **Accessibility assertions by default**: Add `jest-axe` (Jest) or `vitest-axe` (Vitest) to every component test suite — run `expect(await axe(container)).toHaveNoViolations()`. Never defer a11y to manual review.
+- **Accessibility assertions by default**: Add `jest-axe` (Jest) or `vitest-axe` (Vitest) to every component test suite -- run `expect(await axe(container)).toHaveNoViolations()`. Never defer a11y to manual review.
 
 - **MSW for realistic network mocking**: Use [Mock Service Worker](https://mswjs.io/) to intercept HTTP at the network level instead of mocking modules. Tests run against realistic request/response shapes.
 
@@ -84,7 +84,7 @@ disable-model-invocation: false
 
 - **Mutation testing for critical logic**: Run [Stryker.js](https://stryker-mutator.io/) quarterly on critical hooks and reducers. A suite that passes with mutated code is not actually verifying behavior.
 
-- **Contract tests for API boundaries**: Use Pact or openapi-typescript-generated schemas to verify frontend-backend contracts. Break the contract → block merge.
+- **Contract tests for API boundaries**: Use Pact or openapi-typescript-generated schemas to verify frontend-backend contracts. Break the contract -> block merge.
 
 ## Outputs
 

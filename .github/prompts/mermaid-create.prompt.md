@@ -32,7 +32,7 @@ Requirements:
 
 - Apply `v2` variants (`stateDiagram-v2`, `flowchart` over `graph`).
 
-- Keep node count ≤ 50 and depth ≤ 5 levels.
+- Keep node count <= 50 and depth <= 5 levels.
 
 - Use subgraphs for logical grouping where appropriate.
 
@@ -48,16 +48,16 @@ Output:
 
 2. Mermaid code block (fenced with ` ```mermaid `)
 
-3. Prose description (1–2 sentences)
+3. Prose description (1-2 sentences)
 
 4. Embedding snippet (ready to paste into a GitHub Markdown file)
 
-5. Self-check: [ ] correct fencing, [ ] stable IDs, [ ] depth ≤ 5, [ ] no deprecated syntax, [ ] prose added
+5. Self-check: [ ] correct fencing, [ ] stable IDs, [ ] depth <= 5, [ ] no deprecated syntax, [ ] prose added
 
 ## Agent delegation chain
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |---|---|---|---|---|
-| 1 | **mermaid-diagrammer** | always — diagram creation | *(this prompt)* | Diagram produced, self-check complete |
+| 1 | **mermaid-diagrammer** | always -- diagram creation | *(this prompt)* | Diagram produced, self-check complete |
 | 2 | **mermaid-diagrammer** | diagram > 10 nodes or complex logic | `/mermaid-review` | Review verdict: approved |
 | 3 | **Delivery Lead** | diagram committed to repo | `/pr-review` | PR approved, rendering verified |

@@ -1,6 +1,6 @@
 ---
 name: k9s
-description: k9s Kubernetes triage UI — fast incident triage, pod/log/event inspection, and rollout verification.
+description: k9s Kubernetes triage UI -- fast incident triage, pod/log/event inspection, and rollout verification.
 argument-hint: "[namespace or workload name]"
 user-invocable: true
 

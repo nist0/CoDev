@@ -106,7 +106,7 @@ POST <index>/_flush
 POST _reindex { "source": { "index": "old" }, "dest": { "index": "new" } }
 ```
 
-### Elastic APM — UI quick navigation
+### Elastic APM -- UI quick navigation
 
 | Goal | Path in Kibana |
 |------|----------------|
@@ -119,7 +119,7 @@ POST _reindex { "source": { "index": "old" }, "dest": { "index": "new" } }
 | APM to Logs bridge | Trace view ? **Investigate ? View surrounding documents** |
 | Active alerting rules | APM ? Services ? <service> ? Alerts |
 
-### Common KQL patterns — production incidents
+### Common KQL patterns -- production incidents
 
 ```kql
 # --- HTTP errors ---

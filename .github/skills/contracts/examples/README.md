@@ -1,4 +1,4 @@
-# Contracts Skill — Examples
+# Contracts Skill -- Examples
 
 ## 1. OpenAPI Contract Skeleton
 

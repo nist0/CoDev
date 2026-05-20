@@ -1,4 +1,4 @@
-# Bash Skill — Examples
+# Bash Skill -- Examples
 
 ## 1. Safe Script Skeleton
 

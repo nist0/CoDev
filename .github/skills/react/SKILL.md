@@ -1,6 +1,6 @@
 ---
 name: react
-description: React architecture — component boundaries, state strategy, data fetching, performance, a11y, and testing.
+description: React architecture -- component boundaries, state strategy, data fetching, performance, a11y, and testing.
 argument-hint: "[component-or-page] [concern]"
 user-invocable: true
 
@@ -60,11 +60,11 @@ disable-model-invocation: false
 
 - [ ] Component tests use React Testing Library (user-event-first).
 
-## 🏆 Elite Section — Top 5% React Practices
+## U+1F3C6 Elite Section -- Top 5% React Practices
 
 - **Server components first (Next.js 14+)**: Default to React Server Components for data-fetching pages; opt into `'use client'` only when interactivity requires it. This eliminates hydration cost for static content.
 
-- **`startTransition` for non-urgent updates**: Wrap non-critical state updates in `startTransition` to keep the UI responsive during heavy renders — avoids blocking user input.
+- **`startTransition` for non-urgent updates**: Wrap non-critical state updates in `startTransition` to keep the UI responsive during heavy renders -- avoids blocking user input.
 
 - **Stale-while-revalidate everywhere**: Use React Query / SWR with `staleTime` tuned to your data freshness requirements. Never build custom cache logic from scratch.
 
@@ -74,7 +74,7 @@ disable-model-invocation: false
 
 - **`use()` API + Suspense for async**: In React 18+, unwrap promises with `use()` in RSC, letting Suspense handle loading states declaratively instead of manual `isLoading` flags.
 
-- **Accessibility in CI**: Run `jest-axe` or `vitest-axe` on every component test suite. Every interactive component must pass WCAG 2.1 AA before merging — never defer a11y.
+- **Accessibility in CI**: Run `jest-axe` or `vitest-axe` on every component test suite. Every interactive component must pass WCAG 2.1 AA before merging -- never defer a11y.
 
 ## Outputs
 

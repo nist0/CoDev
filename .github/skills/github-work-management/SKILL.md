@@ -1,6 +1,6 @@
 ---
 name: github-work-management
-description: Elite delivery governance — issue lifecycle, Kanban discipline, traceability, WIP enforcement, and review gates.
+description: Elite delivery governance -- issue lifecycle, Kanban discipline, traceability, WIP enforcement, and review gates.
 argument-hint: "[project-name] [milestones]"
 user-invocable: true
 
@@ -23,12 +23,12 @@ disable-model-invocation: false
 
 ```text
 Epic (GitHub issue labeled `type:epic`)
-  └─ Milestone (sprint or release cycle, e.g. v1.2.0 / Sprint-04)
-       └─ Task issues (atomic, ≤ 3 days effort each)
-            └─ Sub-tasks (checkboxes inside the issue body)
+  U+2514U+2500 Milestone (sprint or release cycle, e.g. v1.2.0 / Sprint-04)
+       U+2514U+2500 Task issues (atomic, <= 3 days effort each)
+            U+2514U+2500 Sub-tasks (checkboxes inside the issue body)
 ```
 
-- Epics are tracking issues; they do not carry implementation — only links to task issues.
+- Epics are tracking issues; they do not carry implementation -- only links to task issues.
 
 - Every task issue must belong to exactly one milestone.
 
@@ -36,9 +36,9 @@ Epic (GitHub issue labeled `type:epic`)
 
 ### 2. Issue modeling (mandatory fields)
 
-**Before creating any issue for a non-trivial task, a brainstorm must be complete** (≥ 3 scored options produced by the Innovator agent or `/brainstorm`). The finalist rationale feeds directly into `## Technical approach`.
+**Before creating any issue for a non-trivial task, a brainstorm must be complete** (>= 3 scored options produced by the Innovator agent or `/brainstorm`). The finalist rationale feeds directly into `## Technical approach`.
 
-Every task issue body must include **all** of the following sections. This is a living document — update it as work evolves; do not treat it as a one-shot creation:
+Every task issue body must include **all** of the following sections. This is a living document -- update it as work evolves; do not treat it as a one-shot creation:
 
 ```markdown
 ## Summary
@@ -49,12 +49,12 @@ Every task issue body must include **all** of the following sections. This is a 
 Update this section when the approach is refined mid-implementation.>
 
 ## Files to modify
-- `path/to/file.ext` — what change and why
+- `path/to/file.ext` -- what change and why
 <!-- Update this list as scope is discovered or changes -->
 
 ## Sub-tasks
 <!-- Use - [ ] for atomic inline tasks; open child issues (linked below) for tasks spanning >1 PR -->
-- [ ] Sub-task 1 (`path/to/file.ext`) — brief description
+- [ ] Sub-task 1 (`path/to/file.ext`) -- brief description
 - [ ] Sub-task 2
 <!-- Child issues: Part of #N -->
 
@@ -72,7 +72,7 @@ Update this section when the approach is refined mid-implementation.>
 
 ## Progress log
 <!-- Append dated entries as work evolves: scope changes, blockers, decisions, discoveries -->
-<!-- Format: YYYY-MM-DD — <what changed / was decided / was discovered> -->
+<!-- Format: YYYY-MM-DD -- <what changed / was decided / was discovered> -->
 
 ## Definition of Done
 - [ ] Code reviewed and approved
@@ -86,7 +86,7 @@ Update this section when the approach is refined mid-implementation.>
 approved | rework required
 ```
 
-**Living issue protocol** — the issue is amended throughout the task lifecycle:
+**Living issue protocol** -- the issue is amended throughout the task lifecycle:
 
 | Trigger | Required update |
 | --- | --- |
@@ -97,7 +97,7 @@ approved | rework required
 | AC checkbox passed | Tick the box with `gh issue edit <N> --body-file <path>` |
 | Mid-task decision recorded | Append dated entry to `Progress log` |
 
-Use `gh issue edit <N> --body-file <path>` (single-quoted heredoc) for all updates — never inline `--body` in PowerShell.
+Use `gh issue edit <N> --body-file <path>` (single-quoted heredoc) for all updates -- never inline `--body` in PowerShell.
 
 Issue title conventions:
 
@@ -125,7 +125,7 @@ Apply `priority:p0` for production incidents or milestone-blocking issues.
 ### 4. Kanban flow
 
 ```text
-Backlog → Ready → In Progress → In Review → Done
+Backlog -> Ready -> In Progress -> In Review -> Done
 ```
 
 Column entry criteria:
@@ -139,9 +139,9 @@ Column entry criteria:
 
 WIP limits (enforced):
 
-- **In Progress**: ≤ 2 per person / ≤ 5 per team.
+- **In Progress**: <= 2 per person / <= 5 per team.
 
-- **In Review**: ≤ 3 per reviewer at a time.
+- **In Review**: <= 3 per reviewer at a time.
 
 - Exceeding WIP limits: finish before starting; escalate blockers to lead.
 
@@ -167,9 +167,9 @@ For each issue reaching "In Review":
 
 2. Verdict must be explicit:
 
-   - **approved** → PR can merge; move issue to Done.
+   - **approved** -> PR can merge; move issue to Done.
 
-   - **rework required** → list exact gap checklist; move back to In Progress; apply `status:rework` label.
+   - **rework required** -> list exact gap checklist; move back to In Progress; apply `status:rework` label.
 
 3. Re-review is mandatory after rework; do not self-approve after your own rework.
 
@@ -180,16 +180,16 @@ For each issue reaching "In Review":
 Publish at the end of each sprint/cycle:
 
 ```markdown
-## Sprint <N> — Progress Rollup (<date>)
+## Sprint <N> -- Progress Rollup (<date>)
 
-**Done**: <count> issues — <titles or links>
-**In Progress**: <count> — <titles, ETA>
-**Blocked**: <count> — <titles, blocking reason, owner>
-**Scope added**: <count> — <titles>
-**Scope removed / deferred**: <count> — <titles, reason>
+**Done**: <count> issues -- <titles or links>
+**In Progress**: <count> -- <titles, ETA>
+**Blocked**: <count> -- <titles, blocking reason, owner>
+**Scope added**: <count> -- <titles>
+**Scope removed / deferred**: <count> -- <titles, reason>
 
 ### Risks
-- <risk description> — mitigation: <action>
+- <risk description> -- mitigation: <action>
 
 ### Next cycle priorities
 1. <issue link>

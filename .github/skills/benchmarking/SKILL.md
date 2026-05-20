@@ -28,7 +28,7 @@ Provides methods, scripts, and patterns for benchmarking CoDev and similar proje
 
 ## Tools
 
-- `scripts/benchmark-similar-projects.py` — main benchmarking script
+- `scripts/benchmark-similar-projects.py` -- main benchmarking script
 
 ## Examples
 

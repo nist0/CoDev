@@ -1,6 +1,6 @@
 ---
 name: pg
-description: "PostgreSQL quick operations — schema inspection, query optimization, index analysis, lock triage, and connection pool management."
+description: "PostgreSQL quick operations -- schema inspection, query optimization, index analysis, lock triage, and connection pool management."
 agent: "Backend .NET"
 
 argument-hint: "concern=<connect|schema|query|locks|vacuum|pool|user> table=<name>"
@@ -48,6 +48,6 @@ Inputs:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Backend .NET** | always — PostgreSQL operations | *(this prompt)* | Commands provided, risk classified, verification query included |
+| 1 | **Backend .NET** | always -- PostgreSQL operations | *(this prompt)* | Commands provided, risk classified, verification query included |
 | 2 | **Reliability** | performance regression or lock contention confirmed | `/postmortem` or `/triage-error` | Root cause identified, fix verified |
 | 3 | **Delivery Lead** | schema migration required | `/pr-review` | Migration PR reviewed and merged |

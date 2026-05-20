@@ -1,6 +1,6 @@
 ---
 name: test-strategy
-description: Test pyramid design — risk mapping, test type selection, data strategy, CI gate definition, and flakiness prevention.
+description: Test pyramid design -- risk mapping, test type selection, data strategy, CI gate definition, and flakiness prevention.
 argument-hint: "[service-or-feature] [risk-areas]"
 user-invocable: true
 
@@ -114,7 +114,7 @@ For every bug fix:
 
 ## Outputs
 
-- Test plan table (scenario → type → rationale).
+- Test plan table (scenario -> type -> rationale).
 
 - Test pyramid diagram (text).
 

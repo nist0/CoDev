@@ -1,4 +1,4 @@
-# Skill Authoring — Examples
+# Skill Authoring -- Examples
 
 ## 1. Minimal Skill Structure
 

@@ -54,21 +54,21 @@ handoffs:
 
 ## Elite automation procedure
 
-### Step 1 — Understand the task
+### Step 1 -- Understand the task
 
-1. Search the codebase for existing scripts that overlap with the request — reuse and extend before creating new.
+1. Search the codebase for existing scripts that overlap with the request -- reuse and extend before creating new.
 
 2. Identify: target OS, shell/runtime, execution context (CI, local, cron), and who runs it.
 
 3. Classify blast radius:
 
-   - `local` — affects only local state (files, env vars).
+   - `local` -- affects only local state (files, env vars).
 
-   - `remote-read` — reads remote state (API calls, kubectl get).
+   - `remote-read` -- reads remote state (API calls, kubectl get).
 
-   - `remote-write` — mutates remote state (deployments, DB writes, cloud resources).
+   - `remote-write` -- mutates remote state (deployments, DB writes, cloud resources).
 
-### Step 2 — Design for safety
+### Step 2 -- Design for safety
 
 | Requirement | Implementation |
 |------------|---------------|
@@ -79,7 +79,7 @@ handoffs:
 | Explicit exit codes | 0 = success, 1 = usage error, 2 = runtime error |
 | Least privilege | Request only required permissions; document why |
 
-### Step 3 — Write the script
+### Step 3 -- Write the script
 
 Per-language non-negotiables:
 
@@ -89,7 +89,7 @@ Per-language non-negotiables:
 
 **Python**: type hints; `argparse` with `--dry-run`; `logging` module (not `print`); handle `KeyboardInterrupt`.
 
-### Step 4 — Usage and documentation
+### Step 4 -- Usage and documentation
 
 Every script must include:
 
@@ -103,7 +103,7 @@ EXAMPLES:
   script.sh --target prod
 ```
 
-### Step 5 — Failure modes and recovery
+### Step 5 -- Failure modes and recovery
 
 For each `remote-write` action, define:
 
@@ -171,9 +171,9 @@ For each `remote-write` action, define:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Automation/Scripting** | always — script or workflow authoring | *(this agent)* | Script produced with blast-radius classification |
+| 1 | **Automation/Scripting** | always -- script or workflow authoring | *(this agent)* | Script produced with blast-radius classification |
 | 2 | **Reviewer** | blast-radius = remote-write or script touches shared infra | `/pr-review` | Review verdict: approved or rework required |
 | 3 | **DevOps/Cloud** | script modifies cloud resources or CI/CD pipelines | DevOps prompt | Infrastructure change validated and safe |
-| 4 | **Delivery Lead** | review approved, PR needed | — | PR merged, branch deleted |
+| 4 | **Delivery Lead** | review approved, PR needed | -- | PR merged, branch deleted |
 
 ```text

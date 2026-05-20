@@ -52,7 +52,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Project Orchestrator** | always — task decomposition | *(this prompt)* | Dispatch table produced, each task has owner agent, AC, and verification |
+| 1 | **Project Orchestrator** | always -- task decomposition | *(this prompt)* | Dispatch table produced, each task has owner agent, AC, and verification |
 | 2 | **Domain specialist** (Backend .NET / DevOps / Frontend / etc.) | per task assigned | relevant domain prompt | Task implemented, CI green |
 | 3 | **Reviewer** | per task, when implementation complete | `/pr-review` | Verdict approved for each task |
 | 4 | **Project Orchestrator** | all tasks dispatched | `/project-governance` | Kanban board set up, WIP limits enforced, verdicts recorded |

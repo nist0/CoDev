@@ -24,7 +24,7 @@ Apply the full procedure from `.github/skills/cv-coach/SKILL.md`.
 |---|---|---|
 | `{{target-role}}` | Yes | "Senior Backend Engineer", "Ingénieur DevOps" |
 | `{{target-market}}` | Recommended | `FR` (French norms), `EN` (international), default: detect from CV language |
-| `{{target-jd}}` | Optional | Paste of job description text or URL — enables keyword gap analysis (Step 5) |
+| `{{target-jd}}` | Optional | Paste of job description text or URL -- enables keyword gap analysis (Step 5) |
 | CV text | Yes | Paste the CV content in the chat, or attach a file |
 
 If the CV is not provided, begin the guided interview (see agent procedure: "If no CV is provided").

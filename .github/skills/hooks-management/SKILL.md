@@ -25,7 +25,7 @@ Provides methods and scripts for managing git hooks in the repository. Covers in
 
 ## Tools
 
-- `scripts/install-hooks.py` — main hook installation script
+- `scripts/install-hooks.py` -- main hook installation script
 
 ## Examples
 

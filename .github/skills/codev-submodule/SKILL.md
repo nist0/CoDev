@@ -1,6 +1,6 @@
 ---
 name: codev-submodule
-description: Full reference for managing CoDev as a Git submodule — init, update, override authoring, teardown, and troubleshooting.
+description: Full reference for managing CoDev as a Git submodule -- init, update, override authoring, teardown, and troubleshooting.
 argument-hint: "[operation: init|update|teardown|override|troubleshoot]"
 user-invocable: true
 
@@ -34,9 +34,9 @@ disable-model-invocation: false
 
 ---
 
-## 1. Init — add CoDev to a repository
+## 1. Init -- add CoDev to a repository
 
-### Step 1 — Add the submodule
+### Step 1 -- Add the submodule
 
 ```bash
 # Bash / Linux / macOS / Git Bash
@@ -50,7 +50,7 @@ git submodule add https://github.com/nist0/CoDev.git tools/codev
 git submodule update --init --recursive
 ```
 
-### Step 2 — Run `codev init`
+### Step 2 -- Run `codev init`
 
 ```bash
 bash tools/codev/codev.sh init
@@ -62,7 +62,7 @@ bash tools/codev/codev.sh init
 
 **What happens:**
 
-1. Detects symlink availability (Windows Developer Mode → symlink; otherwise → lockfile).
+1. Detects symlink availability (Windows Developer Mode -> symlink; otherwise -> lockfile).
 
 2. Creates `codev.json` at the repo root (JSON-Schema-validated manifest).
 
@@ -80,7 +80,7 @@ python tools/codev/scripts/validate-route-smoke.py
 
 Expected: `Route smoke validation passed: 27 case(s).`
 
-### Step 3 — Commit the bootstrap artefacts
+### Step 3 -- Commit the bootstrap artefacts
 
 ```bash
 git add codev.json codev-lock.json .github/ .pre-commit-config.yaml
@@ -92,14 +92,14 @@ git commit -m "chore: bootstrap CoDev submodule"
 
 ---
 
-## 2. Override — host-specific customization
+## 2. Override -- host-specific customization
 
 All host-specific assets live in `codev-overrides/`. The pre-commit hook prevents direct
 edits to submodule-managed files.
 
 ### Extend `copilot-instructions.md`
 
-Create `codev-overrides/copilot-instructions.override.md` — its content is **appended**
+Create `codev-overrides/copilot-instructions.override.md` -- its content is **appended**
 after the submodule base:
 
 ```markdown
@@ -152,7 +152,7 @@ description: ...
 
 ---
 
-## 3. Update — sync after a CoDev version bump
+## 3. Update -- sync after a CoDev version bump
 
 ```bash
 # Pull the latest submodule commit
@@ -169,7 +169,7 @@ bash tools/codev/codev.sh update
 
 - Lockfile mode: re-copies updated files; refreshes `codev-lock.json` SHA entries.
 
-- Symlink mode: symlinks already point to the submodule — only `copilot-instructions.md`
+- Symlink mode: symlinks already point to the submodule -- only `copilot-instructions.md`
   is regenerated if the base changed.
 
 **Verify:**
@@ -187,10 +187,10 @@ git commit -m "chore: update CoDev submodule to <version>"
 
 ---
 
-## 4. Teardown — remove CoDev from a repository
+## 4. Teardown -- remove CoDev from a repository
 
 > **Windows / non-interactive shells**: always use `--force`. Without it the CLI waits
-> for a keystroke that PowerShell cannot forward — it appears frozen until killed.
+> for a keystroke that PowerShell cannot forward -- it appears frozen until killed.
 
 ```bash
 bash tools/codev/codev.sh teardown --force
@@ -208,7 +208,7 @@ bash tools/codev/codev.sh teardown --force
 
 - **Keeps** `codev-overrides/` intact (your host-specific assets are never deleted).
 
-- **Keeps** `tools/codev/` — remove the submodule separately:
+- **Keeps** `tools/codev/` -- remove the submodule separately:
 
 ```bash
 git submodule deinit -f tools/codev
@@ -224,7 +224,7 @@ git commit -m "chore: remove CoDev submodule"
 ### Symptom: symlinks not created on Windows
 
 **Cause**: Windows Developer Mode is not enabled.
-**Fix**: Enable Developer Mode in Settings → Privacy & Security → For Developers, then re-run `codev init`. Or accept lockfile mode (no action needed — auto-detected).
+**Fix**: Enable Developer Mode in Settings -> Privacy & Security -> For Developers, then re-run `codev init`. Or accept lockfile mode (no action needed -- auto-detected).
 
 ### Symptom: `codev init` fails with JSON decode error
 

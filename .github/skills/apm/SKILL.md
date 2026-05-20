@@ -1,6 +1,6 @@
 ---
 name: apm
-description: APM trace analysis — latency hotspots, span breakdown, error correlation, and instrumentation improvements.
+description: APM trace analysis -- latency hotspots, span breakdown, error correlation, and instrumentation improvements.
 argument-hint: "[service] [time-range]"
 user-invocable: true
 
@@ -24,14 +24,14 @@ disable-model-invocation: false
 | Item | Value |
 |------|-------|
 | Service | <name> |
-| Time range | <start> → <end> |
+| Time range | <start> -> <end> |
 | Trigger | Incident / regression / routine review |
 | Baseline | Normal p95 latency: <value> |
 
 ### 2. Review transaction overview
 
 ```text
-APM UI → select service → Transactions
+APM UI -> select service -> Transactions
 ```
 
 - Sort by: p95 latency (descending) or error rate (descending).
@@ -43,7 +43,7 @@ APM UI → select service → Transactions
 ### 3. Drill into a slow trace
 
 ```text
-Transaction → select a slow sample trace → span timeline
+Transaction -> select a slow sample trace -> span timeline
 ```
 
 - Identify: **total duration** vs **sum of span durations** (gap = queuing/waiting).
@@ -76,8 +76,8 @@ For queue spans:
 
 ```text
 Filter by: error = true
-Select error trace → inspect exception and stack trace
-Copy trace ID → search in log aggregation (ELK/Loki/Log Analytics)
+Select error trace -> inspect exception and stack trace
+Copy trace ID -> search in log aggregation (ELK/Loki/Log Analytics)
 ```
 
 - Find first error in the chain (not the last propagated exception).

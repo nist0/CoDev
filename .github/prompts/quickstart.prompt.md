@@ -18,21 +18,21 @@ Argument handling:
 
 Apply the procedure from `.github/skills/canonical-routing/SKILL.md`.
 
-Act as a friendly Router and onboard the user to the CoDev framework in ≤2 turns.
+Act as a friendly Router and onboard the user to the CoDev framework in <=2 turns.
 
-## Step 1 — Gather context
+## Step 1 -- Gather context
 
 If `{{input}}` is empty, ask all three questions **in a single message** (never split them across turns):
 
-1. **Role** — e.g. developer, DevOps engineer, tech lead, PM, open-source contributor
+1. **Role** -- e.g. developer, DevOps engineer, tech lead, PM, open-source contributor
 
-2. **Primary domain** — e.g. .NET backend, React/TypeScript frontend, Kubernetes/cloud, Python scripts, documentation
+2. **Primary domain** -- e.g. .NET backend, React/TypeScript frontend, Kubernetes/cloud, Python scripts, documentation
 
-3. **First goal** — e.g. fix a bug, write tests, review a PR, brainstorm an idea, plan a release, start a new project
+3. **First goal** -- e.g. fix a bug, write tests, review a PR, brainstorm an idea, plan a release, start a new project
 
 If `{{input}}` is provided, extract role / domain / goal directly from it and skip the questions.
 
-## Step 2 — Match to the routing matrix
+## Step 2 -- Match to the routing matrix
 
 Map the gathered context to exactly one `capability` + optional `domain` using the canonical routing matrix:
 
@@ -51,7 +51,7 @@ Map the gathered context to exactly one `capability` + optional `domain` using t
 | incident / postmortem | `postmortem` |
 | unsure / general | `routing` |
 
-## Step 3 — Select the contributor profile
+## Step 3 -- Select the contributor profile
 
 Pick exactly one contributor profile before you emit the card.
 
@@ -76,9 +76,9 @@ Profile selection rules:
 
 - If signals conflict, choose the safer profile and mention the assumption.
 
-## Step 4 — Emit a personalised quickstart card
+## Step 4 -- Emit a personalised quickstart card
 
-Output exactly this structure, filled in (≤20 lines total):
+Output exactly this structure, filled in (<=20 lines total):
 
 ```text
 ## Your CoDev quickstart
@@ -97,13 +97,13 @@ Rollback               : <one-line fallback>
 First command:
   /<best first command for this goal>
 
-  — or jump directly to:
+  -- or jump directly to:
   /<best-matching-prompt> <relevant args>
 
 Useful prompts for your profile:
-  - /<prompt1> — <one-line description>
-  - /<prompt2> — <one-line description>
-  - /<prompt3> — <one-line description>
+  - /<prompt1> -- <one-line description>
+  - /<prompt2> -- <one-line description>
+  - /<prompt3> -- <one-line description>
 
 Tip: `/route <anything>` always works as the universal entry point.
 ```
@@ -122,7 +122,7 @@ For the supported first-run scenarios in issue #39, prefer a direct first comman
 
 ## Rules
 
-- Ask all 3 questions in **one** message — no multi-step interrogation.
+- Ask all 3 questions in **one** message -- no multi-step interrogation.
 
 - Only reference capabilities from `routing/capabilities.yaml` and prompts from `.github/prompts/`.
 
@@ -146,5 +146,5 @@ For the supported first-run scenarios in issue #39, prefer a direct first comman
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Router** | always — onboarding | *(this prompt)* | Role, domain, and goal gathered; quickstart card produced |
+| 1 | **Router** | always -- onboarding | *(this prompt)* | Role, domain, and goal gathered; quickstart card produced |
 | 2 | **Recommended specialist agent** | card produced | `/route <goal>` or `/<best-matching-prompt>` | User lands on the right agent and prompt for their first task |

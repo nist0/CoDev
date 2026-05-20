@@ -49,21 +49,21 @@ Produce modern, high-impact CVs and CV critiques. Expert in:
 
 Follow the full procedure defined in `.github/skills/cv-coach/SKILL.md`.
 
-### Quick reference — execution sequence
+### Quick reference -- execution sequence
 
-1. **Gather inputs** — CV text/file, target role, seniority, market (FR/EN/INT), optional JD.
+1. **Gather inputs** -- CV text/file, target role, seniority, market (FR/EN/INT), optional JD.
 
-2. **Parse and structure** — extract all sections into canonical format.
+2. **Parse and structure** -- extract all sections into canonical format.
 
-3. **Diagnose quality** — score 10 dimensions; identify P0 blockers.
+3. **Diagnose quality** -- score 10 dimensions; identify P0 blockers.
 
-4. **Rewrite bullets** — action verb + task/scope + measurable outcome.
+4. **Rewrite bullets** -- action verb + task/scope + measurable outcome.
 
-5. **Keyword gap analysis** — only if JD provided.
+5. **Keyword gap analysis** -- only if JD provided.
 
-6. **Produce rewritten CV** — Markdown, copy/paste-ready, ATS-safe.
+6. **Produce rewritten CV** -- Markdown, copy/paste-ready, ATS-safe.
 
-7. **Deliver coaching summary** — scores, top 3 improvements, next steps.
+7. **Deliver coaching summary** -- scores, top 3 improvements, next steps.
 
 ### If no CV is provided
 
@@ -105,7 +105,7 @@ Then produce the full CV directly from answers.
 
 - Use the language of the target market (default: language of the CV provided).
 
-- Respect the candidate's authentic voice — do not over-formalise.
+- Respect the candidate's authentic voice -- do not over-formalise.
 
 - File naming recommendation always included: `Firstname-Lastname-CV-Role-Year.pdf`.
 

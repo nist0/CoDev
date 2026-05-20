@@ -1,6 +1,6 @@
 ---
 name: rca-kit
-description: Blameless postmortem and root cause analysis — 5-Whys, timeline, action items, and prevention tracking.
+description: Blameless postmortem and root cause analysis -- 5-Whys, timeline, action items, and prevention tracking.
 argument-hint: "[incident-title] [severity]"
 user-invocable: true
 
@@ -53,7 +53,7 @@ Symptom: <observable failure>
           Why 5: <root cause>
 ```
 
-Stop at the level where a **systemic fix is actionable**. Avoid stopping at "human error" — ask why the system allowed human error to cause an outage.
+Stop at the level where a **systemic fix is actionable**. Avoid stopping at "human error" -- ask why the system allowed human error to cause an outage.
 
 ### 4. Contributing factors
 
@@ -71,10 +71,10 @@ Beyond root cause, list factors that made the incident worse or detection slower
 
 | Dimension | Value |
 |-----------|-------|
-| Duration | <start> → <end> (total minutes) |
+| Duration | <start> -> <end> (total minutes) |
 | Users affected | <count or %> |
 | Error rate peak | <% or count/min> |
-| SLO breach | Yes / No (if yes: ∆ error budget consumed) |
+| SLO breach | Yes / No (if yes: U+2206 error budget consumed) |
 | Data integrity | Not affected / Affected (describe) |
 | Revenue impact | <estimate if known> |
 
@@ -101,7 +101,7 @@ Beyond root cause, list factors that made the incident worse or detection slower
 
 - Share with broader team (link in Slack/email); do not post blame.
 
-- Schedule follow-up review to track action item completion (2–4 weeks).
+- Schedule follow-up review to track action item completion (2-4 weeks).
 
 ## Blameless postmortem template
 
@@ -114,7 +114,7 @@ Beyond root cause, list factors that made the incident worse or detection slower
 **Status**: draft | reviewed | published
 
 ## Summary
-<2–3 sentences: what happened, impact, how resolved>
+<2-3 sentences: what happened, impact, how resolved>
 
 ## Impact
 - Users affected: ...
@@ -128,7 +128,7 @@ Beyond root cause, list factors that made the incident worse or detection slower
 <one clear sentence>
 
 ## 5-Whys chain
-Symptom → Why 1 → ... → Root cause
+Symptom -> Why 1 -> ... -> Root cause
 
 ## Contributing factors
 - ...

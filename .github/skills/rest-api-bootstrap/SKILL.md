@@ -1,6 +1,6 @@
 ---
 name: rest-api-bootstrap
-description: Bootstrap a REST API project from zero — curated GitHub template repos, dotnet/pip/cookiecutter CLI commands, and quality snippet sources for C# (.NET), Python (FastAPI/Flask), and Bash (curl/jq client patterns).
+description: Bootstrap a REST API project from zero -- curated GitHub template repos, dotnet/pip/cookiecutter CLI commands, and quality snippet sources for C# (.NET), Python (FastAPI/Flask), and Bash (curl/jq client patterns).
 argument-hint: "[stack: dotnet|python|bash] [style: minimal|clean-arch|full-stack]"
 user-invocable: true
 
@@ -23,7 +23,7 @@ disable-model-invocation: false
 
 ## C# / .NET
 
-### Tier 1 — Official scaffolding (zero dependencies)
+### Tier 1 -- Official scaffolding (zero dependencies)
 
 ```powershell
 # Minimal API (recommended default, .NET 8+)
@@ -36,7 +36,7 @@ dotnet new webapi -n MyApi --no-https
 
 > Use `dotnet new webapi --help` to see all options.
 
-### Tier 1.5 — Essential add-ons (layer on top of `dotnet new webapi`)
+### Tier 1.5 -- Essential add-ons (layer on top of `dotnet new webapi`)
 
 These four packages should be in virtually every real .NET 8+ REST API. Install them in one shot after scaffolding:
 
@@ -47,11 +47,11 @@ dotnet add package ErrorOr
 dotnet add package Scalar.AspNetCore
 ```
 
-#### FastEndpoints — endpoint classes for minimal APIs
+#### FastEndpoints -- endpoint classes for minimal APIs
 
 Repo: <https://github.com/FastEndpoints/FastEndpoints>
 
-Minimal APIs default to scattered lambda handlers. FastEndpoints replaces them with one strongly-typed class per endpoint, built-in FluentValidation, response mappers, and a test harness — with zero performance overhead vs raw minimal APIs.
+Minimal APIs default to scattered lambda handlers. FastEndpoints replaces them with one strongly-typed class per endpoint, built-in FluentValidation, response mappers, and a test harness -- with zero performance overhead vs raw minimal APIs.
 
 ```csharp
 // Program.cs
@@ -101,7 +101,7 @@ public class OrdersModule : ICarterModule
 
 Repo: <https://github.com/CarterCommunity/Carter>
 
-#### Serilog — structured logging from day one
+#### Serilog -- structured logging from day one
 
 ```powershell
 dotnet add package Serilog.AspNetCore
@@ -110,7 +110,7 @@ dotnet add package Serilog.Sinks.Seq        # optional: local Seq dashboard
 ```
 
 ```csharp
-// Program.cs — replace default logging with Serilog in two lines
+// Program.cs -- replace default logging with Serilog in two lines
 builder.Host.UseSerilog((ctx, lc) => lc
     .ReadFrom.Configuration(ctx.Configuration)
     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}"));
@@ -127,7 +127,7 @@ builder.Host.UseSerilog((ctx, lc) => lc
 
 Repo: <https://github.com/serilog/serilog-aspnetcore>
 
-#### ErrorOr — result type instead of exception-driven control flow
+#### ErrorOr -- result type instead of exception-driven control flow
 
 Repo: <https://github.com/amantinband/error-or>
 
@@ -142,7 +142,7 @@ public ErrorOr<Order> CreateOrder(CreateOrderRequest req)
     return order;
 }
 
-// Endpoint handler — map ErrorOr<T> to IResult in one expression
+// Endpoint handler -- map ErrorOr<T> to IResult in one expression
 public override async Task HandleAsync(CreateOrderRequest req, CancellationToken ct)
 {
     ErrorOr<Order> result = _orderService.CreateOrder(req);
@@ -154,7 +154,7 @@ public override async Task HandleAsync(CreateOrderRequest req, CancellationToken
 }
 ```
 
-#### Scalar — modern OpenAPI UI (replaces Swashbuckle)
+#### Scalar -- modern OpenAPI UI (replaces Swashbuckle)
 
 Repo: <https://github.com/scalar/scalar>
 
@@ -166,8 +166,8 @@ builder.Services.AddOpenApi(); // built-in .NET 8 OpenAPI document generation
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();                  // → /openapi/v1.json
-    app.MapScalarApiReference();       // → /scalar/v1  (interactive UI)
+    app.MapOpenApi();                  // -> /openapi/v1.json
+    app.MapScalarApiReference();       // -> /scalar/v1  (interactive UI)
 }
 ```
 
@@ -203,11 +203,11 @@ app.UseFastEndpoints();
 app.Run();
 ```
 
-> **Decision**: use **FastEndpoints** when endpoints multiply beyond 5–6 (prevents lambda sprawl). Use **Carter** when you prefer a thin module-grouping convention without committing to FastEndpoints' full plugin system.
+> **Decision**: use **FastEndpoints** when endpoints multiply beyond 5-6 (prevents lambda sprawl). Use **Carter** when you prefer a thin module-grouping convention without committing to FastEndpoints' full plugin system.
 
-### Tier 1.5 — Package scoring table
+### Tier 1.5 -- Package scoring table
 
-Scores 1–5. **My recommended combination is marked ★**.
+Scores 1-5. **My recommended combination is marked U+2605**.
 
 #### Individual packages
 
@@ -225,24 +225,24 @@ Scores 1–5. **My recommended combination is marked ★**.
 
 > **Scoring criteria:**
 >
-> - **DX** — how much boilerplate it eliminates, how quick to be productive.
-> - **Perf** — runtime overhead (5 = zero overhead; 1 = measurable cost at scale).
-> - **Maintainability** — consistency enforced across team, refactor safety.
-> - **Learning curve** — 5 = pick up in < 1 hour; 1 = requires dedicated study.
-> - **Community** — GitHub stars trajectory, NuGet downloads, activity, issues response time.
-> - **Copilot-friendliness** — how well Copilot autocompletes and understands the pattern (popular packages with clear conventions score higher).
+> - **DX** -- how much boilerplate it eliminates, how quick to be productive.
+> - **Perf** -- runtime overhead (5 = zero overhead; 1 = measurable cost at scale).
+> - **Maintainability** -- consistency enforced across team, refactor safety.
+> - **Learning curve** -- 5 = pick up in < 1 hour; 1 = requires dedicated study.
+> - **Community** -- GitHub stars trajectory, NuGet downloads, activity, issues response time.
+> - **Copilot-friendliness** -- how well Copilot autocompletes and understands the pattern (popular packages with clear conventions score higher).
 
 #### Curated combinations
 
 | Stack | Packages | Total /30 | When to pick |
 | --- | --- | --- | --- |
-| ★ **Elite minimal** (recommended) | FastEndpoints + FastEndpoints.Security + Serilog + ErrorOr + Scalar | **27.75 avg** | Solo dev or small team; real project with > 5 endpoints; want structure without CQRS overhead |
+| U+2605 **Elite minimal** (recommended) | FastEndpoints + FastEndpoints.Security + Serilog + ErrorOr + Scalar | **27.75 avg** | Solo dev or small team; real project with > 5 endpoints; want structure without CQRS overhead |
 | **CQRS heavy** | MediatR + Serilog + ErrorOr + Scalar + Scrutor | **26.4 avg** | Large team; DDD; commands/events are first-class concerns |
 | **Thin & fast** | Carter + Serilog + FluentResults + Scalar | **26.75 avg** | Microservice / sidecar; minimal surface area; < 10 endpoints |
 | **Vanilla + logging** | `dotnet new webapi` + Serilog + Scalar | **28.5 avg** | Tutorial, spike, or prototype; need zero external conventions |
 | **Full Clean Arch** | Jason Taylor template (includes MediatR + FV + EF + xUnit) | N/A | Multi-dev project; long-lived product; onboarding structured teams |
 
-#### ★ My recommendation — Elite minimal stack
+#### U+2605 My recommendation -- Elite minimal stack
 
 ```powershell
 dotnet new webapi -n MyApi --use-minimal-apis
@@ -266,33 +266,33 @@ builder.Services.AddAuthorization();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Endpoint — require authenticated user
+// Endpoint -- require authenticated user
 public override void Configure()
 {
     Post("/orders");
-    // AllowAnonymous(); ← remove this line
+    // AllowAnonymous(); <- remove this line
 }
 ```
 
-> **Security note (from specialist review):** authentication is not a bolt-on. Wire `FastEndpoints.Security` in the same sprint as the scaffold — never leave endpoints open by default.
+> **Security note (from specialist review):** authentication is not a bolt-on. Wire `FastEndpoints.Security` in the same sprint as the scaffold -- never leave endpoints open by default.
 
 **Why this wins:**
 
 1. **FastEndpoints** eliminates the #1 pain point of minimal APIs (lambda sprawl) while matching raw ASP.NET Core throughput in benchmarks (TechEmpower Round 22).
 
-2. **`FastEndpoints.Swagger`** sub-package wires Scalar + OpenAPI doc generation automatically — no separate `AddOpenApi()` plumbing needed.
+2. **`FastEndpoints.Swagger`** sub-package wires Scalar + OpenAPI doc generation automatically -- no separate `AddOpenApi()` plumbing needed.
 
-3. **`FastEndpoints.Security`** adds JWT bearer + cookie auth + fine-grained permissions in < 5 lines — no manual `AddAuthentication().AddJwtBearer()` ceremony.
+3. **`FastEndpoints.Security`** adds JWT bearer + cookie auth + fine-grained permissions in < 5 lines -- no manual `AddAuthentication().AddJwtBearer()` ceremony.
 
 4. **Serilog** is the de-facto standard (.NET ecosystem, 500M+ NuGet downloads); every sink you'll ever need exists.
 
-5. **ErrorOr** keeps domain errors as typed values — `ErrorOr<T>` maps to `SendErrorsAsync()` in FastEndpoints and to `Results.Problem()` in vanilla APIs without any infrastructure code.
+5. **ErrorOr** keeps domain errors as typed values -- `ErrorOr<T>` maps to `SendErrorsAsync()` in FastEndpoints and to `Results.Problem()` in vanilla APIs without any infrastructure code.
 
 6. The whole stack takes < 10 minutes to wire and generates code that Copilot autocompletes accurately and consistently.
 
-**When to drop this and go Clean Architecture instead:** your domain has > 3 bounded contexts, you have > 3 developers, or you need event sourcing / domain events — at that point, the CQRS heavy stack wins on long-term maintainability.
+**When to drop this and go Clean Architecture instead:** your domain has > 3 bounded contexts, you have > 3 developers, or you need event sourcing / domain events -- at that point, the CQRS heavy stack wins on long-term maintainability.
 
-### Tier 2 — .NET Aspire (cloud-native / distributed)
+### Tier 2 -- .NET Aspire (cloud-native / distributed)
 
 ```powershell
 dotnet workload install aspire
@@ -305,12 +305,12 @@ dotnet new aspire-starter -n MyApp
 
 - Best for: multi-service setups requiring service discovery, health dashboards, and OpenTelemetry out of the box.
 
-### Tier 3 — Community Clean Architecture templates
+### Tier 3 -- Community Clean Architecture templates
 
 | Template | GitHub | Install | Best for |
 | --- | --- | --- | --- |
-| **Jason Taylor — Clean Architecture** | <https://github.com/jasontaylordev/CleanArchitecture> | `dotnet new install Clean.Architecture.Solution.Template` | Full-stack (Angular/React + API): CQRS, MediatR, FluentValidation, EF Core, Identity, xUnit |
-| **Ardalis — Clean Architecture** | <https://github.com/ardalis/CleanArchitecture> | `dotnet new install Ardalis.CleanArchitecture.Template` | API-only: DDD-friendly, minimal external dependencies |
+| **Jason Taylor -- Clean Architecture** | <https://github.com/jasontaylordev/CleanArchitecture> | `dotnet new install Clean.Architecture.Solution.Template` | Full-stack (Angular/React + API): CQRS, MediatR, FluentValidation, EF Core, Identity, xUnit |
+| **Ardalis -- Clean Architecture** | <https://github.com/ardalis/CleanArchitecture> | `dotnet new install Ardalis.CleanArchitecture.Template` | API-only: DDD-friendly, minimal external dependencies |
 | **eShopOnWeb** (Microsoft reference) | <https://github.com/dotnet-architecture/eShopOnWeb> | Clone | Comprehensive reference: Razor Pages + API, Domain-Driven Design, tested by Microsoft |
 
 ```powershell
@@ -323,7 +323,7 @@ dotnet new ca-sln -n MyApi
 
 | Source | URL | Notes |
 | --- | --- | --- |
-| Microsoft — ASP.NET Core docs examples | <https://github.com/dotnet/AspNetCore.Docs> | Official, versioned per .NET release |
+| Microsoft -- ASP.NET Core docs examples | <https://github.com/dotnet/AspNetCore.Docs> | Official, versioned per .NET release |
 | Minimal API samples | <https://github.com/martincostello/aspnetcore-openapi> | OpenAPI 3.1 with .NET 9 minimal APIs |
 | awesome-dotnet (curated list) | <https://github.com/quozd/awesome-dotnet> | Community-maintained link registry |
 
@@ -341,12 +341,12 @@ dotnet new ca-sln -n MyApi
 
 ## Python
 
-### Tier 1 — FastAPI (recommended default)
+### Tier 1 -- FastAPI (recommended default)
 
 ```bash
 pip install fastapi uvicorn[standard]
 
-# main.py — production-ready skeleton in 25 lines
+# main.py -- production-ready skeleton in 25 lines
 cat > main.py << 'EOF'
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
@@ -375,7 +375,7 @@ EOF
 uvicorn main:app --reload
 ```
 
-### Tier 2 — FastAPI full-stack template (batteries included)
+### Tier 2 -- FastAPI full-stack template (batteries included)
 
 | Template | GitHub | Notes |
 | --- | --- | --- |
@@ -389,7 +389,7 @@ pip install cookiecutter
 cookiecutter https://github.com/fastapi/full-stack-fastapi-template
 ```
 
-### Tier 3 — Flask (lightweight)
+### Tier 3 -- Flask (lightweight)
 
 ```bash
 pip install flask flask-smorest marshmallow
@@ -417,10 +417,10 @@ app.run(debug=True)
 | Source | URL | Notes |
 | --- | --- | --- |
 | FastAPI docs examples | <https://github.com/fastapi/fastapi/tree/master/docs_src> | Canonical, tested against each release |
-| Real Python — FastAPI tutorial | <https://realpython.com/fastapi-python-web-apis/> | Step-by-step practical guide |
+| Real Python -- FastAPI tutorial | <https://realpython.com/fastapi-python-web-apis/> | Step-by-step practical guide |
 | awesome-fastapi | <https://github.com/mjhea0/awesome-fastapi> | Curated plugin and template list |
 
-### Decision matrix — Python
+### Decision matrix -- Python
 
 | Scenario | Recommended approach |
 | --- | --- |
@@ -431,7 +431,7 @@ app.run(debug=True)
 
 ---
 
-## Bash — REST client patterns
+## Bash -- REST client patterns
 
 > Bash does not serve REST APIs. This section covers **bash scripts that consume REST APIs** via `curl` + `jq`, and bash bootstrap scripts that scaffold other projects.
 
@@ -557,7 +557,7 @@ case "${stack}" in
     dotnet new webapi -n "${name}" --use-minimal-apis
     cd "${name}"
     dotnet add package Swashbuckle.AspNetCore
-    echo "✅  ${name} (dotnet minimal API) ready — run: dotnet run"
+    echo "U+2705  ${name} (dotnet minimal API) ready -- run: dotnet run"
     ;;
   python|fastapi)
     python -m venv "${name}/.venv"
@@ -565,7 +565,7 @@ case "${stack}" in
     source "${name}/.venv/bin/activate"
     pip install --quiet fastapi uvicorn[standard] pydantic-settings
     echo "from fastapi import FastAPI; app = FastAPI()" > "${name}/main.py"
-    echo "✅  ${name} (FastAPI) ready — run: uvicorn main:app --reload"
+    echo "U+2705  ${name} (FastAPI) ready -- run: uvicorn main:app --reload"
     ;;
   *)
     echo "Unknown stack: ${stack}" >&2; exit 1 ;;

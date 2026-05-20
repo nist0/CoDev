@@ -1,6 +1,6 @@
 ---
 name: pic
-description: PIC firmware — MCU identification, ISR safety, peripheral configuration, memory constraints, and debugging.
+description: PIC firmware -- MCU identification, ISR safety, peripheral configuration, memory constraints, and debugging.
 argument-hint: "[PIC model] [peripheral or subsystem]"
 user-invocable: true
 

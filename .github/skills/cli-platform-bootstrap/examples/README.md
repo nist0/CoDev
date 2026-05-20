@@ -1,4 +1,4 @@
-# cli-platform-bootstrap — Examples
+# cli-platform-bootstrap -- Examples
 
 ## Example 1: Bootstrap CoDev into a fresh clone on Windows (lockfile mode)
 
@@ -16,7 +16,7 @@ git submodule update --init --recursive
 
 # 3. Bootstrap (extend strategy)
 .\tools\codev\codev.ps1 init --strategy extend
-# Output includes: "Symlink mode unavailable — using lockfile mode. codev-lock.json created."
+# Output includes: "Symlink mode unavailable -- using lockfile mode. codev-lock.json created."
 
 # 4. Verify
 python tools/codev/scripts/validate-route-smoke.py

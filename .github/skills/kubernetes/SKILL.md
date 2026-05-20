@@ -1,6 +1,6 @@
 ---
 name: kubernetes
-description: Kubernetes workload triage — workload spec review, resource limits, probes, RBAC, logs, and rollback.
+description: Kubernetes workload triage -- workload spec review, resource limits, probes, RBAC, logs, and rollback.
 argument-hint: "[namespace] [workload]"
 user-invocable: true
 

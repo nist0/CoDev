@@ -25,11 +25,11 @@ Before writing any rules, gather authoritative references for the domain or tech
 
 1. **Identify the domain**: name it explicitly (e.g. "C# async patterns", "Helm chart standards", "React component design").
 
-2. **Gather ≥2 primary sources**: official documentation, language specs, RFC/standards, canonical style guides. Prioritise primary over aggregated/secondary sources.
+2. **Gather >=2 primary sources**: official documentation, language specs, RFC/standards, canonical style guides. Prioritise primary over aggregated/secondary sources.
 
 3. **Read related CoDev assets**: scan existing instructions, skills, and agents that touch the same domain to avoid contradiction and duplication.
 
-4. **Synthesise best practices**: extract the non-contradictory union. Where sources conflict, document the choice — *"Source A recommends X; Source B recommends Y — using X because `<rationale>`."*
+4. **Synthesise best practices**: extract the non-contradictory union. Where sources conflict, document the choice -- *"Source A recommends X; Source B recommends Y -- using X because `<rationale>`."*
 
 5. **Cite sources**: inline-link primary references at the top of the instruction file or in the relevant rule where domain-specific constraints are stated.
 
@@ -41,7 +41,7 @@ Before creating a new instruction file:
 
 1. Read all files in `.github/instructions/`.
 
-2. Read `00-core.instructions.md` — repo-wide rules always apply.
+2. Read `00-core.instructions.md` -- repo-wide rules always apply.
 
 3. Check for an existing file with the same `applyTo` scope.
 
@@ -61,7 +61,7 @@ Rule: prefer the **narrowest** glob that covers the intended files without overl
 
 ### 3. Write the frontmatter
 
-**Official attribute reference** — [VS Code custom-instructions docs](https://code.visualstudio.com/docs/copilot/customization/custom-instructions) (verified 2026-03-04):
+**Official attribute reference** -- [VS Code custom-instructions docs](https://code.visualstudio.com/docs/copilot/customization/custom-instructions) (verified 2026-03-04):
 
 | Attribute | Required | Allowed values / notes |
 | --- | --- | --- |
@@ -110,9 +110,9 @@ For each rule:
 - Rule 1
 ```
 
-- Use `##` sections for grouping (style, security, testing, performance, …).
+- Use `##` sections for grouping (style, security, testing, performance, ...).
 
-- Keep each rule to 1–2 lines; link to docs if more context is needed.
+- Keep each rule to 1-2 lines; link to docs if more context is needed.
 
 - Do not embed code examples longer than 5 lines; link to a skill or example file instead.
 

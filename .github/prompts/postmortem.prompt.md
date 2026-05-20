@@ -40,7 +40,7 @@ Include:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Reliability** | always — postmortem creation | *(this prompt)* | Blameless postmortem drafted with timeline, RCA, corrective and preventative actions |
+| 1 | **Reliability** | always -- postmortem creation | *(this prompt)* | Blameless postmortem drafted with timeline, RCA, corrective and preventative actions |
 | 2 | **Project Orchestrator** | corrective action items produced | `/project-dispatch` | Action items opened as GitHub issues with owners and due dates |
 | 3 | **Project Orchestrator** | action items tracked | `/project-governance` | Issues placed on Kanban board, WIP limits set |
 | 4 | **Delivery Lead** | postmortem doc ready | `/pr-review` | Postmortem committed to docs/postmortems/, PR merged |

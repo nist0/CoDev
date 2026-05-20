@@ -1,6 +1,6 @@
 ---
 name: github-actions
-description: Elite GitHub Actions CI/CD — security hardening, reusable workflows, quality gates, and structured debug methodology.
+description: Elite GitHub Actions CI/CD -- security hardening, reusable workflows, quality gates, and structured debug methodology.
 argument-hint: "[workflow-name] [trigger-event]"
 user-invocable: true
 
@@ -31,11 +31,11 @@ disable-model-invocation: false
 
 ```yaml
 permissions:
-  contents: read       # default — tighten per job
+  contents: read       # default -- tighten per job
   pull-requests: write # only on jobs that post comments
 ```
 
-**Use OIDC for cloud authentication — never store long-lived cloud credentials as secrets:**
+**Use OIDC for cloud authentication -- never store long-lived cloud credentials as secrets:**
 
 ```yaml
 - uses: aws-actions/configure-aws-credentials@...
@@ -58,10 +58,10 @@ permissions:
 
 ```yaml
 jobs:
-  lint:          # < 2 min — fail fast
-  unit-tests:    # < 5 min — parallelized matrix
-  security-scan: # < 3 min — SAST / dependency audit
-  docs-check:    # < 1 min — markdownlint, link check
+  lint:          # < 2 min -- fail fast
+  unit-tests:    # < 5 min -- parallelized matrix
+  security-scan: # < 3 min -- SAST / dependency audit
+  docs-check:    # < 1 min -- markdownlint, link check
 ```
 
 **Release / main branch (separate, slower):**
@@ -191,7 +191,7 @@ strategy:
 
 - [ ] No `echo` of secret values; masking applied where needed.
 
-- [ ] PR checks complete in ≤ 10 min total; slow jobs on separate workflow.
+- [ ] PR checks complete in <= 10 min total; slow jobs on separate workflow.
 
 - [ ] `concurrency` group configured to cancel stale PR runs.
 

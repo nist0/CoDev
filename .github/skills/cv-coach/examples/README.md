@@ -1,4 +1,4 @@
-# cv-coach Skill — Examples
+# cv-coach Skill -- Examples
 
 ## Example 1: Quick critique of a provided CV
 

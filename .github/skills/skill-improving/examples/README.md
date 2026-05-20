@@ -1,4 +1,4 @@
-# Skill Improving — Examples
+# Skill Improving -- Examples
 
 ## 1. Audit Skill for Required Files
 

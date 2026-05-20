@@ -1,6 +1,6 @@
 ---
 name: batch
-description: Windows batch/CMD scripting — safe patterns, error handling, and migration guidance. Prefer PowerShell for complex logic.
+description: Windows batch/CMD scripting -- safe patterns, error handling, and migration guidance. Prefer PowerShell for complex logic.
 argument-hint: "[script-name or automation goal]"
 user-invocable: true
 
@@ -56,7 +56,7 @@ exit /b 0
 
 ### 4. Prefer PowerShell for complex logic
 
-- String manipulation, JSON, REST APIs, complex conditionals → use PowerShell.
+- String manipulation, JSON, REST APIs, complex conditionals -> use PowerShell.
 
 - Batch scripts: bootstrap/launch/legacy only.
 

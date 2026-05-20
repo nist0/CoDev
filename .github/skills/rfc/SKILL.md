@@ -1,6 +1,6 @@
 ---
 name: rfc
-description: Request for Comments — structured design proposal for cross-team changes with goals, options, risks, and rollout plan.
+description: Request for Comments -- structured design proposal for cross-team changes with goals, options, risks, and rollout plan.
 argument-hint: "[proposal-title] [scope]"
 user-invocable: true
 

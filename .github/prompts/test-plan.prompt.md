@@ -1,6 +1,6 @@
 ---
 name: test-plan
-description: "Create a pragmatic test plan (scenarios → test type → rationale)."
+description: "Create a pragmatic test plan (scenarios -> test type -> rationale)."
 agent: "Architect"
 
 argument-hint: "scope=<file or module> stack=<language/framework>"
@@ -32,7 +32,7 @@ Output a table:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Architect** | always — test plan creation | *(this prompt)* | Test plan table produced: scenario, type, rationale, notes |
+| 1 | **Architect** | always -- test plan creation | *(this prompt)* | Test plan table produced: scenario, type, rationale, notes |
 | 2 | **Architect** | test plan approved | `/write-tests` | Tests authored, passing locally and in CI |
 | 3 | **Reviewer** | tests ready for review | `/pr-review` | No flakiness, regression intent mapped, additive policy respected |
 | 4 | **Delivery Lead** | tests merged | `/pr-review` | PR merged, coverage gate passes in CI |

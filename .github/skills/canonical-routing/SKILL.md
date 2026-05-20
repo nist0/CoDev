@@ -1,6 +1,6 @@
 ---
 name: canonical-routing
-description: Deterministic routing using capability + domain matrix — classification, fallback, and handoff.
+description: Deterministic routing using capability + domain matrix -- classification, fallback, and handoff.
 argument-hint: "[user-request]"
 user-invocable: true
 
@@ -34,18 +34,18 @@ disable-model-invocation: false
 Match to a capability ID from `routing/capabilities.yaml`:
 
 ```text
-engineering.debugging        → triage, crash, bug, stacktrace
-engineering.code-analysis    → refactor, review, explain, architecture
-engineering.testing-quality  → test, coverage, lint, quality gate
-engineering.github-delivery  → PR, issue, review, merge, release
-engineering.automation       → CI/CD, pipeline, workflow, script
-engineering.docs             → onboarding, README, guide, doc
-engineering.docs-system      → docs tree, DAM, doc architecture
-engineering.postmortem       → incident, RCA, blameless, timeline
-engineering.release          → tag, changelog, artifact, rollout
-engineering.project-orchestration → project, plan, dispatch, kickoff
-research.brainstorming       → brainstorm, alternatives, innovation
-research.tech-watch          → digest, news, release notes, watch
+engineering.debugging        -> triage, crash, bug, stacktrace
+engineering.code-analysis    -> refactor, review, explain, architecture
+engineering.testing-quality  -> test, coverage, lint, quality gate
+engineering.github-delivery  -> PR, issue, review, merge, release
+engineering.automation       -> CI/CD, pipeline, workflow, script
+engineering.docs             -> onboarding, README, guide, doc
+engineering.docs-system      -> docs tree, DAM, doc architecture
+engineering.postmortem       -> incident, RCA, blameless, timeline
+engineering.release          -> tag, changelog, artifact, rollout
+engineering.project-orchestration -> project, plan, dispatch, kickoff
+research.brainstorming       -> brainstorm, alternatives, innovation
+research.tech-watch          -> digest, news, release notes, watch
 ```
 
 ### 3. Domain classification
@@ -53,26 +53,26 @@ research.tech-watch          → digest, news, release notes, watch
 Match to a domain ID from `routing/domains.yaml`:
 
 ```text
-engineering.backend-dotnet   → .NET, C#, ASP.NET, EF Core, MediatR
-engineering.frontend         → React, TypeScript, npm, CSS, Vite
-engineering.devops-cloud     → AKS, Kubernetes, Helm, Docker, Azure
-engineering.cicd             → GitHub Actions, workflows, pipeline
-engineering.shell-automation → Bash, PowerShell, Python scripts, CLI
-engineering.native           → C, C++, ASM, AVR, PIC, firmware
-engineering.observability    → logs, traces, APM, Elastic, alerting
-engineering.github-delivery  → issues, PRs, GitHub Projects
-engineering.docs-system      → Markdown, onboarding, doc architecture
+engineering.backend-dotnet   -> .NET, C#, ASP.NET, EF Core, MediatR
+engineering.frontend         -> React, TypeScript, npm, CSS, Vite
+engineering.devops-cloud     -> AKS, Kubernetes, Helm, Docker, Azure
+engineering.cicd             -> GitHub Actions, workflows, pipeline
+engineering.shell-automation -> Bash, PowerShell, Python scripts, CLI
+engineering.native           -> C, C++, ASM, AVR, PIC, firmware
+engineering.observability    -> logs, traces, APM, Elastic, alerting
+engineering.github-delivery  -> issues, PRs, GitHub Projects
+engineering.docs-system      -> Markdown, onboarding, doc architecture
 ```
 
-If context signals don’t match any domain: use `unknown`.
+If context signals don't match any domain: use `unknown`.
 
 ### 4. Matrix lookup
 
 ```text
 routing/matrix.yaml
-  try: capability + domain  → recommended agent, prompt(s), skill(s)
-  fallback: capability only → recommended agent, prompt(s), skill(s)
-  final fallback: project-orchestration → Project Orchestrator
+  try: capability + domain  -> recommended agent, prompt(s), skill(s)
+  fallback: capability only -> recommended agent, prompt(s), skill(s)
+  final fallback: project-orchestration -> Project Orchestrator
 ```
 
 Never invent a recommendation outside the matrix without noting it as a fallback.
@@ -91,9 +91,9 @@ Always return:
 
 - Recommended skill(s) (full path).
 
-- Rationale: 1–3 bullets.
+- Rationale: 1-3 bullets.
 
-- Next actions: 1–3 concrete steps.
+- Next actions: 1-3 concrete steps.
 
 ### 6. Routing maintenance
 
@@ -101,7 +101,7 @@ When a request cannot be routed (no matrix rule matches):
 
 1. Flag the gap.
 
-2. Propose a new rule: capability + domain → agent + prompts.
+2. Propose a new rule: capability + domain -> agent + prompts.
 
 3. Provide a smoke-test phrase for `routing/route-smoke-tests.yaml`.
 

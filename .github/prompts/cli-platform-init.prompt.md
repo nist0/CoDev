@@ -1,6 +1,6 @@
 ---
 name: cli-platform-init
-description: "Guided CoDev submodule bootstrap for a .NET CLI platform repo — add submodule, codev init with extend strategy, author codev-overrides/ stub, verify, and commit. Phase 1 of the CLI platform onboarding workflow."
+description: "Guided CoDev submodule bootstrap for a .NET CLI platform repo -- add submodule, codev init with extend strategy, author codev-overrides/ stub, verify, and commit. Phase 1 of the CLI platform onboarding workflow."
 agent: "CLI Platform Onboarder"
 
 argument-hint: "repo=<clone-url-or-local-path> branch=<feat/bootstrap-codev>"
@@ -56,6 +56,6 @@ Required outputs:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **CLI Platform Onboarder** | always — Phase 1 Bootstrap | *(this prompt)* | All 7 bootstrap steps verified, `validate-route-smoke.py` passes, CI green |
+| 1 | **CLI Platform Onboarder** | always -- Phase 1 Bootstrap | *(this prompt)* | All 7 bootstrap steps verified, `validate-route-smoke.py` passes, CI green |
 | 2 | **CLI Platform Onboarder** | Phase 1 complete | `/cli-platform-analyze` | docs/project-context.md produced and committed (Phase 2) |
 | 3 | **CLI Platform Onboarder** | Phase 2 complete | `/cli-platform-task task=<assigned task>` | Task executed, PR open, CI green (Phase 3) |

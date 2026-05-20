@@ -1,4 +1,4 @@
-# Commits Skill — Examples
+# Commits Skill -- Examples
 
 ## 1. Conventional Commit Message
 

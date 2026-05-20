@@ -1,4 +1,4 @@
-# Issues Skill — Examples
+# Issues Skill -- Examples
 
 ## 1. List Issues with gh CLI
 

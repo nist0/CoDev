@@ -28,7 +28,7 @@ Expected output:
 
 - Concrete acceptance criteria for merge.
 
-## REST API Runtime Quality Skill — Examples
+## REST API Runtime Quality Skill -- Examples
 
 ## 1. Run Integration Tests
 

@@ -1,6 +1,6 @@
 ---
 name: openapi
-description: OpenAPI/Swagger — operation IDs, response schemas, auth documentation, error responses, and spec validation.
+description: OpenAPI/Swagger -- operation IDs, response schemas, auth documentation, error responses, and spec validation.
 argument-hint: "[API name or endpoint group]"
 user-invocable: true
 

@@ -1,6 +1,6 @@
 ---
 name: rest-api-controller-gen
-description: Generate a production-ready ASP.NET Core REST API controller (CRUD) from a description, OpenAPI JSON contract, or resource theme — with MediatR handlers, FluentValidation, ProblemDetails, OpenAPI annotations, versioning, and an integration-test checklist.
+description: Generate a production-ready ASP.NET Core REST API controller (CRUD) from a description, OpenAPI JSON contract, or resource theme -- with MediatR handlers, FluentValidation, ProblemDetails, OpenAPI annotations, versioning, and an integration-test checklist.
 argument-hint: "[input-mode: description|openapi|theme] [resource-name-or-spec]"
 user-invocable: true
 
@@ -19,7 +19,7 @@ disable-model-invocation: false
 
 ## Input modes
 
-### Mode 1 — Natural-language description
+### Mode 1 -- Natural-language description
 
 Provide a sentence describing the resource and its fields.
 
@@ -33,7 +33,7 @@ Steps:
 
 3. Proceed to [Controller generation steps](#controller-generation-steps).
 
-### Mode 2 — OpenAPI JSON contract
+### Mode 2 -- OpenAPI JSON contract
 
 Provide a path to an OpenAPI JSON file or paste an inline snippet.
 
@@ -49,7 +49,7 @@ Steps:
 
 5. Proceed to [Controller generation steps](#controller-generation-steps).
 
-OpenAPI → C# type mapping:
+OpenAPI -> C# type mapping:
 
 | OpenAPI type | Format | C# type |
 | --- | --- | --- |
@@ -63,7 +63,7 @@ OpenAPI → C# type mapping:
 | `boolean` | *(any)* | `bool` |
 | `array` | *(any)* | `List<T>` |
 
-### Mode 3 — Theme / resource name only
+### Mode 3 -- Theme / resource name only
 
 Provide just the resource name (e.g. `Orders`, `Invoices`, `BlogPosts`).
 
@@ -77,7 +77,7 @@ Steps:
 
 ## Controller generation steps
 
-### Step 1 — DTOs
+### Step 1 -- DTOs
 
 Generate request and response DTOs for each operation:
 
@@ -101,7 +101,7 @@ public sealed record ProductResponse(
 
 Rules:
 
-- Use `sealed record` for DTOs — immutable, structural equality by default.
+- Use `sealed record` for DTOs -- immutable, structural equality by default.
 
 - Do not expose domain entities directly; always map through a DTO.
 
@@ -109,7 +109,7 @@ Rules:
 
 - Nullable fields: use `Type?` syntax.
 
-### Step 2 — FluentValidation validators
+### Step 2 -- FluentValidation validators
 
 Generate one `AbstractValidator<TRequest>` per request DTO:
 
@@ -133,7 +133,7 @@ public sealed class CreateProductRequestValidator : AbstractValidator<CreateProd
 
 Register validators globally via `services.AddValidatorsFromAssemblyContaining<Program>()`.
 
-### Step 3 — MediatR commands and queries
+### Step 3 -- MediatR commands and queries
 
 Generate one command/query per operation:
 
@@ -181,7 +181,7 @@ public sealed class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery,
 }
 ```
 
-### Step 4 — Controller class
+### Step 4 -- Controller class
 
 ```csharp
 [ApiController]
@@ -271,7 +271,7 @@ public sealed class ProductsController : ControllerBase
 }
 ```
 
-### Step 5 — Authorization hooks
+### Step 5 -- Authorization hooks
 
 Add per-endpoint authorization attributes based on the resource sensitivity. Default pattern:
 
@@ -289,7 +289,7 @@ Rules:
 
 - Always add `[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]` and `403` where applicable.
 
-### Step 6 — Versioning
+### Step 6 -- Versioning
 
 Register API versioning in `Program.cs` or `Startup.cs`:
 
@@ -309,7 +309,7 @@ builder.Services.AddVersionedApiExplorer(options =>
 
 Route template: `[Route("api/v{version:apiVersion}/products")]`
 
-### Step 7 — OpenAPI documentation
+### Step 7 -- OpenAPI documentation
 
 Ensure `Swashbuckle.AspNetCore` is configured to include XML comments:
 
@@ -348,7 +348,7 @@ Enable XML documentation in the `.csproj`:
 </PropertyGroup>
 ```
 
-### Step 8 — ProblemDetails global handler
+### Step 8 -- ProblemDetails global handler
 
 Ensure the global exception middleware converts unhandled exceptions to `ProblemDetails`:
 
@@ -405,25 +405,25 @@ public sealed class ProductsControllerTests
 
 **Required test cases**:
 
-- `GET /products` → `200 OK`, response is a list
+- `GET /products` -> `200 OK`, response is a list
 
-- `GET /products/{id}` (known) → `200 OK`, correct body
+- `GET /products/{id}` (known) -> `200 OK`, correct body
 
-- `GET /products/{id}` (unknown) → `404 Not Found` + `ProblemDetails`
+- `GET /products/{id}` (unknown) -> `404 Not Found` + `ProblemDetails`
 
-- `POST /products` (valid) → `201 Created`, `Location` header set
+- `POST /products` (valid) -> `201 Created`, `Location` header set
 
-- `POST /products` (invalid) → `400 Bad Request` + `ValidationProblemDetails`
+- `POST /products` (invalid) -> `400 Bad Request` + `ValidationProblemDetails`
 
-- `PUT /products/{id}` (known, valid) → `200 OK`
+- `PUT /products/{id}` (known, valid) -> `200 OK`
 
-- `PUT /products/{id}` (unknown) → `404 Not Found`
+- `PUT /products/{id}` (unknown) -> `404 Not Found`
 
-- `DELETE /products/{id}` (known) → `204 No Content`
+- `DELETE /products/{id}` (known) -> `204 No Content`
 
-- `DELETE /products/{id}` (unknown) → `404 Not Found`
+- `DELETE /products/{id}` (unknown) -> `404 Not Found`
 
-- (if auth) Unauthenticated request to write endpoint → `401 Unauthorized`
+- (if auth) Unauthenticated request to write endpoint -> `401 Unauthorized`
 
 ## Self-check
 
@@ -435,13 +435,13 @@ public sealed class ProductsControllerTests
 
 - [ ] All controller actions have `[ProducesResponseType]` for each documented status code.
 
-- [ ] XML doc comments on every action — renders in Swagger UI.
+- [ ] XML doc comments on every action -- renders in Swagger UI.
 
 - [ ] `CancellationToken` threaded through all async calls.
 
 - [ ] Versioning route template applied (`api/v{version:apiVersion}/...`).
 
-- [ ] Authorization attribute applied (even if `[AllowAnonymous]` — explicit is safe).
+- [ ] Authorization attribute applied (even if `[AllowAnonymous]` -- explicit is safe).
 
 - [ ] Integration test cases cover all 4 CRUD operations and error paths.
 

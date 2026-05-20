@@ -1,6 +1,6 @@
 ---
 name: bruno
-description: Bruno API testing — collection structure, environment strategy, request standardization, response validation, CI integration.
+description: Bruno API testing -- collection structure, environment strategy, request standardization, response validation, CI integration.
 argument-hint: "[domain or endpoint group]"
 user-invocable: true
 

@@ -69,7 +69,7 @@ agent: agent
 ## Agent delegation chain
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **implement** | always — test file creation | *(this prompt)* | Test file written, all tests pass locally |
+| 1 | **implement** | always -- test file creation | *(this prompt)* | Test file written, all tests pass locally |
 | 2 | **Reviewer** | tests written | `/pr-review` | Coverage meets threshold, no flaky patterns |
-| 3 | **Delivery Lead** | review approved | — | PR merged, CI green |
+| 3 | **Delivery Lead** | review approved | -- | PR merged, CI green |
 ```

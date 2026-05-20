@@ -42,6 +42,6 @@ Include:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — onboarding guide creation | *(this prompt)* | Onboarding guide produced covering setup, build, architecture, and PR workflow |
+| 1 | **Delivery Lead** | always -- onboarding guide creation | *(this prompt)* | Onboarding guide produced covering setup, build, architecture, and PR workflow |
 | 2 | **Reviewer** | guide reviewed by a new team member | `/pr-review` | Guide confirmed accurate and complete |
 | 3 | **Delivery Lead** | guide ready to publish | `/pr-review` | PR merged, CI green |

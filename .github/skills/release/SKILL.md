@@ -1,6 +1,6 @@
 ---
 name: release
-description: End-to-end release pipeline — SemVer tagging, artifact signing, changelog, smoke test, and rollback.
+description: End-to-end release pipeline -- SemVer tagging, artifact signing, changelog, smoke test, and rollback.
 argument-hint: "[version] [target-environment]"
 user-invocable: true
 
@@ -11,7 +11,7 @@ disable-model-invocation: false
 
 ## When to use
 
-- Creating a release pipeline (tag → build → artifact → publish).
+- Creating a release pipeline (tag -> build -> artifact -> publish).
 
 - Defining SemVer tagging and changelog automation.
 
@@ -45,7 +45,7 @@ Before cutting a release:
 
 ### 3. Build and sign artifacts
 
-1. Build a **deterministic** artifact (same inputs → same hash).
+1. Build a **deterministic** artifact (same inputs -> same hash).
 
 2. Generate SBOM (`syft` or language-native tool).
 
@@ -59,9 +59,9 @@ Before cutting a release:
 
 - Use Conventional Commits (`feat:`, `fix:`, `BREAKING CHANGE:`).
 
-- Map commits to SemVer bump: `BREAKING CHANGE` → major, `feat` → minor, `fix` → patch.
+- Map commits to SemVer bump: `BREAKING CHANGE` -> major, `feat` -> minor, `fix` -> patch.
 
-- Format: `## [vX.Y.Z] — YYYY-MM-DD\n### Added | Changed | Fixed | Removed | Security`.
+- Format: `## [vX.Y.Z] -- YYYY-MM-DD\n### Added | Changed | Fixed | Removed | Security`.
 
 - Auto-generate via `git-cliff`, `release-please`, or `conventional-changelog-cli`.
 

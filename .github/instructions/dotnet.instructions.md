@@ -103,7 +103,7 @@ applyTo: "**/*.cs"
 
 ---
 
-## 🏆 Elite Section — Top 5% .NET Practices
+## U+1F3C6 Elite Section -- Top 5% .NET Practices
 
 - **Source generators over reflection**: Prefer compile-time code generation (e.g. `System.Text.Json` source gen, Dapper source gen) over runtime reflection for performance-critical paths.
 
@@ -113,6 +113,6 @@ applyTo: "**/*.cs"
 
 - **BenchmarkDotNet before merging hot paths**: Any change to a code path that handles >1k req/s must ship with a `BenchmarkDotNet` comparison showing no regression.
 
-- **Structured diagnostics from day 0**: Instrument new services with `ActivitySource` for distributed tracing and `Meter` for custom metrics from the first commit — retrofitting is painful.
+- **Structured diagnostics from day 0**: Instrument new services with `ActivitySource` for distributed tracing and `Meter` for custom metrics from the first commit -- retrofitting is painful.
 
 - **Resiliency via Polly pipelines**: Define named `ResiliencePipeline` policies (retry + circuit breaker + timeout) at startup; never inline retry logic ad hoc inside service methods.

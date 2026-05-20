@@ -1,6 +1,6 @@
 ---
 name: onboarding-factory
-description: Generate a developer onboarding guide — setup, architecture, conventions, and contribution workflow.
+description: Generate a developer onboarding guide -- setup, architecture, conventions, and contribution workflow.
 argument-hint: "[repo-name] [team-conventions]"
 user-invocable: true
 
@@ -86,7 +86,7 @@ Produce a text diagram or Mermaid flowchart:
 
 - Top-level modules and their responsibilities.
 
-- Key data flows (request → handler → service → DB).
+- Key data flows (request -> handler -> service -> DB).
 
 - External integrations (queues, APIs, identity providers).
 

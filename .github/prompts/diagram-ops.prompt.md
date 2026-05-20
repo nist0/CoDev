@@ -48,7 +48,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Delivery Lead** | always — diagram operation (PlantUML / convert / validate) | *(this prompt)* | Diagram produced/modified, validation checklist complete |
+| 1 | **Delivery Lead** | always -- diagram operation (PlantUML / convert / validate) | *(this prompt)* | Diagram produced/modified, validation checklist complete |
 | 1b | **mermaid-diagrammer** | `format=mermaid` + operation=create | `/mermaid-create` | Mermaid diagram generated, self-check complete |
 | 1c | **mermaid-diagrammer** | `format=mermaid` + operation=validate/modify | `/mermaid-review` | Verdict produced, improved version provided if needed |
 | 1d | **mermaid-diagrammer** | `format=mermaid` + operation=embed in Markdown | `/mermaid-embed` | Diagram embedded with prose context and accessibility note |

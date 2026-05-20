@@ -40,7 +40,7 @@ Output:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Architect** | always — code explanation | *(this prompt)* | Summary, flows, invariants, and risks documented |
+| 1 | **Architect** | always -- code explanation | *(this prompt)* | Summary, flows, invariants, and risks documented |
 | 2 | **Delivery Lead** | documentation update needed | `/generate-docs-tree` or `/markdown-ops` | Doc-ready snippet integrated into docs/ |
 | 3 | **Architect** | test coverage gap identified | `/test-plan` then `/write-tests` | Missing tests authored and passing |
 | 4 | **Delivery Lead** | changes committed | `/pr-review` | PR approved, CI green |

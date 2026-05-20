@@ -12,7 +12,7 @@ user-invocable: true
 disable-model-invocation: false
 ---
 
-# Project Takeover (Prise en charge de projet) — Skill
+# Project Takeover (Prise en charge de projet) -- Skill
 
 ## Quand utiliser cette skill
 
@@ -39,7 +39,7 @@ disable-model-invocation: false
 
 ---
 
-### Phase 1 — Initialisation et collecte des dépôts
+### Phase 1 -- Initialisation et collecte des dépôts
 
 **Objectif** : Cloner localement tous les dépôts cibles et constituer l'inventaire de base.
 
@@ -60,7 +60,7 @@ disable-model-invocation: false
 
    ```markdown
 
-## Inventaire des dépôts — <Date>
+## Inventaire des dépôts -- <Date>
 
    | Dépôt | URL | Branche par défaut | Langue principale | Dernier commit |
    |---|---|---|---|---|
@@ -82,7 +82,7 @@ disable-model-invocation: false
 
 ---
 
-### Phase 2 — État du projet Kanban
+### Phase 2 -- État du projet Kanban
 
 **Objectif** : Capturer l'état actuel du Kanban de référence et identifier les
 travaux en cours, bloqués, ou en attente.
@@ -115,7 +115,7 @@ travaux en cours, bloqués, ou en attente.
 
 ---
 
-### Phase 3 — Graphe des sous-modules et dépendances inter-dépôts
+### Phase 3 -- Graphe des sous-modules et dépendances inter-dépôts
 
 **Objectif** : Cartographier les relations entre dépôts (sous-modules Git,
 packages internes, references croisées).
@@ -128,11 +128,11 @@ packages internes, references croisées).
 
 2. Détecter les dépendances inter-packages (packages internes NuGet/npm/pip) :
 
-   - `.csproj` → `<PackageReference>` pointant vers un feed privé
+   - `.csproj` -> `<PackageReference>` pointant vers un feed privé
 
-   - `package.json` → dépendances `@<scope>/` ou version `file:`
+   - `package.json` -> dépendances `@<scope>/` ou version `file:`
 
-   - `pyproject.toml` / `requirements.txt` → packages sur index privé
+   - `pyproject.toml` / `requirements.txt` -> packages sur index privé
 
 3. Construire le graphe en Mermaid :
    ```mermaid
@@ -146,18 +146,18 @@ packages internes, references croisées).
 
    - Diagramme Mermaid du graphe complet
 
-   - Tableau des sous-modules (dépôt parent → sous-module → commit épinglé →
+   - Tableau des sous-modules (dépôt parent -> sous-module -> commit épinglé ->
      version)
 
    - Packages internes partagés et leurs consommateurs
 
-   - Cycles de dépendances détectés (⚠️ à signaler explicitement)
+   - Cycles de dépendances détectés (U+26A0U+FE0F à signaler explicitement)
 
 **Livrable** : `.takeover/02-graphe-dependances.md`
 
 ---
 
-### Phase 4 — Topologie API et base de données
+### Phase 4 -- Topologie API et base de données
 
 **Objectif** : Identifier tous les contrats d'API exposés et consommés, ainsi
 que les bases de données utilisées.
@@ -206,7 +206,7 @@ que les bases de données utilisées.
 
    - ORM/driver : `DbContext`, `Sequelize`, `SQLAlchemy`, `pg`, `mongoose`
 
-2. Pour chaque BD : technologie (PostgreSQL/SQL Server/MongoDB/Redis/…), rôle
+2. Pour chaque BD : technologie (PostgreSQL/SQL Server/MongoDB/Redis/...), rôle
    fonctionnel, nom du schéma si détectable, nombre de migrations.
 
 #### Livrable
@@ -229,7 +229,7 @@ Produire `.takeover/03-topologie-api-bd.md` avec :
 
 ---
 
-### Phase 5 — Décomposition fonctionnelle
+### Phase 5 -- Décomposition fonctionnelle
 
 **Objectif** : Comprendre ce que fait le projet d'un point de vue métier et
 technique, module par module.
@@ -245,7 +245,7 @@ technique, module par module.
    - **Rôle fonctionnel** : que fait-il ? (déduire du README, des noms de classes,
      des routes, des commentaires)
 
-   - **Flux de données principaux** : entrée → traitement → sortie
+   - **Flux de données principaux** : entrée -> traitement -> sortie
 
    - **Points d'entrée** : `main`, controller, handler, CLI command
 
@@ -255,15 +255,15 @@ technique, module par module.
 
 3. Pour les domaines métier, chercher les termes du domaine :
 
-   - Noms de classes `Order`, `Customer`, `Invoice`, `Product`, `User`…
+   - Noms de classes `Order`, `Customer`, `Invoice`, `Product`, `User`...
 
-   - Services nommés selon le domaine : `OrderService`, `BillingRepository`…
+   - Services nommés selon le domaine : `OrderService`, `BillingRepository`...
 
 4. Produire `.takeover/04-decomposition-fonctionnelle.md` :
 
    ```markdown
 
-## Décomposition fonctionnelle — <Projet>
+## Décomposition fonctionnelle -- <Projet>
 
 ## Vue d'ensemble
 
@@ -275,9 +275,9 @@ technique, module par module.
 
    **Rôle** : <description>
    **Point d'entrée** : `<fichier>:<fonction>`
-   **Flux** : <entrée> → <traitement> → <sortie>
+   **Flux** : <entrée> -> <traitement> -> <sortie>
    **Dépendances** : <liste>
-   **Tests** : <oui/non/partiel> — couverture estimée : <X%|non mesurée>
+   **Tests** : <oui/non/partiel> -- couverture estimée : <X%|non mesurée>
 
    ...
    ```
@@ -286,7 +286,7 @@ technique, module par module.
 
 ---
 
-### Phase 6 — Plan d'étude point par point
+### Phase 6 -- Plan d'étude point par point
 
 **Objectif** : Produire un guide d'apprentissage structuré et priorisé pour
 maîtriser le projet de façon autonome.
@@ -321,7 +321,7 @@ maîtriser le projet de façon autonome.
 
    ```markdown
 
-# Plan d'étude — <Projet> — <Date>
+# Plan d'étude -- <Projet> -- <Date>
 
 ## Synthèse
 
@@ -363,10 +363,10 @@ maîtriser le projet de façon autonome.
 
 - **Tous les fichiers produits sont en français.**
 
-- **Jamais commiter `.takeover/`** — vérifier `.gitignore` en Phase 1.
+- **Jamais commiter `.takeover/`** -- vérifier `.gitignore` en Phase 1.
 
 - Si une information ne peut pas être déduite de manière fiable, l'indiquer
-  explicitement avec `⚠️ Non déterminé — à vérifier manuellement`.
+  explicitement avec `U+26A0U+FE0F Non déterminé -- à vérifier manuellement`.
 
 - Les diagrammes Mermaid doivent être valides syntaxiquement.
 

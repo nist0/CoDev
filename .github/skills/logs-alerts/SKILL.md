@@ -1,6 +1,6 @@
 ---
 name: logs-alerts
-description: Log analysis and alerting — symptom identification, time-scoped filtering, correlation, and alert rule design.
+description: Log analysis and alerting -- symptom identification, time-scoped filtering, correlation, and alert rule design.
 argument-hint: "[service name or incident description]"
 user-invocable: true
 

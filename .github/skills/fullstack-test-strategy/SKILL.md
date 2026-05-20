@@ -1,6 +1,6 @@
 ---
 name: fullstack-test-strategy
-description: Full-stack test pyramid — risk mapping, unit/integration/contract/E2E allocation, data strategy, CI gating, and flakiness control.
+description: Full-stack test pyramid -- risk mapping, unit/integration/contract/E2E allocation, data strategy, CI gating, and flakiness control.
 argument-hint: "[system-name] [risk-areas]"
 user-invocable: true
 
@@ -34,7 +34,7 @@ Define for each risk area:
 | Risk area | Layer | Priority |
 |-----------|-------|----------|
 | Core business logic | Backend / domain | P1 |
-| API contracts (request/response shape) | Backend ↔ Frontend | P1 |
+| API contracts (request/response shape) | Backend U+2194 Frontend | P1 |
 | Authentication/authorization | Backend + infra | P1 |
 | Data mutations and persistence | Backend + DB | P1 |
 | Key user flows (checkout, login, etc.) | Frontend + backend | P2 |
@@ -45,11 +45,11 @@ Define for each risk area:
 
 | Layer | Unit | Integration | Contract | E2E |
 |-------|------|------------|---------|-----|
-| Domain / business logic | ✅ Primary | ✔ Limited | — | — |
-| Application services | ✅ | ✅ | — | — |
-| API endpoints | ✔ | ✅ | ✅ | — |
-| Frontend components | ✅ | ✔ | └ API mocks | ✅ Critical paths only |
-| Infra / DB / queue | ✔ | ✅ TestContainers | — | — |
+| Domain / business logic | U+2705 Primary | OK Limited | -- | -- |
+| Application services | U+2705 | U+2705 | -- | -- |
+| API endpoints | OK | U+2705 | U+2705 | -- |
+| Frontend components | U+2705 | OK | U+2514 API mocks | U+2705 Critical paths only |
+| Infra / DB / queue | OK | U+2705 TestContainers | -- | -- |
 
 ### 4. Contract tests (API boundary)
 
@@ -59,7 +59,7 @@ Define for each risk area:
 
 - Contract tests run on every PR that touches the API.
 
-- Break the contract → block merge.
+- Break the contract -> block merge.
 
 ### 5. E2E test discipline
 
@@ -119,7 +119,7 @@ Never use production data. Never share mutable state between tests.
 
 - Test pyramid recommendation per layer.
 
-- Test plan table (scenario → type → why).
+- Test plan table (scenario -> type -> why).
 
 - Data strategy summary.
 

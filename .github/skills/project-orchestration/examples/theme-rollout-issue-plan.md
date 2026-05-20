@@ -16,7 +16,7 @@ Extend and govern theme coverage with no duplication and strict instruction comp
 
 ## Issue-ready tasks
 
-### EPIC 1 — Docs & Diagram Ops
+### EPIC 1 -- Docs & Diagram Ops
 
 - **Issue 1.1**: Add diagram tooling skill + examples
 
@@ -42,7 +42,7 @@ Extend and govern theme coverage with no duplication and strict instruction comp
 
   - Acceptance: prompt metadata valid, output formats deterministic
 
-### EPIC 2 — Routing Integration
+### EPIC 2 -- Routing Integration
 
 - **Issue 2.1**: Wire docs-system aliases and domain keywords
 
@@ -60,7 +60,7 @@ Extend and govern theme coverage with no duplication and strict instruction comp
 
   - Acceptance: capability + domain and fallback routes both valid
 
-### EPIC 3 — Governance Enforcement
+### EPIC 3 -- Governance Enforcement
 
 - **Issue 3.1**: Add customization governance instruction
 
@@ -78,7 +78,7 @@ Extend and govern theme coverage with no duplication and strict instruction comp
 
   - Acceptance: routing updates required for all new themes
 
-### EPIC 4 — Final Review
+### EPIC 4 -- Final Review
 
 - **Issue 4.1**: Cross-theme review and gap closure
 

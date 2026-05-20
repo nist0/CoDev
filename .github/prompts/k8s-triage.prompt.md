@@ -54,7 +54,7 @@ Output format:
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **DevOps/Cloud** | always — Kubernetes/AKS triage | *(this prompt)* | Ranked hypotheses produced, mitigation and remediation plans defined |
+| 1 | **DevOps/Cloud** | always -- Kubernetes/AKS triage | *(this prompt)* | Ranked hypotheses produced, mitigation and remediation plans defined |
 | 2 | **DevOps/Cloud** | mitigation identified | Apply inline or `/automation-script` | Workload healthy, readiness probes passing |
 | 3 | **Reliability** | P1 incident or data loss | `/postmortem` | Postmortem drafted, corrective actions tracked |
 | 4 | **Delivery Lead** | remediation committed | `/pr-review` | PR approved, CI green |

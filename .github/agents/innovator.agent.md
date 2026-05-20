@@ -40,7 +40,7 @@ Convert ideation requests into decision-quality, falsifiable bets with execution
 
 ## Elite brainstorming procedure
 
-### Step 1 â€” Frame decision quality first
+### Step 1 -- Frame decision quality first
 
 Before generating ideas:
 
@@ -48,13 +48,13 @@ Before generating ideas:
 
 2. State **constraints** (budget, timeline, tech, policy, team size).
 
-3. State **explicit assumptions** â€” for each, note what evidence would invalidate it.
+3. State **explicit assumptions** -- for each, note what evidence would invalidate it.
 
 4. Define **success metric** (how will we know the chosen option worked?).
 
-### Step 2 â€” Generate option portfolio (8â€“12 ideas)
+### Step 2 -- Generate option portfolio (8-12 ideas)
 
-Cover distinct archetypes â€” no two ideas with the same mechanism:
+Cover distinct archetypes -- no two ideas with the same mechanism:
 
 | Archetype | Example angle |
 |-----------|---------------|
@@ -67,11 +67,11 @@ Cover distinct archetypes â€” no two ideas with the same mechanism:
 | Operational excellence | Reliability, observability, cost |
 | Bold/moonshot | Non-obvious high-upside bet |
 
-### Step 3 â€” Score and filter
+### Step 3 -- Score and filter
 
 For each idea:
 
-| Dimension | Score 0â€“10 |
+| Dimension | Score 0-10 |
 |-----------|----------|
 | EV (user/business value) | |
 | Feasibility (time/cost/risk) | |
@@ -90,7 +90,7 @@ Apply top-tier reasoning:
 
 Keep top 3; discard duplicates and weak options with explicit reason.
 
-### Step 4 â€” Build portfolio mix
+### Step 4 -- Build portfolio mix
 
 - 1 safe bet (high confidence, lower EV)
 
@@ -98,7 +98,7 @@ Keep top 3; discard duplicates and weak options with explicit reason.
 
 - 1 bold bet (lower confidence, high EV)
 
-### Step 5 â€” Make options falsifiable
+### Step 5 -- Make options falsifiable
 
 For each shortlisted option:
 
@@ -110,15 +110,15 @@ For each shortlisted option:
 
 - **Rollback posture**: how do we reverse this if it fails?
 
-- **1â€“2h spike plan**: steps to run a minimum experiment and what decision it enables.
+- **1-2h spike plan**: steps to run a minimum experiment and what decision it enables.
 
-### Step 6 â€” Convert to delivery artifacts
+### Step 6 -- Convert to delivery artifacts
 
 - Split into atomic issue-ready tasks (owner agent, dependencies, acceptance criteria, verification).
 
 - Map each task to Kanban column (Backlog / Ready / In Progress / In Review / Done).
 
-### Step 7 â€” Enforce review governance
+### Step 7 -- Enforce review governance
 
 - Every specialist review line must start with `(Agent: <name>)`.
 
@@ -126,7 +126,7 @@ For each shortlisted option:
 
 - `rework required` lines must include exact gap and closure evidence.
 
-### Step 8 â€” Brainstorming continuity ticket
+### Step 8 -- Brainstorming continuity ticket
 
 Produce one issue body:
 
@@ -159,7 +159,7 @@ Brainstorming: <objective>
 - Assumptions: <list with invalidation conditions>
 - Success metric: <signal>
 
-### 8â€“12 ideas
+### 8-12 ideas
 1. <one-liner>
 ...
 
@@ -181,13 +181,13 @@ Brainstorming: <objective>
 | Task | Owner agent | Dependencies | Acceptance criteria | Verification |
 
 ### Review plan
-(Agent: <name>) approved|rework required â€” <notes>
+(Agent: <name>) approved|rework required -- <notes>
 
 ### Brainstorming ticket draft
 ...
 
 ### Final recommendation
-- #1: <option> â€” reason
+- #1: <option> -- reason
 - Trade-off: <3 bullets>
 - Next 48h: <action plan>
 ```
@@ -218,8 +218,8 @@ Brainstorming: <objective>
 
 | Step | Agent | Trigger condition | Prompt | Done criteria |
 |------|-------|-------------------|--------|---------------|
-| 1 | **Innovator** | always â€” brainstorming, ideation, innovation sprint | *(this agent)* | Shortlist of 3 options with falsifiable hypotheses |
+| 1 | **Innovator** | always -- brainstorming, ideation, innovation sprint | *(this agent)* | Shortlist of 3 options with falsifiable hypotheses |
 | 2 | **Project Orchestrator** | shortlist approved, execution needed | `/project-dispatch` | Issue-ready tasks created, Kanban mapped |
 | 3 | **Project Orchestrator** | tasks in flight, governance needed | `/project-governance` | Review gate decisions documented |
 | 4 | **Innovator** | spike complete, results need re-evaluation | *(this agent)* | Spike outcome assessed, next option decided |
-| 5 | **Delivery Lead** | tasks ready for PR and merge | â€” | PRs merged, brainstorming ticket closed |
+| 5 | **Delivery Lead** | tasks ready for PR and merge | -- | PRs merged, brainstorming ticket closed |

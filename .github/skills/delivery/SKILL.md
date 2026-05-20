@@ -1,6 +1,6 @@
 ---
 name: delivery
-description: End-to-end delivery discipline — Definition of Done, PR hygiene, CI quality gates, release readiness, and post-release verification.
+description: End-to-end delivery discipline -- Definition of Done, PR hygiene, CI quality gates, release readiness, and post-release verification.
 argument-hint: "[feature-or-fix] [environment]"
 user-invocable: true
 
@@ -37,7 +37,7 @@ For every task, define done criteria upfront:
 
 | Rule | Why |
 |------|-----|
-| PRs ≤ 400 lines changed | Reviewers can be thorough |
+| PRs <= 400 lines changed | Reviewers can be thorough |
 | One logical change per PR | Easy to revert cleanly |
 | PR description links issue | Traceability |
 | PR description explains why (not just what) | Context for reviewers |
@@ -106,7 +106,7 @@ Closes #<issue>
 
 - [ ] Done criteria defined before implementation started.
 
-- [ ] PR is ≤ 400 lines and covers one logical change.
+- [ ] PR is <= 400 lines and covers one logical change.
 
 - [ ] PR description includes context, changes, testing, and issue link.
 
@@ -114,7 +114,7 @@ Closes #<issue>
 
 - [ ] Release readiness checklist completed before tagging.
 
-- [ ] Post-release monitoring performed for ≥ 15 min.
+- [ ] Post-release monitoring performed for >= 15 min.
 
 ## Outputs
 

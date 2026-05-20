@@ -30,7 +30,7 @@ applyTo: "**"
 ## Test plan template
 
 ```text
-## Test plan — <feature or fix name>
+## Test plan -- <feature or fix name>
 
 **What**: [describe the behavior under test]
 **Why**: [risk or user impact if this breaks]
@@ -56,15 +56,15 @@ def test_parse_empty_string_returns_none_not_error():
 
 | Layer | Coverage target | Primary tool |
 |---|---|---|
-| Pure functions / domain logic | ≥90% | unit tests |
-| Service / use-case layer | ≥80% | unit + integration |
+| Pure functions / domain logic | >=90% | unit tests |
+| Service / use-case layer | >=80% | unit + integration |
 | HTTP controllers / endpoints | key paths | integration / contract |
 | Infrastructure adapters | happy + failure paths | integration |
-| E2E flows | top 3–5 critical journeys | E2E suite |
+| E2E flows | top 3-5 critical journeys | E2E suite |
 
 ---
 
-## 🏆 Elite Section — Top 5% Quality Practices
+## U+1F3C6 Elite Section -- Top 5% Quality Practices
 
 - **Mutation testing**: Run mutation testing (e.g. Stryker.NET, `mutmut`) quarterly. A test suite that passes with mutated code is not actually verifying behavior.
 

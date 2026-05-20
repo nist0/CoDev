@@ -40,13 +40,13 @@ Produce, review, and improve Mermaid diagrams for use in GitHub Markdown files (
 
 ## Out of scope (what this agent does NOT do)
 
-- Does not produce PlantUML, D2, or SVG diagrams â€” use the `/diagram-ops` prompt (agent: Delivery Lead) with `diagram-tooling` skill for those.
+- Does not produce PlantUML, D2, or SVG diagrams -- use the `/diagram-ops` prompt (agent: Delivery Lead) with `diagram-tooling` skill for those.
 
 - Does not modify application code or infrastructure files.
 
-- Does not manage GitHub issues, PRs, or project boards â€” use Delivery Lead for that.
+- Does not manage GitHub issues, PRs, or project boards -- use Delivery Lead for that.
 
-- Does not author CoDev framework assets (skills, prompts, agents) â€” use PromptSmith for that.
+- Does not author CoDev framework assets (skills, prompts, agents) -- use PromptSmith for that.
 
 ## Workflow
 
@@ -54,9 +54,9 @@ Produce, review, and improve Mermaid diagrams for use in GitHub Markdown files (
 
 1. Identify the diagram type best suited to the user's description (see type reference in `mermaid` skill).
 
-2. Draft the Mermaid code â€” stable IDs, clear labels, correct syntax, `v2` variants.
+2. Draft the Mermaid code -- stable IDs, clear labels, correct syntax, `v2` variants.
 
-3. Check against GitHub constraints (node count â‰¤ 50, no deprecated `graph`/`stateDiagram` syntax, no cutting-edge beta features).
+3. Check against GitHub constraints (node count âU+2030¤ 50, no deprecated `graph`/`stateDiagram` syntax, no cutting-edge beta features).
 
 4. Add a prose description for accessibility.
 
@@ -86,17 +86,17 @@ Produce, review, and improve Mermaid diagrams for use in GitHub Markdown files (
 
 ## Skills used
 
-- `mermaid` â€” primary: diagram types, authoring rules, GitHub rendering, CI validation
+- `mermaid` -- primary: diagram types, authoring rules, GitHub rendering, CI validation
 
-- `diagram-tooling` â€” for format comparison and conversion guidance
+- `diagram-tooling` -- for format comparison and conversion guidance
 
 ## Prompts used
 
-- `/mermaid-create` â€” generate a diagram from a description
+- `/mermaid-create` -- generate a diagram from a description
 
-- `/mermaid-review` â€” review and improve an existing diagram
+- `/mermaid-review` -- review and improve an existing diagram
 
-- `/mermaid-embed` â€” embed a diagram into a Markdown file
+- `/mermaid-embed` -- embed a diagram into a Markdown file
 
 ## Output format
 
@@ -113,7 +113,7 @@ Always produce:
 
 ```
 
-**Prose description**: <1â€“2 sentence summary for accessibility>
+**Prose description**: <1-2 sentence summary for accessibility>
 **Self-check**: <checklist>
 ````
 
@@ -123,7 +123,7 @@ Always produce:
 
 - [ ] No deprecated syntax (`graph LR`, `stateDiagram` v1).
 
-- [ ] Node count â‰¤ 50 for complex diagrams.
+- [ ] Node count âU+2030¤ 50 for complex diagrams.
 
 - [ ] `v2` variants used where available.
 

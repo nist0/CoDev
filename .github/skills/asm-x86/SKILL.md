@@ -1,6 +1,6 @@
 ---
 name: asm-x86
-description: x86 Assembly (Intel) — calling conventions, stack frames, registers, and low-level debugging procedure.
+description: x86 Assembly (Intel) -- calling conventions, stack frames, registers, and low-level debugging procedure.
 argument-hint: "[architecture: x86|x64] [context or function name]"
 user-invocable: true
 
@@ -20,8 +20,8 @@ disable-model-invocation: false
 | Convention | Platform | Args | Return | Caller-saved | Callee-saved |
 |------------|----------|------|--------|--------------|--------------|
 | `cdecl` | x86 Linux/Windows | Stack (right-to-left) | `eax` | `eax,ecx,edx` | `ebx,esi,edi,ebp` |
-| `System V AMD64` | x64 Linux/macOS | `rdi,rsi,rdx,rcx,r8,r9` | `rax` | `r10,r11` | `rbx,r12–r15,rbp` |
-| `Microsoft x64` | x64 Windows | `rcx,rdx,r8,r9` | `rax` | `rax,rcx,rdx,r8,r9,r10,r11` | `rbx,rdi,rsi,r12–r15,rbp` |
+| `System V AMD64` | x64 Linux/macOS | `rdi,rsi,rdx,rcx,r8,r9` | `rax` | `r10,r11` | `rbx,r12-r15,rbp` |
+| `Microsoft x64` | x64 Windows | `rcx,rdx,r8,r9` | `rax` | `rax,rcx,rdx,r8,r9,r10,r11` | `rbx,rdi,rsi,r12-r15,rbp` |
 
 ## Workflow
 
